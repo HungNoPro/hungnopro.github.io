@@ -86,3 +86,11 @@ body {
     background: linear-gradient(45deg, #d5135a, #f05924);
     box-shadow: 0px 4px 30px rgb(223 45 70 / 60%);
 }
+.green{
+    background: linear-gradient(45deg, #248407, #69f65c);
+    box-shadow: 0px 4px 30px rgba(7, 61, 4, 0.6);
+}
+.pink{
+    background: linear-gradient(45deg, #f128bb, #ed74d5);
+    box-shadow: 0px 4px 30px rgba(113, 8, 85, 0.6);
+}
