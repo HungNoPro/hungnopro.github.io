@@ -11,7 +11,7 @@ body {
     width: 100%;
     min-height: 100vh;
     display: flex;
-    background: linear-gradient(28deg, rgba(2,0,36,1) 0%, rgba(51,114,190,1) 0%, rgba(94,8,112,1) 0%, rgba(90,7,101,1) 12%, rgba(105,9,121,1) 38%, rgba(90,38,140,1) 47%, rgba(75,68,160,1) 56%, rgba(65,88,173,1) 62%, rgba(0,212,255,1) 100%);
+    background: linear-gradient(28deg, rgba(2,0,36,1) 0%, rgb(153, 184, 152) 0%, rgb(140, 184, 139) 0%, rgb(155, 191, 154) 12%, rgb(163, 189, 162) 31%, rgb(254, 206, 171) 50%, rgb(236, 190, 187) 63%, rgb(223, 161, 175) 67%, rgb(231, 143, 153) 100%);
 }
 .profile-card{
     width: 100%;
