@@ -5,7 +5,7 @@
 }
 
 body {
-  font-family: "Lato", sans-serif;
+  font-family: "Source Serif Pro", sans-serif;
 }
 
 h2 {
@@ -21,7 +21,12 @@ h2 {
   flex-direction: column;
   justify-content: center;
   background-image: url("../resources/example1.jpg");
-  background-size: 100%;
+  -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100%;
+    overflow: hidden;
 }
 
 .countdown {
