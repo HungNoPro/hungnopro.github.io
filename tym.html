@@ -320,8 +320,12 @@ var ParticlePool = (function() {
   }, 10);
 })(document.getElementById('pinkboard'));
   </script>
-	 <audio autoplay>
-   <source src="resources/waybackhome.mp3" type="audio/mpeg">
+<audio autoplay id="myaudio">
+ <source src="resources/waybackhome.mp3" type="audio/mpeg">
 </audio>
+<script>
+ var audio = document.getElementById("myaudio");
+ audio.volume = 0.5;
+</script>
  </BODY>
 </HTML>
