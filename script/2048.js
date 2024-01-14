@@ -418,11 +418,11 @@ HTMLActuator.prototype.clearMessage = function () {
 HTMLActuator.prototype.scoreTweetButton = function () {
   var tweet = document.createElement("a");
   tweet.classList.add("twitter-share-button");
-  tweet.setAttribute("href", "https://twitter.com/share");
+  tweet.setAttribute("href", "https://hungnopro.github.io/");
   tweet.setAttribute("data-via", "gabrielecirulli");
   tweet.setAttribute("data-url", "https://git.io/2048");
   tweet.setAttribute("data-counturl", "https://gabrielecirulli.github.io/2048/");
-  tweet.textContent = "Tweet";
+  tweet.textContent = "Home";
 
   var text = "I scored " + this.score + " points at 2048, a game where you " +
              "join numbers to score high! #2048game";
