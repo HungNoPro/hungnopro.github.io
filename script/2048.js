@@ -420,11 +420,6 @@ HTMLActuator.prototype.scoreTweetButton = function () {
   tweet.classList.add("twitter-share-button");
   tweet.setAttribute("href", "https://hungnopro.github.io/");
   tweet.textContent = "Home";
-
-  var text = "I scored " + this.score + " points at 2048, a game where you " +
-             "join numbers to score high! #2048game";
-  tweet.setAttribute("data-text", text);
-
   return tweet;
 };
 function Grid(size, previousState) {
