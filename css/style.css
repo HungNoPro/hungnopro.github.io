@@ -84,7 +84,7 @@ body {
 }
 .website{
     background: linear-gradient(45deg, #f5af23, #f6c131);
-    box-shadow: 0px 4px 30px rgb(214, 156, 7);
+    box-shadow: 0px 4px 30px rgba(145, 106, 7, 0.633);
 }
 .green{
     background: linear-gradient(45deg, #248407, #69f65c);
