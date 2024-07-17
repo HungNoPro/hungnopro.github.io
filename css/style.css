@@ -94,7 +94,11 @@ body {
     background: linear-gradient(45deg, #000000, #1d1c1d);
     box-shadow: 0px 4px 30px rgba(24, 24, 24, 0.5);
 }
+.discord{
+    background: linear-gradient(45deg, #6334f3, #6e00eb);
+    box-shadow: 0px 4px 30px rgba(13, 18, 1, 0.5);
+}
 .game{
-    background: linear-gradient(45deg, #8c28e2, #430e7f);
+    background: linear-gradient(45deg, #9f14ea, #430e7f);
     box-shadow: 0px 4px 30px rgba(13, 18, 1, 0.5);
 }
