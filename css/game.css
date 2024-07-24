@@ -14,3 +14,30 @@ body {
     height: 50px;
     font-size: 20px;
 }
+.green-background {
+    background-color: rgba(1, 157, 1, 0.933);
+    transition: background-color 1s ease; /* Add transition effect for background color change */
+    transform: scale(0.1); /* Start with a very small size */
+}
+
+.green-background.win {
+    transform: scale(1); /* Grow up to normal size when 'win' class is added */
+}
+.red-background {
+    background-color: rgba(154, 4, 4, 0.933);
+    transition: background-color 1s ease; /* Add transition effect for background color change */
+    transform: scale(0.1); /* Start with a very small size */
+}
+
+.red-background.lose {
+    transform: scale(1); /* Grow up to normal size when 'win' class is added */
+}
+.yellow-background {
+    background-color: rgba(180, 177, 0, 0.937);
+    transition: background-color 1s ease; /* Add transition effect for background color change */
+    transform: scale(0.1); /* Start with a very small size */
+}
+
+.yellow-background.tide {
+    transform: scale(1); /* Grow up to normal size when 'win' class is added */
+}
