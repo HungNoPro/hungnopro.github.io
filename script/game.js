@@ -110,14 +110,19 @@ function stay() {
     let message = "";
     if (yourSum > 21) {
         message = "You Lose!";
+        handleLose();
     } else if (dealerSum > 21) {
         message = "You win!";
+        handleWin();
     } else if (yourSum == dealerSum) {
         message = "Tie!";
+        handleTide();
     } else if (yourSum > dealerSum) {
         message = "You Win!";
+        handleWin();
     } else if (yourSum < dealerSum) {
         message = "You Lose!";
+        handleLose();
     }
 
     document.getElementById("dealer-sum").innerText = dealerSum;
@@ -157,4 +162,14 @@ function reduceAce(playerSum, playerAceCount) {
         playerAceCount -= 1;
     }
     return playerSum;
+}
+
+function handleWin() {
+    document.body.classList.add('green-background', 'win');
+}
+function handleLose() {
+    document.body.classList.add('red-background', 'lose');
+}
+function handleTide() {
+    document.body.classList.add('yellow-background', 'tide');
 }
