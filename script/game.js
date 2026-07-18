@@ -241,18 +241,24 @@ function gameOverSequence() {
     document.body.appendChild(overlay);
 
     setTimeout(() => {
-        overlay.classList.remove('active');
+        overlay.remove();
         const rewind = document.createElement('div');
         rewind.className = 'rewind-overlay';
         document.body.appendChild(rewind);
         playRewindSound();
 
-        // Tăng thời gian tua ngược lên 2.5 giây
+        // Tua ngược trong 2.5 giây
         setTimeout(() => {
-            rewind.remove();
-            document.body.classList.remove('gray-state');
-            balance = 1000;
-            newRound();
+            // Bắt đầu mờ dần (thay đổi opacity qua CSS transition)
+            rewind.style.opacity = '0';
+            
+            // Đợi 0.6 giây cho hiệu ứng mờ hoàn tất rồi mới xóa và reset game
+            setTimeout(() => {
+                rewind.remove();
+                document.body.classList.remove('gray-state');
+                balance = 1000;
+                newRound();
+            }, 600);
         }, 2500);
     }, 1500);
 }
