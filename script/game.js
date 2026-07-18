@@ -282,4 +282,33 @@ document.addEventListener("keydown", (e) => {
     if (e.key.toLowerCase() === 's' && !document.getElementById("stay-btn").disabled) stand();
 });
 
-window.onload = () => { document.getElementById("game-controls").style.display = "none"; };
+// ===== PRELOAD IMAGES =====
+function preloadImages(callback) {
+    let values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K"];
+    let types = ["C", "D", "H", "S"];
+    let totalImages = values.length * types.length; // 52 lá
+    let loadedImages = 0;
+
+    for (let i = 0; i < types.length; i++) {
+        for (let j = 0; j < values.length; j++) {
+            let img = new Image();
+            img.src = `./cards/${values[j]}${types[i]}.svg`;
+            img.onload = img.onerror = () => {
+                loadedImages++;
+                if (loadedImages === totalImages) {
+                    callback(); // Đã tải xong hết 52 lá
+                }
+            };
+        }
+    }
+}
+
+window.onload = () => {
+    document.getElementById("game-controls").style.display = "none";
+    
+    // Bắt đầu tải ảnh, khi xong thì ẩn màn hình loading
+    preloadImages(() => {
+        const loadingScreen = document.getElementById("loading-screen");
+        loadingScreen.classList.add("hidden");
+    });
+};

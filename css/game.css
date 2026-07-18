@@ -125,3 +125,34 @@ body.gray-state { filter: grayscale(100%); }
     .chip { width: 45px; height: 45px; font-size: 14px; }
     button { padding: 10px 20px; font-size: 14px; }
 }
+/* === LOADING SCREEN === */
+#loading-screen {
+    position: fixed;
+    inset: 0;
+    background: #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+#loading-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+.loader-spinner {
+    border: 5px solid rgba(255, 215, 0, 0.2);
+    border-top: 5px solid var(--gold);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 15px;
+}
+#loading-screen p {
+    color: var(--gold);
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
