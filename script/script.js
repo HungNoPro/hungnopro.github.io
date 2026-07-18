@@ -199,7 +199,7 @@ function updatePresence(presence) {
     }
     
     document.getElementById("rpc-spotify-song").textContent = mediaActivity.details || "Unknown";
-    document.getElementById("rpc-spotify-artist").textContent = mediaActivity.state ? `by ${mediaActivity.state}` : "";
+    document.getElementById("rpc-spotify-artist").textContent = mediaActivity.state ? `${mediaActivity.state}` : "";
 
     const total = (mediaActivity.timestamps?.end || Date.now()) - (mediaActivity.timestamps?.start || Date.now());
     document.getElementById("rpc-spotify-duration").textContent = formatTime(total);
