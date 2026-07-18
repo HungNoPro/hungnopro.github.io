@@ -41,7 +41,7 @@ h1 { color: var(--gold); font-size: clamp(18px, 4vw, 26px); text-transform: uppe
     background: radial-gradient(ellipse at center, var(--table-green) 0%, var(--table-edge) 100%);
     border-radius: 50px; border: 6px solid #5e2f0a;
     box-shadow: inset 0 0 40px rgba(0,0,0,0.7), 0 4px 10px rgba(0,0,0,0.5);
-    padding: 15px; min-height: 0;
+    padding: 15px; min-height: 0; overflow: hidden;
 }
 
 .player-section { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 100%; height: 44%; min-height: 0; }
@@ -58,8 +58,18 @@ h1 { color: var(--gold); font-size: clamp(18px, 4vw, 26px); text-transform: uppe
 @keyframes dealCard { from { transform: translateY(-100px) rotate(20deg); opacity: 0; } to { transform: translateY(0) rotate(0deg); opacity: 1; } }
 .card-inner { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; transition: transform 0.5s; }
 .card-wrapper.hidden .card-inner { transform: rotateY(180deg); }
-.card-face { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 8px; background-size: cover; background-position: center; box-shadow: 0 4px 8px rgba(0,0,0,0.5); }
-.card-back { transform: rotateY(180deg); background-image: repeating-linear-gradient(45deg, #cc0000 0px, #cc0000 5px, #800000 5px, #800000 10px); border: 2px solid white; }
+
+.card-face {
+    position: absolute; width: 100%; height: 100%;
+    backface-visibility: hidden; border-radius: 8px;
+    background-size: contain; /* Đổi sang contain để không cắt góc */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: white; /* Thêm nền trắng cho lá bài */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+
+.card-back { transform: rotateY(180deg); background-image: repeating-linear-gradient(45deg, #cc0000 0px, #cc0000 5px, #800000 5px, #800000 10px); border: 2px solid white; background-color: #cc0000; }
 
 .sum-display { font-size: clamp(18px, 4vw, 24px); font-weight: bold; background: rgba(0,0,0,0.8); padding: 5px 20px; border-radius: 20px; min-width: 60px; text-align: center; flex-shrink: 0; border: 1px solid rgba(255,215,0,0.3); }
 .message-board { height: 40px; font-size: clamp(16px, 3vw, 22px); font-weight: bold; color: var(--gold); text-shadow: 0 1px 2px black; display: flex; align-items: center; justify-content: center; text-align: center; flex-shrink: 0; }
@@ -120,39 +130,33 @@ body.gray-state { filter: grayscale(100%); }
 }
 @keyframes rewindScroll { 0% { background-position: 0 0; } 100% { background-position: 0 8px; } }
 
-@media (max-width: 480px) {
-    .card-area > div { margin-left: -40px; }
-    .chip { width: 45px; height: 45px; font-size: 14px; }
-    button { padding: 10px 20px; font-size: 14px; }
-}
 /* === LOADING SCREEN === */
 #loading-screen {
-    position: fixed;
-    inset: 0;
-    background: #1a1a1a;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
+    position: fixed; inset: 0; background: #1a1a1a;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    z-index: 9999; transition: opacity 0.5s ease, visibility 0.5s ease;
 }
-#loading-screen.hidden {
-    opacity: 0;
-    visibility: hidden;
-}
+#loading-screen.hidden { opacity: 0; visibility: hidden; }
 .loader-spinner {
     border: 5px solid rgba(255, 215, 0, 0.2);
     border-top: 5px solid var(--gold);
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    animation: spin 1s linear infinite;
-    margin-bottom: 15px;
+    border-radius: 50%; width: 50px; height: 50px;
+    animation: spin 1s linear infinite; margin-bottom: 15px;
 }
-#loading-screen p {
-    color: var(--gold);
-    font-weight: bold;
-    letter-spacing: 1px;
-}
+#loading-screen p { color: var(--gold); font-weight: bold; letter-spacing: 1px; }
 @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+/* ===== Mobile Adjustment ===== */
+@media (max-width: 480px) {
+    /* Giảm độ đè lên nhau để không bị che nội dung */
+    .card-area > div { margin-left: -35px; }
+    
+    /* Thu nhỏ bài một chút để vừa vặn màn hình */
+    .card-wrapper {
+        width: clamp(65px, 18vw, 80px);
+        height: clamp(91px, 25vh, 112px);
+    }
+    
+    .chip { width: 45px; height: 45px; font-size: 14px; }
+    button { padding: 10px 20px; font-size: 14px; }
+}
