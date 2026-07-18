@@ -1,26 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Blackjack</title>
-    <link rel="stylesheet" href="./css/game.css">
-    <script src="./script/game.js" defer></script>
+    <link rel="stylesheet" href="css/game.css">
 </head>
 <body>
-    <h2>Dealer: <span id="dealer-sum"></span></h2>
-    <div id="dealer-cards">
-        <!-- https://www.me.uk/cards/makeadeck.cgi?view -->
-        <img id="hidden" src="./cards/1B.svg" alt="back">
+    <div class="app-wrapper">
+        <header>
+            <h1>♣ Blackjack VIP ♠</h1>
+            <div class="stats-board">
+                <div class="stat-item">
+                    <span class="stat-label">Số dư</span>
+                    <span class="stat-value" id="balance">$1000</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Tiền cược</span>
+                    <span class="stat-value" id="current-bet">$0</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="game-table">
+            <div class="player-section dealer">
+                <div class="card-area" id="dealer-cards"></div>
+                <div class="sum-display" id="dealer-sum">0</div>
+            </div>
+            <div class="message-board" id="message">Đặt cược và bấm DEAL</div>
+            <div class="player-section player">
+                <div class="sum-display" id="player-sum">0</div>
+                <div class="card-area" id="player-cards"></div>
+            </div>
+        </div>
+
+        <footer class="control-panel">
+            <div class="betting-area" id="betting-area">
+                <div class="chip chip-10" onclick="placeBet(10)">10</div>
+                <div class="chip chip-50" onclick="placeBet(50)">50</div>
+                <div class="chip chip-100" onclick="placeBet(100)">100</div>
+                <button class="btn-allin" id="allin-btn" onclick="placeBet(balance)">All In</button>
+                <button class="btn-reset" id="reset-btn" onclick="resetBet()">Cược lại</button>
+                <button class="btn-deal" id="deal-btn" onclick="startGame()">Deal</button>
+            </div>
+
+            <div class="game-controls" id="game-controls">
+                <button class="btn-hit" id="hit-btn" onclick="hit()" disabled>Hit (H)</button>
+                <button class="btn-stay" id="stay-btn" onclick="stand()" disabled>Stand (S)</button>
+                <button class="btn-next" id="next-btn" onclick="newRound()" disabled>Next</button>
+            </div>
+        </footer>
     </div>
-    <h2>You: <span id="your-sum"></span></h2>
-    <div id="your-cards"></div>
-
-    <br>
-    <button id="hit">Hit</button>
-    <button id="stay">Stay</button>
-    <p id="results"></p>
-
+    <script src="script/game.js"></script>
 </body>
 </html>

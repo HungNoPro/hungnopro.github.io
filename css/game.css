@@ -1,43 +1,127 @@
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
+:root {
+    --table-green: #0f4c2e;
+    --table-edge: #02381c;
+    --gold: #ffd700;
+    --red: #e63946;
+    --bg-dark: #1a1a1a;
 }
 
-#dealer-cards img, #your-cards img {
-    height: 175px;
-    width: 125px;
-    margin: 1px;
+* {
+    margin: 0; padding: 0; box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    user-select: none; -webkit-tap-highlight-color: transparent;
 }
 
-#hit, #stay{
-    width: 100px;
-    height: 50px;
-    font-size: 20px;
-}
-.green-background {
-    background-color: rgba(1, 157, 1, 0.933);
-    transition: background-color 1s ease; /* Add transition effect for background color change */
-    transform: scale(0.1); /* Start with a very small size */
+html, body {
+    height: 100%; overflow: hidden;
+    background-color: var(--bg-dark); color: white;
+    transition: filter 1s ease;
 }
 
-.green-background.win {
-    transform: scale(1); /* Grow up to normal size when 'win' class is added */
-}
-.red-background {
-    background-color: rgba(154, 4, 4, 0.933);
-    transition: background-color 1s ease; /* Add transition effect for background color change */
-    transform: scale(0.1); /* Start with a very small size */
+.app-wrapper {
+    height: 100dvh; display: flex; flex-direction: column;
+    padding: 10px; gap: 8px; max-width: 900px; margin: 0 auto;
 }
 
-.red-background.lose {
-    transform: scale(1); /* Grow up to normal size when 'win' class is added */
+header { display: flex; flex-direction: column; align-items: center; gap: 5px; flex-shrink: 0; }
+h1 { color: var(--gold); font-size: clamp(18px, 4vw, 26px); text-transform: uppercase; letter-spacing: 2px; }
+
+.stats-board {
+    display: flex; gap: 20px; width: 100%; max-width: 500px;
+    background: rgba(0,0,0,0.4); border-radius: 10px; padding: 8px 15px;
+    border: 1px solid rgba(255,215,0,0.2);
 }
-.yellow-background {
-    background-color: rgba(180, 177, 0, 0.937);
-    transition: background-color 1s ease; /* Add transition effect for background color change */
-    transform: scale(0.1); /* Start with a very small size */
+.stat-item { display: flex; flex-direction: column; align-items: center; flex: 1; }
+.stat-label { font-size: 11px; color: #aaa; text-transform: uppercase; }
+.stat-value { font-size: 20px; font-weight: bold; color: var(--gold); }
+
+.game-table {
+    flex: 1; width: 100%; max-width: 800px; margin: 0 auto;
+    display: flex; flex-direction: column; justify-content: space-between; align-items: center;
+    background: radial-gradient(ellipse at center, var(--table-green) 0%, var(--table-edge) 100%);
+    border-radius: 50px; border: 6px solid #5e2f0a;
+    box-shadow: inset 0 0 40px rgba(0,0,0,0.7), 0 4px 10px rgba(0,0,0,0.5);
+    padding: 15px; min-height: 0;
 }
 
-.yellow-background.tide {
-    transform: scale(1); /* Grow up to normal size when 'win' class is added */
+.player-section { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 100%; height: 44%; min-height: 0; }
+.dealer { justify-content: flex-start; }
+.player { justify-content: flex-end; }
+.card-area { display: flex; justify-content: center; align-items: center; min-height: 0; }
+.card-area > div { margin-left: -50px; }
+.card-area > div:first-child { margin-left: 0; }
+
+.card-wrapper {
+    width: clamp(75px, 16vw, 95px); height: clamp(105px, 24vh, 135px);
+    perspective: 1000px; animation: dealCard 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; flex-shrink: 0;
+}
+@keyframes dealCard { from { transform: translateY(-100px) rotate(20deg); opacity: 0; } to { transform: translateY(0) rotate(0deg); opacity: 1; } }
+.card-inner { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; transition: transform 0.5s; }
+.card-wrapper.hidden .card-inner { transform: rotateY(180deg); }
+.card-face { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 8px; background-size: cover; background-position: center; box-shadow: 0 4px 8px rgba(0,0,0,0.5); }
+.card-back { transform: rotateY(180deg); background-image: repeating-linear-gradient(45deg, #cc0000 0px, #cc0000 5px, #800000 5px, #800000 10px); border: 2px solid white; }
+
+.sum-display { font-size: clamp(18px, 4vw, 24px); font-weight: bold; background: rgba(0,0,0,0.8); padding: 5px 20px; border-radius: 20px; min-width: 60px; text-align: center; flex-shrink: 0; border: 1px solid rgba(255,215,0,0.3); }
+.message-board { height: 40px; font-size: clamp(16px, 3vw, 22px); font-weight: bold; color: var(--gold); text-shadow: 0 1px 2px black; display: flex; align-items: center; justify-content: center; text-align: center; flex-shrink: 0; }
+
+.control-panel { flex-shrink: 0; display: flex; flex-direction: column; gap: 8px; padding: 5px 0; }
+.betting-area, .game-controls { display: flex; justify-content: center; align-items: center; gap: 15px; flex-wrap: wrap; }
+
+button { padding: 12px 25px; font-size: 16px; font-weight: bold; text-transform: uppercase; border: none; border-radius: 8px; cursor: pointer; transition: all 0.15s ease; color: white; box-shadow: 0 3px 5px rgba(0,0,0,0.3); }
+button:disabled { opacity: 0.3; cursor: not-allowed; }
+button:active:not(:disabled) { transform: translateY(2px); box-shadow: 0 1px 2px rgba(0,0,0,0.3); }
+.btn-hit { background: #e63946; } .btn-stay { background: #f4a261; } .btn-deal { background: #2a9d8f; }
+.btn-next { background: var(--gold); color: black; }
+.btn-reset { background: #6c757d; }
+.btn-allin { background: #d62828; border: 2px solid #ff4444; font-weight: 900; animation: pulseAllIn 1.5s infinite; }
+@keyframes pulseAllIn { 0% { box-shadow: 0 0 0 0 rgba(214, 40, 40, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(214, 40, 40, 0); } 100% { box-shadow: 0 0 0 0 rgba(214, 40, 40, 0); } }
+
+.chip { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 16px; cursor: pointer; border: 3px dashed white; box-shadow: 0 3px 5px rgba(0,0,0,0.5); transition: transform 0.2s; }
+.chip:hover { transform: translateY(-3px); }
+.chip-10 { background: #264653; } .chip-50 { background: #e76f51; } .chip-100 { background: #e63946; }
+
+body.win-flash { box-shadow: inset 0 0 200px rgba(1, 157, 1, 0.6); transition: box-shadow 0.5s; }
+body.lose-flash { box-shadow: inset 0 0 200px rgba(154, 4, 4, 0.6); transition: box-shadow 0.5s; }
+
+/* === ALL IN SUSPENSE MODE === */
+body.suspense-mode { animation: suspensePulse 1s ease-in-out infinite; }
+@keyframes suspensePulse { 0% { box-shadow: inset 0 0 0px rgba(255, 0, 0, 0); } 50% { box-shadow: inset 0 0 150px rgba(200, 0, 0, 0.4); } 100% { box-shadow: inset 0 0 0px rgba(255, 0, 0, 0); } }
+
+/* === COINS === */
+.coin { position: fixed; width: 30px; height: 30px; background: radial-gradient(circle at 30% 30%, #ffdf00, #c5a900); border-radius: 50%; border: 2px solid #f5c800; color: #8a6d00; font-weight: bold; font-size: 14px; display: flex; align-items: center; justify-content: center; pointer-events: none; z-index: 1000; transform: translate(-50%, -50%); box-shadow: 0 0 10px rgba(255, 215, 0, 0.6); }
+@keyframes coin-fly { 0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; } 20% { transform: translate(calc(-50% + var(--tx) * 0.3), calc(-50% + var(--ty) * 0.3)) scale(1); opacity: 1; } 100% { transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty) - 200px)) scale(0.8); opacity: 0; } }
+
+.win-amount { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 60px; font-weight: 900; color: var(--gold); text-shadow: 0 0 15px rgba(255, 215, 0, 0.8), 0 4px 6px black; z-index: 1001; pointer-events: none; animation: winPop 1.5s ease-out forwards; }
+@keyframes winPop { 0% { transform: translate(-50%, -50%) scale(0.2); opacity: 0; } 20% { transform: translate(-50%, -80%) scale(1.2); opacity: 1; } 80% { transform: translate(-50%, -120%) scale(1); opacity: 1; } 100% { transform: translate(-50%, -150%) scale(0.8); opacity: 0; } }
+
+/* === CONFETTI === */
+.confetti { position: fixed; width: 10px; height: 15px; z-index: 1000; pointer-events: none; animation: confetti-shoot 1.5s ease-out forwards; }
+@keyframes confetti-shoot { 0% { transform: translate(0, 0) rotate(0deg); opacity: 1; } 100% { transform: translate(var(--tx), var(--ty)) rotate(var(--rot)); opacity: 0; } }
+
+/* === GAME OVER === */
+body.gray-state { filter: grayscale(100%); }
+.game-over-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 1999; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.5s; }
+.game-over-overlay.active { opacity: 1; }
+.lose-text { font-size: 80px; font-weight: 900; color: #e63946; text-shadow: 0 0 20px black; animation: losePop 1.5s ease; }
+@keyframes losePop { 0% { transform: scale(0.5); opacity: 0; } 20% { transform: scale(1.2); opacity: 1; } 80% { transform: scale(1); opacity: 1; } 100% { transform: scale(1); opacity: 0; } }
+
+.rewind-overlay { position: fixed; inset: 0; background: repeating-linear-gradient(0deg, rgba(0,0,0,0.9) 0px, rgba(0,0,0,0.9) 4px, rgba(255,255,255,0.1) 4px, rgba(255,255,255,0.1) 8px); z-index: 2000; pointer-events: none; display: flex; align-items: center; justify-content: center; overflow: hidden; animation: rewindScroll 0.15s linear infinite; }
+.rewind-overlay::after { 
+    content: "◁◁"; 
+    font-size: 80px; 
+    color: white; 
+    text-shadow: 0 0 20px #00ffff; 
+    position: absolute;
+    animation: moveLeft 0.6s linear infinite; 
+}
+@keyframes moveLeft {
+    0% { transform: translateX(150px); }
+    100% { transform: translateX(-150px); }
+}
+@keyframes rewindScroll { 0% { background-position: 0 0; } 100% { background-position: 0 8px; } }
+
+@media (max-width: 480px) {
+    .card-area > div { margin-left: -40px; }
+    .chip { width: 45px; height: 45px; font-size: 14px; }
+    button { padding: 10px 20px; font-size: 14px; }
 }
