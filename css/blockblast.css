@@ -62,3 +62,12 @@ header { display: flex; justify-content: space-between; align-items: center; gap
 #save-name-btn { padding: 10px; border-radius: 8px; border: none; background: #4caf50; color: white; font-weight: bold; cursor: pointer; }
 #reset-profile-btn { padding: 10px; border-radius: 8px; border: none; background: #e63946; color: white; font-weight: bold; cursor: pointer; margin-top: 10px; }
 .settings-note { font-size: 12px; color: #8a8d9f; margin-top: 5px; line-height: 1.4; }
+.delete-zone { margin-top: 10px; text-align: center; }
+#delete-account-btn { padding: 10px; border-radius: 8px; border: none; background: #e63946; color: white; font-weight: bold; cursor: pointer; width: 100%; }
+#delete-account-btn:active { transform: scale(0.98); }
+
+.delete-warning { font-size: 13px; color: #ff4757; line-height: 1.4; margin-bottom: 10px; text-align: left; background: rgba(230, 57, 70, 0.1); padding: 8px; border-radius: 6px; border: 1px solid rgba(230, 57, 70, 0.3); }
+
+#delete-confirm-input { padding: 10px; border-radius: 8px; border: 2px solid #e63946; background: #353749; color: white; text-align: center; font-size: 16px; outline: none; width: 100%; margin-bottom: 10px; }
+#confirm-delete-btn { padding: 10px; border-radius: 8px; border: none; background: #e63946; color: white; font-weight: bold; cursor: pointer; width: 100%; transition: background 0.2s; }
+#confirm-delete-btn:disabled { background: #555; cursor: not-allowed; }
