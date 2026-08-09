@@ -10,7 +10,7 @@ let ghostElement = null;
 let scoreSaved = false; 
 
 
-const WORKER_URL = "https://leaderboard-api.hungthcs2017.workers.dev/"; 
+const WORKER_URL = "https://leaderboard-api.hungthcs2017.workers.dev"; 
 
 const SHAPES = [
     { matrix: [[1,1,1,1]], color: "#42a5f5" },
