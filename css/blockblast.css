@@ -80,3 +80,23 @@ header { display: flex; justify-content: space-between; align-items: center; gap
 #delete-confirm-input { padding: 10px; border-radius: 8px; border: 2px solid #e63946; background: #353749; color: white; text-align: center; font-size: 16px; outline: none; width: 100%; margin-bottom: 10px; }
 #confirm-delete-btn { padding: 10px; border-radius: 8px; border: none; background: #e63946; color: white; font-weight: bold; cursor: pointer; width: 100%; transition: background 0.2s; }
 #confirm-delete-btn:disabled { background: #555; cursor: not-allowed; }
+.lb-player-rank {
+    text-align: center;
+    width: 100%;
+    color: #ffd700;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-size: 14px;
+    background: rgba(255, 215, 0, 0.1);
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    box-sizing: border-box;
+}
+
+.lb-player-rank-locked {
+    color: #8a8d9f;
+    background: rgba(255,255,255,0.05);
+    border-color: rgba(255,255,255,0.1);
+}
