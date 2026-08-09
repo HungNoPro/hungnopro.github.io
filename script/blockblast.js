@@ -379,25 +379,58 @@ async function openLeaderboard() {
         const res = await fetch(`${WORKER_URL}/leaderboard`);
         const data = await res.json();
         let scores = data.scores || [];
+        
+        scores.sort((a, b) => b.score - a.score);
+        
         if (scores.length === 0) {
             document.getElementById('lb-list').innerHTML = '<p style="text-align:center;">Chưa có ai lên bảng!</p>';
             return;
         }
+
+        const savedName = localStorage.getItem('blockPlayerName');
+        const playerIndex = savedName ? scores.findIndex(e => e.name.toLowerCase() === savedName.toLowerCase()) : -1;
+        
         let html = '';
-        scores.forEach((entry, index) => {
-            let medal = "🥇";
-            if (index === 1) medal = "🥈";
-            else if (index === 2) medal = "🥉";
-            else medal = `${index + 1}`;
-            html += `<div class="lb-item"><span class="rank">${medal}</span><span class="name">${entry.name}</span><span class="score">${entry.score}</span></div>`;
+        if (playerIndex !== -1) {
+            const totalPlayers = scores.length;
+            const percentage = ((playerIndex + 1) / totalPlayers * 100).toFixed(1);
+            html += `<div class="lb-player-rank">👑 Bạn đang ở Top ${percentage}% (Hạng ${playerIndex + 1}/${totalPlayers})</div>`;
+        } else if (savedName) {
+            html += `<div class="lb-player-rank" style="color: #8a8d9f; background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1);">Bạn chưa lọt vào BXH (Cần nỗ lực hơn!)</div>`;
+        }
+        const top5 = scores.slice(0, 5);
+        top5.forEach((entry, index) => {
+            let rankText;
+            if (index === 0) rankText = "🥇";
+            else if (index === 1) rankText = "🥈";
+            else if (index === 2) rankText = "🥉";
+            else rankText = `${index + 1}`;
+            
+            html += `
+                <div class="lb-item ${index === playerIndex ? 'lb-item-self' : ''}">
+                    <span class="rank">${rankText}</span>
+                    <span class="name">${entry.name}</span>
+                    <span class="score">${entry.score}</span>
+                </div>
+            `;
         });
+        if (playerIndex >= 5) {
+            const playerEntry = scores[playerIndex];
+            html += `
+                <div class="lb-dots">.......</div>
+                <div class="lb-item lb-item-self">
+                    <span class="rank">${playerIndex + 1}</span>
+                    <span class="name">${playerEntry.name} (Bạn)</span>
+                    <span class="score">${playerEntry.score}</span>
+                </div>
+            `;
+        }
+
         document.getElementById('lb-list').innerHTML = html;
     } catch (error) {
         document.getElementById('lb-list').innerHTML = '<p style="text-align:center; color:#ff4757;">Lỗi tải BXH!</p>';
     }
 }
-
-function closeLeaderboard() { document.getElementById('lb-modal').classList.remove('active'); }
 
 // ===== SETTINGS =====
 function openSettings() {
