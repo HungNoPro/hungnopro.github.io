@@ -379,6 +379,7 @@ async function openLeaderboard() {
         const res = await fetch(`${WORKER_URL}/leaderboard`);
         const data = await res.json();
         let scores = data.scores || [];
+        
         scores.sort((a, b) => b.score - a.score);
         
         if (scores.length === 0) {
@@ -420,9 +421,9 @@ async function openLeaderboard() {
         if (playerIndex !== -1) {
             const totalPlayers = scores.length;
             const percentage = ((playerIndex + 1) / totalPlayers * 100).toFixed(1);
-            html += `<div class="lb-player-rank" style="margin-top: 15px;">👑 Bạn đang ở Top ${percentage}% (Hạng ${playerIndex + 1}/${totalPlayers})</div>`;
+            html += `<div class="lb-player-rank">👑 Bạn đang ở Top ${percentage}% (Hạng ${playerIndex + 1}/${totalPlayers})</div>`;
         } else if (savedName) {
-            html += `<div class="lb-player-rank" style="margin-top: 15px; color: #8a8d9f; background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1);">Bạn chưa lọt vào BXH (Cần nỗ lực hơn!)</div>`;
+            html += `<div class="lb-player-rank lb-player-rank-locked">Bạn chưa lọt vào BXH (Cần nỗ lực hơn!)</div>`;
         }
 
         document.getElementById('lb-list').innerHTML = html;
@@ -430,6 +431,7 @@ async function openLeaderboard() {
         document.getElementById('lb-list').innerHTML = '<p style="text-align:center; color:#ff4757;">Lỗi tải BXH!</p>';
     }
 }
+
 function closeLeaderboard() { 
     document.getElementById('lb-modal').classList.remove('active'); 
 }
