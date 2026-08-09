@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Block Blast 6x6</title>
+    <link rel="stylesheet" href="css/blockblast.css">
+</head>
+<body>
+
+    <div class="game-container" id="game-container">
+        <header>
+            <div class="score-box">
+                <div class="score-label">Score</div>
+                <div class="score-value" id="score">0</div>
+            </div>
+            <button id="lb-btn" onclick="openLeaderboard()">🏆 BXH</button>
+            <div class="score-box">
+                <div class="score-label">Best</div>
+                <div class="score-value" id="best-score">0</div>
+            </div>
+        </header>
+
+        <div class="grid-container">
+            <div id="grid"></div>
+            <div class="message-popup" id="message-popup"></div>
+            
+            <div id="game-over">
+                <h2>Game Over!</h2>
+                <p>Điểm của bạn: <span id="final-score">0</span></p>
+                
+                <div id="name-input-container">
+                    <input type="text" id="player-name" placeholder="Nhập tên của bạn" maxlength="12">
+                    <button id="save-score-btn" onclick="saveScore()">Lưu điểm</button>
+                </div>
+                
+                <button class="restart-btn" onclick="restartGame()">Chơi lại</button>
+            </div>
+        </div>
+
+        <div class="pieces-container" id="pieces-container"></div>
+    </div>
+
+    <!-- Leaderboard Modal -->
+    <div id="lb-modal" class="lb-modal">
+        <div class="lb-modal-content">
+            <span class="lb-close" onclick="closeLeaderboard()">&times;</span>
+            <h3>🏆 Bảng Xếp Hạng</h3>
+            <div id="lb-list" class="lb-list">Đang tải...</div>
+        </div>
+    </div>
+
+    <script src="script/blockblast.js"></script>
+</body>
+</html>
