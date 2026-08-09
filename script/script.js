@@ -253,20 +253,6 @@ function updatePresence(presence) {
   }
 }
 
-function getActivityIcon(activity, btnText = "") {
-  const text = btnText.toLowerCase();
-  // Nếu là Spotify
-  if (activity.id === "spotify:1") return '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.301.42-1.021.6-1.561.3z"/></svg>';
-  // Nếu là Game (type 0 hoặc có chữ join)
-  if (activity.type === 0 || text.includes('join') || text.includes('spectate')) return '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.5 6C4.46 6 2 8.46 2 11.5S4.46 17 7.5 17c1.71 0 3.21-.82 4.13-2.06h1.74C14.29 16.18 15.79 17 17.5 17c3.04 0 5.5-2.46 5.5-5.5S20.54 6 17.5 6h-10zM7.5 14C6.12 14 5 12.88 5 11.5S6.12 9 7.5 9 10 10.12 10 11.5 8.88 14 7.5 14zm10 0c-1.38 0-2.5-1.12-2.5-2.5S16.12 9 17.5 9 20 10.12 20 11.5 18.88 14 17.5 14z"/></svg>';
-  // Nếu là Video (type 3 hoặc có chữ watch)
-  if (activity.type === 3 || text.includes('watch')) return '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
-  // Nếu là Music (type 2 hoặc có chữ listen)
-  if (activity.type === 2 || text.includes('listen')) return '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>';
-  // Mặc định (Icon mở link ngoài)
-  return '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>';
-}
-
 function updateMediaProgress() {
   if (!currentMediaData || !currentMediaData.timestamps) return;
   
