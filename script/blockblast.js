@@ -9,31 +9,19 @@ let isDragging = false;
 let ghostElement = null;
 let scoreSaved = false; 
 
-
 const WORKER_URL = "https://leaderboard-api.hungthcs2017.workers.dev"; 
 
 const SHAPES = [
-    { matrix: [[1,1,1,1]], color: "#42a5f5" },
-    { matrix: [[1],[1],[1],[1]], color: "#42a5f5" },
-    { matrix: [[1,1],[1,1]], color: "#66bb6a" },
-    { matrix: [[1,1,1],[1,1,1],[1,1,1]], color: "#ffca28" },
-    { matrix: [[1,0],[1,0],[1,1]], color: "#ab47bc" },
-    { matrix: [[0,1],[0,1],[1,1]], color: "#ab47bc" },
-    { matrix: [[1,1],[1,0],[1,0]], color: "#ab47bc" },
-    { matrix: [[1,1],[0,1],[0,1]], color: "#ab47bc" },
-    { matrix: [[1,1,1],[1,0,0]], color: "#ff7043" },
-    { matrix: [[1,0,0],[1,1,1]], color: "#ff7043" },
-    { matrix: [[0,0,1],[1,1,1]], color: "#ff7043" },
-    { matrix: [[1,1,1],[0,0,1]], color: "#ff7043" },
-    { matrix: [[1,1,1],[0,1,0]], color: "#ec407a" },
-    { matrix: [[0,1,0],[1,1,1]], color: "#ec407a" },
-    { matrix: [[1,0],[1,1],[1,0]], color: "#ec407a" },
-    { matrix: [[0,1],[1,1],[0,1]], color: "#ec407a" },
-    { matrix: [[1,1,0],[0,1,1]], color: "#26c6da" },
-    { matrix: [[0,1],[1,1],[1,0]], color: "#26c6da" },
-    { matrix: [[1]], color: "#ef5350" },
-    { matrix: [[1,1]], color: "#5c6bc0" },
-    { matrix: [[1],[1]], color: "#5c6bc0" }
+    { matrix: [[1,1,1,1]], color: "#42a5f5" }, { matrix: [[1],[1],[1],[1]], color: "#42a5f5" },
+    { matrix: [[1,1],[1,1]], color: "#66bb6a" }, { matrix: [[1,1,1],[1,1,1],[1,1,1]], color: "#ffca28" },
+    { matrix: [[1,0],[1,0],[1,1]], color: "#ab47bc" }, { matrix: [[0,1],[0,1],[1,1]], color: "#ab47bc" },
+    { matrix: [[1,1],[1,0],[1,0]], color: "#ab47bc" }, { matrix: [[1,1],[0,1],[0,1]], color: "#ab47bc" },
+    { matrix: [[1,1,1],[1,0,0]], color: "#ff7043" }, { matrix: [[1,0,0],[1,1,1]], color: "#ff7043" },
+    { matrix: [[0,0,1],[1,1,1]], color: "#ff7043" }, { matrix: [[1,1,1],[0,0,1]], color: "#ff7043" },
+    { matrix: [[1,1,1],[0,1,0]], color: "#ec407a" }, { matrix: [[0,1,0],[1,1,1]], color: "#ec407a" },
+    { matrix: [[1,0],[1,1],[1,0]], color: "#ec407a" }, { matrix: [[0,1],[1,1],[0,1]], color: "#ec407a" },
+    { matrix: [[1,1,0],[0,1,1]], color: "#26c6da" }, { matrix: [[0,1],[1,1],[1,0]], color: "#26c6da" },
+    { matrix: [[1]], color: "#ef5350" }, { matrix: [[1,1]], color: "#5c6bc0" }, { matrix: [[1],[1]], color: "#5c6bc0" }
 ];
 
 const gridElement = document.getElementById('grid');
@@ -44,6 +32,10 @@ const messagePopup = document.getElementById('message-popup');
 const gameOverScreen = document.getElementById('game-over');
 const finalScoreElement = document.getElementById('final-score');
 const gameContainer = document.getElementById('game-container');
+const nameInputContainer = document.getElementById('name-input-container');
+const nameInput = document.getElementById('player-name');
+const saveBtn = document.getElementById('save-score-btn');
+const recordIndicator = document.getElementById('record-indicator');
 
 function initGame() {
     grid = Array(GRID_SIZE).fill().map(() => Array(GRID_SIZE).fill(0));
@@ -60,33 +52,85 @@ function initGame() {
     score = 0;
     isClearing = false;
     scoreSaved = false;
-    
-    // Khôi phục tên người chơi từ localStorage và khóa ô nhập
-    const nameInput = document.getElementById('player-name');
-    const saveBtn = document.getElementById('save-score-btn');
-    let savedName = localStorage.getItem('blockPlayerName');
-    
-    if (savedName) {
-        nameInput.value = savedName;
-        nameInput.disabled = true;
-        nameInput.style.opacity = '0.7';
-        nameInput.style.cursor = 'not-allowed';
-    } else {
-        nameInput.value = '';
-        nameInput.disabled = false;
-        nameInput.style.opacity = '1';
-        nameInput.style.cursor = 'text';
-    }
-    
-    saveBtn.disabled = false;
-    saveBtn.innerText = "Lưu điểm";
-    saveBtn.style.background = "#4caf50";
-    
-    updateScore();
     bestScoreElement.textContent = bestScore;
     generateNewPieces();
     renderPieces();
     gameOverScreen.classList.remove('active');
+    updateScore();
+}
+
+function triggerGameOver() {
+    finalScoreElement.textContent = score;
+    gameOverScreen.classList.add('active');
+    
+    let savedName = localStorage.getItem('blockPlayerName');
+    let isRecord = score > bestScore;
+    
+    // Ẩn tất cả trước khi kiểm tra
+    recordIndicator.style.display = 'none';
+    nameInputContainer.style.display = 'none';
+    saveBtn.style.display = 'none';
+    
+    if (isRecord && score > 0) {
+        bestScore = score;
+        localStorage.setItem('blockBestScore', score);
+        bestScoreElement.textContent = bestScore;
+        
+        // Hiện chữ Phá kỷ lục
+        recordIndicator.style.display = 'block';
+        
+        if (savedName) {
+            // Đã có tên: Tự động upload lên server
+            submitScore(savedName, score);
+        } else {
+            // Chưa có tên: Hiện khung nhập tên lần đầu
+            nameInputContainer.style.display = 'flex';
+            saveBtn.style.display = 'block';
+            saveBtn.innerText = "Ghi danh";
+        }
+    }
+}
+
+async function registerFirstTime() {
+    let name = nameInput.value.trim();
+    if (!name) { alert("Vui lòng nhập tên!"); return; }
+    if (name.length > 12) name = name.substring(0, 12);
+    
+    saveBtn.innerText = "Đang gửi...";
+    saveBtn.disabled = true;
+    
+    let success = await submitScore(name, score);
+    if (success) {
+        localStorage.setItem('blockPlayerName', name);
+        nameInputContainer.style.display = 'none';
+        saveBtn.style.display = 'none';
+    } else {
+        saveBtn.innerText = "Ghi danh";
+        saveBtn.disabled = false;
+    }
+}
+
+async function submitScore(name, currentScore) {
+    try {
+        const res = await fetch(`${WORKER_URL}/submit`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name: name, score: currentScore })
+        });
+        const data = await res.json();
+        
+        if (res.ok) {
+            console.log(data.message); // "Đã ghi danh!" hoặc "Kỷ lục mới!"
+            return true;
+        } else {
+            alert(data.error || "Lỗi không xác định!");
+            return false;
+        }
+    } catch (error) {
+        console.error("Lỗi mạng:", error);
+        alert("Lỗi mạng, không thể lưu điểm!");
+        return false;
+    }
 }
 
 function generateNewPieces() {
@@ -235,12 +279,7 @@ function tryPlacePiece(r, c) {
         }
         setTimeout(() => {
             if (checkGameOver()) {
-                finalScoreElement.textContent = score;
-                gameOverScreen.classList.add('active');
-                if (score > bestScore) {
-                    bestScore = score;
-                    localStorage.setItem('blockBestScore', score);
-                }
+                triggerGameOver();
             }
         }, 450);
     }
@@ -331,103 +370,26 @@ function checkGameOver() {
 function restartGame() { initGame(); }
 
 // ============================================================
-//  LEADERBOARD API LOGIC (QUA CLOUDFLARE WORKER)
+//  LEADERBOARD & SETTINGS API
 // ============================================================
-async function saveScore() {
-    if (scoreSaved || score === 0) return;
-    
-    const nameInput = document.getElementById('player-name');
-    let name = nameInput.value.trim();
-    
-    if (!name) {
-        alert("Vui lòng nhập tên của bạn!");
-        return;
-    }
-    if (name.length > 12) name = name.substring(0, 12);
-
-    // Chặn người chơi cũ nhập tên mới để đánh lừa hệ thống
-    let savedName = localStorage.getItem('blockPlayerName');
-    if (savedName && savedName !== name) {
-        alert(`Bạn đã đăng ký tên là "${savedName}". Vui lòng dùng tên đó!`);
-        nameInput.value = savedName;
-        return;
-    }
-
-    const saveBtn = document.getElementById('save-score-btn');
-    saveBtn.innerText = "Đang gửi...";
-    saveBtn.disabled = true;
-
-    try {
-        // Chỉ gửi đúng Tên và Điểm lên Worker, không gửi mảng điểm nữa
-        const res = await fetch(`${WORKER_URL}/submit`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name: name, score: score })
-        });
-
-        const data = await res.json();
-
-        if (res.ok) {
-            if (data.message === "Đã lưu!") {
-                localStorage.setItem('blockPlayerName', name); // Lưu tên lại
-                saveBtn.innerText = "Đã lưu!";
-                saveBtn.style.background = "#2a9d8f";
-                scoreSaved = true;
-                nameInput.disabled = true;
-                nameInput.style.opacity = '0.7';
-                nameInput.style.cursor = 'not-allowed';
-            } else if (data.message === "Kỷ lục mới!") {
-                saveBtn.innerText = "Kỷ lục mới!";
-                saveBtn.style.background = "#2a9d8f";
-                scoreSaved = true;
-            } else if (data.message === "Chưa phá kỷ lục!") {
-                saveBtn.innerText = "Chưa phá kỷ lục!";
-                saveBtn.style.background = "#6c757d";
-                scoreSaved = true;
-            }
-        } else {
-            // Nếu server trả về lỗi (vd: trùng tên người khác)
-            alert(data.error || "Lỗi không xác định!");
-            saveBtn.innerText = "Lưu điểm";
-            saveBtn.disabled = false;
-        }
-        
-    } catch (error) {
-        console.error("Lỗi lưu điểm:", error);
-        saveBtn.innerText = "Lỗi mạng!";
-        saveBtn.style.background = "#e63946";
-        saveBtn.disabled = false;
-    }
-}
-
 async function openLeaderboard() {
     document.getElementById('lb-modal').classList.add('active');
     document.getElementById('lb-list').innerHTML = '<p style="text-align:center; color:#8a8d9f;">Đang tải dữ liệu...</p>';
-    
     try {
         const res = await fetch(`${WORKER_URL}/leaderboard`);
         const data = await res.json();
         let scores = data.scores || [];
-        
         if (scores.length === 0) {
             document.getElementById('lb-list').innerHTML = '<p style="text-align:center;">Chưa có ai lên bảng!</p>';
             return;
         }
-
         let html = '';
         scores.forEach((entry, index) => {
             let medal = "🥇";
             if (index === 1) medal = "🥈";
             else if (index === 2) medal = "🥉";
             else medal = `${index + 1}`;
-            
-            html += `
-                <div class="lb-item">
-                    <span class="rank">${medal}</span>
-                    <span class="name">${entry.name}</span>
-                    <span class="score">${entry.score}</span>
-                </div>
-            `;
+            html += `<div class="lb-item"><span class="rank">${medal}</span><span class="name">${entry.name}</span><span class="score">${entry.score}</span></div>`;
         });
         document.getElementById('lb-list').innerHTML = html;
     } catch (error) {
@@ -435,8 +397,63 @@ async function openLeaderboard() {
     }
 }
 
-function closeLeaderboard() {
-    document.getElementById('lb-modal').classList.remove('active');
+function closeLeaderboard() { document.getElementById('lb-modal').classList.remove('active'); }
+
+// ===== SETTINGS =====
+function openSettings() {
+    document.getElementById('settings-modal').classList.add('active');
+    const savedName = localStorage.getItem('blockPlayerName');
+    document.getElementById('settings-name').value = savedName || '';
+}
+
+function closeSettings() { document.getElementById('settings-modal').classList.remove('active'); }
+
+async function changeName() {
+    const newName = document.getElementById('settings-name').value.trim();
+    const oldName = localStorage.getItem('blockPlayerName');
+    
+    if (!newName) { alert('Tên không được để trống!'); return; }
+    if (newName === oldName) { closeSettings(); return; }
+
+    const btn = document.getElementById('save-name-btn');
+    btn.innerText = "Đang đổi...";
+    btn.disabled = true;
+
+    try {
+        // Gọi API /rename để đổi tên trên server giữ nguyên điểm
+        const res = await fetch(`${WORKER_URL}/rename`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ oldName: oldName, newName: newName })
+        });
+        const data = await res.json();
+
+        if (res.ok) {
+            localStorage.setItem('blockPlayerName', newName);
+            alert(data.message || 'Đổi tên thành công!');
+            closeSettings();
+            if (gameOverScreen.classList.contains('active')) {
+                triggerGameOver(); // Refresh màn game over nếu đang mở
+            }
+        } else {
+            alert(data.error || "Lỗi đổi tên!");
+        }
+    } catch (error) {
+        alert("Lỗi mạng khi đổi tên!");
+    } finally {
+        btn.innerText = "Lưu tên mới";
+        btn.disabled = false;
+    }
+}
+
+function resetProfile() {
+    if (confirm("Bạn có chắc muốn xóa tên và kỷ lục trên máy này? Kỷ lục trên server sẽ vẫn giữ nguyên.")) {
+        localStorage.removeItem('blockPlayerName');
+        localStorage.removeItem('blockBestScore');
+        bestScore = 0;
+        alert("Đã xóa! Vui lòng tải lại trang.");
+        location.reload();
+    }
 }
 
 initGame();

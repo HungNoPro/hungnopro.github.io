@@ -15,6 +15,7 @@
                 <div class="score-value" id="score">0</div>
             </div>
             <button id="lb-btn" onclick="openLeaderboard()">🏆 BXH</button>
+            <button id="settings-btn" onclick="openSettings()">⚙️</button>
             <div class="score-box">
                 <div class="score-label">Best</div>
                 <div class="score-value" id="best-score">0</div>
@@ -29,9 +30,11 @@
                 <h2>Game Over!</h2>
                 <p>Điểm của bạn: <span id="final-score">0</span></p>
                 
+                <div id="record-indicator" class="record-indicator">👑 Phá kỷ lục!</div>
+                
                 <div id="name-input-container">
                     <input type="text" id="player-name" placeholder="Nhập tên của bạn" maxlength="12">
-                    <button id="save-score-btn" onclick="saveScore()">Lưu điểm</button>
+                    <button id="save-score-btn" onclick="registerFirstTime()">Ghi danh</button>
                 </div>
                 
                 <button class="restart-btn" onclick="restartGame()">Chơi lại</button>
@@ -41,12 +44,26 @@
         <div class="pieces-container" id="pieces-container"></div>
     </div>
 
-    <!-- Leaderboard Modal -->
     <div id="lb-modal" class="lb-modal">
         <div class="lb-modal-content">
             <span class="lb-close" onclick="closeLeaderboard()">&times;</span>
             <h3>🏆 Bảng Xếp Hạng</h3>
             <div id="lb-list" class="lb-list">Đang tải...</div>
+        </div>
+    </div>
+
+    <div id="settings-modal" class="lb-modal">
+        <div class="lb-modal-content">
+            <span class="lb-close" onclick="closeSettings()">&times;</span>
+            <h3>⚙️ Cài đặt</h3>
+            <div class="settings-form">
+                <label for="settings-name">Đổi tên hiển thị:</label>
+                <input type="text" id="settings-name" placeholder="Nhập tên mới" maxlength="12">
+                <button id="save-name-btn" onclick="changeName()">Lưu tên mới</button>
+                
+                <button id="reset-profile-btn" onclick="resetProfile()">Xóa tên & kỷ lục máy</button>
+                <p class="settings-note">(Đổi tên sẽ áp dụng lên server nhưng vẫn giữ nguyên điểm số BXH của bạn).</p>
+            </div>
         </div>
     </div>
 
