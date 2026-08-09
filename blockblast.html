@@ -61,8 +61,18 @@
                 <input type="text" id="settings-name" placeholder="Nhập tên mới" maxlength="12">
                 <button id="save-name-btn" onclick="changeName()">Lưu tên mới</button>
                 
-                <button id="reset-profile-btn" onclick="resetProfile()">Xóa tên & kỷ lục máy</button>
-                <p class="settings-note">(Đổi tên sẽ áp dụng lên server nhưng vẫn giữ nguyên điểm số BXH của bạn).</p>
+                <hr style="border: 1px solid #444; margin: 20px 0; width: 100%;">
+                
+                <div class="delete-zone">
+                    <button id="delete-account-btn" onclick="toggleDeleteBox()">Xóa dữ liệu người chơi</button>
+                    
+                    <div id="delete-confirm-box" style="display: none; margin-top: 15px;">
+                        <p class="delete-warning">⚠️ Hành động này không thể hoàn tác. Nó sẽ xóa vĩnh viễn thành tích của bạn khỏi Bảng xếp hạng và thiết bị này.</p>
+                        <p style="font-size: 13px; color: #aaa;">Vui lòng nhập chính xác tên tài khoản hiện tại để xác nhận:</p>
+                        <input type="text" id="delete-confirm-input" oninput="checkDeleteInput()" placeholder="">
+                        <button id="confirm-delete-btn" onclick="confirmDeleteAccount()" disabled>Xóa vĩnh viễn tài khoản</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
