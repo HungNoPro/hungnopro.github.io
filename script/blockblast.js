@@ -379,7 +379,6 @@ async function openLeaderboard() {
         const res = await fetch(`${WORKER_URL}/leaderboard`);
         const data = await res.json();
         let scores = data.scores || [];
-        
         scores.sort((a, b) => b.score - a.score);
         
         if (scores.length === 0) {
@@ -391,13 +390,6 @@ async function openLeaderboard() {
         const playerIndex = savedName ? scores.findIndex(e => e.name.toLowerCase() === savedName.toLowerCase()) : -1;
         
         let html = '';
-        if (playerIndex !== -1) {
-            const totalPlayers = scores.length;
-            const percentage = ((playerIndex + 1) / totalPlayers * 100).toFixed(1);
-            html += `<div class="lb-player-rank">👑 Bạn đang ở Top ${percentage}% (Hạng ${playerIndex + 1}/${totalPlayers})</div>`;
-        } else if (savedName) {
-            html += `<div class="lb-player-rank" style="color: #8a8d9f; background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1);">Bạn chưa lọt vào BXH (Cần nỗ lực hơn!)</div>`;
-        }
         const top5 = scores.slice(0, 5);
         top5.forEach((entry, index) => {
             let rankText;
@@ -425,13 +417,19 @@ async function openLeaderboard() {
                 </div>
             `;
         }
+        if (playerIndex !== -1) {
+            const totalPlayers = scores.length;
+            const percentage = ((playerIndex + 1) / totalPlayers * 100).toFixed(1);
+            html += `<div class="lb-player-rank" style="margin-top: 15px;">👑 Bạn đang ở Top ${percentage}% (Hạng ${playerIndex + 1}/${totalPlayers})</div>`;
+        } else if (savedName) {
+            html += `<div class="lb-player-rank" style="margin-top: 15px; color: #8a8d9f; background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1);">Bạn chưa lọt vào BXH (Cần nỗ lực hơn!)</div>`;
+        }
 
         document.getElementById('lb-list').innerHTML = html;
     } catch (error) {
         document.getElementById('lb-list').innerHTML = '<p style="text-align:center; color:#ff4757;">Lỗi tải BXH!</p>';
     }
 }
-
 // ===== SETTINGS =====
 function openSettings() {
     document.getElementById('settings-modal').classList.add('active');
