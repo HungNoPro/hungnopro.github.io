@@ -430,6 +430,9 @@ async function openLeaderboard() {
         document.getElementById('lb-list').innerHTML = '<p style="text-align:center; color:#ff4757;">Lỗi tải BXH!</p>';
     }
 }
+function closeLeaderboard() { 
+    document.getElementById('lb-modal').classList.remove('active'); 
+}
 // ===== SETTINGS =====
 function openSettings() {
     document.getElementById('settings-modal').classList.add('active');
