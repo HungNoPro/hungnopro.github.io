@@ -404,6 +404,11 @@ function openSettings() {
     document.getElementById('settings-modal').classList.add('active');
     const savedName = localStorage.getItem('blockPlayerName');
     document.getElementById('settings-name').value = savedName || '';
+    
+    // Ẩn box xóa khi mở cài đặt
+    document.getElementById('delete-confirm-box').style.display = 'none';
+    document.getElementById('delete-confirm-input').value = '';
+    document.getElementById('confirm-delete-btn').disabled = true;
 }
 
 function closeSettings() { document.getElementById('settings-modal').classList.remove('active'); }
@@ -420,7 +425,6 @@ async function changeName() {
     btn.disabled = true;
 
     try {
-        // Gọi API /rename để đổi tên trên server giữ nguyên điểm
         const res = await fetch(`${WORKER_URL}/rename`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -432,9 +436,7 @@ async function changeName() {
             localStorage.setItem('blockPlayerName', newName);
             alert(data.message || 'Đổi tên thành công!');
             closeSettings();
-            if (gameOverScreen.classList.contains('active')) {
-                triggerGameOver(); // Refresh màn game over nếu đang mở
-            }
+            if (gameOverScreen.classList.contains('active')) triggerGameOver();
         } else {
             alert(data.error || "Lỗi đổi tên!");
         }
@@ -446,14 +448,69 @@ async function changeName() {
     }
 }
 
-function resetProfile() {
-    if (confirm("Bạn có chắc muốn xóa tên và kỷ lục trên máy này? Kỷ lục trên server sẽ vẫn giữ nguyên.")) {
-        localStorage.removeItem('blockPlayerName');
-        localStorage.removeItem('blockBestScore');
-        bestScore = 0;
-        alert("Đã xóa! Vui lòng tải lại trang.");
-        location.reload();
+function toggleDeleteBox() {
+    const box = document.getElementById('delete-confirm-box');
+    const input = document.getElementById('delete-confirm-input');
+    const savedName = localStorage.getItem('blockPlayerName');
+    
+    if (!savedName) {
+        alert("Bạn chưa có tên lưu trên máy. Không cần xóa.");
+        return;
+    }
+    
+    // Đặt tên ghi chìm (placeholder) giống hệt tên hiện tại
+    input.placeholder = savedName;
+    input.value = '';
+    document.getElementById('confirm-delete-btn').disabled = true;
+    box.style.display = box.style.display === 'none' ? 'block' : 'none';
+}
+
+// Kiểm tra xem người dùng nhập đúng tên chưa
+function checkDeleteInput() {
+    const inputVal = document.getElementById('delete-confirm-input').value.trim();
+    const savedName = localStorage.getItem('blockPlayerName');
+    const btn = document.getElementById('confirm-delete-btn');
+    
+    // Chỉ bật nút xóa nếu nhập CHÍNH XÁC tên hiện tại
+    if (inputVal === savedName) {
+        btn.disabled = false;
+    } else {
+        btn.disabled = true;
     }
 }
 
+async function confirmDeleteAccount() {
+    const btn = document.getElementById('confirm-delete-btn');
+    btn.innerText = "Đang xóa...";
+    btn.disabled = true;
+    
+    const nameToDelete = localStorage.getItem('blockPlayerName');
+    
+    try {
+        // Gọi API xóa trên server
+        const res = await fetch(`${WORKER_URL}/delete`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name: nameToDelete })
+        });
+        const data = await res.json();
+        
+        if (res.ok) {
+            // Xóa dữ liệu trong máy
+            localStorage.removeItem('blockPlayerName');
+            localStorage.removeItem('blockBestScore');
+            bestScore = 0;
+            
+            alert(data.message || "Đã xóa tài khoản thành công!");
+            location.reload(); // Tải lại trang để reset hoàn toàn
+        } else {
+            alert(data.error || "Lỗi xóa tài khoản trên server!");
+        }
+    } catch (error) {
+        alert("Lỗi mạng, không thể xóa!");
+    } finally {
+        btn.innerText = "Xóa vĩnh viễn tài khoản";
+        btn.disabled = false;
+    }
+}
 initGame();
