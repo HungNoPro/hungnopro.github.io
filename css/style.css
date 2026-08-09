@@ -415,3 +415,26 @@ body {
 @media (prefers-reduced-motion: reduce) {
   * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
+
+.lb-player-rank {
+    text-align: center;
+    color: #ffd700;
+    font-weight: bold;
+    margin-bottom: 15px;
+    font-size: 14px;
+    background: rgba(255, 215, 0, 0.1);
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+}
+.lb-item-self {
+    background: rgba(52, 211, 153, 0.15) !important;
+    border: 1px solid rgba(52, 211, 153, 0.5);
+}
+.lb-dots {
+    text-align: center;
+    color: #8a8d9f;
+    margin: 10px 0;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
