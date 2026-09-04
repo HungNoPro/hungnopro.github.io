@@ -1,0 +1,70 @@
+{
+  "units": [
+    {
+      "no": 1, "hsk": 1, "seal": "一", "name": "Sơ khai",
+      "desc": "Chữ cái đầu tiên — chào hỏi, số, gia đình",
+      "acc": "#16A172", "accd": "#0E7A54",
+      "lessons": [
+        ["Chào hỏi & xưng hô", [["你","nǐ","bạn"],["我","wǒ","tôi"],["他","tā","anh ấy"],["她","tā","cô ấy"],["您","nín","ngài (lịch sự)"],["先生","xiānsheng","ngài, anh"],["小姐","xiǎojie","cô (xưng hô)"],["名字","míngzi","cái tên"],["朋友","péngyou","người bạn"],["们","men","hậu tố chỉ số nhiều"]]],
+        ["Gia đình", [["爸爸","bàba","bố"],["妈妈","māma","mẹ"],["哥哥","gēge","anh trai"],["姐姐","jiějie","chị gái"],["弟弟","dìdi","em trai"],["妹妹","mèimei","em gái"],["家","jiā","nhà, gia đình"],["儿子","érzi","con trai"],["女儿","nǚ'ér","con gái"],["孩子","háizi","đứa trẻ"]]],
+        ["Đếm số", [["一","yī","một"],["二","èr","hai"],["三","sān","ba"],["四","sì","bốn"],["五","wǔ","năm"],["六","liù","sáu"],["七","qī","bảy"],["八","bā","tám"],["九","jiǔ","chín"],["十","shí","mười"],["百","bǎi","trăm"],["零","líng","số không"]]],
+        ["Ngày tháng & năm", [["个","gè","cái (định lượng)"],["岁","suì","tuổi"],["年","nián","năm"],["月","yuè","tháng"],["星期","xīngqī","tuần, thứ"],["今天","jīntiān","hôm nay"],["明天","míngtiān","ngày mai"],["昨天","zuótiān","hôm qua"],["生日","shēngrì","sinh nhật"],["时候","shíhou","lúc, khi"]]],
+        ["Giờ trong ngày", [["现在","xiànzài","bây giờ"],["上午","shàngwǔ","buổi sáng"],["下午","xiàwǔ","buổi chiều"],["中午","zhōngwǔ","buổi trưa"],["早上","zǎoshang","sớm sáng"],["晚上","wǎnshang","buổi tối"],["点","diǎn","giờ (đồng hồ)"],["分钟","fēnzhōng","phút"],["什么","shénme","cái gì"],["几","jǐ","mấy, bao nhiêu"]]],
+        ["Từ để hỏi", [["谁","shéi","ai"],["哪儿","nǎr","ở đâu"],["那儿","nàr","ở kia"],["怎么","zěnme","như thế nào"],["为什么","wèishénme","tại sao"],["吗","ma","trợ từ hỏi"],["呢","ne","trợ từ (còn…?)"],["吧","ba","trợ từ đề nghị"],["多少","duōshao","bao nhiêu"],["哪","nǎ","nào"]]],
+        ["Ăn & uống", [["吃","chī","ăn"],["喝","hē","uống"],["米饭","mǐfàn","cơm"],["菜","cài","món ăn, rau"],["茶","chá","trà"],["咖啡","kāfēi","cà phê"],["牛奶","niúnǎi","sữa"],["水","shuǐ","nước"],["苹果","píngguǒ","quả táo"],["鸡蛋","jīdàn","quả trứng"]]],
+        ["Trường học", [["学校","xuéxiào","trường học"],["学生","xuésheng","học sinh"],["老师","lǎoshī","giáo viên"],["同学","tóngxué","bạn học"],["学习","xuéxí","học tập"],["汉语","Hànyǔ","tiếng Hán"],["中文","Zhōngwén","tiếng Trung"],["字","zì","chữ"],["书","shū","quyển sách"],["本","běn","cuốn (đlượng)"],["工作","gōngzuò","công việc"]]],
+        ["Nơi chốn quen thuộc", [["中国","Zhōngguó","Trung Quốc"],["北京","Běijīng","Bắc Kinh"],["商店","shāngdiàn","cửa hàng"],["银行","yínháng","ngân hàng"],["医院","yīyuàn","bệnh viện"],["电影","diànyǐng","phim"],["饭店","fàndiàn","khách sạn, nhà hàng"],["桌子","zhuōzi","cái bàn"],["椅子","yǐzi","cái ghế"],["杯子","bēizi","cái cốc"]]],
+        ["Đồ dùng hàng ngày", [["电视","diànshì","tivi"],["电脑","diànnǎo","máy tính"],["电话","diànhuà","điện thoại"],["衣服","yīfu","quần áo"],["穿","chuān","mặc"],["猫","māo","con mèo"],["狗","gǒu","con chó"],["钱","qián","tiền"],["车","chē","xe"],["门","mén","cánh cửa"]]],
+        ["Tính từ cơ bản", [["大","dà","to"],["小","xiǎo","nhỏ"],["多","duō","nhiều"],["少","shǎo","ít"],["好","hǎo","tốt"],["高","gāo","cao"],["胖","pàng","mập"],["新","xīn","mới"],["冷","lěng","lạnh"],["热","rè","nóng"],["远","yuǎn","xa"],["忙","máng","bận"]]],
+        ["Bày tỏ & cảm xúc", [["认识","rènshi","biết, quen"],["会","huì","biết làm, sẽ"],["想","xiǎng","muốn, nghĩ"],["爱","ài","yêu"],["喜欢","xǐhuan","thích"],["觉得","juéde","cảm thấy"],["高兴","gāoxìng","vui"],["可以","kěyǐ","có thể"]]],
+        ["Lịch sự", [["谢谢","xièxie","cảm ơn"],["不客气","bú kèqi","không có gì"],["对不起","duìbuqǐ","xin lỗi"],["没关系","méi guānxi","không sao"],["再见","zàijiàn","tạm biệt"],["请","qǐng","mời, xin"],["欢迎","huānyíng","chào mừng"],["漂亮","piàoliang","đẹp"]]],
+        ["Hành động thường ngày", [["看","kàn","nhìn, xem"],["看见","kànjiàn","thấy"],["听","tīng","nghe"],["说","shuō","nói"],["读","dú","đọc"],["写","xiě","viết"],["问","wèn","hỏi"],["用","yòng","dùng"],["买","mǎi","mua"],["卖","mài","bán"],["做","zuò","làm"],["给","gěi","cho, đưa"]]],
+        ["Đi lại", [["去","qù","đi"],["来","lái","đến, đến"],["回","huí","trở về"],["到","dào","đến nơi"],["坐","zuò","ngồi, đi bằng"],["走","zǒu","đi bộ"],["站","zhàn","trạm, đứng"],["开","kāi","mở, lái"],["飞机","fēijī","máy bay"],["出租车","chūzūchē","xe taxi"]]],
+        ["Phương vị", [["上","shàng","trên, lên"],["下","xià","dưới, xuống"],["里","lǐ","trong"],["前","qián","trước"],["后","hòu","sau"],["左","zuǒ","trái"],["右","yòu","phải"],["东","dōng","đông"],["西","xī","tây"],["东西","dōngxi","đồ vật"]]],
+        ["Nối ý cơ bản", [["是","shì","là"],["有","yǒu","có"],["不","bù","không"],["没有","méiyǒu","không có"],["要","yào","muốn"],["就","jiù","chính là, liền"],["再","zài","lại, tiếp"],["太","tài","quá"]]],
+        ["Từ hay đi kèm", [["也","yě","cũng"],["都","dōu","đều"],["很","hěn","rất"],["和","hé","và, với"],["在","zài","ở"],["找","zhǎo","tìm"],["叫","jiào","gọi, tên là"],["睡觉","shuìjiào","ngủ"]]],
+        ["Thời tiết & mùa", [["天气","tiānqì","thời tiết"],["下雨","xiàyǔ","mưa"],["雪","xuě","tuyết"],["风","fēng","gió"],["太阳","tàiyang","mặt trời"],["月亮","yuèliang","mặt trăng"],["春天","chūntiān","mùa xuân"],["夏天","xiàtiān","mùa hạ"],["秋天","qiūtiān","mùa thu"],["冬天","dōngtiān","mùa đông"]]]
+      ]
+    },
+    {
+      "no": 2, "hsk": 2, "seal": "二", "name": "Vững bước",
+      "desc": "Mở rộng — cơ thể, sinh hoạt, đường sá",
+      "acc": "#C96A2E", "accd": "#9C501D",
+      "lessons": [
+        ["Thời lượng & mức độ", [["一起","yìqǐ","cùng nhau"],["一定","yídìng","nhất định"],["一样","yíyàng","giống nhau"],["一直","yìzhí","suốt, liên tục"],["一共","yígòng","tổng cộng"],["一点儿","yìdiǎnr","một chút"],["有点儿","yǒudiǎnr","hơi, một chút"],["还","hái","vẫn, còn"],["又","yòu","lại, cả…cả"],["应该","yīnggāi","nên"]]],
+        ["Quanh mốc thời gian", [["时间","shíjiān","thời gian"],["小时","xiǎoshí","tiếng (60 phút)"],["周末","zhōumò","cuối tuần"],["以前","yǐqián","trước đây"],["以后","yǐhòu","sau này"],["然后","ránhòu","sau đó"],["已经","yǐjīng","đã"]]],
+        ["Từ nối ý", [["但是","dànshì","nhưng"],["所以","suǒyǐ","vì vậy"],["如果","rúguǒ","nếu"],["还是","háishi","hay là, vẫn"],["每","měi","mỗi"],["最","zuì","nhất"],["更","gèng","hơn, càng"],["真","zhēn","thật"]]],
+        ["Cơ thể", [["身体","shēntǐ","cơ thể, sức khỏe"],["头","tóu","cái đầu"],["头发","tóufa","tóc"],["眼睛","yǎnjing","con mắt"],["耳朵","ěrduo","cái tai"],["手","shǒu","bàn tay"],["脚","jiǎo","bàn chân"],["脸","liǎn","khuôn mặt"],["腿","tuǐ","chân (đùi/cẳng)"]]],
+        ["Cảm nhận", [["饿","è","đói"],["渴","kě","khát"],["累","lèi","mệt"],["舒服","shūfu","thoải mái"],["难","nán","khó"],["容易","róngyì","dễ"],["快","kuài","nhanh"],["慢","màn","chậm"],["长","cháng","dài"],["便宜","piányi","rẻ"]]],
+        ["Bàn ăn", [["面包","miànbāo","bánh mì"],["牛肉","niúròu","thịt bò"],["水果","shuǐguǒ","trái cây"],["啤酒","píjiǔ","bia"],["饺子","jiǎozi","sủi cảo"],["面条","miàntiáo","mì sợi"],["好吃","hǎochī","ngon"],["好玩","hǎowán","vui (để chơi)"],["有意思","yǒu yìsi","thú vị"]]],
+        ["Đường sá & xe", [["火车","huǒchē","tàu hỏa"],["公共汽车","gōnggòng qìchē","xe buýt"],["自行车","zìxíngchē","xe đạp"],["机场","jīchǎng","sân bay"],["路","lù","con đường"],["近","jìn","gần"],["出去","chūqù","đi ra ngoài"],["回去","huíqù","trở về"],["起来","qǐlái","dậy, lên"]]],
+        ["Trong nhà", [["房间","fángjiān","căn phòng"],["洗手间","xǐshǒujiān","nhà vệ sinh"],["冰箱","bīngxiāng","tủ lạnh"],["雨伞","yǔsǎn","cây dù"],["表","biǎo","đồng hồ đeo tay"],["音乐","yīnyuè","âm nhạc"],["照片","zhàopiàn","tấm ảnh"],["地址","dìzhǐ","địa chỉ"],["号码","hàomǎ","con số, số ĐT"],["礼物","lǐwù","món quà"]]],
+        ["Động từ I", [["告诉","gàosu","bảo, kể"],["开始","kāishǐ","bắt đầu"],["结束","jiéshù","kết thúc"],["等","děng","chờ"],["关","guān","đóng, tắt"],["回答","huídá","trả lời"],["见面","jiànmiàn","gặp mặt"],["借","jiè","mượn"],["进","jìn","vào"],["拿","ná","cầm, lấy"]]],
+        ["Động từ II", [["让","ràng","để, cho phép"],["送","sòng","tặng, đưa đi"],["起床","qǐchuáng","thức dậy"],["洗澡","xǐzǎo","tắm"],["懂","dǒng","hiểu"],["能","néng","có thể"],["练习","liànxí","luyện tập"],["准备","zhǔnbèi","chuẩn bị"],["唱歌","chànggē","hát"],["跳舞","tiàowǔ","nhảy múa"],["打球","dǎqiú","chơi bóng"],["说话","shuōhuà","nói chuyện"]]],
+        ["Học hành", [["大学","dàxué","đại học"],["考试","kǎoshì","kỳ thi"],["作业","zuòyè","bài tập về nhà"],["上课","shàngkè","lên lớp"],["下课","xiàkè","tan học"],["上网","shàngwǎng","lên mạng"],["笔","bǐ","cây bút"],["运动","yùndòng","thể thao, vận động"]]],
+        ["Màu sắc & dáng", [["颜色","yánsè","màu sắc"],["黑","hēi","đen"],["红","hóng","đỏ"],["黄","huáng","vàng"],["蓝","lán","xanh dương"],["绿","lǜ","xanh lá"],["白","bái","trắng"],["可爱","kě'ài","dễ thương"],["明白","míngbai","hiểu rõ"],["树","shù","cây"],["花","huā","bông hoa"]]]
+      ]
+    },
+    {
+      "no": 3, "hsk": 3, "seal": "三", "name": "Nâng cao",
+      "desc": "Tự tin — thành phố, công việc, cảm xúc",
+      "acc": "#BE3A26", "accd": "#922D1C",
+      "lessons": [
+        ["Thành phố", [["城市","chéngshì","thành phố"],["地方","dìfang","nơi chốn"],["附近","fùjìn","xung quanh, gần đây"],["楼","lóu","tòa nhà, lầu"],["层","céng","tầng"],["电梯","diàntǐ","thang máy"],["地铁","dìtiě","tàu điện ngầm"],["公园","gōngyuán","công viên"],["购物","gòuwù","mua sắm"],["公司","gōngsī","công ty"]]],
+        ["Công sở & học tập", [["办公室","bàngōngshì","văn phòng"],["班","bān","ca, lớp"],["上班","shàngbān","đi làm"],["下班","xiàbàn","tan làm"],["同事","tóngshì","đồng nghiệp"],["成绩","chéngjì","thành tích, điểm"],["技术","jìshù","kỹ thuật"],["复习","fùxí","ôn tập"]]],
+        ["Liên lạc", [["电子邮件","diànzǐ yóujiàn","thư điện tử (email)"],["手机","shǒujī","điện thoại di động"],["笔记本","bǐjìběn","sổ tay, laptop"],["联系","liánxì","liên hệ"],["发","fā","gửi, phát"],["信","xìn","bức thư"],["词典","cídiǎn","từ điển"],["汉字","Hànzì","chữ Hán"],["介绍","jièshào","giới thiệu"]]],
+        ["Sức khỏe", [["生病","shēngbìng","bị bệnh"],["感冒","gǎnmào","cảm lạnh"],["发烧","fāshāo","bị sốt"],["药","yào","thuốc"],["健康","jiànkāng","khỏe mạnh"],["锻炼","duànliàn","rèn luyện thân thể"],["检查","jiǎnchá","kiểm tra"]]],
+        ["Tâm trạng", [["担心","dānxīn","lo lắng"],["满意","mǎnyì","hài lòng"],["感兴趣","gǎn xìngqù","hứng thú, thích"],["着急","zháojí","sốt ruột, nóng lòng"],["忘记","wàngjì","quên"],["关心","guānxīn","quan tâm"],["安静","ānjìng","yên tĩnh"],["聪明","cōngming","thông minh"],["瘦","shòu","gầy"]]],
+        ["Mức độ & so sánh", [["变化","biànhuà","sự thay đổi"],["不同","bùtóng","khác nhau"],["比较","bǐjiào","khá, so sánh"],["必须","bìxū","phải"],["需要","xūyào","cần"],["差","chà","kém, còn thiếu"],["够","gòu","đủ"],["顿","dùn","bữa (định lượng)"]]],
+        ["Du lịch", [["起飞","qǐfēi","cất cánh"],["船","chuán","tàu, thuyền"],["旅行","lǚxíng","đi du lịch"],["参观","cānguān","tham quan"],["动物园","dòngwùyuán","sở thú"],["公斤","gōngjīn","cân (kg)"],["公里","gōnglǐ","km"],["带","dài","mang, đem"],["接","jiē","đón, nhận"]]],
+        ["Giải trí & truyền thông", [["爱好","àihào","sở thích"],["比赛","bǐsài","trận đấu, cuộc thi"],["节目","jiémù","chương trình"],["新闻","xīnwén","tin tức"],["报纸","bàozhǐ","tờ báo"],["广播","guǎngbō","phát thanh"],["聊天","liáotiān","tán gẫu"],["游戏","yóuxì","trò chơi"],["有名","yǒumíng","nổi tiếng"]]],
+        ["Mua sắm", [["价钱","jiàqián","cái giá"],["蛋糕","dàngāo","bánh ngọt"],["尝","cháng","nếm"],["甜","tián","ngọt"],["酸","suān","chua"],["薄","báo","mỏng"],["短","duǎn","ngắn"],["帽子","màozi","cái mũ"],["眼镜","yǎnjìng","kính (mắt)"],["双","shuāng","đôi"],["试","shì","thử"]]],
+        ["Chất lượng & phạm vi", [["水平","shuǐpíng","trình độ"],["简单","jiǎndān","đơn giản"],["干净","gānjìng","sạch sẽ"],["新鲜","xīnxiān","tươi"],["段","duàn","đoạn"],["光","guāng","ánh sáng; chỉ"],["声音","shēngyīn","âm thanh"],["世界","shìjiè","thế giới"],["文化","wénhuà","văn hóa"],["国家","guójiā","quốc gia"],["习惯","xíguàn","thói quen"]]],
+        ["Thời điểm & tần suất", [["马上","mǎshàng","ngay lập tức"],["刚才","gāngcái","vừa nãy"],["终于","zhōngyú","rốt cuộc (đã)"],["最后","zuìhòu","cuối cùng"],["最近","zuìjìn","dạo gần đây"],["总是","zǒngshì","luôn luôn"],["经常","jīngcháng","thường xuyên"],["常常","chángcháng","thường hay"],["周","zhōu","tuần"],["迟到","chídào","đến trễ"],["放假","fàngjià","nghỉ học, nghỉ phép"],["请假","qǐngjià","xin nghỉ"]]],
+        ["Quan hệ & liên từ", [["除了","chúle","ngoài (ra)"],["或者","huòzhě","hoặc"],["不过","búguò","tuy nhiên"],["关于","guānyú","về (chuyện…)"],["根据","gēnjù","dựa theo"],["互相","hùxiāng","lẫn nhau"],["共同","gòngtóng","chung, cùng nhau"],["别人","biérén","người khác"],["自己","zìjǐ","chính mình"],["遇到","yùdào","gặp, gặp phải"],["愿意","yuànyì","sẵn lòng"],["要求","yāoqiú","yêu cầu"]]],
+        ["Chuyện & quyết định", [["事情","shìqing","chuyện, việc"],["结果","jiéguǒ","kết quả"],["机会","jīhuì","cơ hội"],["问题","wèntí","câu hỏi, vấn đề"],["发现","fāxiàn","phát hiện"],["完成","wánchéng","hoàn thành"],["打算","dǎsuàn","dự định"],["决定","juédìng","quyết định"],["记得","jìde","còn nhớ"],["重要","zhòngyào","quan trọng"],["原因","yuányīn","nguyên nhân"]]],
+        ["Tổng hợp", [["而已","éryǐ","chỉ vậy thôi"],["多么","duōme","như thế nào! (cảm thán)"],["南","nán","phương nam"],["鼻子","bízi","cái mũi"],["搬","bān","chuyển (nhà)"],["办法","bànfǎ","cách, biện pháp"],["规定","guīdìng","quy định"],["还","huán","trả lại"],["个子","gèzi","vóc dáng"],["灯","dēng","cái đèn"],["影响","yǐngxiǎng","ảnh hưởng"]]]
+      ]
+    }
+  ]
+}
