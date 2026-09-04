@@ -503,8 +503,10 @@ function renderIntro(s){
 function makeChoices(w,mode){
   const key=(mode==='h2m')?x=>x.mean:(mode==='h2p')?x=>x.pin:x=>x.han;
   const correct=key(w);
-  const sameL=shuffle(WORDS.filter(x=>x.id!==w.id&&x.li===w.li&&x.ui===w.ui&&key(x)!==correct));
-  const rest=shuffle(WORDS.filter(x=>x.id!==w.id&&key(x)!==correct&&!(x.li===w.li&&x.ui===w.ui)));
+  /* p2h & l2h: loại phương án đồng âm (他/她 đều "tā") để câu hỏi không mơ hồ */
+  const hom=x=>((mode==='p2h'||mode==='l2h')&&x.pin===w.pin);
+  const sameL=shuffle(WORDS.filter(x=>x.id!==w.id&&x.li===w.li&&x.ui===w.ui&&key(x)!==correct&&!hom(x)));
+  const rest=shuffle(WORDS.filter(x=>x.id!==w.id&&key(x)!==correct&&!(x.li===w.li&&x.ui===w.ui)&&!hom(x)));
   const ch=[w];
   for(const x of[...sameL,...rest]){if(ch.length>=4)break;ch.push(x);}
   return shuffle(ch);
@@ -556,6 +558,8 @@ function renderASM(s){
   shuffle(WORDS.filter(x=>x.han.length===1&&!chars.includes(x.han)))
     .forEach(x=>{if(distr.length<2)distr.push(x.han);});
   const tiles=shuffle([...chars,...distr]);
+  /* SỬA: sel lưu CHỈ SỐ ô trong tiles (không lưu ký tự)
+     → 2 ô "爸" là 2 index khác nhau, không còn vô hiệu lẫn nhau */
   L.asm={sel:[],tiles,len:chars.length};
   $('#lbody').innerHTML=`
   <div class="qlabel"><span class="qtag new">GHÉP CHỮ</span><span>Ghép thành từ đúng</span></div>
@@ -573,24 +577,27 @@ function renderASM(s){
     const sl=$('#aSlots');sl.innerHTML='';
     for(let i=0;i<L.asm.len;i++){
       const btn=document.createElement('button');btn.className='slot';
-      btn.textContent=L.asm.sel[i]||'';
-      if(btn.textContent)btn.onclick=()=>{L.asm.sel.splice(i,1);draw();};
+      const ti=L.asm.sel[i];
+      if(ti!==undefined){          /* dùng !==undefined vì index 0 là falsy */
+        btn.textContent=tiles[ti];
+        btn.onclick=()=>{L.asm.sel.splice(i,1);draw();};
+      }
       sl.appendChild(btn);
     }
     $('#aTiles').querySelectorAll('.tile').forEach(t=>
-      t.classList.toggle('used',L.asm.sel.includes(tiles[+t.dataset.i])));
+      t.classList.toggle('used',L.asm.sel.includes(+t.dataset.i)));
     $('#aCheck').disabled=L.asm.sel.length!==L.asm.len;
   };
   $('#aTiles').querySelectorAll('.tile').forEach(t=>t.addEventListener('click',()=>{
     if(t.classList.contains('used'))return;
     if(L.asm.sel.length>=L.asm.len)return;
-    L.asm.sel.push(tiles[+t.dataset.i]);draw();
+    L.asm.sel.push(+t.dataset.i);draw();
   }));
   $('#aCheck').onclick=()=>{
-    const ok=L.asm.sel.join('')===w.han;
+    const ok=L.asm.sel.map(i=>tiles[i]).join('')===w.han;
     $('#aSlots').querySelectorAll('.slot').forEach((sl,i)=>{
       sl.classList.add(ok?'good':'bad');
-      if(!ok&&L.asm.sel[i]!==w.han[i])sl.style.borderColor='var(--red)';
+      if(!ok&&tiles[L.asm.sel[i]]!==w.han[i])sl.style.borderColor='var(--red)';
     });
     handleResult(s,ok);
   };
