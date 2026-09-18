@@ -48,10 +48,11 @@ function persistAuth(){
 }
 
 async function api(path,body){
+  const base=API_BASE.replace(/\/+$/,"");   // tự bỏ dấu / thừa ở cuối API_BASE
   const headers={};
   if(body)headers["Content-Type"]="application/json";
   if(AUTH&&AUTH.token)headers["Authorization"]="Bearer "+AUTH.token;
-  const r=await fetch(API_BASE+path,{method:body?"POST":"GET",headers,body:body?JSON.stringify(body):undefined});
+  const r=await fetch(base+path,{method:body?"POST":"GET",headers,body:body?JSON.stringify(body):undefined});
   let j={};try{j=await r.json();}catch(e){}
   if(!r.ok){const err=new Error(j.error||("Lỗi kết nối ("+r.status+")"));err.status=r.status;throw err;}
   return j;
@@ -200,14 +201,33 @@ let VOICES=[];
 function loadVoices(){try{VOICES=speechSynthesis.getVoices();}catch(e){}}
 if('speechSynthesis' in window){loadVoices();try{speechSynthesis.onvoiceschanged=loadVoices;}catch(e){}}
 const hasZhVoice=()=>VOICES.some(v=>/^zh/i.test(v.lang));
+let speakSeq=0;
 function speak(txt,slow){
   if(!S.sound||!('speechSynthesis' in window))return;
-  try{speechSynthesis.cancel();
+  try{
+    speechSynthesis.cancel();
+    const seq=++speakSeq;                     // đánh số lệnh nói hiện hành
     const u=new SpeechSynthesisUtterance(txt);u.lang='zh-CN';u.rate=slow?0.45:0.85;
     const v=VOICES.find(x=>/^zh[-_]CN/i.test(x.lang))||VOICES.find(x=>/^zh/i.test(x.lang));
-    if(v)u.voice=v;speechSynthesis.speak(u);
+    if(v)u.voice=v;
+    /* Chrome bug: cancel() ngay trước speak() làm mất tiếng → chờ 1 nhịp rồi nói */
+    setTimeout(()=>{
+      if(seq!==speakSeq)return;               // đã có lệnh nói mới hơn → bỏ
+      try{speechSynthesis.resume();speechSynthesis.speak(u);}catch(e){}
+    },60);
   }catch(e){}
 }
+
+/* Khởi động engine ở lần chạm/phím ĐẦU TIÊN — nằm trong cử chỉ người dùng
+   để trình duyệt cấp quyền nói tự động cho các lần sau */
+let speechPrimed=false;
+function primeSpeech(){
+  if(speechPrimed||!('speechSynthesis' in window))return;
+  speechPrimed=true;
+  try{const u=new SpeechSynthesisUtterance(' ');u.volume=0;speechSynthesis.speak(u);}catch(e){}
+}
+document.addEventListener('pointerdown',primeSpeech,{once:true,capture:true});
+document.addEventListener('keydown',primeSpeech,{once:true,capture:true});
 let AC=null;
 function sfx(kind){
   if(!S.sound)return;
@@ -293,7 +313,7 @@ function unitDone(u){return u.lessons.every((_,li)=>lessonDone(u.no,li));}
 function renderHome(){
   const path=$('#path');path.innerHTML='';
   UNITS.forEach(u=>path.appendChild(buildUnit(u)));
-  renderRevCard();icons();
+  renderRevCard();renderMilestones();icons();
   requestAnimationFrame(()=>{
     const cur=path.querySelector('.node.cur')||path.querySelector('.n-open');
     if(cur)cur.scrollIntoView({block:'center'});
@@ -401,7 +421,40 @@ function renderRevCard(){
   </div>`;
   $('#btnRev').onclick=()=>startSession({type:'rev',words:list,label:'Ôn tập thông minh'});
 }
-
+/* ================= ÔN TẬP THEO MỐC HSK ================= */
+function milestoneWords(no){
+  const now=Date.now();
+  return WORDS.filter(w=>w.u===no).map(w=>{
+    const st=S.words[w.id];
+    if(!st)return{w,sc:5};                                  // từ chưa chạm: ưu tiên vừa phải
+    const days=Math.min((now-(st.t||now))/86400000,30);
+    return{w,sc:(st.w||0)*3+days-(st.r||0)*.5};             // sai nhiều & lâu chưa ôn lên trước
+  }).sort((a,b)=>b.sc-a.sc).slice(0,12).map(x=>x.w);
+}
+function renderMilestones(){
+  const box=$('#milestones');if(!box)return;
+  box.innerHTML=`<div class="msec">
+    <div class="mtitle">ÔN TẬP THEO MỐC</div>
+    <div class="mcards">
+      ${UNITS.map(u=>{
+        const pool=WORDS.filter(w=>w.u===u.no);
+        const learned=pool.filter(w=>S.words[w.id]).length;
+        const wrong=pool.filter(w=>(S.words[w.id]||{}).w>0).length;
+        return `<button class="mcard" data-u="${u.no}" style="--acc:${u.acc};--accd:${u.accd}">
+          ${wrong?`<span class="mw">${wrong} hay sai</span>`:''}
+          <span class="mseal han">${u.seal}</span>
+          <span class="mt">HSK ${u.hsk}</span>
+          <span class="mp">${learned}/${pool.length} từ</span>
+          <span class="mgo"><i data-lucide="dumbbell"></i>Ôn</span>
+        </button>`;}).join('')}
+    </div>
+  </div>`;
+  box.querySelectorAll('.mcard').forEach(c=>c.addEventListener('click',()=>{
+    const un=UNITS.find(x=>x.no===+c.dataset.u);
+    startSession({type:'hsk',unit:un.no,hsk:un.hsk,
+      words:milestoneWords(un.no),label:`Ôn mốc HSK ${un.hsk}`});
+  }));
+}
 /* ================= PHIÊN BÀI HỌC ================= */
 const L={open:false};
 const MODE_LABEL={p2h:"PINYIN → CHỮ HÁN",m2h:"NGHĨA → CHỮ HÁN",h2m:"CHỮ HÁN → NGHĨA",h2p:"ĐỌC ÂM (PINYIN)",l2h:"NGHE & CHỌN CHỮ"};
@@ -451,10 +504,10 @@ function closeLesson(){
 function updateHead(){
   $('#pfill').style.width=(L.queue.length?100*L.i/L.queue.length:100)+'%';
   const h=$('#lHearts');
-  if(L.type==='rev'||L.practice){
+  if(L.type==='rev'||L.type==='hsk'||L.practice){
     h.innerHTML=`<i data-lucide="infinity"></i>`;h.style.color='var(--jade-d)';
   }else{
-    h.innerHTML=`<i data-lucide="heart"></i><span>${L.hearts}</span>`;
+    h.innerHTML=`<i data-lucide="heart"></i><span>${L.hearts}</span>`;h.style.color='';
   }
   const c=$('#lCombo');
   if(L.combo>=3){c.classList.add('on');c.querySelector('span').textContent='×'+L.combo;}
@@ -503,7 +556,6 @@ function renderIntro(s){
 function makeChoices(w,mode){
   const key=(mode==='h2m')?x=>x.mean:(mode==='h2p')?x=>x.pin:x=>x.han;
   const correct=key(w);
-  /* p2h & l2h: loại phương án đồng âm (他/她 đều "tā") để câu hỏi không mơ hồ */
   const hom=x=>((mode==='p2h'||mode==='l2h')&&x.pin===w.pin);
   const sameL=shuffle(WORDS.filter(x=>x.id!==w.id&&x.li===w.li&&x.ui===w.ui&&key(x)!==correct&&!hom(x)));
   const rest=shuffle(WORDS.filter(x=>x.id!==w.id&&key(x)!==correct&&!(x.li===w.li&&x.ui===w.ui)&&!hom(x)));
@@ -558,8 +610,7 @@ function renderASM(s){
   shuffle(WORDS.filter(x=>x.han.length===1&&!chars.includes(x.han)))
     .forEach(x=>{if(distr.length<2)distr.push(x.han);});
   const tiles=shuffle([...chars,...distr]);
-  /* SỬA: sel lưu CHỈ SỐ ô trong tiles (không lưu ký tự)
-     → 2 ô "爸" là 2 index khác nhau, không còn vô hiệu lẫn nhau */
+  /* sel lưu CHỈ SỐ ô trong tiles → 2 ô "爸" là 2 index khác nhau */
   L.asm={sel:[],tiles,len:chars.length};
   $('#lbody').innerHTML=`
   <div class="qlabel"><span class="qtag new">GHÉP CHỮ</span><span>Ghép thành từ đúng</span></div>
@@ -578,7 +629,7 @@ function renderASM(s){
     for(let i=0;i<L.asm.len;i++){
       const btn=document.createElement('button');btn.className='slot';
       const ti=L.asm.sel[i];
-      if(ti!==undefined){          /* dùng !==undefined vì index 0 là falsy */
+      if(ti!==undefined){          /* !==undefined vì index 0 là falsy */
         btn.textContent=tiles[ti];
         btn.onclick=()=>{L.asm.sel.splice(i,1);draw();};
       }
@@ -611,7 +662,7 @@ function handleResult(s,ok){
   L.combo=ok?L.combo+1:0;
   if(!ok){
     L.queue.push({t:'mc',mode:'p2h',w:s.w,retry:true});
-    if(!L.practice&&L.type!=='rev'){L.hearts--;if(L.hearts<=0)L.dead=true;}
+    if(!L.practice&&L.type!=='rev'&&L.type!=='hsk'){L.hearts--;if(L.hearts<=0)L.dead=true;}
   }
   updateHead();
   showSheet(ok,s);
@@ -669,7 +720,7 @@ function renderFail(){
 function finish(){
   const pct=L.first.tot?Math.round(100*L.first.ok/L.first.tot):100;
   const stars=pct>=90?3:pct>=70?2:1;
-  let xp=L.type==='cp'?12+2*stars:L.type==='rev'?8:10+2*stars;
+  let xp=(L.type==='cp'||L.type==='hsk')?12+2*stars:L.type==='rev'?8:10+2*stars;
   if(L.practice)xp=Math.ceil(xp/2);
   if(L.type==='lesson'){const k=`${L.cfg.unit}-${L.cfg.li}`;
     S.done[k]=Math.max(S.done[k]||0,stars);S.cur=L.cfg.unit;}
@@ -677,8 +728,13 @@ function finish(){
   touchDay();addXp(xp);save();
   sfx('win');confetti();
   const stamp=L.type==='cp'?['毕业','bìyè · tốt nghiệp đơn vị']:
-              L.type==='rev'?['温习','wēnxí · ôn tập']:['过关','guòguān · vượt ải'];
-  const title=L.type==='cp'?'Tổng kết hoàn thành!':L.type==='rev'?'Ôn tập xong rồi!':'Bài học hoàn thành!';
+              L.type==='rev'?['温习','wēnxí · ôn tập']:
+              L.type==='hsk'?['闯关','chuǎngguān · vượt ải mốc']:
+              ['过关','guòguān · vượt ải'];
+  const title=L.type==='cp'?'Tổng kết hoàn thành!':
+              L.type==='rev'?'Ôn tập xong rồi!':
+              L.type==='hsk'?`Vượt mốc HSK ${L.cfg.hsk}!`:
+              'Bài học hoàn thành!';
   $('#lbody').innerHTML=`
   <div class="end">
     <div class="stamp han"><span>${stamp[0]}</span></div>
@@ -744,7 +800,10 @@ function renderVList(){
         ${st.w?`<span class="bw">×${st.w} sai</span>`:''}
       </div>
     </div>`;}).join('');
-  el.querySelectorAll('.vrow').forEach(r=>r.addEventListener('click',()=>wordModal(WORDS[+r.dataset.id])));
+  el.querySelectorAll('.vrow').forEach(r=>r.addEventListener('click',()=>{
+    const w=WORDS.find(x=>x.id===r.dataset.id);
+    if(w)wordModal(w);
+  }));
 }
 function wordModal(w){
   const st=S.words[w.id]||{r:0,w:0};
@@ -860,21 +919,30 @@ function renderProfile(){
 
 /* ================= KHỞI ĐỘNG ================= */
 (async function boot(){
+  const DATA_URL="resources/data.json";
   const el=$('#loading');
   try{
-    const r=await fetch('resources/data.json');
-    if(!r.ok)throw new Error("HTTP "+r.status);
+    const r=await fetch(DATA_URL);
+    if(!r.ok)throw new Error("HTTP "+r.status+" khi tải "+DATA_URL);
     DATA=await r.json();
+    if(!DATA||!Array.isArray(DATA.units)||!DATA.units.length)
+      throw new Error('JSON hợp lệ nhưng thiếu mảng "units"');
+    UNITS=DATA.units;
+    /* ID cố định "số đơn vị-chữ" → thêm/bớt từ không làm lệch tiến trình */
+    const seen=new Set();
+    UNITS.forEach(u=>u.lessons.forEach((Ls,li)=>Ls[1].forEach(w=>{
+      let id=u.no+'-'+w[0];
+      while(seen.has(id))id+='#';
+      seen.add(id);
+      WORDS.push({id,u:u.no,ui:u.no-1,li,t:Ls[0],han:w[0],pin:w[1],mean:w[2]});
+    })));
   }catch(e){
-    el.innerHTML=`Không tải được <b>data.json</b>.<br><br>
-      Nếu đang mở file trực tiếp (double-click), hãy chạy qua server:<br>
-      <code>python -m http.server</code> hoặc extension <b>Live Server</b> của VS Code,<br>
-      hoặc dùng địa chỉ GitHub Pages sau khi deploy.`;
+    console.error("[Hàn Giai] Lỗi khởi động:",e);
+    el.innerHTML=`<div style="font:800 17px 'Baloo 2';color:var(--red);margin-bottom:10px">Không tải được dữ liệu từ vựng</div>
+      <div>${esc(e.message)}</div>`;
     return;
   }
-  UNITS=DATA.units;
-  UNITS.forEach(u=>u.lessons.forEach((Ls,li)=>Ls[1].forEach(w=>
-    WORDS.push({id:WORDS.length,u:u.no,ui:u.no-1,li,t:Ls[0],han:w[0],pin:w[1],mean:w[2]}))));
+  console.log("[Hàn Giai] Nạp xong:",UNITS.length,"đơn vị ·",WORDS.length,"từ");
   el.remove();
   show('scr-home');
   icons();
@@ -886,9 +954,9 @@ function renderProfile(){
       </div>
       <h2 style="text-align:center">Chào mừng đến Hàn Giai!</h2>
       <p style="text-align:center">Luyện chữ Hán theo kiểu Duolingo — đã biết pinyin, giờ chinh phục mặt chữ.</p>
-      <div class="frow"><div class="fic"><i data-lucide="map"></i></div><p><b>45 bài</b> trên lộ trình cong — HSK 1, 2, 3 <b>không khóa lẫn nhau</b>, biết HSK3 rồi thì nhảy thẳng xuống dưới!</p></div>
+      <div class="frow"><div class="fic"><i data-lucide="map"></i></div><p><b>Lộ trình cong HSK 1–3</b> — các đơn vị <b>không khóa lẫn nhau</b>, biết HSK3 rồi thì nhảy thẳng xuống dưới!</p></div>
+      <div class="frow"><div class="fic"><i data-lucide="dumbbell"></i></div><p><b>Ôn tập theo mốc HSK</b> — 3 thẻ ngay đầu trang, ưu tiên từ hay sai và lâu chưa ôn.</p></div>
       <div class="frow"><div class="fic"><i data-lucide="volume-2"></i></div><p><b>Phát âm từng từ</b> bằng giọng tiếng Trung của trình duyệt — chạm vào chữ để nghe.</p></div>
-      <div class="frow"><div class="fic"><i data-lucide="flame"></i></div><p><b>Tim, chuỗi ngày, XP</b> và ôn tập thông minh ưu tiên từ hay sai.</p></div>
       <div class="mbtns"><button class="btn block" id="wGo">Bắt đầu học</button></div>`);
     m.querySelector('#wGo').onclick=()=>{S.welcomed=true;save();m.remove();};
   }
