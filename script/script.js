@@ -113,7 +113,10 @@ function updatePresence(presence) {
   const statusIndicator = document.getElementById("rpc-status-indicator");
   statusIndicator.style.background = statusColors[status] || "#747f8d";
 
-    // --- Update Display Name Styles (Màu chữ & hiệu ứng) ---
+      // --- Update Display Name Styles (Màu chữ & hiệu ứng) ---
+  // THÊM DÒNG NÀY ĐỂ KHAI BÁO BIẾN displayName
+  const displayName = user.display_name || user.global_name || user.username || "Unknown";
+  
   const nameEl = document.getElementById("rpc-username");
   nameEl.textContent = displayName;
   nameEl.className = "font-bold text-sm text-white truncate"; // Reset class
@@ -136,7 +139,6 @@ function updatePresence(presence) {
     nameEl.style.color = "";
     nameEl.style.backgroundImage = "";
   }
-
   // --- Update @username ---
   const handleEl = document.getElementById("rpc-handle");
   if (handleEl) handleEl.textContent = `@${user.username || "unknown"}`;
