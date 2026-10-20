@@ -448,24 +448,31 @@ body {
 .rpc-avatar-section {
   display: flex;
   justify-content: center;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
+  position: relative;
 }
+
 
 .rpc-avatar-wrap {
   position: relative;
   width: 80px;
   height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .rpc-avatar-decoration {
   position: absolute;
-  top: -12px;
-  left: -12px;
-  width: 104px;
-  height: 104px;
+  width: 96px;
+  height: 96px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   pointer-events: none;
   z-index: 2;
 }
+
 
 .rpc-user-info {
   text-align: center;
@@ -476,6 +483,13 @@ body {
   align-items: center;
   justify-content: center;
   gap: 6px;
+  position: relative;
+  padding: 4px 8px;
+}
+#rpc-username {
+  font-size: 15px;
+  position: relative;
+  z-index: 2;
 }
 
 .rpc-handle {
@@ -524,15 +538,28 @@ body {
 
 /* Thu nhỏ avatar để vừa khung trang trí */
 .rpc-card-compact .rpc-avatar-sm {
-  width: 56px;
-  height: 56px;
-  position: absolute;
-  top: 12px;
-  left: 12px;
+  width: 64px;
+  height: 64px;
+  position: relative;
   z-index: 1;
 }
 
 .rpc-card-compact .rpc-status-sm {
-  bottom: 12px;
-  right: 12px;
+  bottom: 6px;
+  right: 6px;
+  width: 14px;
+  height: 14px;
+  border-width: 3px;
+}
+/* Hiệu ứng chữ tên (gradient + lấp lánh) */
+.rpc-name-gradient {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmerName 3s linear infinite;
+  background-size: 200% auto;
+}
+@keyframes shimmerName {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
 }
