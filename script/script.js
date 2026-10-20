@@ -60,6 +60,18 @@ const idleMessages = [
   "( ＾ω＾ ) đang đếm cừu để ngủ...",
   "٩(◕‿◕)۶ đang ném boom mấy team bạn"
 ];
+// ============================================================
+//  DISCORD FONT MAPPING
+// ============================================================
+const DISCORD_FONTS = {
+  1: "'Press Start 2P', cursive",
+  2: "'Caveat', cursive",
+  3: "'Pacifico', cursive",
+  4: "'Cinzel', serif",
+  5: "'Bebas Neue', sans-serif",
+  14: "'Pirata One', cursive",
+  15: "'Pirata One', cursive",
+};
 const randomIdleMessage = idleMessages[Math.floor(Math.random() * idleMessages.length)];
 
 // ============================================================
