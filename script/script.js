@@ -298,23 +298,28 @@ async function fetchSteamImage(gameName, imgEl, fallbackImg) {
     if (data && data.length > 0) {
       let bestMatch = null;
       
-      // Lọc tìm kết quả khớp chính xác nhất để tránh lấy nhầm bản sequel (vd: RDR2 thay vì RDR1)
+      // 1. Ưu tiên khớp chính xác tuyệt đối (vd: "Counter-Strike 2" khớp 100%)
       for (let item of data) {
         if (item.name.toLowerCase() === gameName.toLowerCase()) {
           bestMatch = item;
           break;
         }
       }
-      // Nếu không có kết quả chính xác tuyệt đối, tìm kết quả bắt đầu bằng tên game và không chứa số 2/3
+      
+      // 2. Nếu không có exact match, tìm game bắt đầu bằng tên nhưng KHÔNG PHẢI bản sequel (tránh RDR2 nhầm RDR1)
       if (!bestMatch) {
         for (let item of data) {
-          if (item.name.toLowerCase().startsWith(gameName.toLowerCase()) && !item.name.toLowerCase().match(/[23]/)) {
+          const itemName = item.name.toLowerCase();
+          const gameNameLower = gameName.toLowerCase();
+          // Tên bắt đầu bằng tên game và không kết thúc bằng số sequel (2, 3)
+          if (itemName.startsWith(gameNameLower) && !item.name.match(/\b[23]\b/)) {
             bestMatch = item;
             break;
           }
         }
       }
-      // Nếu vẫn không có, lấy kết quả đầu tiên
+      
+      // 3. Nếu vẫn không có, lấy kết quả đầu tiên Steam trả về
       if (!bestMatch) bestMatch = data[0];
 
       const appId = bestMatch.appid;
