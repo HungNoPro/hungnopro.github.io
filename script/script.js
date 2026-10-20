@@ -285,76 +285,119 @@ function resolveImage(imageId, appId) {
 }
 
 // ============================================================
-//  STEAM IMAGE FALLBACK (Gọi trực tiếp Steam API)
+//  STEAM IMAGE FALLBACK (Bảng tra cứu + CORS Proxy)
 // ============================================================
+
+// Bảng tra cứu AppID các game phổ biến (lấy ảnh nhanh, không cần gọi API)
+const GAME_DB = {
+  "counter-strike 2": 730,
+  "cs2": 730,
+  "counter-strike": 730,
+  "valorant": 730, // Không có trên Steam, dùng ảnh CS2 làm dự phòng
+  "league of legends": 730,
+  "red dead redemption 2": 1174180,
+  "red dead redemption": 1174180,
+  "grand theft auto v": 271590,
+  "gta v": 271590,
+  "gta 5": 271590,
+  "dota 2": 570,
+  "elden ring": 1245620,
+  "cyberpunk 2077": 1091500,
+  "minecraft": 1672970,
+  "pubg": 578080,
+  "apex legends": 1172470,
+  "rocket league": 252950,
+  "fall guys": 1673320,
+  "forza horizon 5": 1551360,
+  "sea of thieves": 1172620,
+  "steam deck": 1678540,
+  "deadlock": 1422450,
+  "marvel rivals": 2767030,
+  "overwatch 2": 2357570,
+  "the finals": 2073850
+};
+
 async function fetchSteamImage(gameName, imgEl, fallbackImg) {
   if (!gameName) return;
   
   try {
-    // Gọi trực tiếp Steam API (đã hỗ trợ CORS)
-    const searchUrl = `https://steamcommunity.com/actions/SearchApps/${encodeURIComponent(gameName)}`;
-    const res = await fetch(searchUrl);
-    const data = await res.json();
+    let appId = null;
     
-    if (data && data.length > 0) {
-      let bestMatch = null;
-      
-      // 1. Ưu tiên khớp chính xác tuyệt đối
-      for (let item of data) {
-        if (item.name.toLowerCase() === gameName.toLowerCase()) {
-          bestMatch = item;
-          break;
-        }
+    // 1. Tra cứu nhanh trong DB cứng (nếu là game phổ biến)
+    const gameNameLower = gameName.toLowerCase().trim();
+    for (let key in GAME_DB) {
+      if (gameNameLower.includes(key)) {
+        appId = GAME_DB[key];
+        break;
       }
+    }
+    
+    // 2. Nếu không có trong DB, gọi Steam Search qua CORS proxy
+    if (!appId) {
+      const searchUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(`https://steamcommunity.com/actions/SearchApps/${encodeURIComponent(gameName)}`)}`;
+      const res = await fetch(searchUrl);
+      const data = await res.json();
       
-      // 2. Nếu không có, tìm game bắt đầu bằng tên nhưng không chứa số 2/3
-      if (!bestMatch) {
+      if (data && data.length > 0) {
+        let bestMatch = null;
+        
         for (let item of data) {
-          const itemName = item.name.toLowerCase();
-          const gameNameLower = gameName.toLowerCase();
-          if (itemName.startsWith(gameNameLower) && !item.name.match(/\b[23]\b/)) {
+          if (item.name.toLowerCase() === gameName.toLowerCase()) {
             bestMatch = item;
             break;
           }
         }
+        
+        if (!bestMatch) {
+          for (let item of data) {
+            const itemName = item.name.toLowerCase();
+            if (itemName.startsWith(gameNameLower) && !item.name.match(/\b[23]\b/)) {
+              bestMatch = item;
+              break;
+            }
+          }
+        }
+        
+        if (!bestMatch) bestMatch = data[0];
+        appId = bestMatch.appid;
       }
-      
-      // 3. Lấy kết quả đầu tiên
-      if (!bestMatch) bestMatch = data[0];
+    }
+    
+    if (!appId) {
+      imgEl.src = fallbackImg;
+      imgEl.style.objectPosition = "center";
+      return;
+    }
+    
+    const tryLoadImage = (url) => {
+      return new Promise((resolve) => {
+        const testImg = new Image();
+        testImg.onload = () => resolve(true);
+        testImg.onerror = () => resolve(false);
+        testImg.src = url;
+      });
+    };
 
-      const appId = bestMatch.appid;
-      
-      const tryLoadImage = (url) => {
-        return new Promise((resolve) => {
-          const testImg = new Image();
-          testImg.onload = () => resolve(true);
-          testImg.onerror = () => resolve(false);
-          testImg.src = url;
-        });
-      };
-
-      // Thử các kích thước ảnh khác nhau của Steam
-      const library2xUrl = `https://cdn.cloudflare.steamstatic.com/steam/apps/${appId}/library_600x900_2x.jpg`;
-      const libraryUrl = `https://cdn.cloudflare.steamstatic.com/steam/apps/${appId}/library_600x900.jpg`;
-      const headerUrl = `https://cdn.cloudflare.steamstatic.com/steam/apps/${appId}/header.jpg`;
-      
-      if (await tryLoadImage(library2xUrl)) {
-        imgEl.src = library2xUrl;
-        imgEl.style.objectPosition = "top center";
-      } else if (await tryLoadImage(libraryUrl)) {
-        imgEl.src = libraryUrl;
-        imgEl.style.objectPosition = "top center";
-      } else if (await tryLoadImage(headerUrl)) {
-        imgEl.src = headerUrl;
-        imgEl.style.objectPosition = "center";
-      } else {
-        imgEl.src = fallbackImg;
-        imgEl.style.objectPosition = "center";
-      }
+    // 3. Thử các kích thước ảnh của Steam
+    const library2xUrl = `https://cdn.cloudflare.steamstatic.com/steam/apps/${appId}/library_600x900_2x.jpg`;
+    const libraryUrl = `https://cdn.cloudflare.steamstatic.com/steam/apps/${appId}/library_600x900.jpg`;
+    const headerUrl = `https://cdn.cloudflare.steamstatic.com/steam/apps/${appId}/header.jpg`;
+    
+    if (await tryLoadImage(library2xUrl)) {
+      imgEl.src = library2xUrl;
+      imgEl.style.objectPosition = "top center";
+    } else if (await tryLoadImage(libraryUrl)) {
+      imgEl.src = libraryUrl;
+      imgEl.style.objectPosition = "top center";
+    } else if (await tryLoadImage(headerUrl)) {
+      imgEl.src = headerUrl;
+      imgEl.style.objectPosition = "center";
+    } else {
+      imgEl.src = fallbackImg;
+      imgEl.style.objectPosition = "center";
     }
   } catch (error) {
     console.log("Không thể lấy ảnh Steam:", error);
-    // Giữ nguyên ảnh fallback nếu lỗi
     imgEl.src = fallbackImg;
     imgEl.style.objectPosition = "center";
   }
