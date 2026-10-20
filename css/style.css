@@ -452,7 +452,6 @@ body {
   position: relative;
 }
 
-
 .rpc-avatar-wrap {
   position: relative;
   width: 80px;
@@ -464,15 +463,16 @@ body {
 
 .rpc-avatar-decoration {
   position: absolute;
-  width: 96px;
-  height: 96px;
+  width: 90px;
+  height: 90px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   pointer-events: none;
   z-index: 2;
+  object-fit: contain;
+  aspect-ratio: 1 / 1; /* Đảm bảo luôn vuông */
 }
-
 
 .rpc-user-info {
   text-align: center;
@@ -538,19 +538,23 @@ body {
 
 /* Thu nhỏ avatar để vừa khung trang trí */
 .rpc-card-compact .rpc-avatar-sm {
-  width: 64px;
-  height: 64px;
+  width: 60px;
+  height: 60px;
   position: relative;
   z-index: 1;
 }
 
 .rpc-card-compact .rpc-status-sm {
-  bottom: 6px;
-  right: 6px;
-  width: 14px;
-  height: 14px;
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 16px;
+  height: 16px;
   border-width: 3px;
+  z-index: 10; /* Lên trên cả avatar và khung trang trí */
+  box-shadow: 0 0 0 2px var(--surface); /* Thêm viền để nổi bật */
 }
+
 /* Hiệu ứng chữ tên (gradient + lấp lánh) */
 .rpc-name-gradient {
   background-clip: text;
