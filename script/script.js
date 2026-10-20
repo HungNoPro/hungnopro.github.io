@@ -138,7 +138,7 @@ function updatePresence(presence) {
     // Áp dụng font chữ
     if (styles.font_id && DISCORD_FONTS[styles.font_id]) {
       nameEl.style.fontFamily = DISCORD_FONTS[styles.font_id];
-      nameEl.style.fontSize = "16px";
+      nameEl.style.fontSize = "22px";
     }
     
     // Áp dụng màu gradient
