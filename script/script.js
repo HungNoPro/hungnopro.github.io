@@ -125,24 +125,28 @@ function updatePresence(presence) {
   const statusIndicator = document.getElementById("rpc-status-indicator");
   statusIndicator.style.background = statusColors[status] || "#747f8d";
 
-      // --- Update Display Name Styles (Màu chữ & hiệu ứng) ---
-  // THÊM DÒNG NÀY ĐỂ KHAI BÁO BIẾN displayName
+    // --- Update Display Name Styles (Font + Màu chữ) ---
   const displayName = user.display_name || user.global_name || user.username || "Unknown";
-  
   const nameEl = document.getElementById("rpc-username");
   nameEl.textContent = displayName;
-  nameEl.className = "font-bold text-sm text-white truncate"; // Reset class
+  nameEl.className = "font-bold text-sm text-white truncate";
+  nameEl.style.fontFamily = ""; // Reset font
   
   if (user.display_name_styles) {
     const styles = user.display_name_styles;
+    
+    // Áp dụng font chữ
+    if (styles.font_id && DISCORD_FONTS[styles.font_id]) {
+      nameEl.style.fontFamily = DISCORD_FONTS[styles.font_id];
+      nameEl.style.fontSize = "16px";
+    }
+    
+    // Áp dụng màu gradient
     if (styles.colors && styles.colors.length > 0) {
-      // Chuyển đổi màu từ decimal sang hex
       const hexColors = styles.colors.map(c => '#' + c.toString(16).padStart(6, '0'));
-      
       if (hexColors.length === 1) {
         nameEl.style.color = hexColors[0];
       } else {
-        // Nếu có nhiều màu, tạo gradient chạy lấp lánh
         nameEl.style.backgroundImage = `linear-gradient(90deg, ${hexColors.join(', ')}, ${hexColors[0]})`;
         nameEl.classList.add("rpc-name-gradient");
       }
