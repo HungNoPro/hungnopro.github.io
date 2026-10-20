@@ -113,9 +113,31 @@ function updatePresence(presence) {
   const statusIndicator = document.getElementById("rpc-status-indicator");
   statusIndicator.style.background = statusColors[status] || "#747f8d";
 
-  // --- Update Username ---
-  const displayName = user.display_name || user.global_name || user.username || "Unknown";
-  document.getElementById("rpc-username").textContent = displayName;
+    // --- Update Display Name Styles (Màu chữ & hiệu ứng) ---
+  const nameEl = document.getElementById("rpc-username");
+  nameEl.textContent = displayName;
+  nameEl.className = "font-bold text-sm text-white truncate"; // Reset class
+  
+  if (user.display_name_styles) {
+    const styles = user.display_name_styles;
+    if (styles.colors && styles.colors.length > 0) {
+      // Chuyển đổi màu từ decimal sang hex
+      const hexColors = styles.colors.map(c => '#' + c.toString(16).padStart(6, '0'));
+      
+      if (hexColors.length === 1) {
+        nameEl.style.color = hexColors[0];
+      } else {
+        // Nếu có nhiều màu, tạo gradient chạy lấp lánh
+        nameEl.style.backgroundImage = `linear-gradient(90deg, ${hexColors.join(', ')}, ${hexColors[0]})`;
+        nameEl.classList.add("rpc-name-gradient");
+      }
+    }
+  } else {
+    nameEl.style.color = "";
+    nameEl.style.backgroundImage = "";
+  }
+
+  // --- Update @username ---
   const handleEl = document.getElementById("rpc-handle");
   if (handleEl) handleEl.textContent = `@${user.username || "unknown"}`;
 
@@ -124,7 +146,8 @@ function updatePresence(presence) {
   if (user.avatar_decoration_data?.asset) {
     const asset = user.avatar_decoration_data.asset;
     decoEl.src = `https://cdn.discordapp.com/avatar-decoration-presets/${asset}.png?size=240&passthrough=true`;
-    decoEl.classList.remove("hidden");
+    decoEl.onload = () => decoEl.classList.remove("hidden");
+    decoEl.onerror = () => decoEl.classList.add("hidden");
   } else {
     decoEl.classList.add("hidden");
   }
