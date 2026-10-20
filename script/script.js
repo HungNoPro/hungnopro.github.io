@@ -285,20 +285,21 @@ function resolveImage(imageId, appId) {
 }
 
 // ============================================================
-//  STEAM IMAGE FALLBACK (Lấy ảnh icon HD & Lọc tên chính xác)
+//  STEAM IMAGE FALLBACK (Gọi trực tiếp Steam API)
 // ============================================================
 async function fetchSteamImage(gameName, imgEl, fallbackImg) {
   if (!gameName) return;
   
   try {
-    const searchUrl = `https://corsproxy.io/?url=${encodeURIComponent(`https://steamcommunity.com/actions/SearchApps/${encodeURIComponent(gameName)}`)}`;
+    // Gọi trực tiếp Steam API (đã hỗ trợ CORS)
+    const searchUrl = `https://steamcommunity.com/actions/SearchApps/${encodeURIComponent(gameName)}`;
     const res = await fetch(searchUrl);
     const data = await res.json();
     
     if (data && data.length > 0) {
       let bestMatch = null;
       
-      // 1. Ưu tiên khớp chính xác tuyệt đối (vd: "Counter-Strike 2" khớp 100%)
+      // 1. Ưu tiên khớp chính xác tuyệt đối
       for (let item of data) {
         if (item.name.toLowerCase() === gameName.toLowerCase()) {
           bestMatch = item;
@@ -306,12 +307,11 @@ async function fetchSteamImage(gameName, imgEl, fallbackImg) {
         }
       }
       
-      // 2. Nếu không có exact match, tìm game bắt đầu bằng tên nhưng KHÔNG PHẢI bản sequel (tránh RDR2 nhầm RDR1)
+      // 2. Nếu không có, tìm game bắt đầu bằng tên nhưng không chứa số 2/3
       if (!bestMatch) {
         for (let item of data) {
           const itemName = item.name.toLowerCase();
           const gameNameLower = gameName.toLowerCase();
-          // Tên bắt đầu bằng tên game và không kết thúc bằng số sequel (2, 3)
           if (itemName.startsWith(gameNameLower) && !item.name.match(/\b[23]\b/)) {
             bestMatch = item;
             break;
@@ -319,7 +319,7 @@ async function fetchSteamImage(gameName, imgEl, fallbackImg) {
         }
       }
       
-      // 3. Nếu vẫn không có, lấy kết quả đầu tiên Steam trả về
+      // 3. Lấy kết quả đầu tiên
       if (!bestMatch) bestMatch = data[0];
 
       const appId = bestMatch.appid;
@@ -333,6 +333,7 @@ async function fetchSteamImage(gameName, imgEl, fallbackImg) {
         });
       };
 
+      // Thử các kích thước ảnh khác nhau của Steam
       const library2xUrl = `https://cdn.cloudflare.steamstatic.com/steam/apps/${appId}/library_600x900_2x.jpg`;
       const libraryUrl = `https://cdn.cloudflare.steamstatic.com/steam/apps/${appId}/library_600x900.jpg`;
       const headerUrl = `https://cdn.cloudflare.steamstatic.com/steam/apps/${appId}/header.jpg`;
@@ -353,6 +354,9 @@ async function fetchSteamImage(gameName, imgEl, fallbackImg) {
     }
   } catch (error) {
     console.log("Không thể lấy ảnh Steam:", error);
+    // Giữ nguyên ảnh fallback nếu lỗi
+    imgEl.src = fallbackImg;
+    imgEl.style.objectPosition = "center";
   }
 }
 
