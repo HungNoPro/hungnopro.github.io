@@ -314,6 +314,10 @@ function updatePresence(presence) {
     if (spotifyInterval) clearInterval(spotifyInterval);
     currentMediaData = null;
   }
+  if (!hasActivity) {
+    noActEl.innerHTML = `<div class="text-xs" style="color: var(--muted);">${randomIdleMessage}</div>`;
+    noActEl.classList.remove("hidden");
+  }
 }
 
 function updateMediaProgress() {
