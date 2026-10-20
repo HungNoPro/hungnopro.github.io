@@ -116,6 +116,44 @@ function updatePresence(presence) {
   // --- Update Username ---
   const displayName = user.display_name || user.global_name || user.username || "Unknown";
   document.getElementById("rpc-username").textContent = displayName;
+  const handleEl = document.getElementById("rpc-handle");
+  if (handleEl) handleEl.textContent = `@${user.username || "unknown"}`;
+
+  // --- Update Avatar Decoration (Viền avatar động) ---
+  const decoEl = document.getElementById("rpc-avatar-decoration");
+  if (user.avatar_decoration_data?.asset) {
+    const asset = user.avatar_decoration_data.asset;
+    decoEl.src = `https://cdn.discordapp.com/avatar-decoration-presets/${asset}.png?size=240&passthrough=true`;
+    decoEl.classList.remove("hidden");
+  } else {
+    decoEl.classList.add("hidden");
+  }
+
+  // --- Update Guild Badge (Huy hiệu clan server + tag) ---
+  const guildBadgeEl = document.getElementById("rpc-guild-badge");
+  if (user.primary_guild?.badge && user.primary_guild?.tag) {
+    guildBadgeEl.innerHTML = `
+      <img src="https://cdn.discordapp.com/clan-badges/${user.primary_guild.identity_guild_id}/${user.primary_guild.badge}.png?size=20" style="width:14px;height:14px;border-radius:2px;" alt="" onerror="this.style.display='none'" />
+      <span>${user.primary_guild.tag}</span>
+    `;
+    guildBadgeEl.classList.remove("hidden");
+  } else {
+    guildBadgeEl.classList.add("hidden");
+  }
+
+  // --- Update Platform Icons (Đang hoạt động trên thiết bị nào) ---
+  const platformsEl = document.getElementById("rpc-platforms");
+  let platforms = [];
+  if (presence.active_on_discord_desktop) platforms.push("💻 Desktop");
+  if (presence.active_on_discord_mobile) platforms.push("📱 Mobile");
+  if (presence.active_on_discord_web) platforms.push("🌐 Web");
+  
+  if (platforms.length > 0) {
+    platformsEl.innerHTML = platforms.map(p => `<span><span class="rpc-platform-dot"></span>${p}</span>`).join("");
+    platformsEl.classList.remove("hidden");
+  } else {
+    platformsEl.classList.add("hidden");
+  }
 
   // --- Update Custom Status ---
   const customStatus = presence.activities?.find((a) => a.type === 4);
@@ -293,14 +331,21 @@ const GAME_DB = {
   "counter-strike 2": 730,
   "cs2": 730,
   "counter-strike": 730,
-  "valorant": 730, // Không có trên Steam, dùng ảnh CS2 làm dự phòng
+  "left 4 dead 2": 550,
+  "l4d2": 550,
+  "left 4 dead": 500,
+  "team fortress 2": 440,
+  "tf2": 440,
+  "half-life 2": 220,
+  "portal 2": 620,
+  "dota 2": 570,
+  "valorant": 730,
   "league of legends": 730,
   "red dead redemption 2": 1174180,
   "red dead redemption": 1174180,
   "grand theft auto v": 271590,
   "gta v": 271590,
   "gta 5": 271590,
-  "dota 2": 570,
   "elden ring": 1245620,
   "cyberpunk 2077": 1091500,
   "minecraft": 1672970,
@@ -310,7 +355,6 @@ const GAME_DB = {
   "fall guys": 1673320,
   "forza horizon 5": 1551360,
   "sea of thieves": 1172620,
-  "steam deck": 1678540,
   "deadlock": 1422450,
   "marvel rivals": 2767030,
   "overwatch 2": 2357570,
