@@ -442,8 +442,15 @@ body {
 }
 /* ===== Discord Profile Style ===== */
 .rpc-card-compact {
-  display: flex;
-  flex-direction: column;
+  max-width: 380px; /* Tăng từ 340px lên 380px */
+  width: 100%;
+  padding: 16px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  text-align: left;
 }
 
 .rpc-avatar-section {
