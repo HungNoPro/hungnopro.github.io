@@ -2,7 +2,24 @@
 //  CONFIG
 // ============================================================
 const DISCORD_ID = "756800068065165394"; // ID của bạn
+// ============================================================
+//  COLOR INTERPOLATION (Nội suy màu cho theme-color)
+// ============================================================
+function lerpColor(color1, color2, t) {
+  const r1 = parseInt(color1.slice(1, 3), 16);
+  const g1 = parseInt(color1.slice(3, 5), 16);
+  const b1 = parseInt(color1.slice(5, 7), 16);
+  const r2 = parseInt(color2.slice(1, 3), 16);
+  const g2 = parseInt(color2.slice(3, 5), 16);
+  const b2 = parseInt(color2.slice(5, 7), 16);
+  const r = Math.round(r1 + (r2 - r1) * t);
+  const g = Math.round(g1 + (g2 - g1) * t);
+  const b = Math.round(b1 + (b2 - b1) * t);
+  return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
+}
 
+const PROGRESS_COLOR_START = '#34d399'; // Xanh lá (accent)
+const PROGRESS_COLOR_END = '#5865f2';   // Tím (discord)
 // ============================================================
 //  Typewriter Effect (Hiệu ứng gõ chữ)
 // ============================================================
@@ -509,15 +526,25 @@ function formatDuration(ms) {
   return `${seconds}s`;
 }
 // ============================================================
-//  Scroll Progress & Nav Background
+//  Scroll Progress & Nav Background & Theme Color
 // ============================================================
 const scrollProgress = document.getElementById("scroll-progress");
 const nav = document.getElementById("nav");
+const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+
 window.addEventListener("scroll", () => {
   const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
   scrollProgress.style.width = `${scrolled}%`;
+  
   if (window.scrollY > 50) nav.classList.add("scrolled");
   else nav.classList.remove("scrolled");
+  
+  // Cập nhật theme-color động theo % cuộn (nội suy màu trên gradient)
+  if (themeColorMeta) {
+    const t = Math.min(1, scrolled / 100);
+    const dynamicColor = lerpColor(PROGRESS_COLOR_START, PROGRESS_COLOR_END, t);
+    themeColorMeta.setAttribute('content', dynamicColor);
+  }
 });
 
 // ============================================================
