@@ -530,7 +530,34 @@ function formatDuration(ms) {
 // ============================================================
 const scrollProgress = document.getElementById("scroll-progress");
 const nav = document.getElementById("nav");
-const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+let themeColorMeta = document.querySelector('meta[name="theme-color"]');
+
+// Nếu meta chưa tồn tại, tạo mới
+if (!themeColorMeta) {
+  themeColorMeta = document.createElement('meta');
+  themeColorMeta.setAttribute('name', 'theme-color');
+  themeColorMeta.setAttribute('content', '#34d399');
+  document.head.appendChild(themeColorMeta);
+}
+
+// Cập nhật cả theme-color cho light/dark mode
+let themeColorMetaLight = document.querySelector('meta[name="theme-color"][media*="light"]');
+if (!themeColorMetaLight) {
+  themeColorMetaLight = document.createElement('meta');
+  themeColorMetaLight.setAttribute('name', 'theme-color');
+  themeColorMetaLight.setAttribute('media', '(prefers-color-scheme: light)');
+  themeColorMetaLight.setAttribute('content', '#34d399');
+  document.head.appendChild(themeColorMetaLight);
+}
+
+let themeColorMetaDark = document.querySelector('meta[name="theme-color"][media*="dark"]');
+if (!themeColorMetaDark) {
+  themeColorMetaDark = document.createElement('meta');
+  themeColorMetaDark.setAttribute('name', 'theme-color');
+  themeColorMetaDark.setAttribute('media', '(prefers-color-scheme: dark)');
+  themeColorMetaDark.setAttribute('content', '#34d399');
+  document.head.appendChild(themeColorMetaDark);
+}
 
 window.addEventListener("scroll", () => {
   const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
@@ -539,12 +566,13 @@ window.addEventListener("scroll", () => {
   if (window.scrollY > 50) nav.classList.add("scrolled");
   else nav.classList.remove("scrolled");
   
-  // Cập nhật theme-color động theo % cuộn (nội suy màu trên gradient)
-  if (themeColorMeta) {
-    const t = Math.min(1, scrolled / 100);
-    const dynamicColor = lerpColor(PROGRESS_COLOR_START, PROGRESS_COLOR_END, t);
-    themeColorMeta.setAttribute('content', dynamicColor);
-  }
+  // Cập nhật theme-color động
+  const t = Math.min(1, scrolled / 100);
+  const dynamicColor = lerpColor(PROGRESS_COLOR_START, PROGRESS_COLOR_END, t);
+  
+  if (themeColorMeta) themeColorMeta.setAttribute('content', dynamicColor);
+  if (themeColorMetaLight) themeColorMetaLight.setAttribute('content', dynamicColor);
+  if (themeColorMetaDark) themeColorMetaDark.setAttribute('content', dynamicColor);
 });
 
 // ============================================================
