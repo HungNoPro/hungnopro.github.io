@@ -382,3 +382,52 @@ button{font-family:inherit}
   font-family:'Be Vietnam Pro','Segoe UI','Noto Sans',system-ui,sans-serif;
   font-weight:700;
 }
+/* ============ BỘ THẺ TỰ LÀM ============ */
+#decklist{padding:8px 16px 120px}
+.drow{display:flex;align-items:center;gap:10px;background:var(--card);border:2px solid var(--line);
+  border-radius:16px;padding:12px 14px;margin-bottom:9px}
+.dinfo{flex:1;min-width:0;cursor:pointer}
+.dinfo b{font:800 16px 'Baloo 2';display:block}
+.dinfo p{margin:2px 0 0;font-size:12px;color:var(--muted)}
+.dplay,.ddel{width:42px;height:42px;border-radius:12px;border:none;display:grid;place-items:center;cursor:pointer;flex:none}
+.dplay{background:var(--terra);color:#fff;box-shadow:0 3px 0 var(--terra-d)}
+.dplay:active{transform:translateY(2px);box-shadow:0 1px 0 var(--terra-d)}
+.dplay svg{width:18px;height:18px}
+.ddel{background:var(--red-bg);color:var(--red)}
+.ddel svg{width:17px;height:17px}
+#dkText,#dkAdd{width:100%;border:2px solid var(--line);border-radius:12px;background:var(--paper);
+  font:500 14px/1.6 'Be Vietnam Pro';padding:10px 12px;resize:vertical;color:var(--ink);outline:none}
+#dkText:focus,#dkAdd:focus{border-color:var(--jade)}
+.filebtn{display:flex;align-items:center;justify-content:center;gap:9px;border:2px dashed var(--terra);
+  border-radius:14px;padding:18px;color:var(--terra-d);font:700 14.5px 'Be Vietnam Pro';cursor:pointer;background:var(--terra-bg)}
+.filebtn svg{width:20px;height:20px}
+.dkhead{font-size:12.5px;color:var(--muted);margin:12px 0 8px}
+.dkhead b{color:var(--ink)}
+.dkrows{max-height:44vh;overflow:auto;display:flex;flex-direction:column;gap:6px;padding-right:2px}
+.dkrow{display:grid;grid-template-columns:76px 1fr 1.35fr 28px;gap:6px;align-items:center}
+.dkrow input{min-width:0;border:1.5px solid var(--line);border-radius:9px;padding:7px 8px;
+  font:600 13px 'Be Vietnam Pro';color:var(--ink);background:var(--paper);outline:none}
+.dkrow input.dk-han{font-family:'Noto Serif SC',serif;font-size:15px;text-align:center}
+.dkrow input:focus{border-color:var(--jade)}
+.dkx{width:28px;height:30px;border:none;background:var(--red-bg);color:var(--red);border-radius:8px;cursor:pointer;display:grid;place-items:center}
+.dkx svg{width:14px;height:14px}
+.dwrow{display:flex;align-items:center;gap:10px;padding:8px 4px;border-bottom:1.5px solid var(--line)}
+.dwrow .dwh{font-size:22px;min-width:56px;cursor:pointer}
+.dwrow .dwm{flex:1;min-width:0}
+.dwrow .dwp{font:800 12.5px 'Be Vietnam Pro';color:var(--jade-d)}
+.dwrow .dwm2{font-size:12.5px;color:var(--muted)}
+.dwrow .dwx{border:none;background:var(--red-bg);color:var(--red);width:26px;height:26px;border-radius:8px;cursor:pointer;display:grid;place-items:center;flex:none}
+.dwrow .dwx svg{width:13px;height:13px}
+
+/* ============ FLASHCARD ============ */
+.fcard{margin:5vh auto 0;max-width:330px;min-height:250px;background:var(--card);border:2.5px solid var(--ink);
+  border-radius:22px;box-shadow:0 5px 0 rgba(36,31,21,.18);display:flex;align-items:center;justify-content:center;
+  cursor:pointer;padding:20px;animation:fadeUp .3s ease}
+.fcard.flipped{border-color:var(--jade)}
+.fcard .fface{display:flex;flex-direction:column;align-items:center;gap:8px;width:100%}
+.fcard .fhan{font-size:64px;line-height:1.2;cursor:pointer}
+.fcard .fhint{font-size:12px;color:var(--muted)}
+.fcard .fpin{font:800 26px 'Be Vietnam Pro','Segoe UI',sans-serif;color:var(--jade-d)}
+.fcard .fmean{font-size:18px;text-align:center}
+.fbtns{display:flex;gap:10px;max-width:330px;width:100%;margin:auto auto 10px;padding-bottom:6px}
+.fbtns .btn{flex:1}
