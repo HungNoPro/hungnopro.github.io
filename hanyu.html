@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Be+Vietnam+Pro:wght@400;500;600;700&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 <link rel="stylesheet" href="css/hanyu.css"/>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23D5482B'/><text x='50' y='72' font-size='62' text-anchor='middle' fill='%23F3EDDD' font-family='serif'>汉</text></svg>"/>
 </head>
@@ -46,6 +47,14 @@
     <div class="chips" id="vchips"></div>
     <div id="vlist"></div>
   </section>
+  
+  <section id="scr-decks" class="hidden">
+  <div class="scrhead">
+    <h1>Bộ thẻ của tôi</h1>
+    <button class="btn terra block" id="btnNewDeck" style="margin-bottom:2px"><i data-lucide="plus"></i>Tạo bộ thẻ mới</button>
+  </div>
+  <div id="decklist"></div>
+</section>
 
   <!-- ===== HỒ SƠ ===== -->
   <section id="scr-profile" class="hidden"></section>
@@ -54,6 +63,7 @@
     <button class="tab on" data-scr="scr-home"><i data-lucide="map"></i>Học</button>
     <button class="tab" data-scr="scr-vocab"><i data-lucide="book-open"></i>Từ vựng</button>
     <button class="tab" data-scr="scr-profile"><i data-lucide="user"></i>Hồ sơ</button>
+    <button class="tab" data-scr="scr-decks"><i data-lucide="layers"></i>Thẻ</button>
   </nav>
 
   <!-- ===== OVERLAY BÀI HỌC ===== -->
