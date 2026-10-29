@@ -370,3 +370,7 @@ html.hgx-lock { overflow: hidden; }
   .hgx-hskgrid { gap: 6px; }
   .hgx-deckbtns .hgx-btn--mini { padding: 5px 7px; }
 }
+
+/* ===== Deck dò được từ phần khác (flashcard/addon cũ) ===== */
+.hgx-fxrow{background:#fff9ec}
+.hgx-fxrow .hgx-deckinfo span{color:#b45309}
