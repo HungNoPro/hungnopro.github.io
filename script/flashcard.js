@@ -29,7 +29,7 @@
     var html = '<div class="hgx-section"><h3 class="hgx-h3">Deck của tôi</h3>';
     var ds = D.allDecks();
     if (!ds.length) {
-      html += '<div class="hgx-empty">Chưa có deck — mở 📚 trên màn chính để tạo deck.</div>';
+      html += '<div class="hgx-empty">Chưa có bộ thẻ nào. Bộ thẻ bạn tạo ở các phần flashcard khác cũng sẽ tự hiện ở đây.</div>';
     } else {
       html += ds.map(function (d) {
         return '<div class="hgx-deckrow" data-deck="' + esc(d.id) + '">' +

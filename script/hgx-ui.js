@@ -30,6 +30,15 @@
   /* ---------- Đọc data.json của app (dù hanyu.js có che biến DATA) ---------- */
   var _appData = null, _appDataTried = false;
 
+  /* ⚙ CẤU HÌNH ĐƯỜNG DẪN data.json:
+     app sẽ thử lần lượt từng đường dẫn, đường nào tải được thì dùng.
+     Bạn đặt data.json ở đâu thì đưa đường dẫn đó lên ĐẦU danh sách,
+     ví dụ để trong thư mục resources/ thì giữ nguyên như dưới. */
+  var DATA_PATHS = [
+    'resources/data.json',   /* ← vị trí hiện tại của bạn */
+    'data/data.json'         /* ← vị trí cũ (phương án dự phòng) */
+  ];
+
   function appDataSync() {
     if (_appData && _appData.units) return _appData;
     try {
@@ -47,14 +56,22 @@
     if (_appDataTried) { if (cb) cb(null); return Promise.resolve(null); }
     _appDataTried = true;
     if (typeof fetch !== 'function') { if (cb) cb(null); return Promise.resolve(null); }
-    return fetch('resources/data.json')
-      .then(function (r) { return r.json(); })
-      .then(function (j) {
-        if (j && Array.isArray(j.units)) _appData = j;
-        if (cb) cb(_appData);
-        return _appData;
-      })
-      .catch(function () { if (cb) cb(null); return null; });
+
+    function tryPath(i) {
+      if (i >= DATA_PATHS.length) { if (cb) cb(null); return Promise.resolve(null); }
+      return fetch(DATA_PATHS[i])
+        .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+        .then(function (j) {
+          if (j && Array.isArray(j.units)) {
+            _appData = j;
+            if (cb) cb(_appData);
+            return _appData;
+          }
+          throw new Error('Sai cấu trúc data.json');
+        })
+        .catch(function () { return tryPath(i + 1); });
+    }
+    return tryPath(0);
   }
 
   /* ---------- TTS tiếng Trung (chống bug Chrome cancel-before-speak) ---------- */

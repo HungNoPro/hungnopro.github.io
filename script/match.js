@@ -74,7 +74,7 @@
       if (tab === 'mine') {
         var ds = D.allDecks();
         if (!ds.length) {
-          listEl.innerHTML = '<div class="hgx-empty">Chưa có deck — mở 📚 trên màn chính để tạo deck, hoặc chơi theo HSK.</div>';
+          listEl.innerHTML = '<div class="hgx-empty">Chưa có bộ thẻ nào. Bộ thẻ bạn tạo ở phần Flashcard sẽ tự hiện ở đây — hoặc chơi theo giáo trình HSK bên dưới.</div>';
           return;
         }
         listEl.innerHTML = ds.map(function (d) {
@@ -88,7 +88,7 @@
         var lv = +tab.slice(3);
         var ws = D.hskWords(lv);
         if (!ws.length) {
-          listEl.innerHTML = '<div class="hgx-empty">Chưa nạp được từ HSK ' + lv + ' — kiểm tra file data/data.json.</div>';
+          listEl.innerHTML = '<div class="hgx-empty">Chưa nạp được từ HSK ' + lv + ' — kiểm tra data.json đã up đúng chỗ chưa.</div>';
           return;
         }
         var activeSel2 = sel && sel.type === 'hsk' && sel.level === lv;
