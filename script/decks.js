@@ -17,6 +17,8 @@
   var LS_AUTH = 'hg_decks_auth';     /* phiên đăng nhập riêng của phần deck */
   var LS_API = 'hg_api_base';        /* link worker người dùng tự dán */
   var LS_MIGRATED = 'hg_decks_migrated_v1';
+  var LS_OLD_ADDON = 'hanyu_mm_decks_v1';   /* deck của bản addon cũ */
+  var LS_FX_SIGS = 'hg_fx_migrated_sigs';  /* dấu vân tay deck cũ đã chuyển */
 
   var decks = loadLocal();
   var _pulledOnce = false;
@@ -34,32 +36,52 @@
     try { localStorage.setItem(LS_DECKS, JSON.stringify(decks)); } catch (e) { }
   }
 
-  /* Chuyển deck của bản addon cũ (key hanyu_mm_decks_v1, từ {h,p,v}) sang hệ mới */
-  function migrateOld() {
-    if (localStorage.getItem(LS_MIGRATED)) return;
+  /* Chuyển deck của bản addon cũ (key hanyu_mm_decks_v1, từ {h,p,v}) sang hệ mới.
+     Ghi "dấu vân tay" (tên + số từ + chữ đầu) vào hg_fx_migrated_sigs để
+     bộ dò không hiện lại bản gốc, kể cả khi deck đã bị xóa khỏi kho mới. */
+  function fxSigsLoad() {
     try {
-      var old = JSON.parse(localStorage.getItem('hanyu_mm_decks_v1') || '[]');
-      if (Array.isArray(old) && old.length && !decks.length) {
-        old.forEach(function (d) {
-          if (!d) return;
-          decks.push({
-            id: 'old-' + (d.id != null ? d.id : Math.random().toString(36).slice(2, 8)),
-            name: String(d.name || 'Deck cũ'),
-            updatedAt: Date.now(),
-            words: (Array.isArray(d.words) ? d.words : []).map(function (w) {
-              return {
-                hanzi: U.NFC(w && (w.h != null ? w.h : (w.hanzi != null ? w.hanzi : ''))),
-                pinyin: U.NFC(w && (w.p != null ? w.p : (w.pinyin != null ? w.pinyin : ''))),
-                vi: U.NFC(w && (w.v != null ? w.v : (w.vi != null ? w.vi : '')))
-              };
-            }).filter(function (w) { return w.hanzi; })
-          });
-        });
+      var a = JSON.parse(localStorage.getItem(LS_FX_SIGS) || '[]');
+      return Array.isArray(a) ? a : [];
+    } catch (e) { return []; }
+  }
+  function fxSigsSave(a) {
+    try { localStorage.setItem(LS_FX_SIGS, JSON.stringify(a.slice(0, 1000))); } catch (e) { }
+  }
+  function migrateOld() {
+    try {
+      var old = JSON.parse(localStorage.getItem(LS_OLD_ADDON) || '[]');
+      if (!Array.isArray(old) || !old.length) return;
+      var sigs = fxSigsLoad();
+      var ownSig = {};
+      decks.forEach(function (d) {
+        ownSig[d.name + '|' + d.words.length + '|' + (d.words[0] ? d.words[0].hanzi : '')] = 1;
+      });
+      var added = 0, changed = false;
+      old.forEach(function (d, idx) {
+        if (!d) return;
+        var words = [];
+        var raw = Array.isArray(d.words) ? d.words : [];
+        for (var i = 0; i < raw.length; i++) {
+          var nw = fxWord(raw[i]);
+          if (nw) words.push(nw);
+        }
+        if (!words.length) return;
+        var name = String(d.name != null ? d.name : 'Deck cũ').slice(0, 80) || 'Deck cũ';
+        var s = name + '|' + words.length + '|' + words[0].hanzi;
+        if (sigs.indexOf(s) >= 0) return;
+        sigs.push(s);
+        changed = true;
+        if (ownSig[s]) return;   /* kho chính đã có deck giống vậy — chỉ ghi dấu */
+        decks.push({ id: 'old-' + (d.id != null ? d.id : idx), name: name, updatedAt: Date.now(), words: words });
+        added++;
+      });
+      if (added) {
         saveLocal();
-        toast('Đã chuyển ' + old.length + ' deck cũ sang hệ mới');
+        toast('Đã chuyển ' + added + ' deck cũ sang hệ mới');
       }
+      if (changed) fxSigsSave(sigs);
     } catch (e) { }
-    try { localStorage.setItem(LS_MIGRATED, '1'); } catch (e) { }
   }
   migrateOld();
 
@@ -176,10 +198,140 @@
     d.updatedAt = Date.now();
     saveLocal(); syncPush();
   }
-  function allDecks() { return decks.slice(); }
-  function deckWords(id) {
+  /* ============ BỘ THẺ TỪ CÁC PHẦN KHÁC (flashcard, addon cũ…) ============
+     Quét localStorage: mọi kho "giống deck" (mảng JSON có name + words/cards/
+     list/items) sẽ TỰ ĐỘNG xuất hiện ở phần Ghép từ siêu tốc và Flashcard —
+     kể cả bộ thẻ tạo bởi phần flashcard riêng hoặc bản addon cũ. */
+  var _fxCache = null, _fxAt = 0;
+  function fxInvalidate() { _fxCache = null; _fxAt = 0; }
+
+  function fxWord(w) {
+    if (typeof w === 'string') {
+      var s0 = U.NFC(w).trim();
+      return s0 ? { hanzi: s0.slice(0, 60), pinyin: '', vi: '' } : null;
+    }
+    if (!w || typeof w !== 'object') return null;
+    var hz = w.hanzi;
+    if (hz == null) hz = w.h;
+    if (hz == null) hz = w.zi;
+    if (hz == null) hz = w.z;
+    if (hz == null) hz = w.word;
+    if (hz == null) hz = w.front;
+    if (hz == null) hz = w.text;
+    var py = w.pinyin;
+    if (py == null) py = w.py;
+    if (py == null) py = w.p;
+    var vi = w.vi;
+    if (vi == null) vi = w.v;
+    if (vi == null) vi = w.viet;
+    if (vi == null) vi = w.nghia;
+    if (vi == null) vi = w.meaning;
+    if (vi == null) vi = w.back;
+    if (vi == null) vi = w.def;
+    hz = U.NFC(hz == null ? '' : hz).trim();
+    if (!hz) return null;
+    return {
+      hanzi: String(hz).slice(0, 60),
+      pinyin: U.NFC(py == null ? '' : py).slice(0, 120),
+      vi: U.NFC(vi == null ? '' : vi).slice(0, 200)
+    };
+  }
+
+  function fxIsDeck(d) {
+    if (!d || typeof d !== 'object' || Array.isArray(d)) return false;
+    var ws = d.words || d.cards || d.list || d.items;
+    if (!Array.isArray(ws) || ws.length > 5000) return false;
+    return (d.name != null && d.name !== '') || (d.title != null && d.title !== '') || d.id != null;
+  }
+
+  function fxDeck(d, keyName, idx) {
+    if (!fxIsDeck(d)) return null;
+    var raw = d.words || d.cards || d.list || d.items || [];
+    var words = [];
+    for (var i = 0; i < raw.length; i++) {
+      var nw = fxWord(raw[i]);
+      if (nw) words.push(nw);
+    }
+    if (!words.length) return null;
+    var name = String(d.name != null ? d.name : (d.title != null ? d.title : 'Bộ thẻ'));
+    return {
+      id: 'fx:' + keyName + ':' + (d.id != null ? String(d.id).slice(0, 40) : idx),
+      name: name.slice(0, 80) || 'Bộ thẻ',
+      words: words,
+      updatedAt: +d.updatedAt || 0,
+      foreign: true,
+      foreignKey: keyName
+    };
+  }
+
+  function scanForeignDecks() {
+    if (_fxCache && Date.now() - _fxAt < 1500) return _fxCache;
+    var out = [], ownSig = {};
+    var migratedSigs = fxSigsLoad();
+    function sig(name, words) {
+      return name + '|' + words.length + '|' + (words[0] ? words[0].hanzi : '');
+    }
+    decks.forEach(function (d) { ownSig[sig(d.name, d.words)] = 1; });
+    try {
+      for (var i = 0; i < localStorage.length; i++) {
+        var k = localStorage.key(i);
+        if (!k || k === LS_DECKS) continue;
+        var v = localStorage.getItem(k) || '';
+        if (v.length < 20 || v.length > 900000) continue;
+        var c = v.charAt(0);
+        if (c !== '[' && c !== '{') continue;
+        var arr;
+        try { arr = JSON.parse(v); } catch (e) { continue; }
+        if (c === '{' && !Array.isArray(arr)) {
+          if (arr && Array.isArray(arr.decks)) arr = arr.decks;
+          else if (arr && Array.isArray(arr.cards)) arr = arr.cards;
+          else {
+            var vals = [];
+            for (var kk in arr) {
+              if (Object.prototype.hasOwnProperty.call(arr, kk)) vals.push(arr[kk]);
+            }
+            arr = vals;
+          }
+        }
+        if (!Array.isArray(arr) || !arr.length || arr.length > 500) continue;
+        var good = 0;
+        arr.forEach(function (x) { if (fxIsDeck(x)) good++; });
+        if (good * 2 < arr.length) continue;   /* ít nhất 1/2 phần tử giống deck */
+        for (var j = 0; j < arr.length; j++) {
+          var nd = fxDeck(arr[j], k, j);
+          if (!nd) continue;
+          var s2 = sig(nd.name, nd.words);
+          if (ownSig[s2] || migratedSigs.indexOf(s2) >= 0) continue;   /* trùng kho chính hoặc đã chuyển */
+          ownSig[s2] = 1;
+          out.push(nd);
+        }
+      }
+    } catch (e) { }
+    _fxCache = out;
+    _fxAt = Date.now();
+    return out;
+  }
+
+  function allDecks() { return decks.slice().concat(scanForeignDecks()); }
+  function findDeckAny(id) {
     var d = getDeck(id);
+    if (d) return d;
+    var fx = scanForeignDecks();
+    for (var i = 0; i < fx.length; i++) if (fx[i].id === id) return fx[i];
+    return null;
+  }
+  function deckWords(id) {
+    var d = findDeckAny(id);
     return d ? d.words.slice() : [];
+  }
+  /* Sao chép 1 bộ thẻ của phần khác vào kho mới (để sửa được + đồng bộ KV) */
+  function importDeck(id) {
+    var fx = findDeckAny(id);
+    if (!fx) return null;
+    var d = { id: uid(), name: fx.name, words: fx.words.map(cleanWord), updatedAt: Date.now() };
+    decks.unshift(d);
+    saveLocal(); syncPush();
+    return d;
   }
 
   /* ================= TỪ VỰNG HSK TRONG APP (data.json) ================= */
@@ -266,6 +418,7 @@
 
   /* ================= GIAO DIỆN: TRANG QUẢN LÝ DECK ================= */
   function openManager() {
+    fxInvalidate();
     _managerPage = U.page('Deck & Flashcard', { onClose: function () { _managerPage = null; _syncLine = null; } });
     renderManager();
     syncPull();
@@ -286,10 +439,21 @@
     return html;
   }
   function deckRowsHTML() {
-    if (!decks.length) {
+    var all = allDecks();
+    if (!all.length) {
       return '<div class="hgx-empty">Chưa có deck nào. Tạo deck phía trên, hoặc bấm "Sửa" ở HSK để trích từ giáo trình vào deck riêng.</div>';
     }
-    return decks.map(function (d) {
+    return all.map(function (d) {
+      if (d.foreign) {
+        return '<div class="hgx-deckrow hgx-fxrow" data-id="' + esc(d.id) + '">' +
+          '<div class="hgx-deckinfo"><b>' + esc(d.name) + '</b>' +
+          '<span>' + d.words.length + ' từ · từ phần flashcard</span></div>' +
+          '<div class="hgx-deckbtns">' +
+          '<button class="hgx-btn hgx-btn--mini" data-act="learn">Học</button>' +
+          '<button class="hgx-btn hgx-btn--mini hgx-btn--green" data-act="match">Ghép</button>' +
+          '<button class="hgx-btn hgx-btn--mini" data-act="imp" title="Sao chép vào kho mới để sửa và đồng bộ đám mây">Nhập</button>' +
+          '</div></div>';
+      }
       return '<div class="hgx-deckrow" data-id="' + esc(d.id) + '">' +
         '<div class="hgx-deckinfo"><b>' + esc(d.name) + '</b>' +
         '<span>' + d.words.length + ' từ</span></div>' +
@@ -358,18 +522,26 @@
       if (e.key === 'Enter') { e.preventDefault(); p.body.querySelector('#hgx-newdeck-btn').click(); }
     });
 
-    /* Hàng deck: Học / Ghép / Sửa / Xóa */
+    /* Hàng deck: Học / Ghép / Sửa / Nhập / Xóa */
     p.body.querySelector('.hgx-decklist').addEventListener('click', function (e) {
       var btn = e.target.closest('button[data-act]');
       if (!btn) return;
       var id = btn.closest('.hgx-deckrow').getAttribute('data-id');
       var act = btn.getAttribute('data-act');
-      var d = getDeck(id);
+      var d = findDeckAny(id);
       if (!d) return;
       if (act === 'learn') { if (window.HGFlash) HGFlash.openDeck(id); }
       else if (act === 'match') { if (window.HGMatch) HGMatch.openDeck(id); }
-      else if (act === 'edit') { openEditor(id); }
+      else if (act === 'imp') {
+        var nd = importDeck(id);
+        if (nd) { toast('Đã nhập "' + nd.name + '" vào kho mới'); renderManager(); }
+      }
+      else if (act === 'edit') {
+        if (d.foreign) { var ci = importDeck(id); if (ci) openEditor(ci.id); }
+        else openEditor(id);
+      }
       else if (act === 'del') {
+        if (d.foreign) return;
         if (U.confirm('Xóa deck "' + d.name + '"?')) { deleteDeck(id); renderManager(); }
       }
     });
@@ -535,6 +707,11 @@
     if (_managerPage) renderManager();
   });
 
+  /* Tab khác thay đổi localStorage → dò lại bộ thẻ lần sau */
+  try {
+    window.addEventListener('storage', function () { fxInvalidate(); });
+  } catch (e) { }
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', injectDock);
   } else {
@@ -552,6 +729,8 @@
     removeWord: removeWord,
     allDecks: allDecks,
     deckWords: deckWords,
+    importDeck: importDeck,
+    rescan: function () { fxInvalidate(); return scanForeignDecks(); },
     hskWords: hskWords,
     cloudLogin: cloudLogin,
     syncNow: function () { _pulledOnce = false; return syncPull(true).then(syncPush); },
