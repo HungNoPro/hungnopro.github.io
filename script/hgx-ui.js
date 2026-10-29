@@ -47,7 +47,7 @@
     if (_appDataTried) { if (cb) cb(null); return Promise.resolve(null); }
     _appDataTried = true;
     if (typeof fetch !== 'function') { if (cb) cb(null); return Promise.resolve(null); }
-    return fetch('data/data.json')
+    return fetch('resouces/data.json')
       .then(function (r) { return r.json(); })
       .then(function (j) {
         if (j && Array.isArray(j.units)) _appData = j;
