@@ -374,3 +374,14 @@ html.hgx-lock { overflow: hidden; }
 /* ===== Deck dò được từ phần khác (flashcard/addon cũ) ===== */
 .hgx-fxrow{background:#fff9ec}
 .hgx-fxrow .hgx-deckinfo span{color:#b45309}
+
+/* ---------------- Tabs Đăng nhập / Đăng ký + nút Tài khoản (30/10) ---------------- */
+.hgx-authtabs { display: flex; gap: 8px; margin-top: 10px; }
+.hgx-authtab {
+  flex: 1; border: 2px solid var(--hgx-line); border-bottom-width: 4px;
+  border-radius: 10px; background: #f4f6f8; color: var(--hgx-sub);
+  font-weight: 800; font-size: 13.5px; padding: 9px 10px; cursor: pointer;
+}
+.hgx-authtab:active { transform: translateY(2px); border-bottom-width: 2px; }
+.hgx-authtab.hgx-active { background: var(--hgx-green); border-color: var(--hgx-green-dark); color: #fff; }
+.hgx-dockbtn--b { background: #1cb0f6; border-color: #1899d6; }
