@@ -19,6 +19,7 @@
   var LS_MIGRATED = 'hg_decks_migrated_v1';
   var LS_OLD_ADDON = 'hanyu_mm_decks_v1';   /* deck của bản addon cũ */
   var LS_FX_SIGS = 'hg_fx_migrated_sigs';  /* dấu vân tay deck cũ đã chuyển */
+  var DEFAULT_API = 'https://hanyu.hungthcs2017.workers.dev';  /* máy chủ mặc định (đổi nếu dùng worker khác) */
 
   var decks = loadLocal();
   var _pulledOnce = false;
@@ -99,23 +100,28 @@
         if (m) return m[0];
       }
     } catch (e) { }
-    return '';
+    return DEFAULT_API;   /* không dò được thì dùng máy chủ mặc định */
   }
+  var _sessionKey = null;   /* khóa localStorage đang giữ phiên (để đăng xuất xóa đúng chỗ) */
   function session() {
+    _sessionKey = null;
     var keys = ['hg_decks_auth', 'hg_user', 'hg_session', 'hg_auth', 'hanyu_user', 'hg_current_user'];
     for (var i = 0; i < keys.length; i++) {
       var v = tryParse(keys[i]);
       if (v && v.token && (v.username || v.user)) {
+        _sessionKey = keys[i];
         return { token: v.token, username: v.username || v.user };
       }
     }
-    /* Quét toàn bộ localStorage tìm object có token + username */
+    /* Quét toàn bộ localStorage tìm object có token + username
+       (nhận cả phiên do app chính tạo khi đăng nhập ở trang chủ) */
     try {
       for (var j = 0; j < localStorage.length; j++) {
         var k = localStorage.key(j);
         if (k === LS_DECKS) continue;
         var o = tryParse(k);
         if (o && typeof o === 'object' && typeof o.token === 'string' && o.token.length > 8 && (o.username || o.user)) {
+          _sessionKey = k;
           return { token: o.token, username: o.username || o.user };
         }
       }
@@ -405,15 +411,37 @@
       setStatus('Đã đồng bộ lên đám mây ✓');
     }).catch(function (e) { setStatus('Đồng bộ lỗi: ' + e.message); });
   }
+  function saveAuth(data, fallbackName) {
+    try {
+      localStorage.setItem(LS_AUTH, JSON.stringify({
+        username: data.username || data.user || fallbackName || '',
+        token: data.token
+      }));
+    } catch (e) { }
+  }
   function cloudLogin(username, password) {
     return api('/api/login', { method: 'POST', body: { username: username, password: password } })
       .then(function (data) {
-        try {
-          localStorage.setItem(LS_AUTH, JSON.stringify({ username: data.username, token: data.token }));
-        } catch (e) { }
+        saveAuth(data, username);
         _pulledOnce = false;
         return syncPull(true);
       });
+  }
+  function cloudRegister(username, password) {
+    return api('/api/register', { method: 'POST', body: { username: username, password: password } })
+      .then(function (data) {
+        saveAuth(data, username);
+        _pulledOnce = false;
+        return syncPull(true);
+      });
+  }
+  function cloudLogout() {
+    try { localStorage.removeItem(LS_AUTH); } catch (e) { }
+    if (_sessionKey && _sessionKey !== LS_DECKS) {
+      try { localStorage.removeItem(_sessionKey); } catch (e) { }
+    }
+    _sessionKey = null;
+    _pulledOnce = false;
   }
 
   /* ================= GIAO DIỆN: TRANG QUẢN LÝ DECK ================= */
@@ -468,26 +496,102 @@
   function cloudBoxHTML() {
     var base = apiBase(), s = session();
     var state, extra = '';
-    if (!base) {
-      state = '<b class="hgx-warn">Chưa nối máy chủ</b> — deck hiện chỉ lưu trên máy này.';
-      extra = '<div class="hgx-cfg"><input id="hgx-api-input" placeholder="Dán link Worker, vd: https://han-giai.xxx.workers.dev" />' +
-        '<button class="hgx-btn" data-cfg="1">Lưu</button></div>';
-    } else if (!s) {
-      state = '<b class="hgx-warn">Chưa đăng nhập</b> — đăng nhập để đồng bộ deck lên KV.';
-      extra = '<form class="hgx-cfg" data-login="1">' +
+    if (!s) {
+      state = '<b class="hgx-warn">Chưa đăng nhập</b> — đăng nhập hoặc tạo tài khoản để deck tự lưu lên đám mây.';
+      extra =
+        '<div class="hgx-authtabs" id="hgx-authtabs">' +
+        '<button type="button" class="hgx-authtab hgx-active" data-at="login">Đăng nhập</button>' +
+        '<button type="button" class="hgx-authtab" data-at="reg">Đăng ký</button>' +
+        '</div>' +
+        '<form class="hgx-cfg" data-login="1">' +
         '<input id="hgx-lg-user" placeholder="Tên đăng nhập" autocomplete="username" />' +
         '<input id="hgx-lg-pass" type="password" placeholder="Mật khẩu" autocomplete="current-password" />' +
         '<button class="hgx-btn hgx-btn--green" type="submit">Đăng nhập</button></form>' +
+        '<form class="hgx-cfg" data-reg="1" style="display:none">' +
+        '<input id="hgx-rg-user" placeholder="Chọn tên đăng nhập (3–30 ký tự)" autocomplete="username" />' +
+        '<input id="hgx-rg-pass" type="password" placeholder="Mật khẩu (từ 6 ký tự)" autocomplete="new-password" />' +
+        '<input id="hgx-rg-pass2" type="password" placeholder="Nhập lại mật khẩu" autocomplete="new-password" />' +
+        '<button class="hgx-btn hgx-btn--green" type="submit">Tạo tài khoản</button></form>' +
         '<div class="hgx-cfg"><input id="hgx-api-input" value="' + esc(base) + '" />' +
         '<button class="hgx-btn" data-cfg="1">Đổi máy chủ</button></div>';
     } else {
-      state = 'Tài khoản <b>' + esc(s.username) + '</b> — deck sẽ tự đồng bộ lên KV.' +
+      state = 'Xin chào <b>' + esc(s.username) + '</b> — deck sẽ tự đồng bộ lên đám mây.' +
         '<div class="hgx-cfg"><input id="hgx-api-input" value="' + esc(base) + '" />' +
         '<button class="hgx-btn" data-cfg="1">Đổi máy chủ</button>' +
-        '<button class="hgx-btn" data-sync="1">Đồng bộ ngay</button></div>';
+        '<button class="hgx-btn" data-sync="1">Đồng bộ ngay</button>' +
+        '<button class="hgx-btn hgx-btn--danger" data-logout="1">Đăng xuất</button></div>';
     }
     return '<div class="hgx-cloud"><div class="hgx-cloud-state">' + state + '</div>' + extra +
       '<div class="hgx-syncline" id="hgx-syncline"></div></div>';
+  }
+
+  /* Gắn sự kiện cho khối đăng nhập/đăng ký/máy chủ (dùng chung cho trang
+     "Deck & Flashcard" và trang "Tài khoản"). rerender = hàm vẽ lại trang hiện tại. */
+  function wireCloudBox(p, rerender) {
+    var tabs = p.body.querySelector('#hgx-authtabs');
+    var lgForm = p.body.querySelector('[data-login]');
+    var rgForm = p.body.querySelector('[data-reg]');
+    if (tabs && lgForm && rgForm) {
+      tabs.addEventListener('click', function (e) {
+        var b = e.target.closest('button[data-at]');
+        if (!b) return;
+        var reg = b.getAttribute('data-at') === 'reg';
+        var all = tabs.querySelectorAll('.hgx-authtab');
+        for (var i = 0; i < all.length; i++) all[i].classList.remove('hgx-active');
+        b.classList.add('hgx-active');
+        lgForm.style.display = reg ? 'none' : '';
+        rgForm.style.display = reg ? '' : 'none';
+      });
+    }
+    if (lgForm) {
+      lgForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var u = p.body.querySelector('#hgx-lg-user').value.trim();
+        var pw = p.body.querySelector('#hgx-lg-pass').value;
+        if (!u || !pw) { toast('Nhập đủ tên đăng nhập và mật khẩu'); return; }
+        setStatus('Đang đăng nhập…');
+        cloudLogin(u, pw).then(function () {
+          toast('Đăng nhập thành công');
+          rerender();
+        }).catch(function (err) { setStatus('Đăng nhập lỗi: ' + err.message); });
+      });
+    }
+    if (rgForm) {
+      rgForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var u = p.body.querySelector('#hgx-rg-user').value.trim();
+        var pw = p.body.querySelector('#hgx-rg-pass').value;
+        var pw2 = p.body.querySelector('#hgx-rg-pass2').value;
+        if (!u || !pw) { toast('Nhập đủ tên đăng nhập và mật khẩu'); return; }
+        if (pw.length < 6) { toast('Mật khẩu tối thiểu 6 ký tự'); return; }
+        if (pw !== pw2) { toast('Mật khẩu nhập lại chưa khớp'); return; }
+        setStatus('Đang tạo tài khoản…');
+        cloudRegister(u, pw).then(function () {
+          toast('Đã tạo tài khoản và đăng nhập');
+          rerender();
+        }).catch(function (err) { setStatus('Đăng ký lỗi: ' + err.message); });
+      });
+    }
+    var cfgBtn = p.body.querySelector('[data-cfg]');
+    if (cfgBtn) {
+      cfgBtn.addEventListener('click', function () {
+        var v = p.body.querySelector('#hgx-api-input').value.trim().replace(/\/+$/, '');
+        try { localStorage.setItem(LS_API, v); } catch (err) { }
+        _pulledOnce = false;
+        toast(v ? 'Đã lưu địa chỉ máy chủ' : 'Đã dùng máy chủ mặc định');
+        rerender();
+      });
+    }
+    var syncBtn = p.body.querySelector('[data-sync]');
+    if (syncBtn) syncBtn.addEventListener('click', function () { _pulledOnce = false; syncPull(true).then(syncPush); });
+    var outBtn = p.body.querySelector('[data-logout]');
+    if (outBtn) {
+      outBtn.addEventListener('click', function () {
+        cloudLogout();
+        toast('Đã đăng xuất');
+        rerender();
+      });
+    }
   }
   function renderManager() {
     if (!_managerPage) return;
@@ -554,33 +658,26 @@
       else if (mb && window.HGMatch) HGMatch.openHSK(+mb.getAttribute('data-hsk-match'));
     });
 
-    /* Cấu hình máy chủ */
-    p.body.querySelector('[data-cfg]').addEventListener('click', function () {
-      var v = p.body.querySelector('#hgx-api-input').value.trim().replace(/\/+$/, '');
-      try { localStorage.setItem(LS_API, v); } catch (err) { }
-      _pulledOnce = false;
-      toast(v ? 'Đã lưu địa chỉ máy chủ' : 'Đã xóa địa chỉ máy chủ');
-      renderManager();
-    });
+    /* Đăng nhập / Đăng ký / Đổi máy chủ / Đồng bộ / Đăng xuất */
+    wireCloudBox(p, renderManager);
+  }
 
-    /* Đăng nhập nhanh để đồng bộ */
-    var loginForm = p.body.querySelector('[data-login]');
-    if (loginForm) {
-      loginForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-        var u = p.body.querySelector('#hgx-lg-user').value.trim();
-        var pw = p.body.querySelector('#hgx-lg-pass').value;
-        if (!u || !pw) { toast('Nhập đủ tên đăng nhập và mật khẩu'); return; }
-        setStatus('Đang đăng nhập…');
-        cloudLogin(u, pw).then(function () {
-          toast('Đăng nhập thành công');
-          renderManager();
-        }).catch(function (err) { setStatus('Đăng nhập lỗi: ' + err.message); });
-      });
+  /* ================= TRANG TÀI KHOẢN (nút 👤 trên dock) ================= */
+  function openAccount() {
+    var p = U.page('Tài khoản Hàn Giai', { onClose: function () { _syncLine = null; } });
+    function renderAcc() {
+      if (!document.body.contains(p.body)) return;
+      p.body.innerHTML =
+        cloudBoxHTML() +
+        '<p class="hgx-note">Tài khoản dùng chung cho cả app: đăng nhập một lần là deck ở "Deck &amp; Flashcard" và "Ghép từ siêu tốc" sẽ tự lưu lên đám mây. Máy khác đăng nhập lại là deck hiện ra như cũ.</p>' +
+        '<p class="hgx-note">Chưa có tài khoản? Bấm tab <b>Đăng ký</b> phía trên, chọn tên và mật khẩu (từ 6 ký tự) là xong.</p>';
+      _syncLine = p.body.querySelector('#hgx-syncline');
+      if (cloudReady()) setStatus('Đã kết nối đám mây ✓');
+      wireCloudBox(p, renderAcc);
     }
-
-    var syncBtn = p.body.querySelector('[data-sync]');
-    if (syncBtn) syncBtn.addEventListener('click', function () { _pulledOnce = false; syncPull(true).then(syncPush); });
+    renderAcc();
+    syncPull();
+    return p;
   }
 
   /* ================= GIAO DIỆN: TRANG SỬA DECK (có Bộ gõ pinyin) ================= */
@@ -689,8 +786,9 @@
     d.className = 'hgx-dock';
     d.innerHTML =
       '<button type="button" class="hgx-dockbtn" title="Deck & Flashcard">&#128218;</button>' +
-      '<button type="button" class="hgx-dockbtn hgx-dockbtn--g" title="Ghép từ siêu tốc">&#9889;</button>';
-    var b1 = d.children[0], b2 = d.children[1];
+      '<button type="button" class="hgx-dockbtn hgx-dockbtn--g" title="Ghép từ siêu tốc">&#9889;</button>' +
+      '<button type="button" class="hgx-dockbtn hgx-dockbtn--b" title="Tài khoản / Đăng nhập">&#128100;</button>';
+    var b1 = d.children[0], b2 = d.children[1], b3 = d.children[2];
     b1.addEventListener('click', function () {
       if (window.HGFlash) HGFlash.open();
       else toast('Đang tải flashcard…');
@@ -699,6 +797,7 @@
       if (window.HGMatch) HGMatch.open();
       else toast('Đang tải Ghép từ siêu tốc…');
     });
+    b3.addEventListener('click', function () { openAccount(); });
     document.body.appendChild(d);
   }
 
@@ -733,6 +832,9 @@
     rescan: function () { fxInvalidate(); return scanForeignDecks(); },
     hskWords: hskWords,
     cloudLogin: cloudLogin,
+    cloudRegister: cloudRegister,
+    cloudLogout: cloudLogout,
+    openAccount: openAccount,
     syncNow: function () { _pulledOnce = false; return syncPull(true).then(syncPush); },
     _apiBase: apiBase,
     _session: session
