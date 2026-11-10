@@ -33,12 +33,12 @@
     'pa,pai,pan,pang,pao,pei,pen,peng,pi,pian,piao,pie,pin,ping,po,pou,pu,' +
     'qi,qia,qian,qiang,qiao,qie,qin,qing,qiong,qiu,qu,quan,que,qun,' +
     'ran,rang,rao,re,ren,reng,ri,rong,rou,ru,rua,ruan,rui,run,ruo,' +
-    'sa,sai,san,sang,sao,se,sen,seng,sha,shai,shan,shang,shao,she,shei,shen,sheng,shou,shu,shua,shuai,shuan,shuang,shui,shun,shuo,si,song,sou,su,suan,sui,sun,suo,' +
+    'sa,sai,san,sang,sao,se,sen,seng,sha,shai,shan,shang,shao,she,shei,shen,sheng,shi,shou,shu,shua,shuai,shuan,shuang,shui,shun,shuo,si,song,sou,su,suan,sui,sun,suo,' +
     'ta,tai,tan,tang,tao,te,teng,ti,tian,tiao,tie,ting,tong,tou,tu,tuan,tui,tun,tuo,' +
     'wa,wai,wan,wang,wei,wen,weng,wo,wu,' +
     'xi,xia,xian,xiang,xiao,xie,xin,xing,xiong,xiu,xu,xuan,xue,xun,' +
     'ya,yan,yang,yao,ye,yi,yin,ying,yo,yong,you,yu,yuan,yue,yun,' +
-    'za,zai,zan,zang,zao,ze,zei,zen,zeng,zha,zhai,zhan,zhang,zhao,zhe,zhen,zheng,zhong,zhou,zhu,zhua,zhuai,zhuan,zhuang,zhui,zhun,zhuo,zi,zong,zou,zu,zuan,zui,zun,zuo';
+    'za,zai,zan,zang,zao,ze,zei,zen,zeng,zha,zhai,zhan,zhang,zhao,zhe,zhen,zheng,zhi,zhong,zhou,zhu,zhua,zhuai,zhuan,zhuang,zhui,zhun,zhuo,zi,zong,zou,zu,zuan,zui,zun,zuo';
   var SYLL = {};
   SYLL_RAW.split(',').forEach(function (s) { SYLL[s] = 1; });
 
@@ -117,9 +117,16 @@
     IDX.forEach(function (x) { seen[x.hz] = 1; });
     function push(w) {
       if (!w) return;
-      var hz = w.hanzi != null ? w.hanzi : (w.zi != null ? w.zi : (w.z != null ? w.z : w.word));
-      var py = w.pinyin != null ? w.pinyin : (w.py != null ? w.py : '');
-      var vi = w.vi != null ? w.vi : (w.viet != null ? w.viet : (w.nghia != null ? w.nghia : (w.meaning != null ? w.meaning : '')));
+      var hz, py, vi;
+      if (Array.isArray(w)) {   /* từ dạng [hanzi, pinyin, nghĩa] của data.json */
+        hz = (w[0] != null ? String(w[0]) : '').normalize('NFC');
+        py = (w[1] != null ? String(w[1]) : '').normalize('NFC');
+        vi = (w[2] != null ? String(w[2]) : '').normalize('NFC');
+      } else {
+        hz = w.hanzi != null ? w.hanzi : (w.zi != null ? w.zi : (w.z != null ? w.z : w.word));
+        py = w.pinyin != null ? w.pinyin : (w.py != null ? w.py : '');
+        vi = w.vi != null ? w.vi : (w.viet != null ? w.viet : (w.nghia != null ? w.nghia : (w.meaning != null ? w.meaning : '')));
+      }
       if (!hz || !py || seen[hz]) return;
       seen[hz] = 1;
       addEntry(hz, py, vi);
@@ -130,7 +137,12 @@
       (u.vocab || []).forEach(push);
       (u.lessons || []).forEach(function (L) {
         if (!L) return;
-        if (Array.isArray(L)) { L.forEach(push); return; }
+        if (Array.isArray(L)) {
+          /* bài học dạng [tiêu đề, mảng từ] của data.json */
+          if (L.length >= 2 && Array.isArray(L[1])) { L[1].forEach(push); return; }
+          L.forEach(push);
+          return;
+        }
         (L.words || []).forEach(push);
         (L.vocab || []).forEach(push);
       });
@@ -288,6 +300,7 @@
       cands = [];
       render();
       if (opts.onPick) { try { opts.onPick(c, input); } catch (e) { } }
+      try { input.dispatchEvent(new Event('input', { bubbles: true })); } catch (e) { }
       try { input.dispatchEvent(new Event('change', { bubbles: true })); } catch (e) { }
       input.focus();
     }

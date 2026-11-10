@@ -212,6 +212,15 @@
   function fxInvalidate() { _fxCache = null; _fxAt = 0; }
 
   function fxWord(w) {
+    if (Array.isArray(w)) {
+      var h2 = U.NFC(w[0] != null ? w[0] : '').trim();
+      if (!h2) return null;
+      return {
+        hanzi: String(h2).slice(0, 60),
+        pinyin: U.NFC(w[1] != null ? w[1] : '').slice(0, 120),
+        vi: U.NFC(w[2] != null ? w[2] : '').slice(0, 200)
+      };
+    }
     if (typeof w === 'string') {
       var s0 = U.NFC(w).trim();
       return s0 ? { hanzi: s0.slice(0, 60), pinyin: '', vi: '' } : null;
@@ -290,6 +299,13 @@
         try { arr = JSON.parse(v); } catch (e) { continue; }
         if (c === '{' && !Array.isArray(arr)) {
           if (arr && Array.isArray(arr.decks)) arr = arr.decks;
+          else if (arr && arr.decks && typeof arr.decks === 'object') {
+            var ds2 = [];
+            for (var dk2 in arr.decks) {
+              if (Object.prototype.hasOwnProperty.call(arr.decks, dk2)) ds2.push(arr.decks[dk2]);
+            }
+            arr = ds2;
+          }
           else if (arr && Array.isArray(arr.cards)) arr = arr.cards;
           else {
             var vals = [];
@@ -349,21 +365,31 @@
     var unit = D && Array.isArray(D.units) ? D.units[level - 1] : null;
     function push(w) {
       if (!w) return;
-      var hz = U.NFC(w.hanzi != null ? w.hanzi : (w.zi != null ? w.zi : (w.z != null ? w.z : w.word)));
+      var hz, py, vi;
+      if (Array.isArray(w)) {   /* từ dạng [hanzi, pinyin, nghĩa] của data.json */
+        hz = U.NFC(w[0] != null ? w[0] : '');
+        py = U.NFC(w[1] != null ? w[1] : '');
+        vi = U.NFC(w[2] != null ? w[2] : '');
+      } else {
+        hz = U.NFC(w.hanzi != null ? w.hanzi : (w.zi != null ? w.zi : (w.z != null ? w.z : w.word)));
+        py = U.NFC(w.pinyin != null ? w.pinyin : (w.py != null ? w.py : ''));
+        vi = U.NFC(w.vi != null ? w.vi : (w.viet != null ? w.viet : (w.nghia != null ? w.nghia : (w.meaning != null ? w.meaning : ''))));
+      }
       if (!hz || seen[hz]) return;
       seen[hz] = 1;
-      out.push({
-        hanzi: hz,
-        pinyin: U.NFC(w.pinyin != null ? w.pinyin : (w.py != null ? w.py : '')),
-        vi: U.NFC(w.vi != null ? w.vi : (w.viet != null ? w.viet : (w.nghia != null ? w.nghia : (w.meaning != null ? w.meaning : ''))))
-      });
+      out.push({ hanzi: hz, pinyin: py, vi: vi });
     }
     if (unit) {
       (unit.words || []).forEach(push);
       (unit.vocab || []).forEach(push);
       (unit.lessons || []).forEach(function (L) {
         if (!L) return;
-        if (Array.isArray(L)) { L.forEach(push); return; }
+        if (Array.isArray(L)) {
+          /* bài học dạng [tiêu đề, mảng từ] của data.json */
+          if (L.length >= 2 && Array.isArray(L[1])) { L[1].forEach(push); return; }
+          L.forEach(push);
+          return;
+        }
         (L.words || []).forEach(push);
         (L.vocab || []).forEach(push);
       });
@@ -497,21 +523,8 @@
     var base = apiBase(), s = session();
     var state, extra = '';
     if (!s) {
-      state = '<b class="hgx-warn">Chưa đăng nhập</b> — đăng nhập hoặc tạo tài khoản để deck tự lưu lên đám mây.';
+      state = '<b class="hgx-warn">Chưa đăng nhập</b> — hãy đăng nhập (hoặc tạo tài khoản) ở tab <b>Hồ sơ</b> của app; deck sẽ tự đồng bộ lên đám mây với tài khoản đó.';
       extra =
-        '<div class="hgx-authtabs" id="hgx-authtabs">' +
-        '<button type="button" class="hgx-authtab hgx-active" data-at="login">Đăng nhập</button>' +
-        '<button type="button" class="hgx-authtab" data-at="reg">Đăng ký</button>' +
-        '</div>' +
-        '<form class="hgx-cfg" data-login="1">' +
-        '<input id="hgx-lg-user" placeholder="Tên đăng nhập" autocomplete="username" />' +
-        '<input id="hgx-lg-pass" type="password" placeholder="Mật khẩu" autocomplete="current-password" />' +
-        '<button class="hgx-btn hgx-btn--green" type="submit">Đăng nhập</button></form>' +
-        '<form class="hgx-cfg" data-reg="1" style="display:none">' +
-        '<input id="hgx-rg-user" placeholder="Chọn tên đăng nhập (3–30 ký tự)" autocomplete="username" />' +
-        '<input id="hgx-rg-pass" type="password" placeholder="Mật khẩu (từ 6 ký tự)" autocomplete="new-password" />' +
-        '<input id="hgx-rg-pass2" type="password" placeholder="Nhập lại mật khẩu" autocomplete="new-password" />' +
-        '<button class="hgx-btn hgx-btn--green" type="submit">Tạo tài khoản</button></form>' +
         '<div class="hgx-cfg"><input id="hgx-api-input" value="' + esc(base) + '" />' +
         '<button class="hgx-btn" data-cfg="1">Đổi máy chủ</button></div>';
     } else {
@@ -528,10 +541,9 @@
   /* Gắn sự kiện cho khối đăng nhập/đăng ký/máy chủ (dùng chung cho trang
      "Deck & Flashcard" và trang "Tài khoản"). rerender = hàm vẽ lại trang hiện tại. */
   function wireCloudBox(p, rerender) {
-    var tabs = p.body.querySelector('#hgx-authtabs');
     var lgForm = p.body.querySelector('[data-login]');
     var rgForm = p.body.querySelector('[data-reg]');
-    if (tabs && lgForm && rgForm) {
+    if (lgForm && rgForm) {
       tabs.addEventListener('click', function (e) {
         var b = e.target.closest('button[data-at]');
         if (!b) return;
@@ -786,9 +798,8 @@
     d.className = 'hgx-dock';
     d.innerHTML =
       '<button type="button" class="hgx-dockbtn" title="Deck & Flashcard">&#128218;</button>' +
-      '<button type="button" class="hgx-dockbtn hgx-dockbtn--g" title="Ghép từ siêu tốc">&#9889;</button>' +
-      '<button type="button" class="hgx-dockbtn hgx-dockbtn--b" title="Tài khoản / Đăng nhập">&#128100;</button>';
-    var b1 = d.children[0], b2 = d.children[1], b3 = d.children[2];
+      '<button type="button" class="hgx-dockbtn hgx-dockbtn--g" title="Ghép từ siêu tốc">&#9889;</button>';
+    var b1 = d.children[0], b2 = d.children[1];
     b1.addEventListener('click', function () {
       if (window.HGFlash) HGFlash.open();
       else toast('Đang tải flashcard…');
@@ -797,7 +808,6 @@
       if (window.HGMatch) HGMatch.open();
       else toast('Đang tải Ghép từ siêu tốc…');
     });
-    b3.addEventListener('click', function () { openAccount(); });
     document.body.appendChild(d);
   }
 

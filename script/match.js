@@ -16,6 +16,11 @@
   var PACE = 3000;   /* ms cho mỗi cặp (theo yêu cầu: ~3 giây/1 cặp) */
   var CAP = 6;       /* số cặp tối đa hiện trên màn hình cùng lúc */
 
+  /* ---- Gợi ý pinyin: bật/tắt, nhớ lựa chọn của người học ---- */
+  var PY_KEY = 'hg_match_pinyin';
+  function pyOn() { try { return localStorage.getItem(PY_KEY) !== '0'; } catch (e) { return true; } }
+  function setPy(on) { try { localStorage.setItem(PY_KEY, on ? '1' : '0'); } catch (e) { } }
+
   function dedupe(words) {
     var seen = {}, out = [];
     words.forEach(function (w) {
@@ -52,6 +57,8 @@
     p.body.innerHTML =
       '<div class="hgx-mtabs" id="hgx-mtabs"></div>' +
       '<div id="hgx-mlist"></div>' +
+      '<h3 class="hgx-h3">Gợi ý pinyin</h3>' +
+      '<div class="hgx-chips" id="hgx-pychips"></div>' +
       '<h3 class="hgx-h3">Số từ muốn ôn</h3>' +
       '<div class="hgx-chips" id="hgx-mchips"></div>' +
       '<button class="hgx-btn hgx-btn--green hgx-btn--wide hgx-btn--big" id="hgx-mstart" type="button"></button>' +
@@ -60,6 +67,7 @@
     var tabsEl = p.body.querySelector('#hgx-mtabs');
     var listEl = p.body.querySelector('#hgx-mlist');
     var chipsEl = p.body.querySelector('#hgx-mchips');
+    var chipsPy = p.body.querySelector('#hgx-pychips');
     var startBtn = p.body.querySelector('#hgx-mstart');
 
     function renderTabs() {
@@ -129,8 +137,16 @@
       startBtn.textContent = 'Bắt đầu: ' + n + ' cặp · ' + Math.round(n * PACE / 1000) + ' giây';
     }
 
+    function renderPychips() {
+      if (!chipsPy) return;
+      var on = pyOn();
+      chipsPy.innerHTML =
+        '<button class="hgx-chip' + (on ? ' hgx-active' : '') + '" data-py="1">Bật — kèm pinyin</button>' +
+        '<button class="hgx-chip' + (!on ? ' hgx-active' : '') + '" data-py="0">Tắt — luyện chữ cứng</button>';
+    }
+
     function render() {
-      renderTabs(); renderList(); renderChips(); renderStart();
+      renderTabs(); renderList(); renderPychips(); renderChips(); renderStart();
     }
 
     tabsEl.addEventListener('click', function (e) {
@@ -155,6 +171,12 @@
       var v = c.getAttribute('data-cnt');
       count = v === 'all' ? null : +v;
       renderChips(); renderStart();
+    });
+    if (chipsPy) chipsPy.addEventListener('click', function (e) {
+      var b = e.target.closest('button[data-py]');
+      if (!b) return;
+      setPy(b.getAttribute('data-py') === '1');
+      renderPychips();
     });
     startBtn.addEventListener('click', function () {
       var ws = getWords(sel);
@@ -203,7 +225,8 @@
       '  <div class="hgx-mbar" id="hgx-g-bar"><div class="hgx-mfill" id="hgx-g-fill"></div></div>' +
       '  <div class="hgx-mtime" id="hgx-g-time"></div>' +
       '</div>' +
-      '<div class="hgx-mdecktag">' + esc(label) + ' · ' + total + ' cặp · ' + Math.round(total * PACE / 1000) + ' giây</div>' +
+      '<div class="hgx-mdecktag hgx-mdecktag--flex">' + esc(label) + ' · ' + total + ' cặp · ' + Math.round(total * PACE / 1000) + ' giây' +
+      '<button type="button" class="hgx-btn hgx-btn--mini" id="hgx-pybtn"></button></div>' +
       '<div class="hgx-mboard">' +
       '  <div class="hgx-mcol" id="hgx-g-colL"></div>' +
       '  <div class="hgx-mcol" id="hgx-g-colR"></div>' +
@@ -216,6 +239,10 @@
     var barEl = p.body.querySelector('#hgx-g-bar');
     var timeEl = p.body.querySelector('#hgx-g-time');
     var countEl = p.body.querySelector('#hgx-g-count');
+    var pyBtn = p.body.querySelector('#hgx-pybtn');
+    function renderPyBtn() { if (pyBtn) pyBtn.textContent = pyOn() ? 'Pinyin: bật' : 'Pinyin: tắt'; }
+    renderPyBtn();
+    if (pyBtn) pyBtn.addEventListener('click', function () { setPy(!pyOn()); renderPyBtn(); drawCols(); });
 
     function rndInt(n) { return Math.floor(Math.random() * n); }
 
@@ -231,10 +258,11 @@
       var cls = 'hgx-mtile';
       if (t.born) cls += ' hgx-born';
       if (G.sel && G.sel.uid === t.uid) cls += ' hgx-sel';
+      var showPy = side === 'R' && pyOn() && t.w.pinyin;
       var txt = side === 'L'
         ? '<span class="hgx-mtvi">' + esc(t.w.vi || t.w.pinyin || '…') + '</span>'
         : '<span class="hgx-mthz">' + esc(t.w.hanzi) + '</span>' +
-          (t.w.pinyin ? '<span class="hgx-mtpy">' + esc(t.w.pinyin) + '</span>' : '');
+          (showPy ? '<span class="hgx-mtpy">' + esc(t.w.pinyin) + '</span>' : '');
       return '<button type="button" class="' + cls + '" data-uid="' + t.uid + '" data-side="' + side + '">' + txt + '</button>';
     }
 

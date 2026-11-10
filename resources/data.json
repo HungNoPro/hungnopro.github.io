@@ -1,70 +1,11911 @@
 {
-  "units": [
-    {
-      "no": 1, "hsk": 1, "seal": "一", "name": "Sơ khai",
-      "desc": "Chữ cái đầu tiên — chào hỏi, số, gia đình",
-      "acc": "#16A172", "accd": "#0E7A54",
-      "lessons": [
-        ["Chào hỏi & xưng hô", [["你","nǐ","bạn"],["我","wǒ","tôi"],["他","tā","anh ấy"],["她","tā","cô ấy"],["您","nín","ngài (lịch sự)"],["先生","xiānsheng","ngài, anh"],["小姐","xiǎojie","cô (xưng hô)"],["名字","míngzi","cái tên"],["朋友","péngyou","người bạn"],["们","men","hậu tố chỉ số nhiều"]]],
-        ["Gia đình", [["爸爸","bàba","bố"],["妈妈","māma","mẹ"],["哥哥","gēge","anh trai"],["姐姐","jiějie","chị gái"],["弟弟","dìdi","em trai"],["妹妹","mèimei","em gái"],["家","jiā","nhà, gia đình"],["儿子","érzi","con trai"],["女儿","nǚ'ér","con gái"],["孩子","háizi","đứa trẻ"]]],
-        ["Đếm số", [["一","yī","một"],["二","èr","hai"],["三","sān","ba"],["四","sì","bốn"],["五","wǔ","năm"],["六","liù","sáu"],["七","qī","bảy"],["八","bā","tám"],["九","jiǔ","chín"],["十","shí","mười"],["百","bǎi","trăm"],["零","líng","số không"]]],
-        ["Ngày tháng & năm", [["个","gè","cái (định lượng)"],["岁","suì","tuổi"],["年","nián","năm"],["月","yuè","tháng"],["星期","xīngqī","tuần, thứ"],["今天","jīntiān","hôm nay"],["明天","míngtiān","ngày mai"],["昨天","zuótiān","hôm qua"],["生日","shēngrì","sinh nhật"],["时候","shíhou","lúc, khi"]]],
-        ["Giờ trong ngày", [["现在","xiànzài","bây giờ"],["上午","shàngwǔ","buổi sáng"],["下午","xiàwǔ","buổi chiều"],["中午","zhōngwǔ","buổi trưa"],["早上","zǎoshang","sớm sáng"],["晚上","wǎnshang","buổi tối"],["点","diǎn","giờ (đồng hồ)"],["分钟","fēnzhōng","phút"],["什么","shénme","cái gì"],["几","jǐ","mấy, bao nhiêu"]]],
-        ["Từ để hỏi", [["谁","shéi","ai"],["哪儿","nǎr","ở đâu"],["那儿","nàr","ở kia"],["怎么","zěnme","như thế nào"],["为什么","wèishénme","tại sao"],["吗","ma","trợ từ hỏi"],["呢","ne","trợ từ (còn…?)"],["吧","ba","trợ từ đề nghị"],["多少","duōshao","bao nhiêu"],["哪","nǎ","nào"]]],
-        ["Ăn & uống", [["吃","chī","ăn"],["喝","hē","uống"],["米饭","mǐfàn","cơm"],["菜","cài","món ăn, rau"],["茶","chá","trà"],["咖啡","kāfēi","cà phê"],["牛奶","niúnǎi","sữa"],["水","shuǐ","nước"],["苹果","píngguǒ","quả táo"],["鸡蛋","jīdàn","quả trứng"]]],
-        ["Trường học", [["学校","xuéxiào","trường học"],["学生","xuésheng","học sinh"],["老师","lǎoshī","giáo viên"],["同学","tóngxué","bạn học"],["学习","xuéxí","học tập"],["汉语","Hànyǔ","tiếng Hán"],["中文","Zhōngwén","tiếng Trung"],["字","zì","chữ"],["书","shū","quyển sách"],["本","běn","cuốn (đlượng)"],["工作","gōngzuò","công việc"]]],
-        ["Nơi chốn quen thuộc", [["中国","Zhōngguó","Trung Quốc"],["北京","Běijīng","Bắc Kinh"],["商店","shāngdiàn","cửa hàng"],["银行","yínháng","ngân hàng"],["医院","yīyuàn","bệnh viện"],["电影","diànyǐng","phim"],["饭店","fàndiàn","khách sạn, nhà hàng"],["桌子","zhuōzi","cái bàn"],["椅子","yǐzi","cái ghế"],["杯子","bēizi","cái cốc"]]],
-        ["Đồ dùng hàng ngày", [["电视","diànshì","tivi"],["电脑","diànnǎo","máy tính"],["电话","diànhuà","điện thoại"],["衣服","yīfu","quần áo"],["穿","chuān","mặc"],["猫","māo","con mèo"],["狗","gǒu","con chó"],["钱","qián","tiền"],["车","chē","xe"],["门","mén","cánh cửa"]]],
-        ["Tính từ cơ bản", [["大","dà","to"],["小","xiǎo","nhỏ"],["多","duō","nhiều"],["少","shǎo","ít"],["好","hǎo","tốt"],["高","gāo","cao"],["胖","pàng","mập"],["新","xīn","mới"],["冷","lěng","lạnh"],["热","rè","nóng"],["远","yuǎn","xa"],["忙","máng","bận"]]],
-        ["Bày tỏ & cảm xúc", [["认识","rènshi","biết, quen"],["会","huì","biết làm, sẽ"],["想","xiǎng","muốn, nghĩ"],["爱","ài","yêu"],["喜欢","xǐhuan","thích"],["觉得","juéde","cảm thấy"],["高兴","gāoxìng","vui"],["可以","kěyǐ","có thể"]]],
-        ["Lịch sự", [["谢谢","xièxie","cảm ơn"],["不客气","bú kèqi","không có gì"],["对不起","duìbuqǐ","xin lỗi"],["没关系","méi guānxi","không sao"],["再见","zàijiàn","tạm biệt"],["请","qǐng","mời, xin"],["欢迎","huānyíng","chào mừng"],["漂亮","piàoliang","đẹp"]]],
-        ["Hành động thường ngày", [["看","kàn","nhìn, xem"],["看见","kànjiàn","thấy"],["听","tīng","nghe"],["说","shuō","nói"],["读","dú","đọc"],["写","xiě","viết"],["问","wèn","hỏi"],["用","yòng","dùng"],["买","mǎi","mua"],["卖","mài","bán"],["做","zuò","làm"],["给","gěi","cho, đưa"]]],
-        ["Đi lại", [["去","qù","đi"],["来","lái","đến, đến"],["回","huí","trở về"],["到","dào","đến nơi"],["坐","zuò","ngồi, đi bằng"],["走","zǒu","đi bộ"],["站","zhàn","trạm, đứng"],["开","kāi","mở, lái"],["飞机","fēijī","máy bay"],["出租车","chūzūchē","xe taxi"]]],
-        ["Phương vị", [["上","shàng","trên, lên"],["下","xià","dưới, xuống"],["里","lǐ","trong"],["前","qián","trước"],["后","hòu","sau"],["左","zuǒ","trái"],["右","yòu","phải"],["东","dōng","đông"],["西","xī","tây"],["东西","dōngxi","đồ vật"]]],
-        ["Nối ý cơ bản", [["是","shì","là"],["有","yǒu","có"],["不","bù","không"],["没有","méiyǒu","không có"],["要","yào","muốn"],["就","jiù","chính là, liền"],["再","zài","lại, tiếp"],["太","tài","quá"]]],
-        ["Từ hay đi kèm", [["也","yě","cũng"],["都","dōu","đều"],["很","hěn","rất"],["和","hé","và, với"],["在","zài","ở"],["找","zhǎo","tìm"],["叫","jiào","gọi, tên là"],["睡觉","shuìjiào","ngủ"]]],
-        ["Thời tiết & mùa", [["天气","tiānqì","thời tiết"],["下雨","xiàyǔ","mưa"],["雪","xuě","tuyết"],["风","fēng","gió"],["太阳","tàiyang","mặt trời"],["月亮","yuèliang","mặt trăng"],["春天","chūntiān","mùa xuân"],["夏天","xiàtiān","mùa hạ"],["秋天","qiūtiān","mùa thu"],["冬天","dōngtiān","mùa đông"]]]
+ "units": [
+  {
+   "no": 1,
+   "hsk": 1,
+   "seal": "一",
+   "name": "Sơ khai",
+   "desc": "Từ vựng HSK 1 mới (chuẩn 3.0) — cộng dồn 500 từ cơ bản nhất",
+   "acc": "#16A172",
+   "accd": "#0E7A54",
+   "lessons": [
+    [
+     "ài → běibian",
+     [
+      [
+       "爱",
+       "ài",
+       "yêu; yêu và quý"
+      ],
+      [
+       "爱好",
+       "àihào",
+       "sở thích; thích"
+      ],
+      [
+       "八",
+       "bā",
+       "tám"
+      ],
+      [
+       "爸爸",
+       "bàba|bà",
+       "cha"
+      ],
+      [
+       "吧",
+       "ba",
+       "một hạt phương thức \"ba\""
+      ],
+      [
+       "白",
+       "bái",
+       "trắng"
+      ],
+      [
+       "白天",
+       "báitiān",
+       "ban ngày"
+      ],
+      [
+       "百",
+       "bǎi",
+       "trăm"
+      ],
+      [
+       "班",
+       "bān",
+       "lớp, nhóm"
+      ],
+      [
+       "半",
+       "bàn",
+       "một nửa"
+      ],
+      [
+       "半年",
+       "bàn nián",
+       "nửa năm"
+      ],
+      [
+       "半天",
+       "bàntiān",
+       "một thời gian dài, khá lâu"
+      ],
+      [
+       "帮",
+       "bāng",
+       "giúp đỡ"
+      ],
+      [
+       "帮忙",
+       "bāngmáng",
+       "để giúp đỡ, giúp đỡ ai đó"
+      ],
+      [
+       "包",
+       "bāo",
+       "quấn"
+      ],
+      [
+       "包子",
+       "bāozi",
+       "bánh bao hấp"
+      ],
+      [
+       "杯",
+       "bēi",
+       "cốc, thủy tinh (một từ đo lường)"
+      ],
+      [
+       "杯子",
+       "bēizi",
+       "cốc thủy tinh"
+      ],
+      [
+       "北",
+       "běi",
+       "Bắc"
+      ],
+      [
+       "北边",
+       "běibian",
+       "phía bắc, phía bắc"
       ]
-    },
-    {
-      "no": 2, "hsk": 2, "seal": "二", "name": "Vững bước",
-      "desc": "Mở rộng — cơ thể, sinh hoạt, đường sá",
-      "acc": "#C96A2E", "accd": "#9C501D",
-      "lessons": [
-        ["Thời lượng & mức độ", [["一起","yìqǐ","cùng nhau"],["一定","yídìng","nhất định"],["一样","yíyàng","giống nhau"],["一直","yìzhí","suốt, liên tục"],["一共","yígòng","tổng cộng"],["一点儿","yìdiǎnr","một chút"],["有点儿","yǒudiǎnr","hơi, một chút"],["还","hái","vẫn, còn"],["又","yòu","lại, cả…cả"],["应该","yīnggāi","nên"]]],
-        ["Quanh mốc thời gian", [["时间","shíjiān","thời gian"],["小时","xiǎoshí","tiếng (60 phút)"],["周末","zhōumò","cuối tuần"],["以前","yǐqián","trước đây"],["以后","yǐhòu","sau này"],["然后","ránhòu","sau đó"],["已经","yǐjīng","đã"]]],
-        ["Từ nối ý", [["但是","dànshì","nhưng"],["所以","suǒyǐ","vì vậy"],["如果","rúguǒ","nếu"],["还是","háishi","hay là, vẫn"],["每","měi","mỗi"],["最","zuì","nhất"],["更","gèng","hơn, càng"],["真","zhēn","thật"]]],
-        ["Cơ thể", [["身体","shēntǐ","cơ thể, sức khỏe"],["头","tóu","cái đầu"],["头发","tóufa","tóc"],["眼睛","yǎnjing","con mắt"],["耳朵","ěrduo","cái tai"],["手","shǒu","bàn tay"],["脚","jiǎo","bàn chân"],["脸","liǎn","khuôn mặt"],["腿","tuǐ","chân (đùi/cẳng)"]]],
-        ["Cảm nhận", [["饿","è","đói"],["渴","kě","khát"],["累","lèi","mệt"],["舒服","shūfu","thoải mái"],["难","nán","khó"],["容易","róngyì","dễ"],["快","kuài","nhanh"],["慢","màn","chậm"],["长","cháng","dài"],["便宜","piányi","rẻ"]]],
-        ["Bàn ăn", [["面包","miànbāo","bánh mì"],["牛肉","niúròu","thịt bò"],["水果","shuǐguǒ","trái cây"],["啤酒","píjiǔ","bia"],["饺子","jiǎozi","sủi cảo"],["面条","miàntiáo","mì sợi"],["好吃","hǎochī","ngon"],["好玩","hǎowán","vui (để chơi)"],["有意思","yǒu yìsi","thú vị"]]],
-        ["Đường sá & xe", [["火车","huǒchē","tàu hỏa"],["公共汽车","gōnggòng qìchē","xe buýt"],["自行车","zìxíngchē","xe đạp"],["机场","jīchǎng","sân bay"],["路","lù","con đường"],["近","jìn","gần"],["出去","chūqù","đi ra ngoài"],["回去","huíqù","trở về"],["起来","qǐlái","dậy, lên"]]],
-        ["Trong nhà", [["房间","fángjiān","căn phòng"],["洗手间","xǐshǒujiān","nhà vệ sinh"],["冰箱","bīngxiāng","tủ lạnh"],["雨伞","yǔsǎn","cây dù"],["表","biǎo","đồng hồ đeo tay"],["音乐","yīnyuè","âm nhạc"],["照片","zhàopiàn","tấm ảnh"],["地址","dìzhǐ","địa chỉ"],["号码","hàomǎ","con số, số ĐT"],["礼物","lǐwù","món quà"]]],
-        ["Động từ I", [["告诉","gàosu","bảo, kể"],["开始","kāishǐ","bắt đầu"],["结束","jiéshù","kết thúc"],["等","děng","chờ"],["关","guān","đóng, tắt"],["回答","huídá","trả lời"],["见面","jiànmiàn","gặp mặt"],["借","jiè","mượn"],["进","jìn","vào"],["拿","ná","cầm, lấy"]]],
-        ["Động từ II", [["让","ràng","để, cho phép"],["送","sòng","tặng, đưa đi"],["起床","qǐchuáng","thức dậy"],["洗澡","xǐzǎo","tắm"],["懂","dǒng","hiểu"],["能","néng","có thể"],["练习","liànxí","luyện tập"],["准备","zhǔnbèi","chuẩn bị"],["唱歌","chànggē","hát"],["跳舞","tiàowǔ","nhảy múa"],["打球","dǎqiú","chơi bóng"],["说话","shuōhuà","nói chuyện"]]],
-        ["Học hành", [["大学","dàxué","đại học"],["考试","kǎoshì","kỳ thi"],["作业","zuòyè","bài tập về nhà"],["上课","shàngkè","lên lớp"],["下课","xiàkè","tan học"],["上网","shàngwǎng","lên mạng"],["笔","bǐ","cây bút"],["运动","yùndòng","thể thao, vận động"]]],
-        ["Màu sắc & dáng", [["颜色","yánsè","màu sắc"],["黑","hēi","đen"],["红","hóng","đỏ"],["黄","huáng","vàng"],["蓝","lán","xanh dương"],["绿","lǜ","xanh lá"],["白","bái","trắng"],["可爱","kě'ài","dễ thương"],["明白","míngbai","hiểu rõ"],["树","shù","cây"],["花","huā","bông hoa"]]]
+     ]
+    ],
+    [
+     "Běijīng → chàng",
+     [
+      [
+       "北京",
+       "Běijīng",
+       "Bắc Kinh"
+      ],
+      [
+       "本",
+       "běn",
+       "một từ đo lường cho sách"
+      ],
+      [
+       "本子",
+       "běnzi",
+       "sách bài tập"
+      ],
+      [
+       "比",
+       "bǐ",
+       "so với"
+      ],
+      [
+       "别",
+       "bié",
+       "đừng"
+      ],
+      [
+       "别的",
+       "biéde",
+       "khác"
+      ],
+      [
+       "别人",
+       "biérén",
+       "những người khác, những người khác"
+      ],
+      [
+       "病",
+       "bìng",
+       "Bị bệnh; dịch bệnh"
+      ],
+      [
+       "病人",
+       "bìngrén",
+       "bệnh nhân, người bệnh"
+      ],
+      [
+       "不大",
+       "bù dà",
+       "không hẳn"
+      ],
+      [
+       "不对",
+       "bùduì",
+       "sai, không chính xác"
+      ],
+      [
+       "不客气",
+       "bù kèqì",
+       "không có gì"
+      ],
+      [
+       "不用",
+       "bùyòng",
+       "không cần"
+      ],
+      [
+       "不",
+       "bù",
+       "không, không"
+      ],
+      [
+       "菜",
+       "cài",
+       "thức ăn, một món ăn"
+      ],
+      [
+       "茶",
+       "chá",
+       "trà"
+      ],
+      [
+       "差",
+       "chà",
+       "ít hơn; thiếu"
+      ],
+      [
+       "常",
+       "cháng",
+       "thường"
+      ],
+      [
+       "常常",
+       "chángcháng",
+       "thường"
+      ],
+      [
+       "唱",
+       "chàng",
+       "hát"
       ]
-    },
-    {
-      "no": 3, "hsk": 3, "seal": "三", "name": "Nâng cao",
-      "desc": "Tự tin — thành phố, công việc, cảm xúc",
-      "acc": "#BE3A26", "accd": "#922D1C",
-      "lessons": [
-        ["Thành phố", [["城市","chéngshì","thành phố"],["地方","dìfang","nơi chốn"],["附近","fùjìn","xung quanh, gần đây"],["楼","lóu","tòa nhà, lầu"],["层","céng","tầng"],["电梯","diàntǐ","thang máy"],["地铁","dìtiě","tàu điện ngầm"],["公园","gōngyuán","công viên"],["购物","gòuwù","mua sắm"],["公司","gōngsī","công ty"]]],
-        ["Công sở & học tập", [["办公室","bàngōngshì","văn phòng"],["班","bān","ca, lớp"],["上班","shàngbān","đi làm"],["下班","xiàbàn","tan làm"],["同事","tóngshì","đồng nghiệp"],["成绩","chéngjì","thành tích, điểm"],["技术","jìshù","kỹ thuật"],["复习","fùxí","ôn tập"]]],
-        ["Liên lạc", [["电子邮件","diànzǐ yóujiàn","thư điện tử (email)"],["手机","shǒujī","điện thoại di động"],["笔记本","bǐjìběn","sổ tay, laptop"],["联系","liánxì","liên hệ"],["发","fā","gửi, phát"],["信","xìn","bức thư"],["词典","cídiǎn","từ điển"],["汉字","Hànzì","chữ Hán"],["介绍","jièshào","giới thiệu"]]],
-        ["Sức khỏe", [["生病","shēngbìng","bị bệnh"],["感冒","gǎnmào","cảm lạnh"],["发烧","fāshāo","bị sốt"],["药","yào","thuốc"],["健康","jiànkāng","khỏe mạnh"],["锻炼","duànliàn","rèn luyện thân thể"],["检查","jiǎnchá","kiểm tra"]]],
-        ["Tâm trạng", [["担心","dānxīn","lo lắng"],["满意","mǎnyì","hài lòng"],["感兴趣","gǎn xìngqù","hứng thú, thích"],["着急","zháojí","sốt ruột, nóng lòng"],["忘记","wàngjì","quên"],["关心","guānxīn","quan tâm"],["安静","ānjìng","yên tĩnh"],["聪明","cōngming","thông minh"],["瘦","shòu","gầy"]]],
-        ["Mức độ & so sánh", [["变化","biànhuà","sự thay đổi"],["不同","bùtóng","khác nhau"],["比较","bǐjiào","khá, so sánh"],["必须","bìxū","phải"],["需要","xūyào","cần"],["差","chà","kém, còn thiếu"],["够","gòu","đủ"],["顿","dùn","bữa (định lượng)"]]],
-        ["Du lịch", [["起飞","qǐfēi","cất cánh"],["船","chuán","tàu, thuyền"],["旅行","lǚxíng","đi du lịch"],["参观","cānguān","tham quan"],["动物园","dòngwùyuán","sở thú"],["公斤","gōngjīn","cân (kg)"],["公里","gōnglǐ","km"],["带","dài","mang, đem"],["接","jiē","đón, nhận"]]],
-        ["Giải trí & truyền thông", [["爱好","àihào","sở thích"],["比赛","bǐsài","trận đấu, cuộc thi"],["节目","jiémù","chương trình"],["新闻","xīnwén","tin tức"],["报纸","bàozhǐ","tờ báo"],["广播","guǎngbō","phát thanh"],["聊天","liáotiān","tán gẫu"],["游戏","yóuxì","trò chơi"],["有名","yǒumíng","nổi tiếng"]]],
-        ["Mua sắm", [["价钱","jiàqián","cái giá"],["蛋糕","dàngāo","bánh ngọt"],["尝","cháng","nếm"],["甜","tián","ngọt"],["酸","suān","chua"],["薄","báo","mỏng"],["短","duǎn","ngắn"],["帽子","màozi","cái mũ"],["眼镜","yǎnjìng","kính (mắt)"],["双","shuāng","đôi"],["试","shì","thử"]]],
-        ["Chất lượng & phạm vi", [["水平","shuǐpíng","trình độ"],["简单","jiǎndān","đơn giản"],["干净","gānjìng","sạch sẽ"],["新鲜","xīnxiān","tươi"],["段","duàn","đoạn"],["光","guāng","ánh sáng; chỉ"],["声音","shēngyīn","âm thanh"],["世界","shìjiè","thế giới"],["文化","wénhuà","văn hóa"],["国家","guójiā","quốc gia"],["习惯","xíguàn","thói quen"]]],
-        ["Thời điểm & tần suất", [["马上","mǎshàng","ngay lập tức"],["刚才","gāngcái","vừa nãy"],["终于","zhōngyú","rốt cuộc (đã)"],["最后","zuìhòu","cuối cùng"],["最近","zuìjìn","dạo gần đây"],["总是","zǒngshì","luôn luôn"],["经常","jīngcháng","thường xuyên"],["常常","chángcháng","thường hay"],["周","zhōu","tuần"],["迟到","chídào","đến trễ"],["放假","fàngjià","nghỉ học, nghỉ phép"],["请假","qǐngjià","xin nghỉ"]]],
-        ["Quan hệ & liên từ", [["除了","chúle","ngoài (ra)"],["或者","huòzhě","hoặc"],["不过","búguò","tuy nhiên"],["关于","guānyú","về (chuyện…)"],["根据","gēnjù","dựa theo"],["互相","hùxiāng","lẫn nhau"],["共同","gòngtóng","chung, cùng nhau"],["别人","biérén","người khác"],["自己","zìjǐ","chính mình"],["遇到","yùdào","gặp, gặp phải"],["愿意","yuànyì","sẵn lòng"],["要求","yāoqiú","yêu cầu"]]],
-        ["Chuyện & quyết định", [["事情","shìqing","chuyện, việc"],["结果","jiéguǒ","kết quả"],["机会","jīhuì","cơ hội"],["问题","wèntí","câu hỏi, vấn đề"],["发现","fāxiàn","phát hiện"],["完成","wánchéng","hoàn thành"],["打算","dǎsuàn","dự định"],["决定","juédìng","quyết định"],["记得","jìde","còn nhớ"],["重要","zhòngyào","quan trọng"],["原因","yuányīn","nguyên nhân"]]],
-        ["Tổng hợp", [["而已","éryǐ","chỉ vậy thôi"],["多么","duōme","như thế nào! (cảm thán)"],["南","nán","phương nam"],["鼻子","bízi","cái mũi"],["搬","bān","chuyển (nhà)"],["办法","bànfǎ","cách, biện pháp"],["规定","guīdìng","quy định"],["还","huán","trả lại"],["个子","gèzi","vóc dáng"],["灯","dēng","cái đèn"],["影响","yǐngxiǎng","ảnh hưởng"]]]
+     ]
+    ],
+    [
+     "chànggē → dǎ",
+     [
+      [
+       "唱歌",
+       "chànggē",
+       "hát"
+      ],
+      [
+       "车",
+       "chē",
+       "ô tô, xe cộ"
+      ],
+      [
+       "车票",
+       "chēpiào",
+       "vé tàu hoặc xe buýt"
+      ],
+      [
+       "车上",
+       "chē shang",
+       "trên xe"
+      ],
+      [
+       "车站",
+       "chēzhàn",
+       "bến xe buýt, nhà ga"
+      ],
+      [
+       "吃",
+       "chī",
+       "ăn"
+      ],
+      [
+       "吃饭",
+       "chīfàn",
+       "ăn"
+      ],
+      [
+       "出",
+       "chū",
+       "đi ra"
+      ],
+      [
+       "出来",
+       "chūlái",
+       "đi ra"
+      ],
+      [
+       "出去",
+       "chūqù",
+       "đi ra ngoài, thoát ra"
+      ],
+      [
+       "穿",
+       "chuān",
+       "mặc"
+      ],
+      [
+       "床",
+       "chuáng",
+       "Giường"
+      ],
+      [
+       "次",
+       "cì",
+       "thời gian (một từ đo lường cho các hành động)"
+      ],
+      [
+       "从",
+       "cóng",
+       "kể từ khi"
+      ],
+      [
+       "错",
+       "cuò",
+       "nhầm, nhầm"
+      ],
+      [
+       "打",
+       "dǎ",
+       "chơi"
+      ],
+      [
+       "打车",
+       "dǎchē",
+       "đi nhờ thang máy"
+      ],
+      [
+       "打电话",
+       "dǎ diànhuà",
+       "để gọi"
+      ],
+      [
+       "打开",
+       "dǎkāi",
+       "mở"
+      ],
+      [
+       "打球",
+       "dǎ qiú",
+       "chơi với một quả bóng"
       ]
-    }
-  ]
+     ]
+    ],
+    [
+     "dà → diànshìjī",
+     [
+      [
+       "大",
+       "dà",
+       "lớn, trưởng thành"
+      ],
+      [
+       "大学",
+       "dàxué",
+       "đại học, cao đẳng"
+      ],
+      [
+       "大学生",
+       "dàxuéshēng",
+       "sinh viên đại học, sinh viên cao đẳng"
+      ],
+      [
+       "到",
+       "dào",
+       "đến nơi"
+      ],
+      [
+       "得到",
+       "dédào",
+       "để có được"
+      ],
+      [
+       "地",
+       "de",
+       "mặt đất, đất, lĩnh vực, sàn nhà"
+      ],
+      [
+       "的",
+       "de",
+       "một hạt \"của\""
+      ],
+      [
+       "等",
+       "děng",
+       "đợi"
+      ],
+      [
+       "地点",
+       "dìdiǎn",
+       "nơi"
+      ],
+      [
+       "地方",
+       "dìfang",
+       "nơi"
+      ],
+      [
+       "地上",
+       "dìshang",
+       "trệt, lầu"
+      ],
+      [
+       "地图",
+       "dìtú",
+       "bản đồ"
+      ],
+      [
+       "弟弟",
+       "dìdi|dì",
+       "em trai"
+      ],
+      [
+       "第",
+       "dì (dì-èr)",
+       "tiền tố cho số thứ tự"
+      ],
+      [
+       "点",
+       "diǎn",
+       "giờ"
+      ],
+      [
+       "电",
+       "diàn",
+       "điện lực"
+      ],
+      [
+       "电话",
+       "diànhuà",
+       "Điện thoại; gọi điện"
+      ],
+      [
+       "电脑",
+       "diànnǎo",
+       "máy tính"
+      ],
+      [
+       "电视",
+       "diànshì",
+       "TV, truyền hình"
+      ],
+      [
+       "电视机",
+       "diànshìjī",
+       "TV"
+      ]
+     ]
+    ],
+    [
+     "diànyǐng → fángjiān",
+     [
+      [
+       "电影",
+       "diànyǐng",
+       "phim ảnh"
+      ],
+      [
+       "电影院",
+       "diànyǐngyuàn",
+       "Rạp chiếu phim"
+      ],
+      [
+       "东",
+       "dōng",
+       "phía đông"
+      ],
+      [
+       "东边",
+       "dōngbian",
+       "phía đông, phía đông"
+      ],
+      [
+       "东西",
+       "dōngxi",
+       "Điều"
+      ],
+      [
+       "动",
+       "dòng",
+       "để di chuyển"
+      ],
+      [
+       "动作",
+       "dòngzuò",
+       "chuyển động, hành động"
+      ],
+      [
+       "都",
+       "dōu",
+       "tất cả các"
+      ],
+      [
+       "读",
+       "dú",
+       "đọc"
+      ],
+      [
+       "读书",
+       "dúshū",
+       "học"
+      ],
+      [
+       "对",
+       "duì",
+       "vâng, đúng, chính xác"
+      ],
+      [
+       "对不起",
+       "duìbuqǐ",
+       "Tôi xin lỗi!"
+      ],
+      [
+       "多",
+       "duō",
+       "nhiều, nhiều lắm; Bao nhiêu?"
+      ],
+      [
+       "多少",
+       "duōshao",
+       "Bao nhiêu? Bao nhiêu?"
+      ],
+      [
+       "饿",
+       "è",
+       "đói; đói bụng"
+      ],
+      [
+       "儿子",
+       "érzi",
+       "Con trai"
+      ],
+      [
+       "二",
+       "èr",
+       "hai"
+      ],
+      [
+       "饭",
+       "fàn",
+       "bữa ăn"
+      ],
+      [
+       "饭店",
+       "fàndiàn",
+       "nhà hàng, khách sạn"
+      ],
+      [
+       "房间",
+       "fángjiān",
+       "phòng"
+      ]
+     ]
+    ],
+    [
+     "fángzi → gēn",
+     [
+      [
+       "房子",
+       "fángzi",
+       "nhà, căn hộ"
+      ],
+      [
+       "放",
+       "fàng",
+       "đặt"
+      ],
+      [
+       "放假",
+       "fàngjià",
+       "có một kỳ nghỉ"
+      ],
+      [
+       "放学",
+       "fàngxué",
+       "lớp học đã kết thúc"
+      ],
+      [
+       "飞",
+       "fēi",
+       "bay"
+      ],
+      [
+       "飞机",
+       "fēijī",
+       "chiếc máy bay"
+      ],
+      [
+       "非常",
+       "fēicháng",
+       "vô cùng, rất"
+      ],
+      [
+       "分",
+       "fēn",
+       "phút"
+      ],
+      [
+       "风",
+       "fēng",
+       "gió"
+      ],
+      [
+       "干",
+       "gān",
+       "làm, làm việc"
+      ],
+      [
+       "干净",
+       "gānjìng",
+       "lau dọn"
+      ],
+      [
+       "干什么",
+       "gàn shénme",
+       "Để làm gì?"
+      ],
+      [
+       "高",
+       "gāo",
+       "cao, cao; Chiều cao"
+      ],
+      [
+       "高兴",
+       "gāoxìng",
+       "vui vẻ; vui mừng"
+      ],
+      [
+       "告诉",
+       "gàosu",
+       "nói"
+      ],
+      [
+       "哥哥",
+       "gēge|gē",
+       "anh trai"
+      ],
+      [
+       "歌",
+       "gē",
+       "bài hát"
+      ],
+      [
+       "个",
+       "gè",
+       "mảnh, đơn vị (một từ đo lường)"
+      ],
+      [
+       "给",
+       "gěi",
+       "cho; để, cho"
+      ],
+      [
+       "跟",
+       "gēn",
+       "với"
+      ]
+     ]
+    ],
+    [
+     "gōngrén → hǎowánr",
+     [
+      [
+       "工人",
+       "gōngrén",
+       "người làm việc"
+      ],
+      [
+       "工作",
+       "gōngzuò",
+       "Công việc; làm việc"
+      ],
+      [
+       "关",
+       "guān",
+       "đóng"
+      ],
+      [
+       "关上",
+       "guānshang",
+       "đóng"
+      ],
+      [
+       "贵",
+       "guì",
+       "đắt tiền"
+      ],
+      [
+       "国",
+       "guó",
+       "tiểu bang, quốc gia"
+      ],
+      [
+       "国家",
+       "guójiā",
+       "Quốc gia liên bang"
+      ],
+      [
+       "国外",
+       "guó wài",
+       "nước ngoài"
+      ],
+      [
+       "过",
+       "guò",
+       "hậu tố của thì quá khứ"
+      ],
+      [
+       "还",
+       "hái",
+       "vẫn chưa; thêm vao Đoa"
+      ],
+      [
+       "还是",
+       "háishi",
+       "hay là, vẫn"
+      ],
+      [
+       "还有",
+       "hái yǒu",
+       "còn có, ngoài ra còn"
+      ],
+      [
+       "孩子",
+       "háizi",
+       "đứa trẻ"
+      ],
+      [
+       "汉语",
+       "Hànyǔ",
+       "tiếng Trung Quốc"
+      ],
+      [
+       "汉字",
+       "Hànzì",
+       "Hán tự"
+      ],
+      [
+       "好",
+       "hǎo",
+       "tốt, tốt, tốt đẹp"
+      ],
+      [
+       "好吃",
+       "hǎochī",
+       "ngon, ngon (về đồ ăn)"
+      ],
+      [
+       "好看",
+       "hǎokàn",
+       "ưa nhìn, xinh đẹp"
+      ],
+      [
+       "好听",
+       "hǎotīng",
+       "hài lòng"
+      ],
+      [
+       "好玩儿",
+       "hǎowánr",
+       "vui"
+      ]
+     ]
+    ],
+    [
+     "hào → jīpiào",
+     [
+      [
+       "号",
+       "hào",
+       "con số"
+      ],
+      [
+       "喝",
+       "hē",
+       "uống"
+      ],
+      [
+       "和",
+       "hé",
+       "và"
+      ],
+      [
+       "很",
+       "hěn",
+       "rất"
+      ],
+      [
+       "后",
+       "hòu",
+       "mặt sau"
+      ],
+      [
+       "后边",
+       "hòubian",
+       "lùi lại, đằng sau"
+      ],
+      [
+       "后天",
+       "hòutiān",
+       "ngày kia"
+      ],
+      [
+       "花",
+       "huā",
+       "hoa"
+      ],
+      [
+       "话",
+       "huà",
+       "nói, từ"
+      ],
+      [
+       "坏",
+       "huài",
+       "hư hỏng"
+      ],
+      [
+       "回",
+       "huí",
+       "trở về"
+      ],
+      [
+       "回答",
+       "huídá",
+       "trả lời, trả lời"
+      ],
+      [
+       "回到",
+       "huídào",
+       "Trở lại để"
+      ],
+      [
+       "回家",
+       "huí jiā",
+       "trở về Nha"
+      ],
+      [
+       "回来",
+       "huílái",
+       "trở lại"
+      ],
+      [
+       "回去",
+       "huíqù",
+       "trở lại"
+      ],
+      [
+       "会",
+       "huì",
+       "có thể, để biết làm thế nào để"
+      ],
+      [
+       "火车",
+       "huǒchē",
+       "xe lửa"
+      ],
+      [
+       "机场",
+       "jīchǎng",
+       "phi trường"
+      ],
+      [
+       "机票",
+       "jīpiào",
+       "vé máy bay"
+      ]
+     ]
+    ],
+    [
+     "jīdàn → jìnlái",
+     [
+      [
+       "鸡蛋",
+       "jīdàn",
+       "trứng gà"
+      ],
+      [
+       "几",
+       "jǐ",
+       "một vài, một vài, một số"
+      ],
+      [
+       "记",
+       "jì",
+       "viết ra"
+      ],
+      [
+       "记得",
+       "jìde",
+       "nhớ"
+      ],
+      [
+       "记住",
+       "jìzhù",
+       "ghi nhớ"
+      ],
+      [
+       "家",
+       "jiā",
+       "tổ ấm"
+      ],
+      [
+       "家里",
+       "jiā li",
+       "ở nhà"
+      ],
+      [
+       "家人",
+       "jiārén",
+       "thành viên trong gia đình"
+      ],
+      [
+       "间",
+       "jiān",
+       "phòng (một từ đo lường)"
+      ],
+      [
+       "见",
+       "jiàn",
+       "để xem, để gặp gỡ"
+      ],
+      [
+       "见面",
+       "jiànmiàn",
+       "để gặp"
+      ],
+      [
+       "教",
+       "jiāo",
+       "dạy"
+      ],
+      [
+       "叫",
+       "jiào",
+       "gọi, được gọi"
+      ],
+      [
+       "教学楼",
+       "jiàoxuélóu",
+       "trường học"
+      ],
+      [
+       "姐姐",
+       "jiějie|jiě",
+       "chị gái"
+      ],
+      [
+       "介绍",
+       "jièshào",
+       "Giới thiệu"
+      ],
+      [
+       "今年",
+       "jīnnián",
+       "Năm nay"
+      ],
+      [
+       "今天",
+       "jīntiān",
+       "hôm nay"
+      ],
+      [
+       "进",
+       "jìn",
+       "vào, đi vào"
+      ],
+      [
+       "进来",
+       "jìnlái",
+       "đi vào"
+      ]
+     ]
+    ],
+    [
+     "jìnqù → kuài",
+     [
+      [
+       "进去",
+       "jìnqù",
+       "để vào, vào"
+      ],
+      [
+       "九",
+       "jiǔ",
+       "chín"
+      ],
+      [
+       "就",
+       "jiù",
+       "ngay lập tức"
+      ],
+      [
+       "觉得",
+       "juéde",
+       "cảm nhận, suy nghĩ"
+      ],
+      [
+       "开",
+       "kāi",
+       "để mở, để bắt đầu"
+      ],
+      [
+       "开车",
+       "kāichē",
+       "lái xe"
+      ],
+      [
+       "开会",
+       "kāihuì",
+       "Để có một cuộc họp"
+      ],
+      [
+       "开玩笑",
+       "kāi wánxiào",
+       "để chơi một trò đùa, để giễu cợt"
+      ],
+      [
+       "看",
+       "kàn",
+       "để xem, để xem, để xem"
+      ],
+      [
+       "看病",
+       "kànbìng",
+       "gặp bác sĩ"
+      ],
+      [
+       "看到",
+       "kàndào",
+       "để xem, để bắt gặp"
+      ],
+      [
+       "看见",
+       "kànjiàn",
+       "nhìn"
+      ],
+      [
+       "考",
+       "kǎo",
+       "để đưa ra bài kiểm tra, để làm bài kiểm tra"
+      ],
+      [
+       "考试",
+       "kǎoshì",
+       "để đưa ra hoặc để tham gia một kỳ thi; thi"
+      ],
+      [
+       "渴",
+       "kě",
+       "khát"
+      ],
+      [
+       "课",
+       "kè",
+       "bài học"
+      ],
+      [
+       "课本",
+       "kèběn",
+       "sách giáo khoa"
+      ],
+      [
+       "课文",
+       "kèwén",
+       "chữ"
+      ],
+      [
+       "口",
+       "kǒu",
+       "một từ thước đo cho các thành viên trong gia đình"
+      ],
+      [
+       "块",
+       "kuài",
+       "nhân dân tệ"
+      ]
+     ]
+    ],
+    [
+     "kuài → lùshang",
+     [
+      [
+       "快",
+       "kuài",
+       "nhanh"
+      ],
+      [
+       "来",
+       "lái",
+       "đến"
+      ],
+      [
+       "来到",
+       "láidào",
+       "đến nơi, đến"
+      ],
+      [
+       "老",
+       "lǎo",
+       "già dặn, kinh nghiệm; được tôn trọng"
+      ],
+      [
+       "老人",
+       "lǎorén",
+       "người già"
+      ],
+      [
+       "老师",
+       "lǎoshī",
+       "giáo viên"
+      ],
+      [
+       "了",
+       "le",
+       "hạt \"the\""
+      ],
+      [
+       "累",
+       "lèi",
+       "mệt mỏi"
+      ],
+      [
+       "冷",
+       "lěng",
+       "lạnh"
+      ],
+      [
+       "里",
+       "lǐ",
+       "bên trong, trong"
+      ],
+      [
+       "里边",
+       "lǐbian",
+       "ở bên trong"
+      ],
+      [
+       "两",
+       "liǎng",
+       "hai"
+      ],
+      [
+       "零",
+       "líng|líng",
+       "số không"
+      ],
+      [
+       "六",
+       "liù",
+       "sáu"
+      ],
+      [
+       "楼",
+       "lóu",
+       "Tòa nhà; sàn nhà"
+      ],
+      [
+       "楼上",
+       "lóu shàng",
+       "tầng trên"
+      ],
+      [
+       "楼下",
+       "lóu xià",
+       "tầng dưới"
+      ],
+      [
+       "路",
+       "lù",
+       "đường phố, con đường, tuyến đường"
+      ],
+      [
+       "路口",
+       "lùkǒu",
+       "ngã tư"
+      ],
+      [
+       "路上",
+       "lùshang",
+       "trên đường, trên đường đi"
+      ]
+     ]
+    ],
+    [
+     "māma|mā → miànbāo",
+     [
+      [
+       "妈妈",
+       "māma|mā",
+       "mẹ"
+      ],
+      [
+       "马路",
+       "mǎlù",
+       "đường, phố"
+      ],
+      [
+       "马上",
+       "mǎshàng",
+       "ngay lập tức, ngay lập tức"
+      ],
+      [
+       "吗",
+       "ma",
+       "một hạt chất vấn"
+      ],
+      [
+       "买",
+       "mǎi",
+       "mua"
+      ],
+      [
+       "慢",
+       "màn",
+       "chậm"
+      ],
+      [
+       "忙",
+       "máng",
+       "bận"
+      ],
+      [
+       "毛",
+       "máo",
+       "mao (đơn vị tiền tệ = 1/10 nhân dân tệ)"
+      ],
+      [
+       "没",
+       "méi",
+       "không, không có"
+      ],
+      [
+       "没关系",
+       "méi guānxi",
+       "đừng bận tâm, nó không quan trọng"
+      ],
+      [
+       "没什么",
+       "méi shénme",
+       "Không có gì"
+      ],
+      [
+       "没事儿",
+       "méishìr",
+       "không sao đâu"
+      ],
+      [
+       "没有",
+       "méiyǒu",
+       "không phải"
+      ],
+      [
+       "妹妹",
+       "mèimei|mèi",
+       "em gái"
+      ],
+      [
+       "门",
+       "mén",
+       "cửa, cổng, lối vào"
+      ],
+      [
+       "门口",
+       "ménkǒu",
+       "lối vào, lối vào"
+      ],
+      [
+       "门票",
+       "ménpiào",
+       "vé vào cổng, vé vào cửa"
+      ],
+      [
+       "们",
+       "men (péngyoumen)",
+       "một hậu tố chỉ số nhiều"
+      ],
+      [
+       "米饭",
+       "mǐfàn",
+       "nấu cơm"
+      ],
+      [
+       "面包",
+       "miànbāo",
+       "bánh mì"
+      ]
+     ]
+    ],
+    [
+     "miàntiáor → nánpéngyou",
+     [
+      [
+       "面条儿",
+       "miàntiáor",
+       "mì sợi"
+      ],
+      [
+       "名字",
+       "míngzi",
+       "Tên"
+      ],
+      [
+       "明白",
+       "míngbai",
+       "để hiểu, để biết"
+      ],
+      [
+       "明年",
+       "míngnián",
+       "năm sau"
+      ],
+      [
+       "明天",
+       "míngtiān",
+       "ngày mai"
+      ],
+      [
+       "拿",
+       "ná",
+       "để lấy, để giữ, để mang lại"
+      ],
+      [
+       "哪",
+       "nǎ",
+       "Cái mà? Gì?"
+      ],
+      [
+       "哪里",
+       "nǎlǐ",
+       "ở đâu"
+      ],
+      [
+       "哪儿",
+       "nǎr",
+       "ở đâu"
+      ],
+      [
+       "哪些",
+       "nǎxiē",
+       "Cái mà?"
+      ],
+      [
+       "那",
+       "nà",
+       "cái đó"
+      ],
+      [
+       "那边",
+       "nàbiān",
+       "ở đó, đằng kia"
+      ],
+      [
+       "那里",
+       "nàlǐ",
+       "nơi đó, ở đó"
+      ],
+      [
+       "那儿",
+       "nàr",
+       "ở đó"
+      ],
+      [
+       "那些",
+       "nàxiē",
+       "những thứ kia"
+      ],
+      [
+       "奶",
+       "nǎi",
+       "Sữa"
+      ],
+      [
+       "奶奶",
+       "nǎinai",
+       "bà nội"
+      ],
+      [
+       "男",
+       "nán",
+       "Nam giới"
+      ],
+      [
+       "男孩儿",
+       "nánháir",
+       "cậu bé, con trai"
+      ],
+      [
+       "男朋友",
+       "nánpéngyou",
+       "bạn trai"
+      ]
+     ]
+    ],
+    [
+     "nánrén → pǎo",
+     [
+      [
+       "男人",
+       "nánrén",
+       "Đàn ông"
+      ],
+      [
+       "男生",
+       "nánshēng",
+       "học sinh nam"
+      ],
+      [
+       "南",
+       "nán",
+       "miền Nam"
+      ],
+      [
+       "南边",
+       "nánbian",
+       "phía nam, phía nam"
+      ],
+      [
+       "难",
+       "nán",
+       "khó khăn"
+      ],
+      [
+       "呢",
+       "ne",
+       "một hạt cho câu hỏi đặc biệt, thay thế hoặc tu từ"
+      ],
+      [
+       "能",
+       "néng",
+       "có thể, để có thể"
+      ],
+      [
+       "你",
+       "nǐ",
+       "bạn (độc thân)"
+      ],
+      [
+       "你们",
+       "nǐmen",
+       "bạn (số nhiều)"
+      ],
+      [
+       "年",
+       "nián",
+       "năm"
+      ],
+      [
+       "您",
+       "nín",
+       "bạn (lịch sự)"
+      ],
+      [
+       "牛奶",
+       "niúnǎi",
+       "Sữa"
+      ],
+      [
+       "女",
+       "nǚ",
+       "nữ"
+      ],
+      [
+       "女儿",
+       "nǚ'ér",
+       "Con gái"
+      ],
+      [
+       "女孩儿",
+       "nǚháir",
+       "con gái"
+      ],
+      [
+       "女朋友",
+       "nǚpéngyou",
+       "bạn gái"
+      ],
+      [
+       "女人",
+       "nǚrén",
+       "người đàn bà"
+      ],
+      [
+       "女生",
+       "nǚshēng",
+       "nữ sinh"
+      ],
+      [
+       "旁边",
+       "pángbiān",
+       "bên cạnh, gần đó"
+      ],
+      [
+       "跑",
+       "pǎo",
+       "chạy"
+      ]
+     ]
+    ],
+    [
+     "péngyou → qùnián",
+     [
+      [
+       "朋友",
+       "péngyou",
+       "bạn bè"
+      ],
+      [
+       "票",
+       "piào",
+       "vé"
+      ],
+      [
+       "七",
+       "qī",
+       "bảy"
+      ],
+      [
+       "起",
+       "qǐ",
+       "đứng dậy, đứng lên"
+      ],
+      [
+       "起床",
+       "qǐchuáng",
+       "thức dậy"
+      ],
+      [
+       "起来",
+       "qǐlái",
+       "đưng lên"
+      ],
+      [
+       "汽车",
+       "qìchē",
+       "ô tô, ô tô"
+      ],
+      [
+       "前",
+       "qián",
+       "trước; phía trước, phía trước"
+      ],
+      [
+       "前边",
+       "qiánbian",
+       "phía trước, phía trước"
+      ],
+      [
+       "前天",
+       "qiántiān",
+       "ngày hôm trước"
+      ],
+      [
+       "钱",
+       "qián",
+       "tiền bạc"
+      ],
+      [
+       "钱包",
+       "qiánbāo",
+       "ví cầm tay"
+      ],
+      [
+       "请",
+       "qǐng",
+       "mời"
+      ],
+      [
+       "请假",
+       "qǐngjià",
+       "xin nghỉ phép"
+      ],
+      [
+       "请进",
+       "qǐng jìn",
+       "mời vào"
+      ],
+      [
+       "请问",
+       "qǐngwèn",
+       "nói tôi nghe đi mà"
+      ],
+      [
+       "请坐",
+       "qǐng zuò",
+       "xin mời ngồi"
+      ],
+      [
+       "球",
+       "qiú",
+       "trái bóng"
+      ],
+      [
+       "去",
+       "qù",
+       "đi"
+      ],
+      [
+       "去年",
+       "qùnián",
+       "năm ngoái"
+      ]
+     ]
+    ],
+    [
+     "rè → shàngxué",
+     [
+      [
+       "热",
+       "rè",
+       "nóng; nhiệt"
+      ],
+      [
+       "人",
+       "rén",
+       "người"
+      ],
+      [
+       "认识",
+       "rènshi",
+       "để biết, để nhận ra"
+      ],
+      [
+       "认真",
+       "rènzhēn",
+       "chú ý; tận tâm, nghiêm túc"
+      ],
+      [
+       "日",
+       "rì",
+       "mặt trời; ngày"
+      ],
+      [
+       "日期",
+       "rìqī",
+       "ngày"
+      ],
+      [
+       "肉",
+       "ròu",
+       "thịt, thịt"
+      ],
+      [
+       "三",
+       "sān",
+       "số ba"
+      ],
+      [
+       "山",
+       "shān",
+       "đồi núi"
+      ],
+      [
+       "商场",
+       "shāngchǎng",
+       "trung tâm mua sắm, cửa hàng bách hóa"
+      ],
+      [
+       "商店",
+       "shāngdiàn",
+       "cửa hàng"
+      ],
+      [
+       "上",
+       "shàng",
+       "để bắt đầu"
+      ],
+      [
+       "上班",
+       "shàngbān",
+       "đi làm, bắt đầu công việc"
+      ],
+      [
+       "上边",
+       "shàngbian",
+       "ở trên, trên đầu trang của"
+      ],
+      [
+       "上车",
+       "shàng chē",
+       "lên xe hơi hoặc xe buýt"
+      ],
+      [
+       "上次",
+       "shàng cì",
+       "lần cuối cùng"
+      ],
+      [
+       "上课",
+       "shàngkè",
+       "tham gia lớp học, để trả lời một bài học"
+      ],
+      [
+       "上网",
+       "shàngwǎng",
+       "sử dụng Internet"
+      ],
+      [
+       "上午",
+       "shàngwǔ",
+       "sáng, A.M."
+      ],
+      [
+       "上学",
+       "shàngxué",
+       "đến trường, đến trường"
+      ]
+     ]
+    ],
+    [
+     "shǎo → shūdiàn",
+     [
+      [
+       "少",
+       "shǎo",
+       "ít, ít"
+      ],
+      [
+       "谁",
+       "shéi/shuí",
+       "không một người nào"
+      ],
+      [
+       "身上",
+       "shēnshang",
+       "trên tay"
+      ],
+      [
+       "身体",
+       "shēntǐ",
+       "sức khỏe cơ thể"
+      ],
+      [
+       "什么",
+       "shénme",
+       "Gì?"
+      ],
+      [
+       "生病",
+       "shēngbìng",
+       "Bị bệnh"
+      ],
+      [
+       "生气",
+       "shēngqì",
+       "giận dữ"
+      ],
+      [
+       "生日",
+       "shēngrì",
+       "ngày sinh nhật"
+      ],
+      [
+       "十",
+       "shí",
+       "mười"
+      ],
+      [
+       "时候",
+       "shíhou",
+       "thời gian"
+      ],
+      [
+       "时间",
+       "shíjiān",
+       "thời gian"
+      ],
+      [
+       "事",
+       "shì",
+       "vấn đề, điều"
+      ],
+      [
+       "试",
+       "shì",
+       "thử"
+      ],
+      [
+       "是",
+       "shì",
+       "là"
+      ],
+      [
+       "是不是",
+       "shì bu shì",
+       "có hay không?"
+      ],
+      [
+       "手",
+       "shǒu",
+       "tay"
+      ],
+      [
+       "手机",
+       "shǒujī",
+       "điện thoại di động"
+      ],
+      [
+       "书",
+       "shū",
+       "sách"
+      ],
+      [
+       "书包",
+       "shūbāo",
+       "cặp sách"
+      ],
+      [
+       "书店",
+       "shūdiàn",
+       "hiệu sách"
+      ]
+     ]
+    ],
+    [
+     "shù → tīngjiàn",
+     [
+      [
+       "树",
+       "shù",
+       "cây"
+      ],
+      [
+       "水",
+       "shuǐ",
+       "nước"
+      ],
+      [
+       "水果",
+       "shuǐguǒ",
+       "trái cây"
+      ],
+      [
+       "睡",
+       "shuì",
+       "ngủ"
+      ],
+      [
+       "睡觉",
+       "shuìjiào",
+       "đi ngủ, đi ngủ"
+      ],
+      [
+       "说",
+       "shuō",
+       "nói, nói"
+      ],
+      [
+       "说话",
+       "shuōhuà",
+       "nói, nói chuyện, trò chuyện"
+      ],
+      [
+       "四",
+       "sì",
+       "bốn"
+      ],
+      [
+       "送",
+       "sòng",
+       "tặng"
+      ],
+      [
+       "岁",
+       "suì",
+       "tuổi tác"
+      ],
+      [
+       "他",
+       "tā",
+       "anh ấy, anh ấy"
+      ],
+      [
+       "他们",
+       "tāmen",
+       "họ"
+      ],
+      [
+       "她",
+       "tā",
+       "cô ấy, cô ấy"
+      ],
+      [
+       "她们",
+       "tāmen",
+       "họ, họ (nữ)"
+      ],
+      [
+       "太",
+       "tài",
+       "cũng vậy"
+      ],
+      [
+       "天",
+       "tiān",
+       "trời/ngày"
+      ],
+      [
+       "天气",
+       "tiānqì",
+       "thời tiết"
+      ],
+      [
+       "听",
+       "tīng",
+       "để nghe, để nghe"
+      ],
+      [
+       "听到",
+       "tīngdào",
+       "nghe"
+      ],
+      [
+       "听见",
+       "tīngjiàn",
+       "nghe"
+      ]
+     ]
+    ],
+    [
+     "tīngxiě → wǔfàn",
+     [
+      [
+       "听写",
+       "tīngxiě",
+       "chính tả; viết chính tả"
+      ],
+      [
+       "同学",
+       "tóngxué",
+       "bạn cùng trường, bạn cùng lớp"
+      ],
+      [
+       "图书馆",
+       "túshūguǎn",
+       "thư viện"
+      ],
+      [
+       "外",
+       "wài",
+       "ngoại quốc; ngoài"
+      ],
+      [
+       "外边",
+       "wàibian",
+       "ngoài"
+      ],
+      [
+       "外国",
+       "wàiguó",
+       "ngoại quốc; nước ngoài"
+      ],
+      [
+       "外语",
+       "wàiyǔ",
+       "ngoại ngữ"
+      ],
+      [
+       "玩儿",
+       "wánr",
+       "để chơi, để giải trí cho bản thân"
+      ],
+      [
+       "晚",
+       "wǎn",
+       "muộn"
+      ],
+      [
+       "晚饭",
+       "wǎnfàn",
+       "bữa tối, bữa tối"
+      ],
+      [
+       "晚上",
+       "wǎnshang",
+       "tối"
+      ],
+      [
+       "网上",
+       "wǎng shang",
+       "Trực tuyến"
+      ],
+      [
+       "网友",
+       "wǎngyǒu",
+       "người dùng Internet, người bạn trên Internet"
+      ],
+      [
+       "忘",
+       "wàng",
+       "quên"
+      ],
+      [
+       "忘记",
+       "wàngjì",
+       "quên"
+      ],
+      [
+       "问",
+       "wèn",
+       "hỏi"
+      ],
+      [
+       "我",
+       "wǒ",
+       "Tôi, tôi"
+      ],
+      [
+       "我们",
+       "wǒmen",
+       "chúng tôi chúng ta"
+      ],
+      [
+       "五",
+       "wǔ",
+       "năm"
+      ],
+      [
+       "午饭",
+       "wǔfàn",
+       "Bữa trưa"
+      ]
+     ]
+    ],
+    [
+     "xī → xiǎojiě",
+     [
+      [
+       "西",
+       "xī",
+       "hướng Tây"
+      ],
+      [
+       "西边",
+       "xībian",
+       "phía tây, phía tây"
+      ],
+      [
+       "洗",
+       "xǐ",
+       "để rửa"
+      ],
+      [
+       "洗手间",
+       "xǐshǒujiān",
+       "nhà vệ sinh, nhà vệ sinh"
+      ],
+      [
+       "喜欢",
+       "xǐhuan",
+       "thích"
+      ],
+      [
+       "下",
+       "xià",
+       "kêt thuc"
+      ],
+      [
+       "下班",
+       "xiàbān",
+       "hoàn thành công việc"
+      ],
+      [
+       "下边",
+       "xiàbian",
+       "bên dưới, bên dưới"
+      ],
+      [
+       "下车",
+       "xià chē",
+       "xuống xe buýt hoặc ô tô"
+      ],
+      [
+       "下次",
+       "xià cì",
+       "lần tới"
+      ],
+      [
+       "下课",
+       "xiàkè",
+       "kết thúc lớp học"
+      ],
+      [
+       "下午",
+       "xiàwǔ",
+       "buổi chiều, P.M."
+      ],
+      [
+       "下雨",
+       "xià yǔ",
+       "mưa"
+      ],
+      [
+       "先",
+       "xiān",
+       "đầu tiên, trước đây"
+      ],
+      [
+       "先生",
+       "xiānsheng",
+       "thưa ông, thưa ông chồng"
+      ],
+      [
+       "现在",
+       "xiànzài",
+       "bây giờ"
+      ],
+      [
+       "想",
+       "xiǎng",
+       "nghĩ, muốn, bỏ lỡ"
+      ],
+      [
+       "小",
+       "xiǎo",
+       "những cái nhỏ"
+      ],
+      [
+       "小孩儿",
+       "xiǎoháir",
+       "đứa trẻ"
+      ],
+      [
+       "小姐",
+       "xiǎojiě",
+       "thưa cô, cô gái trẻ"
+      ]
+     ]
+    ],
+    [
+     "xiǎopéngyǒu → yào",
+     [
+      [
+       "小朋友",
+       "xiǎopéngyǒu",
+       "cậu bé hay cô bé"
+      ],
+      [
+       "小时",
+       "xiǎoshí",
+       "giờ"
+      ],
+      [
+       "小学",
+       "xiǎoxué",
+       "trường tiểu học"
+      ],
+      [
+       "小学生",
+       "xiǎoxuéshēng",
+       "học sinh tiểu học"
+      ],
+      [
+       "笑",
+       "xiào",
+       "cười, cười"
+      ],
+      [
+       "写",
+       "xiě",
+       "viết"
+      ],
+      [
+       "谢谢",
+       "xièxie",
+       "Cảm ơn"
+      ],
+      [
+       "新",
+       "xīn",
+       "Mới"
+      ],
+      [
+       "新年",
+       "xīnnián",
+       "Năm mới"
+      ],
+      [
+       "星期",
+       "xīngqī",
+       "tuần"
+      ],
+      [
+       "星期日",
+       "xīngqīrì",
+       "Chủ nhật"
+      ],
+      [
+       "星期天",
+       "xīngqītiān",
+       "Chủ nhật"
+      ],
+      [
+       "行",
+       "xíng",
+       "được rồi, được rồi"
+      ],
+      [
+       "休息",
+       "xiūxi",
+       "nghỉ ngơi"
+      ],
+      [
+       "学",
+       "xué",
+       "to study sth., học sth."
+      ],
+      [
+       "学生",
+       "xuéshēng",
+       "sinh viên"
+      ],
+      [
+       "学习",
+       "xuéxí",
+       "học, học"
+      ],
+      [
+       "学校",
+       "xuéxiào",
+       "trường học"
+      ],
+      [
+       "学院",
+       "xuéyuàn",
+       "học viện"
+      ],
+      [
+       "要",
+       "yào",
+       "muốn"
+      ]
+     ]
+    ],
+    [
+     "yéye → yǒumíng",
+     [
+      [
+       "爷爷",
+       "yéye",
+       "ông nội"
+      ],
+      [
+       "也",
+       "yě",
+       "cũng vậy"
+      ],
+      [
+       "页",
+       "yè",
+       "trang"
+      ],
+      [
+       "一",
+       "yī",
+       "một"
+      ],
+      [
+       "衣服",
+       "yīfu",
+       "quần áo"
+      ],
+      [
+       "医生",
+       "yīshēng",
+       "Bác sĩ"
+      ],
+      [
+       "医院",
+       "yīyuàn",
+       "bệnh viện"
+      ],
+      [
+       "一半",
+       "yībàn",
+       "một nửa"
+      ],
+      [
+       "一会儿",
+       "yīhuìr",
+       "một thời gian ngắn"
+      ],
+      [
+       "一块儿",
+       "yīkuàir",
+       "cùng nhau, một chỗ"
+      ],
+      [
+       "一下儿",
+       "yīxiàr",
+       "trong chốc lát, một lần"
+      ],
+      [
+       "一样",
+       "yīyàng",
+       "giống nhau"
+      ],
+      [
+       "一边",
+       "yībiān",
+       "một mặt"
+      ],
+      [
+       "一点儿",
+       "yīdiǎnr",
+       "một chút"
+      ],
+      [
+       "一起",
+       "yīqǐ",
+       "cùng với nhau"
+      ],
+      [
+       "一些",
+       "yīxiē",
+       "một số"
+      ],
+      [
+       "用",
+       "yòng",
+       "sử dụng"
+      ],
+      [
+       "有",
+       "yǒu",
+       "có"
+      ],
+      [
+       "有的",
+       "yǒude",
+       "một số"
+      ],
+      [
+       "有名",
+       "yǒumíng",
+       "nổi tiếng"
+      ]
+     ]
+    ],
+    [
+     "yǒushíhou|yǒushí → zhǎodào",
+     [
+      [
+       "有时候",
+       "yǒushíhou|yǒushí",
+       "thỉnh thoảng"
+      ],
+      [
+       "有些",
+       "yǒu(yī)xiē",
+       "một số"
+      ],
+      [
+       "有用",
+       "yǒuyòng",
+       "hữu ích"
+      ],
+      [
+       "右",
+       "yòu",
+       "bên phải"
+      ],
+      [
+       "右边",
+       "yòubian",
+       "bên phải"
+      ],
+      [
+       "雨",
+       "yǔ",
+       "cơn mưa"
+      ],
+      [
+       "元",
+       "yuán",
+       "nhân dân tệ"
+      ],
+      [
+       "远",
+       "yuǎn",
+       "xa"
+      ],
+      [
+       "月",
+       "yuè",
+       "tháng"
+      ],
+      [
+       "再",
+       "zài",
+       "một lần nữa, một lần nữa"
+      ],
+      [
+       "再见",
+       "zàijiàn",
+       "Tạm biệt"
+      ],
+      [
+       "在",
+       "zài",
+       "được; tại, trên, trong"
+      ],
+      [
+       "在家",
+       "zàijiā",
+       "ở nhà"
+      ],
+      [
+       "早",
+       "zǎo",
+       "sớm"
+      ],
+      [
+       "早饭",
+       "zǎofàn",
+       "bữa ăn sáng"
+      ],
+      [
+       "早上",
+       "zǎoshang",
+       "buổi sáng"
+      ],
+      [
+       "怎么",
+       "zěnme",
+       "Làm sao? Tại sao?"
+      ],
+      [
+       "站",
+       "zhàn",
+       "để đứng; trạm dừng"
+      ],
+      [
+       "找",
+       "zhǎo",
+       "để thay đổi"
+      ],
+      [
+       "找到",
+       "zhǎodào",
+       "để tìm"
+      ]
+     ]
+    ],
+    [
+     "zhè → zhòng",
+     [
+      [
+       "这",
+       "zhè",
+       "đây"
+      ],
+      [
+       "这边",
+       "zhèbiān",
+       "đây, bên này"
+      ],
+      [
+       "这里",
+       "zhèlǐ",
+       "nơi đây"
+      ],
+      [
+       "这儿",
+       "zhèr",
+       "nơi đây"
+      ],
+      [
+       "这些",
+       "zhèxiē",
+       "này"
+      ],
+      [
+       "着",
+       "zhe",
+       "hậu tố trạng thái dài"
+      ],
+      [
+       "真",
+       "zhēn",
+       "thật sự; thực, xác thực"
+      ],
+      [
+       "真的",
+       "zhēn de",
+       "có thật"
+      ],
+      [
+       "正",
+       "zhèng",
+       "Chính xác"
+      ],
+      [
+       "正在",
+       "zhèngzài",
+       "chỉ vào thời điểm đó"
+      ],
+      [
+       "知道",
+       "zhīdào",
+       "để biết"
+      ],
+      [
+       "知识",
+       "zhīshi",
+       "hiểu biết"
+      ],
+      [
+       "中",
+       "zhōng",
+       "Trong"
+      ],
+      [
+       "中国",
+       "Zhōngguó",
+       "Trung Quốc"
+      ],
+      [
+       "中间",
+       "zhōngjiān",
+       "giữa những; ở giữa"
+      ],
+      [
+       "中文",
+       "Zhōngwén",
+       "tiếng Trung Quốc"
+      ],
+      [
+       "中午",
+       "zhōngwǔ",
+       "buổi trưa"
+      ],
+      [
+       "中学",
+       "zhōngxué",
+       "Trung học phổ thông"
+      ],
+      [
+       "中学生",
+       "zhōngxuéshēng",
+       "học sinh cấp 2"
+      ],
+      [
+       "重",
+       "zhòng",
+       "nặng"
+      ]
+     ]
+    ],
+    [
+     "zhòngyào → zuò",
+     [
+      [
+       "重要",
+       "zhòngyào",
+       "quan trọng"
+      ],
+      [
+       "住",
+       "zhù",
+       "để sống, để ở"
+      ],
+      [
+       "准备",
+       "zhǔnbèi",
+       "chuẩn bị, sẵn sàng"
+      ],
+      [
+       "桌子",
+       "zhuōzi",
+       "bàn, bàn"
+      ],
+      [
+       "字",
+       "zì",
+       "tính cách"
+      ],
+      [
+       "子",
+       "zi (zhuōzi)",
+       "hậu tố danh từ (con, cái…)"
+      ],
+      [
+       "走",
+       "zǒu",
+       "đi bộ, đi"
+      ],
+      [
+       "走路",
+       "zǒulù",
+       "đi bộ, đi bộ"
+      ],
+      [
+       "最",
+       "zuì",
+       "nhiều nhất"
+      ],
+      [
+       "最好",
+       "zuìhǎo",
+       "tốt hơn, nó sẽ là tốt nhất"
+      ],
+      [
+       "最后",
+       "zuìhòu",
+       "cuối cùng, cuối cùng; đến cuối cùng"
+      ],
+      [
+       "昨天",
+       "zuótiān",
+       "hôm qua"
+      ],
+      [
+       "左",
+       "zuǒ",
+       "bên trái"
+      ],
+      [
+       "左边",
+       "zuǒbian",
+       "bên trái"
+      ],
+      [
+       "坐",
+       "zuò",
+       "ngồi, đi qua"
+      ],
+      [
+       "坐下",
+       "zuò xia",
+       "ngồi xuống"
+      ],
+      [
+       "做",
+       "zuò",
+       "Hãy làm những gì muốn làm"
+      ]
+     ]
+    ],
+    [
+     "Bổ sung — từ hay dùng ngoài danh sách mới",
+     []
+    ]
+   ]
+  },
+  {
+   "no": 2,
+   "hsk": 2,
+   "seal": "二",
+   "name": "Vững bước",
+   "desc": "Từ vựng HSK 2 mới (chuẩn 3.0) — cộng dồn 1272 từ",
+   "acc": "#2E86D1",
+   "accd": "#1B5E93",
+   "lessons": [
+    [
+     "a → bǐ",
+     [
+      [
+       "啊",
+       "a",
+       "một thán từ \"a\""
+      ],
+      [
+       "爱情",
+       "àiqíng",
+       "tình cảm, tình yêu"
+      ],
+      [
+       "爱人",
+       "àiren",
+       "vợ chồng"
+      ],
+      [
+       "安静",
+       "ānjìng",
+       "yên tĩnh, yên bình"
+      ],
+      [
+       "安全",
+       "ānquán",
+       "an toàn; an toàn, bảo mật"
+      ],
+      [
+       "白色",
+       "báisè",
+       "màu trắng"
+      ],
+      [
+       "班长",
+       "bānzhǎng",
+       "lớp trưởng"
+      ],
+      [
+       "办",
+       "bàn",
+       "để làm, để quản lý"
+      ],
+      [
+       "办法",
+       "bànfǎ",
+       "cách, nghĩa là"
+      ],
+      [
+       "办公室",
+       "bàngōngshì",
+       "văn phòng"
+      ],
+      [
+       "半夜",
+       "bànyè",
+       "nửa đêm"
+      ],
+      [
+       "帮助",
+       "bāngzhù",
+       "giúp đỡ; hỗ trợ"
+      ],
+      [
+       "饱",
+       "bǎo",
+       "đầy"
+      ],
+      [
+       "报名",
+       "bàomíng",
+       "để nhập tên của một người, để đăng ký"
+      ],
+      [
+       "报纸",
+       "bàozhǐ",
+       "báo chí"
+      ],
+      [
+       "北方",
+       "běifāng",
+       "Bắc"
+      ],
+      [
+       "背",
+       "bèi",
+       "để mang trên lưng; mặt sau"
+      ],
+      [
+       "比如",
+       "bǐrú",
+       "ví dụ, chẳng hạn như"
+      ],
+      [
+       "比如说",
+       "bǐrú shuō",
+       "Ví dụ"
+      ],
+      [
+       "笔",
+       "bǐ",
+       "cây bút"
+      ]
+     ]
+    ],
+    [
+     "bǐjì → bù",
+     [
+      [
+       "笔记",
+       "bǐjì",
+       "để hạ gục; ghi lại"
+      ],
+      [
+       "笔记本",
+       "bǐjìběn",
+       "máy tính xách tay"
+      ],
+      [
+       "必须",
+       "bìxū",
+       "phải, phải"
+      ],
+      [
+       "边",
+       "biān",
+       "cạnh"
+      ],
+      [
+       "变",
+       "biàn",
+       "trở thành, thay đổi"
+      ],
+      [
+       "变成",
+       "biànchéng",
+       "trở thành, thay đổi thành"
+      ],
+      [
+       "遍",
+       "biàn",
+       "thời gian (một từ đo lường cho các hành động đã hoàn thành)"
+      ],
+      [
+       "表",
+       "biǎo",
+       "biểu mẫu, bảng câu hỏi, bảng"
+      ],
+      [
+       "表示",
+       "biǎoshì",
+       "để thể hiện, để bày tỏ; biểu hiện"
+      ],
+      [
+       "不错",
+       "bùcuò",
+       "khá tốt, không tệ"
+      ],
+      [
+       "不但",
+       "bùdàn",
+       "không chỉ"
+      ],
+      [
+       "不够",
+       "bùgòu",
+       "không đủ"
+      ],
+      [
+       "不过",
+       "bùguò",
+       "nhưng, tuy nhiên"
+      ],
+      [
+       "不太",
+       "bù tài",
+       "không quá"
+      ],
+      [
+       "不要",
+       "bùyào",
+       "đừng"
+      ],
+      [
+       "不好意思",
+       "bù hǎoyìsi",
+       "cảm thấy xấu hổ"
+      ],
+      [
+       "不久",
+       "bùjiǔ",
+       "không lâu nữa, trong tương lai gần"
+      ],
+      [
+       "不满",
+       "bùmǎn",
+       "bực bội, bất mãn"
+      ],
+      [
+       "不如",
+       "bùrú",
+       "không tốt bằng"
+      ],
+      [
+       "不少",
+       "bù shǎo",
+       "khá nhiều"
+      ]
+     ]
+    ],
+    [
+     "bù → chāoshì",
+     [
+      [
+       "不同",
+       "bù tóng",
+       "khác nhau, không giống nhau"
+      ],
+      [
+       "不行",
+       "bùxíng",
+       "sẽ không làm, không được phép"
+      ],
+      [
+       "不一定",
+       "bùyīdìng",
+       "không cần thiết"
+      ],
+      [
+       "不一会儿",
+       "bù yīhuìr",
+       "trong một khoảnh khắc"
+      ],
+      [
+       "部分",
+       "bùfen",
+       "phần"
+      ],
+      [
+       "才",
+       "cái",
+       "chỉ, hầu như không"
+      ],
+      [
+       "菜单",
+       "càidān",
+       "thực đơn"
+      ],
+      [
+       "参观",
+       "cānguān",
+       "đến thăm"
+      ],
+      [
+       "参加",
+       "cānjiā",
+       "tham gia"
+      ],
+      [
+       "草",
+       "cǎo",
+       "cỏ"
+      ],
+      [
+       "草地",
+       "cǎodì",
+       "đồng cỏ, đồng cỏ"
+      ],
+      [
+       "层",
+       "céng",
+       "tầng, tầng"
+      ],
+      [
+       "查",
+       "chá",
+       "để kiểm tra, để tra cứu"
+      ],
+      [
+       "差不多",
+       "chàbuduō",
+       "gần giống nhau, gần như"
+      ],
+      [
+       "长",
+       "cháng",
+       "Dài; chiều dài"
+      ],
+      [
+       "常见",
+       "cháng jiàn",
+       "phổ thông"
+      ],
+      [
+       "常用",
+       "cháng yòng",
+       "phổ thông"
+      ],
+      [
+       "场",
+       "chǎng",
+       "một từ đo lường cho trò chơi, trận đấu thể thao, cảnh"
+      ],
+      [
+       "超过",
+       "chāoguò",
+       "vượt qua, vượt qua"
+      ],
+      [
+       "超市",
+       "chāoshì",
+       "siêu thị"
+      ]
+     ]
+    ],
+    [
+     "chēliàng → cí",
+     [
+      [
+       "车辆",
+       "chēliàng",
+       "phương tiện giao thông"
+      ],
+      [
+       "成",
+       "chéng",
+       "trở thành, biến thành"
+      ],
+      [
+       "成绩",
+       "chéngjì",
+       "thành tích, điểm"
+      ],
+      [
+       "成为",
+       "chéngwéi",
+       "trở thành, biến thành"
+      ],
+      [
+       "重复",
+       "chóngfù",
+       "lặp lại, sao chép"
+      ],
+      [
+       "重新",
+       "chóngxīn",
+       "một lần nữa"
+      ],
+      [
+       "出发",
+       "chūfā",
+       "để bắt đầu; khởi hành"
+      ],
+      [
+       "出国",
+       "chūguó",
+       "đi nước ngoài"
+      ],
+      [
+       "出口",
+       "chūkǒu",
+       "lối ra"
+      ],
+      [
+       "出门",
+       "chūmén",
+       "đi trên một cuộc hành trình"
+      ],
+      [
+       "出生",
+       "chūshēng",
+       "được sinh ra"
+      ],
+      [
+       "出现",
+       "chūxiàn",
+       "xuất hiện, phát sinh"
+      ],
+      [
+       "出院",
+       "chūyuàn",
+       "xuất viện"
+      ],
+      [
+       "出租",
+       "chūzū",
+       "thuê, cho thuê, cho thuê"
+      ],
+      [
+       "出租车",
+       "chūzūchē",
+       "xe taxi"
+      ],
+      [
+       "船",
+       "chuán",
+       "tàu thuyền"
+      ],
+      [
+       "吹",
+       "chuī",
+       "thổi, thổi"
+      ],
+      [
+       "春节",
+       "Chūnjié",
+       "Lễ hội Xuân"
+      ],
+      [
+       "春天",
+       "chūntiān",
+       "mùa xuân"
+      ],
+      [
+       "词",
+       "cí",
+       "từ"
+      ]
+     ]
+    ],
+    [
+     "cídiǎn → dài",
+     [
+      [
+       "词典",
+       "cídiǎn",
+       "từ điển"
+      ],
+      [
+       "词语",
+       "cíyǔ",
+       "từ và Thành ngữ"
+      ],
+      [
+       "从小",
+       "cóngxiǎo",
+       "từ thời thơ ấu"
+      ],
+      [
+       "答应",
+       "dāying",
+       "để đáp lại, để hứa"
+      ],
+      [
+       "打工",
+       "dǎgōng",
+       "làm những công việc lặt vặt"
+      ],
+      [
+       "打算",
+       "dǎsuàn",
+       "kế hoạch; lên kế hoạch, dự định"
+      ],
+      [
+       "打印",
+       "dǎyìn",
+       "để in"
+      ],
+      [
+       "大部分",
+       "dàbùfen",
+       "phần lớn, phần lớn"
+      ],
+      [
+       "大大",
+       "dàdà",
+       "rất nhiều"
+      ],
+      [
+       "大多数",
+       "dàduōshù",
+       "đại đa số"
+      ],
+      [
+       "大海",
+       "dàhǎi",
+       "đại dương"
+      ],
+      [
+       "大家",
+       "dàjiā",
+       "tất cả, tất cả mọi người"
+      ],
+      [
+       "大量",
+       "dàliàng",
+       "số lượng lớn"
+      ],
+      [
+       "大门",
+       "dàmén",
+       "lối vào chính"
+      ],
+      [
+       "大人",
+       "dàren",
+       "người lớn"
+      ],
+      [
+       "大声",
+       "dà shēng",
+       "bằng một giọng nói lớn"
+      ],
+      [
+       "大小",
+       "dàxiǎo",
+       "kích thước, kích thước"
+      ],
+      [
+       "大衣",
+       "dàyī",
+       "áo choàng"
+      ],
+      [
+       "大自然",
+       "dàzìrán",
+       "thiên nhiên"
+      ],
+      [
+       "带",
+       "dài",
+       "lấy, mang theo, mang theo"
+      ]
+     ]
+    ],
+    [
+     "dàilái → dī",
+     [
+      [
+       "带来",
+       "dàilái",
+       "mang theo"
+      ],
+      [
+       "单位",
+       "dānwèi",
+       "đơn vị"
+      ],
+      [
+       "但",
+       "dàn",
+       "nhưng, tuy nhiên"
+      ],
+      [
+       "但是",
+       "dànshì",
+       "nhưng, chưa"
+      ],
+      [
+       "蛋",
+       "dàn",
+       "trứng"
+      ],
+      [
+       "当",
+       "dāng",
+       "trở thành, hiện hữu, để làm việc"
+      ],
+      [
+       "当时",
+       "dāngshí",
+       "tại thời điểm đó, sau đó"
+      ],
+      [
+       "倒",
+       "dǎo",
+       "rơi, lật đổ; lộn ngược"
+      ],
+      [
+       "到处",
+       "dàochù",
+       "mọi nơi"
+      ],
+      [
+       "道",
+       "dào",
+       "một từ đo lường cho các tòa nhà hoặc câu hỏi"
+      ],
+      [
+       "道理",
+       "dàolǐ",
+       "sự thật, lý do"
+      ],
+      [
+       "道路",
+       "dàolù",
+       "đường bộ"
+      ],
+      [
+       "得",
+       "dé",
+       "hạt để mô tả cách thức, mức độ hoặc khả năng"
+      ],
+      [
+       "得出",
+       "déchū",
+       "để đạt được, để có được, để đến"
+      ],
+      [
+       "的话",
+       "dehuà",
+       "nếu"
+      ],
+      [
+       "灯",
+       "dēng",
+       "đèn, đèn lồng, ánh sáng"
+      ],
+      [
+       "等",
+       "děng",
+       "đợi"
+      ],
+      [
+       "等到",
+       "děngdào",
+       "đợi cho đến khi"
+      ],
+      [
+       "等于",
+       "děngyú",
+       "ngang bằng với"
+      ],
+      [
+       "低",
+       "dī",
+       "Thấp"
+      ]
+     ]
+    ],
+    [
+     "dìqiú → duì",
+     [
+      [
+       "地球",
+       "dìqiú",
+       "trái đất"
+      ],
+      [
+       "地铁",
+       "dìtiě",
+       "đường sắt ngầm, tàu điện ngầm"
+      ],
+      [
+       "地铁站",
+       "dìtiězhàn",
+       "ga tàu điện ngầm"
+      ],
+      [
+       "点头",
+       "diǎntóu",
+       "gật đầu"
+      ],
+      [
+       "店",
+       "diàn",
+       "cửa tiệm"
+      ],
+      [
+       "掉",
+       "diào",
+       "rơi, rơi"
+      ],
+      [
+       "东北",
+       "dōngběi",
+       "vùng Đông Bắc"
+      ],
+      [
+       "东方",
+       "dōngfāng",
+       "phía đông"
+      ],
+      [
+       "东南",
+       "dōngnán",
+       "Đông Nam"
+      ],
+      [
+       "冬天",
+       "dōngtiān",
+       "mùa đông"
+      ],
+      [
+       "懂",
+       "dǒng",
+       "để hiểu, để biết"
+      ],
+      [
+       "懂得",
+       "dǒngde",
+       "để hiểu, để biết"
+      ],
+      [
+       "动物",
+       "dòngwù",
+       "động vật"
+      ],
+      [
+       "动物园",
+       "dòngwùyuán",
+       "đẹp"
+      ],
+      [
+       "读音",
+       "dúyīn",
+       "phát âm"
+      ],
+      [
+       "度",
+       "dù",
+       "bằng cấp"
+      ],
+      [
+       "短",
+       "duǎn",
+       "ngắn"
+      ],
+      [
+       "短信",
+       "duǎnxìn",
+       "SMS"
+      ],
+      [
+       "段",
+       "duàn",
+       "kỳ, phần, mảnh, cắt (một từ đo lường)"
+      ],
+      [
+       "队",
+       "duì",
+       "đội, nhóm"
+      ]
+     ]
+    ],
+    [
+     "duìzhǎng → fàngxīn",
+     [
+      [
+       "队长",
+       "duìzhǎng",
+       "trưởng nhóm"
+      ],
+      [
+       "对",
+       "duì",
+       "vâng, đúng, chính xác"
+      ],
+      [
+       "对话",
+       "duìhuà",
+       "hội thoại"
+      ],
+      [
+       "对面",
+       "duìmiàn",
+       "đối nghịch"
+      ],
+      [
+       "多",
+       "duō",
+       "nhiều, nhiều lắm; Bao nhiêu?"
+      ],
+      [
+       "多久",
+       "duōjiǔ",
+       "Bao lâu?"
+      ],
+      [
+       "多么",
+       "duōme",
+       "ở mức độ nào, như thế nào"
+      ],
+      [
+       "多数",
+       "duōshù",
+       "đa số, phần lớn"
+      ],
+      [
+       "多云",
+       "duōyún",
+       "Nhiều mây"
+      ],
+      [
+       "而且",
+       "érqiě",
+       "ngoài ra, nhưng, cũng"
+      ],
+      [
+       "发",
+       "fā",
+       "để gửi"
+      ],
+      [
+       "发现",
+       "fāxiàn",
+       "để tìm hiểu, để khám phá"
+      ],
+      [
+       "饭馆",
+       "fànguǎn",
+       "quán ăn"
+      ],
+      [
+       "方便",
+       "fāngbiàn",
+       "tiện lợi"
+      ],
+      [
+       "方便面",
+       "fāngbiànmiàn",
+       "mì gói"
+      ],
+      [
+       "方法",
+       "fāngfǎ",
+       "phương pháp"
+      ],
+      [
+       "方面",
+       "fāngmiàn",
+       "khía cạnh, bên"
+      ],
+      [
+       "方向",
+       "fāngxiàng",
+       "hướng đi"
+      ],
+      [
+       "放下",
+       "fàngxia",
+       "hạ xuống, đặt xuống, nằm xuống"
+      ],
+      [
+       "放心",
+       "fàngxīn",
+       "để trái tim yên nghỉ, để cảm thấy nhẹ nhõm"
+      ]
+     ]
+    ],
+    [
+     "fēn → gānggāng",
+     [
+      [
+       "分",
+       "fēn",
+       "phút"
+      ],
+      [
+       "分开",
+       "fēnkāi",
+       "tách rời, chia tay"
+      ],
+      [
+       "分数",
+       "fēnshù",
+       "phân số, đánh dấu, điểm"
+      ],
+      [
+       "分钟",
+       "fēnzhōng",
+       "phút"
+      ],
+      [
+       "份",
+       "fèn",
+       "phần, ví dụ (một từ đo lường cho các ấn phẩm in)"
+      ],
+      [
+       "封",
+       "fēng",
+       "một từ đo lường cho các chữ cái"
+      ],
+      [
+       "服务",
+       "fúwù",
+       "phục vụ"
+      ],
+      [
+       "复习",
+       "fùxí",
+       "sửa đổi"
+      ],
+      [
+       "该",
+       "gāi",
+       "nên, phải"
+      ],
+      [
+       "改",
+       "gǎi",
+       "để thay đổi, để sửa chữa"
+      ],
+      [
+       "改变",
+       "gǎibiàn",
+       "thay đổi"
+      ],
+      [
+       "干杯",
+       "gānbēi",
+       "để uống một bánh mì nướng; Chúc mừng!"
+      ],
+      [
+       "感到",
+       "gǎndào",
+       "để cảm nhận"
+      ],
+      [
+       "感动",
+       "gǎndòng",
+       "di chuyển, chạm vào"
+      ],
+      [
+       "感觉",
+       "gǎnjué",
+       "cảm giác; để cảm nhận"
+      ],
+      [
+       "感谢",
+       "gǎnxiè",
+       "để cảm ơn"
+      ],
+      [
+       "干活儿",
+       "gànhuór",
+       "làm việc"
+      ],
+      [
+       "刚",
+       "gāng",
+       "vừa rồi"
+      ],
+      [
+       "刚才",
+       "gāngcái",
+       "vừa rồi"
+      ],
+      [
+       "刚刚",
+       "gānggāng",
+       "vừa rồi"
+      ]
+     ]
+    ],
+    [
+     "gāojí → guāndiǎn",
+     [
+      [
+       "高级",
+       "gāojí",
+       "nâng cao, cấp cao"
+      ],
+      [
+       "高中",
+       "gāozhōng",
+       "trường trung học phổ thông"
+      ],
+      [
+       "个子",
+       "gèzi",
+       "Chiều cao"
+      ],
+      [
+       "更",
+       "gèng",
+       "hơn; thậm chí"
+      ],
+      [
+       "公共汽车",
+       "gōnggòng qìchē",
+       "xe buýt"
+      ],
+      [
+       "公交车",
+       "gōngjiāochē",
+       "xe buýt, phương tiện công cộng"
+      ],
+      [
+       "公斤",
+       "gōngjīn",
+       "kg"
+      ],
+      [
+       "公里",
+       "gōnglǐ",
+       "km"
+      ],
+      [
+       "公路",
+       "gōnglù",
+       "Xa lộ"
+      ],
+      [
+       "公平",
+       "gōngpíng",
+       "công bằng; Sự công bằng"
+      ],
+      [
+       "公司",
+       "gōngsī",
+       "công ty, tập đoàn"
+      ],
+      [
+       "公园",
+       "gōngyuán",
+       "công viên"
+      ],
+      [
+       "狗",
+       "gǒu",
+       "chú chó"
+      ],
+      [
+       "够",
+       "gòu",
+       "đầy đủ; để đạt được"
+      ],
+      [
+       "故事",
+       "gùshi",
+       "Truyện ngắn"
+      ],
+      [
+       "故意",
+       "gùyì",
+       "có chủ đích"
+      ],
+      [
+       "顾客",
+       "gùkè",
+       "khách hàng"
+      ],
+      [
+       "关机",
+       "guānjī",
+       "để tắt"
+      ],
+      [
+       "关心",
+       "guānxīn",
+       "phải hết sức chú ý đến"
+      ],
+      [
+       "观点",
+       "guāndiǎn",
+       "ý kiến"
+      ]
+     ]
+    ],
+    [
+     "guǎngchǎng → hēi",
+     [
+      [
+       "广场",
+       "guǎngchǎng",
+       "Quảng trường"
+      ],
+      [
+       "广告",
+       "guǎnggào",
+       "Quảng cáo"
+      ],
+      [
+       "国际",
+       "guójì",
+       "thế giới, quốc tế"
+      ],
+      [
+       "过来",
+       "guòlái",
+       "đến, đi lên"
+      ],
+      [
+       "过年",
+       "guònián",
+       "để kỷ niệm lễ hội mùa xuân hoặc năm mới"
+      ],
+      [
+       "过去",
+       "guòqù",
+       "trong quá khứ, quá khứ; vượt qua"
+      ],
+      [
+       "过",
+       "guo",
+       "hậu tố của thì quá khứ"
+      ],
+      [
+       "海",
+       "hǎi",
+       "biển"
+      ],
+      [
+       "海边",
+       "hǎi biān",
+       "bên bờ biển"
+      ],
+      [
+       "喊",
+       "hǎn",
+       "khóc, hét lên"
+      ],
+      [
+       "好",
+       "hǎo",
+       "tốt, tốt, tốt đẹp"
+      ],
+      [
+       "好处",
+       "hǎochù",
+       "lợi ích, lợi thế"
+      ],
+      [
+       "好多",
+       "hǎoduō",
+       "khá nhiều"
+      ],
+      [
+       "好久",
+       "hǎojiǔ",
+       "trong một khoảng thời gian dài"
+      ],
+      [
+       "好人",
+       "hǎorén",
+       "người tốt"
+      ],
+      [
+       "好事",
+       "hǎoshì",
+       "lòng tốt"
+      ],
+      [
+       "好像",
+       "hǎoxiàng",
+       "trông giống như, có vẻ như"
+      ],
+      [
+       "合适",
+       "héshì",
+       "vừa vặn, phù hợp"
+      ],
+      [
+       "河",
+       "hé",
+       "con sông"
+      ],
+      [
+       "黑",
+       "hēi",
+       "màu đen"
+      ]
+     ]
+    ],
+    [
+     "hēibǎn → huí",
+     [
+      [
+       "黑板",
+       "hēibǎn",
+       "bảng đen"
+      ],
+      [
+       "黑色",
+       "hēisè",
+       "màu đen"
+      ],
+      [
+       "红",
+       "hóng",
+       "màu đỏ"
+      ],
+      [
+       "红色",
+       "hóngsè",
+       "màu đỏ"
+      ],
+      [
+       "后来",
+       "hòulái",
+       "sau đó, sau này"
+      ],
+      [
+       "忽然",
+       "hūrán",
+       "đột ngột"
+      ],
+      [
+       "湖",
+       "hú",
+       "hồ"
+      ],
+      [
+       "护照",
+       "hùzhào",
+       "hộ chiếu"
+      ],
+      [
+       "花",
+       "huā",
+       "hoa"
+      ],
+      [
+       "花园",
+       "huāyuán",
+       "vườn hoa"
+      ],
+      [
+       "画",
+       "huà",
+       "bức tranh, hình vẽ; vẽ, vẽ"
+      ],
+      [
+       "画家",
+       "huàjiā",
+       "họa sĩ, nghệ sĩ"
+      ],
+      [
+       "画儿",
+       "huàr",
+       "bức tranh, bức tranh"
+      ],
+      [
+       "坏处",
+       "huàichù",
+       "xấu, hại"
+      ],
+      [
+       "坏人",
+       "huàirén",
+       "người xấu"
+      ],
+      [
+       "欢迎",
+       "huānyíng",
+       "chào mừng"
+      ],
+      [
+       "换",
+       "huàn",
+       "trao đổi, thay đổi"
+      ],
+      [
+       "黄",
+       "huáng",
+       "màu vàng"
+      ],
+      [
+       "黄色",
+       "huángsè",
+       "màu vàng"
+      ],
+      [
+       "回",
+       "huí",
+       "trở về"
+      ]
+     ]
+    ],
+    [
+     "huí → jiàndào",
+     [
+      [
+       "回国",
+       "huí guó",
+       "trở về đất nước của một người"
+      ],
+      [
+       "会",
+       "huì",
+       "có thể, để biết làm thế nào để"
+      ],
+      [
+       "活动",
+       "huódòng",
+       "để di chuyển; hoạt động, sự kiện"
+      ],
+      [
+       "或",
+       "huò",
+       "hoặc"
+      ],
+      [
+       "或者",
+       "huòzhě",
+       "hoặc (câu khẳng định)"
+      ],
+      [
+       "机会",
+       "jīhuì",
+       "cơ hội, cơ hội"
+      ],
+      [
+       "鸡",
+       "jī",
+       "gà, gà"
+      ],
+      [
+       "级",
+       "jí",
+       "cấp độ, cấp độ, cấp bậc"
+      ],
+      [
+       "急",
+       "jí",
+       "khẩn cấp, vội vàng"
+      ],
+      [
+       "计划",
+       "jìhuà",
+       "kế hoạch"
+      ],
+      [
+       "计算机",
+       "jìsuànjī",
+       "máy tính"
+      ],
+      [
+       "加",
+       "jiā",
+       "cộng, thêm"
+      ],
+      [
+       "加油",
+       "jiāyóu",
+       "Nào!; để cổ vũ"
+      ],
+      [
+       "家",
+       "jiā (kēxuéjiā)",
+       "tổ ấm"
+      ],
+      [
+       "家庭",
+       "jiātíng",
+       "gia đình"
+      ],
+      [
+       "家长",
+       "jiāzhǎng",
+       "cha mẹ"
+      ],
+      [
+       "假",
+       "jiǎ",
+       "sai; giả mạo; giả vờ là"
+      ],
+      [
+       "假期",
+       "jiàqī",
+       "kì nghỉ lễ"
+      ],
+      [
+       "检查",
+       "jiǎnchá",
+       "để kiểm tra, để kiểm tra"
+      ],
+      [
+       "见到",
+       "jiàndào",
+       "nhìn"
+      ]
+     ]
+    ],
+    [
+     "jiànguo → jiēdào",
+     [
+      [
+       "见过",
+       "jiànguo",
+       "của"
+      ],
+      [
+       "件",
+       "jiàn",
+       "một từ đo lường cho các vấn đề, quần áo"
+      ],
+      [
+       "健康",
+       "jiànkāng",
+       "khỏe mạnh; Sức khỏe"
+      ],
+      [
+       "讲",
+       "jiǎng",
+       "để nói, để nói"
+      ],
+      [
+       "讲话",
+       "jiǎnghuà",
+       "nói chuyện, nói"
+      ],
+      [
+       "交",
+       "jiāo",
+       "giao nộp"
+      ],
+      [
+       "交给",
+       "jiāo gěi",
+       "bàn giao"
+      ],
+      [
+       "交朋友",
+       "jiāo péngyou",
+       "kết bạn"
+      ],
+      [
+       "交通",
+       "jiāotōng",
+       "vận tải, giao thông"
+      ],
+      [
+       "角",
+       "jiǎo",
+       "góc"
+      ],
+      [
+       "角度",
+       "jiǎodù",
+       "quan điểm"
+      ],
+      [
+       "饺子",
+       "jiǎozi",
+       "bánh bao"
+      ],
+      [
+       "脚",
+       "jiǎo",
+       "Bàn Chân"
+      ],
+      [
+       "叫作",
+       "jiàozuò",
+       "để gọi; được gọi là"
+      ],
+      [
+       "教师",
+       "jiàoshī",
+       "giáo viên"
+      ],
+      [
+       "教室",
+       "jiàoshì",
+       "lớp học"
+      ],
+      [
+       "教学",
+       "jiàoxué",
+       "dạy; giảng bài"
+      ],
+      [
+       "教育",
+       "jiàoyù",
+       "giáo dục; để giáo dục"
+      ],
+      [
+       "接",
+       "jiē",
+       "để nhận, để kết nối"
+      ],
+      [
+       "接到",
+       "jiēdào",
+       "Nhận"
+      ]
+     ]
+    ],
+    [
+     "jiēshòu → jiùyào",
+     [
+      [
+       "接受",
+       "jiēshòu",
+       "nhận, chấp nhận"
+      ],
+      [
+       "接下来",
+       "jiē xiàlái",
+       "sau đó"
+      ],
+      [
+       "接着",
+       "jiēzhe",
+       "để tiếp tục; sau đó, sau đó"
+      ],
+      [
+       "街",
+       "jiē",
+       "đường phố"
+      ],
+      [
+       "节",
+       "jié",
+       "một từ thước đo cho các bài học"
+      ],
+      [
+       "节目",
+       "jiémù",
+       "chương trình, chương trình"
+      ],
+      [
+       "节日",
+       "jiérì",
+       "ngày hội"
+      ],
+      [
+       "结果",
+       "jiéguǒ",
+       "kết quả; kết quả là"
+      ],
+      [
+       "借",
+       "jiè",
+       "vay, cho vay"
+      ],
+      [
+       "斤",
+       "jīn",
+       "jin (đơn vị trọng lượng = 1/2 kg)"
+      ],
+      [
+       "今后",
+       "jīnhòu",
+       "sau này"
+      ],
+      [
+       "进入",
+       "jìnrù",
+       "đi vào, đi vào"
+      ],
+      [
+       "进行",
+       "jìnxíng",
+       "đang được tiến hành, tiếp tục"
+      ],
+      [
+       "近",
+       "jìn",
+       "ở gần"
+      ],
+      [
+       "经常",
+       "jīngcháng",
+       "thường xuyên, thường xuyên"
+      ],
+      [
+       "经过",
+       "jīngguò",
+       "để vượt qua, để đi qua; xuyên qua"
+      ],
+      [
+       "经理",
+       "jīnglǐ",
+       "giám đốc điều hành"
+      ],
+      [
+       "酒",
+       "jiǔ",
+       "đồ uống có cồn, rượu"
+      ],
+      [
+       "酒店",
+       "jiǔdiàn",
+       "quán bar, nhà hàng, khách sạn"
+      ],
+      [
+       "就要",
+       "jiùyào",
+       "sẽ"
+      ]
+     ]
+    ],
+    [
+     "jǔ → kè",
+     [
+      [
+       "举",
+       "jǔ",
+       "trích dẫn, liệt kê"
+      ],
+      [
+       "举手",
+       "jǔshǒu",
+       "giơ tay"
+      ],
+      [
+       "举行",
+       "jǔxíng",
+       "để giữ"
+      ],
+      [
+       "句",
+       "jù",
+       "câu, từ, cụm từ (một từ đo lường)"
+      ],
+      [
+       "句子",
+       "jùzi",
+       "kết án"
+      ],
+      [
+       "卡",
+       "kǎ",
+       "Thẻ"
+      ],
+      [
+       "开机",
+       "kāijī",
+       "bật"
+      ],
+      [
+       "开心",
+       "kāixīn",
+       "hạnh phúc, vui vẻ"
+      ],
+      [
+       "开学",
+       "kāixué",
+       "khai giảng, học kỳ bắt đầu"
+      ],
+      [
+       "看法",
+       "kànfǎ",
+       "quan điểm, ý kiến"
+      ],
+      [
+       "考生",
+       "kǎoshēng",
+       "Thí sinh"
+      ],
+      [
+       "靠",
+       "kào",
+       "dựa vào, dựa vào"
+      ],
+      [
+       "科",
+       "kē",
+       "bộ phận, bộ phận"
+      ],
+      [
+       "科学",
+       "kēxué",
+       "khoa học"
+      ],
+      [
+       "可爱",
+       "kě'ài",
+       "đáng yêu"
+      ],
+      [
+       "可能",
+       "kěnéng",
+       "có thể, có thể"
+      ],
+      [
+       "可怕",
+       "kěpà",
+       "sợ hãi"
+      ],
+      [
+       "可是",
+       "kěshì",
+       "nhưng, chưa"
+      ],
+      [
+       "可以",
+       "kěyǐ",
+       "có thể, có thể"
+      ],
+      [
+       "克",
+       "kè",
+       "gram"
+      ]
+     ]
+    ],
+    [
+     "kè → lí",
+     [
+      [
+       "刻",
+       "kè",
+       "phần tư"
+      ],
+      [
+       "客人",
+       "kèrén",
+       "khách, khách hàng"
+      ],
+      [
+       "课堂",
+       "kètáng",
+       "lớp học"
+      ],
+      [
+       "空气",
+       "kōngqì",
+       "không khí"
+      ],
+      [
+       "哭",
+       "kū",
+       "khóc"
+      ],
+      [
+       "快餐",
+       "kuàicān",
+       "thức ăn nhanh"
+      ],
+      [
+       "快点儿",
+       "kuài diǎnr",
+       "Nhanh lên!"
+      ],
+      [
+       "快乐",
+       "kuàilè",
+       "vui vẻ, vui vẻ"
+      ],
+      [
+       "快要",
+       "kuàiyào",
+       "chuẩn bị"
+      ],
+      [
+       "筷子",
+       "kuàizi",
+       "đôi đũa"
+      ],
+      [
+       "拉",
+       "lā",
+       "kéo, kéo"
+      ],
+      [
+       "来自",
+       "láizì",
+       "đến từ"
+      ],
+      [
+       "蓝",
+       "lán",
+       "màu xanh da trời"
+      ],
+      [
+       "蓝色",
+       "lánsè",
+       "màu xanh da trời"
+      ],
+      [
+       "篮球",
+       "lánqiú",
+       "bóng rổ"
+      ],
+      [
+       "老",
+       "lǎo",
+       "già dặn, kinh nghiệm; được tôn trọng"
+      ],
+      [
+       "老年",
+       "lǎonián",
+       "tuổi già"
+      ],
+      [
+       "老朋友",
+       "lǎo péngyou",
+       "bạn cũ"
+      ],
+      [
+       "老是",
+       "lǎoshì",
+       "luôn luôn"
+      ],
+      [
+       "离",
+       "lí",
+       "từ, đi, tắt; ở một khoảng cách từ"
+      ]
+     ]
+    ],
+    [
+     "líkāi → liúlì",
+     [
+      [
+       "离开",
+       "líkāi",
+       "rời đi, khởi hành từ"
+      ],
+      [
+       "礼物",
+       "lǐwù",
+       "quà tặng"
+      ],
+      [
+       "里头",
+       "lǐtou",
+       "nội bộ"
+      ],
+      [
+       "理想",
+       "lǐxiǎng",
+       "lý tưởng"
+      ],
+      [
+       "例如",
+       "lìrú",
+       "Ví dụ"
+      ],
+      [
+       "例子",
+       "lìzi",
+       "thí dụ"
+      ],
+      [
+       "脸",
+       "liǎn",
+       "đối mặt"
+      ],
+      [
+       "练",
+       "liàn",
+       "để thực hành, để đào tạo"
+      ],
+      [
+       "练习",
+       "liànxí",
+       "ôn luyện; tập thể dục"
+      ],
+      [
+       "凉",
+       "liáng",
+       "mát mẻ"
+      ],
+      [
+       "凉快",
+       "liángkuai",
+       "mát mẻ"
+      ],
+      [
+       "两",
+       "liǎng",
+       "hai"
+      ],
+      [
+       "亮",
+       "liàng",
+       "nhẹ; tỏa sáng"
+      ],
+      [
+       "辆",
+       "liàng",
+       "một từ đo lường cho phương tiện"
+      ],
+      [
+       "零下",
+       "líng xià",
+       "dưới không"
+      ],
+      [
+       "留",
+       "liú",
+       "ở lại, rời đi"
+      ],
+      [
+       "留下",
+       "liúxia",
+       "để lại phía sau"
+      ],
+      [
+       "留学生",
+       "liúxuéshēng",
+       "sinh viên nước ngoài"
+      ],
+      [
+       "流",
+       "liú",
+       "lưu lượng; chảy"
+      ],
+      [
+       "流利",
+       "liúlì",
+       "trôi chảy"
+      ]
+     ]
+    ],
+    [
+     "liúxíng → nádào",
+     [
+      [
+       "流行",
+       "liúxíng",
+       "nổi tiếng"
+      ],
+      [
+       "路边",
+       "lù biān",
+       "lề đường"
+      ],
+      [
+       "旅客",
+       "lǚkè",
+       "hành khách, khách du lịch"
+      ],
+      [
+       "旅行",
+       "lǚxíng",
+       "đi du lịch"
+      ],
+      [
+       "旅游",
+       "lǚyóu",
+       "đi du lịch; du lịch"
+      ],
+      [
+       "绿",
+       "lǜ",
+       "màu xanh lá"
+      ],
+      [
+       "绿色",
+       "lǜsè",
+       "màu xanh lục"
+      ],
+      [
+       "卖",
+       "mài",
+       "bán"
+      ],
+      [
+       "满",
+       "mǎn",
+       "đầy đủ, đầy, đầy đủ"
+      ],
+      [
+       "满意",
+       "mǎnyì",
+       "hài lòng, hài lòng"
+      ],
+      [
+       "猫",
+       "māo",
+       "con mèo"
+      ],
+      [
+       "米",
+       "mǐ",
+       "Mét"
+      ],
+      [
+       "面前",
+       "miànqián",
+       "đối mặt, trước mặt"
+      ],
+      [
+       "名",
+       "míng",
+       "một từ đo lường cho các ngành nghề"
+      ],
+      [
+       "名称",
+       "míngchēng",
+       "tên, chức danh"
+      ],
+      [
+       "名单",
+       "míngdān",
+       "danh sách tên"
+      ],
+      [
+       "明星",
+       "míngxīng",
+       "ngôi sao"
+      ],
+      [
+       "目的",
+       "mùdì",
+       "mục tiêu"
+      ],
+      [
+       "拿出",
+       "náchū",
+       "lấy cái gì đó"
+      ],
+      [
+       "拿到",
+       "nádào",
+       "lấy, cầm được"
+      ]
+     ]
+    ],
+    [
+     "nà → pà",
+     [
+      [
+       "那",
+       "nà",
+       "cái đó"
+      ],
+      [
+       "那会儿",
+       "nàhuìr",
+       "tại thời điểm đó"
+      ],
+      [
+       "那么",
+       "nàme",
+       "sau đó, trong trường hợp đó"
+      ],
+      [
+       "那时候",
+       "nà shíhou|nà shí",
+       "tại thời điểm đó"
+      ],
+      [
+       "那样",
+       "nàyàng",
+       "điều đó khá lịch sự"
+      ],
+      [
+       "南方",
+       "nánfāng",
+       "miền Nam"
+      ],
+      [
+       "难过",
+       "nánguò",
+       "cảm thấy tồi tệ"
+      ],
+      [
+       "难看",
+       "nánkàn",
+       "xấu xí"
+      ],
+      [
+       "难受",
+       "nánshòu",
+       "cảm thấy không khỏe"
+      ],
+      [
+       "难题",
+       "nántí",
+       "vấn đề khó khăn"
+      ],
+      [
+       "难听",
+       "nántīng",
+       "khó chịu khi nghe"
+      ],
+      [
+       "能够",
+       "nénggòu",
+       "có khả năng"
+      ],
+      [
+       "年级",
+       "niánjí",
+       "lớp, năm học"
+      ],
+      [
+       "年轻",
+       "niánqīng",
+       "trẻ tuổi"
+      ],
+      [
+       "鸟",
+       "niǎo",
+       "chim"
+      ],
+      [
+       "弄",
+       "nòng",
+       "để chơi hoặc nghịch ngợm"
+      ],
+      [
+       "努力",
+       "nǔlì",
+       "nỗ lực rất nhiều; siêng năng"
+      ],
+      [
+       "爬",
+       "pá",
+       "leo; để thu thập thông tin"
+      ],
+      [
+       "爬山",
+       "pá shān",
+       "leo núi"
+      ],
+      [
+       "怕",
+       "pà",
+       "sợ"
+      ]
+     ]
+    ],
+    [
+     "pái → qítā",
+     [
+      [
+       "排",
+       "pái",
+       "để sắp xếp trong một hàng; dòng, hàng"
+      ],
+      [
+       "排队",
+       "páiduì",
+       "xếp hàng"
+      ],
+      [
+       "排球",
+       "páiqiú",
+       "bóng chuyền"
+      ],
+      [
+       "碰",
+       "pèng",
+       "chạm vào, va chạm"
+      ],
+      [
+       "碰到",
+       "pèngdào",
+       "tình cờ gặp gỡ"
+      ],
+      [
+       "碰见",
+       "pèngjiàn",
+       "để gặp gỡ bất ngờ, để chạy vào"
+      ],
+      [
+       "篇",
+       "piān",
+       "chương, phần (một từ đo lường)"
+      ],
+      [
+       "便宜",
+       "piányi",
+       "rẻ"
+      ],
+      [
+       "片",
+       "piàn",
+       "lát (một từ đo lường)"
+      ],
+      [
+       "漂亮",
+       "piàoliang",
+       "xinh đẹp"
+      ],
+      [
+       "平",
+       "píng",
+       "trơn tru"
+      ],
+      [
+       "平安",
+       "píng'ān",
+       "sự an toàn; bình yên"
+      ],
+      [
+       "平常",
+       "píngcháng",
+       "thông thường"
+      ],
+      [
+       "平等",
+       "píngděng",
+       "bình đẳng"
+      ],
+      [
+       "平时",
+       "píngshí",
+       "lúc bình thường"
+      ],
+      [
+       "瓶",
+       "píng",
+       "chai, bình (một từ đo lường)"
+      ],
+      [
+       "瓶子",
+       "píngzi",
+       "chai, bình"
+      ],
+      [
+       "普通",
+       "pǔtōng",
+       "chung, chung"
+      ],
+      [
+       "普通话",
+       "pǔtōnghuà",
+       "Quan thoại"
+      ],
+      [
+       "其他",
+       "qítā",
+       "khác"
+      ]
+     ]
+    ],
+    [
+     "qízhōng → qiú",
+     [
+      [
+       "其中",
+       "qízhōng",
+       "trong số, trong"
+      ],
+      [
+       "骑",
+       "qí",
+       "cưỡi"
+      ],
+      [
+       "骑车",
+       "qí chē",
+       "đi xe đạp"
+      ],
+      [
+       "起飞",
+       "qǐfēi",
+       "cất cánh"
+      ],
+      [
+       "气",
+       "qì",
+       "khí, không khí, hơi nước"
+      ],
+      [
+       "气温",
+       "qìwēn",
+       "nhiệt độ không khí"
+      ],
+      [
+       "千",
+       "qiān",
+       "ngàn"
+      ],
+      [
+       "千克",
+       "qiānkè",
+       "kg"
+      ],
+      [
+       "前年",
+       "qiánnián",
+       "năm trước năm ngoái"
+      ],
+      [
+       "墙",
+       "qiáng",
+       "Tường"
+      ],
+      [
+       "青年",
+       "qīngnián",
+       "thiếu niên"
+      ],
+      [
+       "青少年",
+       "qīng-shàonián",
+       "thanh niên"
+      ],
+      [
+       "轻",
+       "qīng",
+       "nhẹ"
+      ],
+      [
+       "清楚",
+       "qīngchu",
+       "rõ ràng, khác biệt"
+      ],
+      [
+       "晴",
+       "qíng",
+       "nắng, trời trong"
+      ],
+      [
+       "晴天",
+       "qíngtiān",
+       "trời nắng"
+      ],
+      [
+       "请客",
+       "qǐngkè",
+       "mời những vị khách"
+      ],
+      [
+       "请求",
+       "qǐngqiú",
+       "để hỏi; lời yêu cầu"
+      ],
+      [
+       "秋天",
+       "qiūtiān",
+       "mùa thu"
+      ],
+      [
+       "求",
+       "qiú",
+       "cầu xin, yêu cầu"
+      ]
+     ]
+    ],
+    [
+     "qiúchǎng → rìbào",
+     [
+      [
+       "球场",
+       "qiúchǎng",
+       "sân hoặc sân cho các trò chơi bóng"
+      ],
+      [
+       "球队",
+       "qiúduì",
+       "đội chơi bóng"
+      ],
+      [
+       "球鞋",
+       "qiúxié",
+       "giày thể thao"
+      ],
+      [
+       "取",
+       "qǔ",
+       "lấy, lấy"
+      ],
+      [
+       "取得",
+       "qǔdé",
+       "để đạt được"
+      ],
+      [
+       "全",
+       "quán",
+       "toàn bộ, hoàn toàn"
+      ],
+      [
+       "全部",
+       "quánbù",
+       "toàn bộ"
+      ],
+      [
+       "全国",
+       "quánguó",
+       "cả nước"
+      ],
+      [
+       "全家",
+       "quánjiā",
+       "cả gia đinh"
+      ],
+      [
+       "全年",
+       "quánnián",
+       "suốt năm"
+      ],
+      [
+       "全身",
+       "quánshēn",
+       "cả người"
+      ],
+      [
+       "全体",
+       "quántǐ",
+       "trọn"
+      ],
+      [
+       "然后",
+       "ránhòu",
+       "sau đó"
+      ],
+      [
+       "让",
+       "ràng",
+       "ra lệnh, ra lệnh"
+      ],
+      [
+       "热情",
+       "rèqíng",
+       "niềm nở, nhiệt tình"
+      ],
+      [
+       "人口",
+       "rénkǒu",
+       "dân số"
+      ],
+      [
+       "人们",
+       "rénmen",
+       "mọi người, người ta"
+      ],
+      [
+       "人数",
+       "rénshù",
+       "số lượng người"
+      ],
+      [
+       "认为",
+       "rènwéi",
+       "suy nghĩ, cân nhắc, cảm nhận"
+      ],
+      [
+       "日报",
+       "rìbào",
+       "nhật báo"
+      ]
+     ]
+    ],
+    [
+     "rìzi → shízài",
+     [
+      [
+       "日子",
+       "rìzi",
+       "ngày, giờ"
+      ],
+      [
+       "如果",
+       "rúguǒ",
+       "nếu"
+      ],
+      [
+       "入口",
+       "rùkǒu",
+       "cổng vào"
+      ],
+      [
+       "商量",
+       "shāngliang",
+       "tham khảo ý kiến, thảo luận"
+      ],
+      [
+       "商人",
+       "shāngrén",
+       "thương gia, doanh nhân"
+      ],
+      [
+       "上周",
+       "shàng zhōu",
+       "tuần trước"
+      ],
+      [
+       "少数",
+       "shǎoshù",
+       "thiểu số, số lượng nhỏ"
+      ],
+      [
+       "少年",
+       "shàonián",
+       "thiếu niên"
+      ],
+      [
+       "身边",
+       "shēnbiān",
+       "ở một bên"
+      ],
+      [
+       "什么样",
+       "shénmeyàng",
+       "Loại nào?"
+      ],
+      [
+       "生",
+       "shēng",
+       "để sinh ra, được sinh ra"
+      ],
+      [
+       "生词",
+       "shēngcí",
+       "tư mơi"
+      ],
+      [
+       "生活",
+       "shēnghuó",
+       "đời sống; sống"
+      ],
+      [
+       "声音",
+       "shēngyīn",
+       "Âm thanh"
+      ],
+      [
+       "省",
+       "shěng",
+       "để tiết kiệm, để tiết kiệm"
+      ],
+      [
+       "十分",
+       "shífēn",
+       "rất, vô cùng"
+      ],
+      [
+       "实际",
+       "shíjì",
+       "thực tế, thực tế; thực tế"
+      ],
+      [
+       "实习",
+       "shíxí",
+       "để thực hành, để thực hiện một khóa thực tập"
+      ],
+      [
+       "实现",
+       "shíxiàn",
+       "nhận ra"
+      ],
+      [
+       "实在",
+       "shízài",
+       "thực sự, thực sự"
+      ]
+     ]
+    ],
+    [
+     "shíwù → sòng",
+     [
+      [
+       "食物",
+       "shíwù",
+       "món ăn"
+      ],
+      [
+       "使用",
+       "shǐyòng",
+       "sử dụng"
+      ],
+      [
+       "市",
+       "shì",
+       "thành phố, thị trấn"
+      ],
+      [
+       "市长",
+       "shìzhǎng",
+       "thị trưởng"
+      ],
+      [
+       "事情",
+       "shìqing",
+       "sự việc, vấn đề, điều"
+      ],
+      [
+       "收",
+       "shōu",
+       "chấp nhận, nhận"
+      ],
+      [
+       "收到",
+       "shōudào",
+       "Nhận"
+      ],
+      [
+       "收入",
+       "shōurù",
+       "thu nhập = earnings"
+      ],
+      [
+       "手表",
+       "shǒubiǎo",
+       "đồng hồ đeo tay"
+      ],
+      [
+       "受到",
+       "shòudào",
+       "để có được, để nhận"
+      ],
+      [
+       "舒服",
+       "shūfu",
+       "thoải mái, khỏe mạnh"
+      ],
+      [
+       "熟",
+       "shú/shóu",
+       "nấu chín, chín"
+      ],
+      [
+       "数",
+       "shǔ",
+       "để đếm"
+      ],
+      [
+       "数字",
+       "shùzì",
+       "hình, số"
+      ],
+      [
+       "水平",
+       "shuǐpíng",
+       "mức độ, tiêu chuẩn"
+      ],
+      [
+       "顺利",
+       "shùnlì",
+       "suôn sẻ, thành công"
+      ],
+      [
+       "说明",
+       "shuōmíng",
+       "giải thích; giải trình"
+      ],
+      [
+       "司机",
+       "sījī",
+       "người lái xe"
+      ],
+      [
+       "送到",
+       "sòngdào",
+       "gửi đến"
+      ],
+      [
+       "送给",
+       "sòng gěi",
+       "để gửi"
+      ]
+     ]
+    ],
+    [
+     "suàn → tígāo",
+     [
+      [
+       "算",
+       "suàn",
+       "coi như"
+      ],
+      [
+       "虽然",
+       "suīrán",
+       "mặc dù, mặc dù"
+      ],
+      [
+       "随便",
+       "suíbiàn",
+       "cẩu thả"
+      ],
+      [
+       "随时",
+       "suíshí",
+       "bất cứ lúc nào"
+      ],
+      [
+       "所以",
+       "suǒyǐ",
+       "vì vậy, do đó"
+      ],
+      [
+       "所有",
+       "suǒyǒu",
+       "tất cả các"
+      ],
+      [
+       "它",
+       "tā",
+       "nó"
+      ],
+      [
+       "它们",
+       "tāmen",
+       "họ"
+      ],
+      [
+       "太太",
+       "tàitai",
+       "thưa bà, vợ"
+      ],
+      [
+       "太阳",
+       "tàiyáng",
+       "mặt trời"
+      ],
+      [
+       "态度",
+       "tàidù",
+       "cách thức, thái độ"
+      ],
+      [
+       "讨论",
+       "tǎolùn",
+       "thảo luận"
+      ],
+      [
+       "套",
+       "tào",
+       "một từ đo lường cho một loạt và bộ, căn hộ"
+      ],
+      [
+       "特别",
+       "tèbié",
+       "đặc biệt"
+      ],
+      [
+       "特点",
+       "tèdiǎn",
+       "đặc điểm, đặc điểm"
+      ],
+      [
+       "疼",
+       "téng",
+       "đau đớn; đau"
+      ],
+      [
+       "提",
+       "tí",
+       "đưa ra, nâng cao, đề cập đến"
+      ],
+      [
+       "提出",
+       "tíchū",
+       "để đưa ra"
+      ],
+      [
+       "提到",
+       "tídào",
+       "đề cập đến"
+      ],
+      [
+       "提高",
+       "tígāo",
+       "để tăng, để cải thiện"
+      ]
+     ]
+    ],
+    [
+     "tí → tóngyàng",
+     [
+      [
+       "题",
+       "tí",
+       "bài tập, câu hỏi, vấn đề"
+      ],
+      [
+       "体育",
+       "tǐyù",
+       "thể dục thể thao"
+      ],
+      [
+       "体育场",
+       "tǐyùchǎng",
+       "sân vận động, sân thể thao"
+      ],
+      [
+       "体育馆",
+       "tǐyùguǎn",
+       "sân vận động, nhà thi đấu"
+      ],
+      [
+       "天上",
+       "tiānshàng",
+       "thiên đường; trên bầu trời"
+      ],
+      [
+       "条",
+       "tiáo",
+       "dải (một từ đo lường được sử dụng cho những thứ dài và mỏng)"
+      ],
+      [
+       "条件",
+       "tiáojiàn",
+       "yêu cầu, điều kiện"
+      ],
+      [
+       "听讲",
+       "tīngjiǎng",
+       "tham gia một bài giảng"
+      ],
+      [
+       "听说",
+       "tīngshuō",
+       "nghe nói về"
+      ],
+      [
+       "停",
+       "tíng",
+       "dừng lại; đậu"
+      ],
+      [
+       "停车",
+       "tíngchē",
+       "dừng xe, đỗ xe"
+      ],
+      [
+       "停车场",
+       "tíngchēchǎng",
+       "bãi đậu xe"
+      ],
+      [
+       "挺",
+       "tǐng",
+       "khá, đúng hơn"
+      ],
+      [
+       "挺好",
+       "tǐng hǎo",
+       "rất tốt"
+      ],
+      [
+       "通",
+       "tōng",
+       "đi qua"
+      ],
+      [
+       "通过",
+       "tōngguò",
+       "bằng cách; đi qua"
+      ],
+      [
+       "通知",
+       "tōngzhī",
+       "thông báo"
+      ],
+      [
+       "同时",
+       "tóngshí",
+       "đồng thời, trong khi đó"
+      ],
+      [
+       "同事",
+       "tóngshì",
+       "đồng nghiệp"
+      ],
+      [
+       "同样",
+       "tóngyàng",
+       "giống nhau, bằng nhau"
+      ]
+     ]
+    ],
+    [
+     "tóu → wǎng",
+     [
+      [
+       "头",
+       "tóu",
+       "một từ đo lường cho gia súc"
+      ],
+      [
+       "头发",
+       "tóufa",
+       "tóc"
+      ],
+      [
+       "图片",
+       "túpiàn",
+       "hình ảnh"
+      ],
+      [
+       "推",
+       "tuī",
+       "đẩy"
+      ],
+      [
+       "腿",
+       "tuǐ",
+       "Chân"
+      ],
+      [
+       "外地",
+       "wàidì",
+       "nơi khác"
+      ],
+      [
+       "外卖",
+       "wàimài",
+       "lấy cái gì đó"
+      ],
+      [
+       "完",
+       "wán",
+       "hoàn thành, kết thúc"
+      ],
+      [
+       "完成",
+       "wánchéng",
+       "hoàn thành, hoàn thành"
+      ],
+      [
+       "完全",
+       "wánquán",
+       "hoàn toàn, đầy đủ"
+      ],
+      [
+       "晚安",
+       "wǎn'ān",
+       "chúc ngủ ngon"
+      ],
+      [
+       "晚报",
+       "wǎnbào",
+       "báo buổi tối"
+      ],
+      [
+       "晚餐",
+       "wǎncān",
+       "bữa tối"
+      ],
+      [
+       "晚会",
+       "wǎnhuì",
+       "tiệc tối"
+      ],
+      [
+       "碗",
+       "wǎn",
+       "bát"
+      ],
+      [
+       "万",
+       "wàn",
+       "mười nghìn"
+      ],
+      [
+       "网",
+       "wǎng",
+       "Internet"
+      ],
+      [
+       "网球",
+       "wǎngqiú",
+       "quần vợt"
+      ],
+      [
+       "网站",
+       "wǎngzhàn",
+       "trang mạng"
+      ],
+      [
+       "往",
+       "wǎng",
+       "Hướng tới"
+      ]
+     ]
+    ],
+    [
+     "wèi → xià",
+     [
+      [
+       "为",
+       "wèi",
+       "vì"
+      ],
+      [
+       "为什么",
+       "wèi shénme",
+       "Tại sao?"
+      ],
+      [
+       "位",
+       "wèi",
+       "một từ đo lường cho những người được tôn trọng"
+      ],
+      [
+       "味道",
+       "wèidào",
+       "hương vị, hương vị"
+      ],
+      [
+       "喂",
+       "wèi",
+       "xin chào"
+      ],
+      [
+       "温度",
+       "wēndù",
+       "nhiệt độ"
+      ],
+      [
+       "闻",
+       "wén",
+       "ngửi"
+      ],
+      [
+       "问路",
+       "wènlù",
+       "để hỏi đường"
+      ],
+      [
+       "问题",
+       "wèntí",
+       "câu hỏi, vấn đề"
+      ],
+      [
+       "午餐",
+       "wǔcān",
+       "Bữa trưa"
+      ],
+      [
+       "午睡",
+       "wǔshuì",
+       "ngủ trưa"
+      ],
+      [
+       "西北",
+       "xīběi",
+       "Tây Bắc"
+      ],
+      [
+       "西餐",
+       "xīcān",
+       "Ẩm thực phương tây"
+      ],
+      [
+       "西方",
+       "xīfāng",
+       "hướng Tây; miền Tây"
+      ],
+      [
+       "西南",
+       "xīnán",
+       "Tây nam"
+      ],
+      [
+       "西医",
+       "xīyī",
+       "thuốc tây"
+      ],
+      [
+       "习惯",
+       "xíguàn",
+       "thói quen; để được làm quen với"
+      ],
+      [
+       "洗衣机",
+       "xǐyījī",
+       "máy giặt"
+      ],
+      [
+       "洗澡",
+       "xǐzǎo",
+       "đi tắm, đi tắm"
+      ],
+      [
+       "下",
+       "xià",
+       "kêt thuc"
+      ]
+     ]
+    ],
+    [
+     "xià → xiàozhǎng",
+     [
+      [
+       "下雪",
+       "xià xuě",
+       "tuyet"
+      ],
+      [
+       "下周",
+       "xià zhōu",
+       "tuần tới"
+      ],
+      [
+       "夏天",
+       "xiàtiān",
+       "mùa hè"
+      ],
+      [
+       "相同",
+       "xiāngtóng",
+       "giống hệt nhau"
+      ],
+      [
+       "相信",
+       "xiāngxìn",
+       "tin tưởng, tin tưởng"
+      ],
+      [
+       "响",
+       "xiǎng",
+       "để tạo ra âm thanh, để đổ chuông"
+      ],
+      [
+       "想到",
+       "xiǎngdào",
+       "nghĩ về"
+      ],
+      [
+       "想法",
+       "xiǎngfǎ",
+       "ý kiến"
+      ],
+      [
+       "想起",
+       "xiǎngqǐ",
+       "nhớ lại, nghĩ về"
+      ],
+      [
+       "向",
+       "xiàng",
+       "Hướng tới"
+      ],
+      [
+       "相机",
+       "xiàngjī",
+       "Máy ảnh"
+      ],
+      [
+       "像",
+       "xiàng",
+       "giống, giống"
+      ],
+      [
+       "小",
+       "xiǎo (Xiǎo Wáng)",
+       "những cái nhỏ"
+      ],
+      [
+       "小声",
+       "xiǎo shēng",
+       "bằng một giọng trầm, thì thầm"
+      ],
+      [
+       "小时候",
+       "xiǎoshíhou",
+       "trong thời thơ ấu của một người"
+      ],
+      [
+       "小说",
+       "xiǎoshuō",
+       "tiểu thuyết, câu chuyện"
+      ],
+      [
+       "小心",
+       "xiǎoxīn",
+       "cẩn thận; cẩn thận, cẩn thận"
+      ],
+      [
+       "小组",
+       "xiǎozǔ",
+       "tập đoàn"
+      ],
+      [
+       "校园",
+       "xiàoyuán",
+       "khuôn viên"
+      ],
+      [
+       "校长",
+       "xiàozhǎng",
+       "hiệu trưởng"
+      ]
+     ]
+    ],
+    [
+     "xiàohua → xǔduō",
+     [
+      [
+       "笑话",
+       "xiàohua",
+       "cười vào; câu nói đùa"
+      ],
+      [
+       "笑话儿",
+       "xiàohuar",
+       "cười vào; câu nói đùa"
+      ],
+      [
+       "鞋",
+       "xié",
+       "đôi giày"
+      ],
+      [
+       "心里",
+       "xīnlǐ",
+       "trong tâm trí của một người"
+      ],
+      [
+       "心情",
+       "xīnqíng",
+       "khí sắc"
+      ],
+      [
+       "心中",
+       "xīnzhōng",
+       "Từ trái tim"
+      ],
+      [
+       "新闻",
+       "xīnwén",
+       "Tin tức"
+      ],
+      [
+       "信",
+       "xìn",
+       "bức thư"
+      ],
+      [
+       "信号",
+       "xìnhào",
+       "dấu hiệu"
+      ],
+      [
+       "信息",
+       "xìnxī",
+       "thông tin, tin tức, tin nhắn"
+      ],
+      [
+       "信心",
+       "xìnxīn",
+       "lòng tin"
+      ],
+      [
+       "信用卡",
+       "xìnyòngkǎ",
+       "thẻ tín dụng"
+      ],
+      [
+       "星星",
+       "xīngxing",
+       "ngôi sao"
+      ],
+      [
+       "行动",
+       "xíngdòng",
+       "hành động"
+      ],
+      [
+       "行人",
+       "xíngrén",
+       "đi bộ"
+      ],
+      [
+       "行为",
+       "xíngwéi",
+       "hành động, hành vi"
+      ],
+      [
+       "姓",
+       "xìng",
+       "họ"
+      ],
+      [
+       "姓名",
+       "xìngmíng",
+       "Họ và tên"
+      ],
+      [
+       "休假",
+       "xiūjià",
+       "đi nghỉ mát"
+      ],
+      [
+       "许多",
+       "xǔduō",
+       "nhiều, nhiều, rất nhiều"
+      ]
+     ]
+    ],
+    [
+     "xuǎn → yīhuìr",
+     [
+      [
+       "选",
+       "xuǎn",
+       "chọn"
+      ],
+      [
+       "学期",
+       "xuéqī",
+       "học kỳ, học kỳ"
+      ],
+      [
+       "雪",
+       "xuě",
+       "tuyết"
+      ],
+      [
+       "颜色",
+       "yánsè",
+       "màu sắc"
+      ],
+      [
+       "眼",
+       "yǎn",
+       "con mắt"
+      ],
+      [
+       "眼睛",
+       "yǎnjing",
+       "nhìn"
+      ],
+      [
+       "养",
+       "yǎng",
+       "nuôi dưỡng, lớn lên, vươn lên"
+      ],
+      [
+       "样子",
+       "yàngzi",
+       "hình dạng, loại, mô hình"
+      ],
+      [
+       "要求",
+       "yāoqiú",
+       "yêu cầu; yêu cầu, yêu cầu"
+      ],
+      [
+       "药",
+       "yào",
+       "dược phẩm"
+      ],
+      [
+       "药店",
+       "yàodiàn",
+       "tiệm thuốc"
+      ],
+      [
+       "药片",
+       "yàopiàn",
+       "Viên thuốc"
+      ],
+      [
+       "药水",
+       "yàoshuǐ",
+       "thuốc dạng lỏng"
+      ],
+      [
+       "也许",
+       "yěxǔ",
+       "có lẽ, có lẽ, có thể"
+      ],
+      [
+       "夜",
+       "yè",
+       "đêm tối"
+      ],
+      [
+       "夜里",
+       "yèlǐ",
+       "vào ban đêm"
+      ],
+      [
+       "一部分",
+       "yī bùfen",
+       "riêng biệt"
+      ],
+      [
+       "一定",
+       "yīdìng",
+       "phải, chắc chắn"
+      ],
+      [
+       "一共",
+       "yīgòng",
+       "hoàn toàn"
+      ],
+      [
+       "一会儿",
+       "yīhuìr",
+       "một thời gian ngắn"
+      ]
+     ]
+    ],
+    [
+     "yīlù-píng'ān → yīntiān",
+     [
+      [
+       "一路平安",
+       "yīlù-píng'ān",
+       "Chúc bạn có một chuyến đi vui vẻ!"
+      ],
+      [
+       "一路顺风",
+       "yīlù-shùnfēng",
+       "Chúc một chuyến đi hài lòng"
+      ],
+      [
+       "已经",
+       "yǐjīng",
+       "đã sẵn sàng"
+      ],
+      [
+       "以后",
+       "yǐhòu",
+       "mãi về sau"
+      ],
+      [
+       "以前",
+       "yǐqián",
+       "trước đây, trước đây"
+      ],
+      [
+       "以上",
+       "yǐshàng",
+       "biết trước"
+      ],
+      [
+       "以外",
+       "yǐwài",
+       "ngoài"
+      ],
+      [
+       "以为",
+       "yǐwéi",
+       "để suy nghĩ, để tin tưởng"
+      ],
+      [
+       "以下",
+       "yǐxià",
+       "sau đây, dưới đây, dưới"
+      ],
+      [
+       "椅子",
+       "yǐzi",
+       "cái ghế"
+      ],
+      [
+       "一般",
+       "yībān",
+       "bình thường, thông thường; thường xuyên"
+      ],
+      [
+       "一点点",
+       "yī diǎndiǎn",
+       "một chút"
+      ],
+      [
+       "一生",
+       "yīshēng",
+       "tất cả cuộc sống của một người"
+      ],
+      [
+       "一直",
+       "yīzhí",
+       "dài"
+      ],
+      [
+       "亿",
+       "yì",
+       "một trăm triệu"
+      ],
+      [
+       "意见",
+       "yìjiàn",
+       "ý kiến, đề xuất"
+      ],
+      [
+       "意思",
+       "yìsi",
+       "ý nghĩa, ý tưởng"
+      ],
+      [
+       "因为",
+       "yīnwèi",
+       "bởi vì, như, kể từ khi"
+      ],
+      [
+       "阴",
+       "yīn",
+       "u ám"
+      ],
+      [
+       "阴天",
+       "yīntiān",
+       "trời nhiều mây"
+      ]
+     ]
+    ],
+    [
+     "yīnjié → yú",
+     [
+      [
+       "音节",
+       "yīnjié",
+       "âm tiết"
+      ],
+      [
+       "音乐",
+       "yīnyuè",
+       "Âm nhạc"
+      ],
+      [
+       "音乐会",
+       "yīnyuèhuì",
+       "buổi hòa nhạc"
+      ],
+      [
+       "银行",
+       "yínháng",
+       "ngân hàng"
+      ],
+      [
+       "银行卡",
+       "yínhángkǎ",
+       "Thẻ ngân hàng"
+      ],
+      [
+       "应该",
+       "yīnggāi",
+       "nên, phải"
+      ],
+      [
+       "英文",
+       "Yīngwén",
+       "Ngôn ngữ tiếng anh"
+      ],
+      [
+       "英语",
+       "Yīngyǔ",
+       "Ngôn ngữ tiếng anh"
+      ],
+      [
+       "影片",
+       "yǐngpiàn",
+       "bộ phim"
+      ],
+      [
+       "影响",
+       "yǐngxiǎng",
+       "ảnh hưởng"
+      ],
+      [
+       "永远",
+       "yǒngyuǎn",
+       "mãi mãi"
+      ],
+      [
+       "油",
+       "yóu",
+       "bóng nhờn"
+      ],
+      [
+       "游客",
+       "yóukè",
+       "du khách"
+      ],
+      [
+       "友好",
+       "yǒuhǎo",
+       "thân thiện"
+      ],
+      [
+       "有空儿",
+       "yǒukòngr",
+       "có giờ rảnh"
+      ],
+      [
+       "有人",
+       "yǒu rén",
+       "người nào"
+      ],
+      [
+       "有点儿",
+       "yǒu(yī)diǎnr",
+       "một chút"
+      ],
+      [
+       "有意思",
+       "yǒu yìsi",
+       "thú vị, thú vị"
+      ],
+      [
+       "又",
+       "yòu",
+       "lại"
+      ],
+      [
+       "鱼",
+       "yú",
+       "cá"
+      ]
+     ]
+    ],
+    [
+     "yǔyán → zěnme",
+     [
+      [
+       "语言",
+       "yǔyán",
+       "ngôn ngữ"
+      ],
+      [
+       "原来",
+       "yuánlái",
+       "ban đầu; trước"
+      ],
+      [
+       "原因",
+       "yuányīn",
+       "nguyên nhân, lý do"
+      ],
+      [
+       "院",
+       "yuàn",
+       "sân, viện"
+      ],
+      [
+       "院长",
+       "yuànzhǎng",
+       "trưởng khoa"
+      ],
+      [
+       "院子",
+       "yuànzi",
+       "sân"
+      ],
+      [
+       "愿意",
+       "yuànyì",
+       "sẵn sàng"
+      ],
+      [
+       "月份",
+       "yuèfèn",
+       "lịch tháng"
+      ],
+      [
+       "月亮",
+       "yuèliang",
+       "mặt trăng"
+      ],
+      [
+       "越",
+       "yuè",
+       "vượt quá"
+      ],
+      [
+       "越来越",
+       "yuè lái yuè",
+       "nhiều hơn và nhiều hơn nữa"
+      ],
+      [
+       "云",
+       "yún",
+       "đám mây"
+      ],
+      [
+       "运动",
+       "yùndòng",
+       "tập thể dục; thể thao"
+      ],
+      [
+       "咱",
+       "zán",
+       "Tôi chúng ta"
+      ],
+      [
+       "咱们",
+       "zánmen",
+       "chúng tôi chúng ta"
+      ],
+      [
+       "脏",
+       "zāng",
+       "bẩn thỉu"
+      ],
+      [
+       "早餐",
+       "zǎocān",
+       "bữa ăn sáng"
+      ],
+      [
+       "早晨",
+       "zǎochen",
+       "sáng sớm"
+      ],
+      [
+       "早就",
+       "zǎo jiù",
+       "lâu rồi"
+      ],
+      [
+       "怎么办",
+       "zěnme bàn",
+       "Để làm gì? Tôi nên làm gì?"
+      ]
+     ]
+    ],
+    [
+     "zěnmeyàng → zhǐ",
+     [
+      [
+       "怎么样",
+       "zěnmeyàng",
+       "Bạn nghĩ thế nào về? Thế còn?"
+      ],
+      [
+       "怎样",
+       "zěnyàng",
+       "Làm sao?"
+      ],
+      [
+       "占",
+       "zhàn",
+       "để bù đắp, để giải quyết"
+      ],
+      [
+       "站",
+       "zhàn",
+       "để đứng; trạm dừng"
+      ],
+      [
+       "站住",
+       "zhànzhù",
+       "dừng lại"
+      ],
+      [
+       "长大",
+       "zhǎngdà",
+       "lớn lên"
+      ],
+      [
+       "找出",
+       "zhǎochū",
+       "tim ra"
+      ],
+      [
+       "照顾",
+       "zhàogù",
+       "chăm sóc, chăm sóc"
+      ],
+      [
+       "照片",
+       "zhàopiàn",
+       "ảnh chụp"
+      ],
+      [
+       "照相",
+       "zhàoxiàng",
+       "để chụp ảnh"
+      ],
+      [
+       "这么",
+       "zhème",
+       "như vậy đó"
+      ],
+      [
+       "这时候",
+       "zhè shíhou|zhè shí",
+       "tại thời điểm này"
+      ],
+      [
+       "这样",
+       "zhèyàng",
+       "như vậy, theo cách này"
+      ],
+      [
+       "真正",
+       "zhēnzhèng",
+       "thật sự; có thật"
+      ],
+      [
+       "正常",
+       "zhèngcháng",
+       "thông thường"
+      ],
+      [
+       "正好",
+       "zhènghǎo",
+       "đúng rồi"
+      ],
+      [
+       "正确",
+       "zhèngquè",
+       "Chính xác"
+      ],
+      [
+       "正是",
+       "zhèngshì",
+       "chính xác, chính xác"
+      ],
+      [
+       "直接",
+       "zhíjiē",
+       "trực tiếp, ngay lập tức"
+      ],
+      [
+       "只",
+       "zhǐ",
+       "chỉ mới"
+      ]
+     ]
+    ],
+    [
+     "zhǐ → zhǔnquè",
+     [
+      [
+       "只能",
+       "zhǐ néng",
+       "không có lựa chọn nào khác ngoài"
+      ],
+      [
+       "只要",
+       "zhǐyào",
+       "miễn là, được cung cấp"
+      ],
+      [
+       "纸",
+       "zhǐ",
+       "giấy"
+      ],
+      [
+       "中餐",
+       "zhōngcān",
+       "đồ ăn Trung Quốc"
+      ],
+      [
+       "中级",
+       "zhōngjí",
+       "Trung gian"
+      ],
+      [
+       "中年",
+       "zhōngnián",
+       "Trung niên"
+      ],
+      [
+       "中小学",
+       "zhōng-xiǎoxué",
+       "trường tiểu học và trung học cơ sở"
+      ],
+      [
+       "中心",
+       "zhōngxīn",
+       "trung tâm"
+      ],
+      [
+       "中医",
+       "zhōngyī",
+       "Khoa học y học trung quốc"
+      ],
+      [
+       "重点",
+       "zhòngdiǎn",
+       "điểm chính"
+      ],
+      [
+       "重视",
+       "zhòngshì",
+       "coi trọng, coi trọng"
+      ],
+      [
+       "周",
+       "zhōu",
+       "tuần"
+      ],
+      [
+       "周末",
+       "zhōumò",
+       "ngày cuối tuần"
+      ],
+      [
+       "周年",
+       "zhōunián",
+       "dịp kỉ niệm"
+      ],
+      [
+       "主人",
+       "zhǔrén",
+       "chủ nhân, chủ nhà, chủ nhân"
+      ],
+      [
+       "主要",
+       "zhǔyào",
+       "chính"
+      ],
+      [
+       "住房",
+       "zhùfáng",
+       "nhà ở"
+      ],
+      [
+       "住院",
+       "zhùyuàn",
+       "đến bệnh viện"
+      ],
+      [
+       "装",
+       "zhuāng",
+       "ăn mặc"
+      ],
+      [
+       "准确",
+       "zhǔnquè",
+       "chính xác, chính xác"
+      ]
+     ]
+    ],
+    [
+     "zìjǐ → zuòdào",
+     [
+      [
+       "自己",
+       "zìjǐ",
+       "chính mình, sở hữu"
+      ],
+      [
+       "自行车",
+       "zìxíngchē",
+       "xe đạp, xe đạp"
+      ],
+      [
+       "自由",
+       "zìyóu",
+       "tự do"
+      ],
+      [
+       "字典",
+       "zìdiǎn",
+       "từ điển"
+      ],
+      [
+       "走过",
+       "zǒuguò",
+       "đi ngang qua"
+      ],
+      [
+       "走进",
+       "zǒujìn",
+       "nhập"
+      ],
+      [
+       "走开",
+       "zǒukāi",
+       "tránh sang một bên"
+      ],
+      [
+       "租",
+       "zū",
+       "thuê, thuê"
+      ],
+      [
+       "组",
+       "zǔ",
+       "hình thành; tập đoàn"
+      ],
+      [
+       "组成",
+       "zǔchéng",
+       "sáng tác"
+      ],
+      [
+       "组长",
+       "zǔzhǎng",
+       "người đứng đầu"
+      ],
+      [
+       "嘴",
+       "zuǐ",
+       "miệng"
+      ],
+      [
+       "最近",
+       "zuìjìn",
+       "Gần đây thời gian gần đây"
+      ],
+      [
+       "作家",
+       "zuòjiā",
+       "nhà văn"
+      ],
+      [
+       "作文",
+       "zuòwén",
+       "thành phần"
+      ],
+      [
+       "作业",
+       "zuòyè",
+       "bài tập về nhà"
+      ],
+      [
+       "作用",
+       "zuòyòng",
+       "vai trò, tác dụng, chức năng"
+      ],
+      [
+       "座",
+       "zuò",
+       "một từ đo lường cho các tòa nhà, cây cầu, thành phố, núi"
+      ],
+      [
+       "座位",
+       "zuòwèi",
+       "ghế"
+      ],
+      [
+       "做到",
+       "zuòdào",
+       "để thực hiện"
+      ]
+     ]
+    ],
+    [
+     "zuòfǎ → zuòfàn",
+     [
+      [
+       "做法",
+       "zuòfǎ",
+       "cách nấu ăn"
+      ],
+      [
+       "做饭",
+       "zuòfàn",
+       "nấu ăn"
+      ]
+     ]
+    ],
+    [
+     "Bổ sung — từ hay dùng ngoài danh sách mới",
+     [
+      [
+       "耳朵",
+       "ěrduo",
+       "cái tai"
+      ],
+      [
+       "牛肉",
+       "niúròu",
+       "thịt bò"
+      ],
+      [
+       "面条",
+       "miàntiáo",
+       "mì sợi"
+      ],
+      [
+       "好玩",
+       "hǎowán",
+       "vui (để chơi)"
+      ],
+      [
+       "冰箱",
+       "bīngxiāng",
+       "tủ lạnh"
+      ],
+      [
+       "雨伞",
+       "yǔsǎn",
+       "cây dù"
+      ],
+      [
+       "地址",
+       "dìzhǐ",
+       "địa chỉ"
+      ],
+      [
+       "号码",
+       "hàomǎ",
+       "con số, số ĐT"
+      ],
+      [
+       "称",
+       "chēng",
+       "để gọi, xưng"
+      ],
+      [
+       "面",
+       "miàn",
+       "mặt; vẹn toàn (từ ghép: 表面, 面对)"
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "no": 3,
+   "hsk": 3,
+   "seal": "三",
+   "name": "Nâng cao",
+   "desc": "Từ vựng HSK 3 mới (chuẩn 3.0) — cộng dồn 2245 từ",
+   "acc": "#B3322B",
+   "accd": "#7E1F1A",
+   "lessons": [
+    [
+     "àixīn → bǎoliú",
+     [
+      [
+       "爱心",
+       "àixīn",
+       "lòng trắc ẩn, sự cảm thông"
+      ],
+      [
+       "安排",
+       "ānpái",
+       "sắp xếp, lên kế hoạch chi tiết"
+      ],
+      [
+       "安装",
+       "ānzhuāng",
+       "để cài đặt"
+      ],
+      [
+       "按",
+       "àn",
+       "dựa theo"
+      ],
+      [
+       "按照",
+       "ànzhào",
+       "dựa theo"
+      ],
+      [
+       "把",
+       "bǎ",
+       "giới từ \"ba\""
+      ],
+      [
+       "把握",
+       "bǎwò",
+       "nắm bắt, nắm bắt"
+      ],
+      [
+       "白",
+       "bái",
+       "trắng"
+      ],
+      [
+       "白菜",
+       "báicài",
+       "cải bắp"
+      ],
+      [
+       "班级",
+       "bānjí",
+       "lớp, lớp"
+      ],
+      [
+       "搬",
+       "bān",
+       "di chuyển, thay đổi"
+      ],
+      [
+       "搬家",
+       "bānjiā",
+       "chuyển nhà"
+      ],
+      [
+       "板",
+       "bǎn",
+       "ván, ván"
+      ],
+      [
+       "办理",
+       "bànlǐ",
+       "để xử lý, để tiến hành"
+      ],
+      [
+       "保",
+       "bǎo",
+       "để lưu trữ, để bảo vệ"
+      ],
+      [
+       "保安",
+       "bǎo'ān",
+       "nhân viên bảo vệ"
+      ],
+      [
+       "保持",
+       "bǎochí",
+       "để giữ, để duy trì"
+      ],
+      [
+       "保存",
+       "bǎocún",
+       "để tiết kiệm; để giữ"
+      ],
+      [
+       "保护",
+       "bǎohù",
+       "B ả o V ệ; sự bảo vệ"
+      ],
+      [
+       "保留",
+       "bǎoliú",
+       "để giữ, để giữ lại"
+      ]
+     ]
+    ],
+    [
+     "bǎoxiǎn → biànhuà",
+     [
+      [
+       "保险",
+       "bǎoxiǎn",
+       "bảo hiểm"
+      ],
+      [
+       "保证",
+       "bǎozhèng",
+       "để đảm bảo, để đảm bảo"
+      ],
+      [
+       "报",
+       "bào",
+       "báo chí"
+      ],
+      [
+       "报到",
+       "bàodào",
+       "đăng ký, đăng ký"
+      ],
+      [
+       "报道",
+       "bàodào",
+       "báo cáo"
+      ],
+      [
+       "报告",
+       "bàogào",
+       "báo cáo"
+      ],
+      [
+       "背",
+       "bēi",
+       "để mang trên lưng; mặt sau"
+      ],
+      [
+       "北部",
+       "běibù",
+       "phía Bắc"
+      ],
+      [
+       "背后",
+       "bèihòu",
+       "ở phía sau"
+      ],
+      [
+       "被",
+       "bèi",
+       "bởi (một từ chỉ giọng nói bị động)"
+      ],
+      [
+       "被子",
+       "bèizi",
+       "may chăn"
+      ],
+      [
+       "本来",
+       "běnlái",
+       "nguyên bản; ban đầu"
+      ],
+      [
+       "本领",
+       "běnlǐng",
+       "khả năng, kỹ năng"
+      ],
+      [
+       "本事",
+       "běnshi",
+       "khả năng, kỹ năng"
+      ],
+      [
+       "比较",
+       "bǐjiào",
+       "tương đối; để so sánh"
+      ],
+      [
+       "比例",
+       "bǐlì",
+       "tỷ lệ"
+      ],
+      [
+       "比赛",
+       "bǐsài",
+       "để cạnh tranh; cuộc đua, cuộc thi"
+      ],
+      [
+       "必然",
+       "bìrán",
+       "không thể tránh khỏi"
+      ],
+      [
+       "必要",
+       "bìyào",
+       "cần thiết"
+      ],
+      [
+       "变化",
+       "biànhuà",
+       "thay đổi; biến đổi"
+      ]
+     ]
+    ],
+    [
+     "biànwéi → bùdébù",
+     [
+      [
+       "变为",
+       "biànwéi",
+       "thay đổi thành"
+      ],
+      [
+       "标题",
+       "biāotí",
+       "Tiêu đề"
+      ],
+      [
+       "标准",
+       "biāozhǔn",
+       "Tiêu chuẩn"
+      ],
+      [
+       "表达",
+       "biǎodá",
+       "bộc lộ"
+      ],
+      [
+       "表格",
+       "biǎogé",
+       "hình thức"
+      ],
+      [
+       "表面",
+       "biǎomiàn",
+       "mặt"
+      ],
+      [
+       "表明",
+       "biǎomíng",
+       "để diễn đạt, làm rõ ràng"
+      ],
+      [
+       "表现",
+       "biǎoxiàn",
+       "hành vi, hiệu suất"
+      ],
+      [
+       "表演",
+       "biǎoyǎn",
+       "biểu diễn"
+      ],
+      [
+       "并",
+       "bìng",
+       "ở tất cả"
+      ],
+      [
+       "并且",
+       "bìngqiě",
+       "và, ngoài ra"
+      ],
+      [
+       "播出",
+       "bōchū",
+       "phát sóng"
+      ],
+      [
+       "播放",
+       "bōfàng",
+       "phát sóng"
+      ],
+      [
+       "不必",
+       "bùbì",
+       "không cần thiết"
+      ],
+      [
+       "不断",
+       "bùduàn",
+       "liên tục"
+      ],
+      [
+       "不论",
+       "bùlùn",
+       "không vấn đề"
+      ],
+      [
+       "补",
+       "bǔ",
+       "sửa chữa, bổ sung"
+      ],
+      [
+       "补充",
+       "bǔchōng",
+       "để bổ sung"
+      ],
+      [
+       "不安",
+       "bù'ān",
+       "bị làm phiền"
+      ],
+      [
+       "不得不",
+       "bùdébù",
+       "không có sự lựa chọn"
+      ]
+     ]
+    ],
+    [
+     "bùguāng → chāojí",
+     [
+      [
+       "不光",
+       "bùguāng",
+       "không chỉ"
+      ],
+      [
+       "不仅",
+       "bùjǐn",
+       "không chỉ"
+      ],
+      [
+       "布",
+       "bù",
+       "vải"
+      ],
+      [
+       "步",
+       "bù",
+       "tốc độ, bước"
+      ],
+      [
+       "部",
+       "bù",
+       "một từ đo lường cho sách, phim"
+      ],
+      [
+       "部门",
+       "bùmén",
+       "phòng ban, bộ phận"
+      ],
+      [
+       "部长",
+       "bùzhǎng",
+       "bộ trưởng, mục sư"
+      ],
+      [
+       "才能",
+       "cáinéng",
+       "khả năng, tài năng"
+      ],
+      [
+       "采取",
+       "cǎiqǔ",
+       "nhận nuôi"
+      ],
+      [
+       "采用",
+       "cǎiyòng",
+       "sử dụng"
+      ],
+      [
+       "彩色",
+       "cǎisè",
+       "nhiều màu, màu sắc"
+      ],
+      [
+       "曾经",
+       "céngjīng",
+       "từng, tại một thời điểm"
+      ],
+      [
+       "产生",
+       "chǎnshēng",
+       "để sản xuất, xuất hiện"
+      ],
+      [
+       "长城",
+       "Chángchéng",
+       "Vạn lý trường thành"
+      ],
+      [
+       "长处",
+       "chángchù",
+       "điểm mạnh"
+      ],
+      [
+       "长期",
+       "chángqī",
+       "dài hạn; thời gian dài"
+      ],
+      [
+       "厂",
+       "chǎng",
+       "nhà máy"
+      ],
+      [
+       "场合",
+       "chǎnghé",
+       "dịp"
+      ],
+      [
+       "场所",
+       "chǎngsuǒ",
+       "nơi"
+      ],
+      [
+       "超级",
+       "chāojí",
+       "siêu"
+      ]
+     ]
+    ],
+    [
+     "cháo → chū",
+     [
+      [
+       "朝",
+       "cháo",
+       "đối với"
+      ],
+      [
+       "吵",
+       "chǎo",
+       "gây ồn ào; ồn ào"
+      ],
+      [
+       "吵架",
+       "chǎojià",
+       "cãi nhau"
+      ],
+      [
+       "衬衫",
+       "chènshān",
+       "áo sơ mi, áo blouse"
+      ],
+      [
+       "衬衣",
+       "chènyī",
+       "áo sơ mi"
+      ],
+      [
+       "称为",
+       "chēngwéi",
+       "được gọi là"
+      ],
+      [
+       "成功",
+       "chénggōng",
+       "thành công; để thành công"
+      ],
+      [
+       "成果",
+       "chéngguǒ",
+       "thành tích, đạt được"
+      ],
+      [
+       "成就",
+       "chéngjiù",
+       "thành tích"
+      ],
+      [
+       "成立",
+       "chénglì",
+       "thành lập, thiết lập"
+      ],
+      [
+       "成熟",
+       "chéngshú",
+       "trưởng thành"
+      ],
+      [
+       "成员",
+       "chéngyuán",
+       "thành viên"
+      ],
+      [
+       "成长",
+       "chéngzhǎng",
+       "lớn lên"
+      ],
+      [
+       "城",
+       "chéng",
+       "thành phố, bức tường thành phố"
+      ],
+      [
+       "城市",
+       "chéngshì",
+       "thành phố"
+      ],
+      [
+       "程度",
+       "chéngdù",
+       "mức độ, mức độ"
+      ],
+      [
+       "持续",
+       "chíxù",
+       "tiếp tục"
+      ],
+      [
+       "充满",
+       "chōngmǎn",
+       "để lấp đầy; đầy"
+      ],
+      [
+       "重",
+       "chóng",
+       "nặng"
+      ],
+      [
+       "初",
+       "chū",
+       "bắt đầu"
+      ]
+     ]
+    ],
+    [
+     "chūbù → cuòwù",
+     [
+      [
+       "初步",
+       "chūbù",
+       "ban đầu, sơ bộ"
+      ],
+      [
+       "初级",
+       "chūjí",
+       "tiểu học, tiểu học"
+      ],
+      [
+       "初中",
+       "chūzhōng",
+       "Trung học cơ sở"
+      ],
+      [
+       "除了",
+       "chúle",
+       "ngoài (ra)"
+      ],
+      [
+       "处理",
+       "chǔlǐ",
+       "sắp xếp, giải quyết"
+      ],
+      [
+       "传",
+       "chuán",
+       "để vượt qua, để gửi"
+      ],
+      [
+       "传播",
+       "chuánbō",
+       "lây lan"
+      ],
+      [
+       "传来",
+       "chuánlái",
+       "đến"
+      ],
+      [
+       "传说",
+       "chuánshuō",
+       "Nó nói vậy; truyện dân gian"
+      ],
+      [
+       "创新",
+       "chuàngxīn",
+       "đổi mới"
+      ],
+      [
+       "创业",
+       "chuàngyè",
+       "thành lập doanh nghiệp"
+      ],
+      [
+       "创造",
+       "chuàngzào",
+       "để tạo ra"
+      ],
+      [
+       "创作",
+       "chuàngzuò",
+       "để tạo ra, để sản xuất"
+      ],
+      [
+       "从来",
+       "cónglái",
+       "luôn luôn"
+      ],
+      [
+       "从前",
+       "cóngqián",
+       "trước đây, ngày xửa ngày xưa"
+      ],
+      [
+       "从事",
+       "cóngshì",
+       "làm"
+      ],
+      [
+       "村",
+       "cūn",
+       "làng quê"
+      ],
+      [
+       "存",
+       "cún",
+       "để tiết kiệm, gửi tiền"
+      ],
+      [
+       "存在",
+       "cúnzài",
+       "tồn tại"
+      ],
+      [
+       "错误",
+       "cuòwù",
+       "sai lầm, lỗi lầm; Sai lầm"
+      ]
+     ]
+    ],
+    [
+     "dádào → dàodá",
+     [
+      [
+       "达到",
+       "dádào",
+       "đạt được, đạt được"
+      ],
+      [
+       "打破",
+       "dǎpò",
+       "phá vỡ, đập vỡ"
+      ],
+      [
+       "打听",
+       "dǎting",
+       "hỏi xung quanh"
+      ],
+      [
+       "大概",
+       "dàgài",
+       "xấp xỉ, có lẽ là; chung"
+      ],
+      [
+       "大使馆",
+       "dàshǐguǎn",
+       "đại sứ quán"
+      ],
+      [
+       "大约",
+       "dàyuē",
+       "xấp xỉ, khoảng"
+      ],
+      [
+       "大夫",
+       "dàifu",
+       "Bác sĩ"
+      ],
+      [
+       "代",
+       "dài",
+       "thay mặt cho"
+      ],
+      [
+       "代表",
+       "dàibiǎo",
+       "để đại diện cho; Tiêu biểu"
+      ],
+      [
+       "代表团",
+       "dàibiǎotuán",
+       "phái đoàn"
+      ],
+      [
+       "带动",
+       "dàidòng",
+       "mang một mình"
+      ],
+      [
+       "带领",
+       "dàilǐng",
+       "dẫn dắt, hướng dẫn"
+      ],
+      [
+       "单元",
+       "dānyuán",
+       "đơn vị ở"
+      ],
+      [
+       "当初",
+       "dāngchū",
+       "lúc bắt đầu"
+      ],
+      [
+       "当地",
+       "dāngdì",
+       "địa phương"
+      ],
+      [
+       "当然",
+       "dāngrán",
+       "tất nhiên, tự nhiên"
+      ],
+      [
+       "当中",
+       "dāngzhōng",
+       "giữa"
+      ],
+      [
+       "刀",
+       "dāo",
+       "dao"
+      ],
+      [
+       "导演",
+       "dǎoyǎn",
+       "chỉ đạo; giám đốc"
+      ],
+      [
+       "到达",
+       "dàodá",
+       "đến; người đến"
+      ]
+     ]
+    ],
+    [
+     "dàodǐ → duǎnqī",
+     [
+      [
+       "到底",
+       "dàodǐ",
+       "cuối cùng, cuối cùng; đến cuối cùng"
+      ],
+      [
+       "得分",
+       "défēn",
+       "để nhận điểm"
+      ],
+      [
+       "等待",
+       "děngdài",
+       "đợi"
+      ],
+      [
+       "底下",
+       "dǐxia",
+       "bên dưới"
+      ],
+      [
+       "地区",
+       "dìqū",
+       "khu vực, quận"
+      ],
+      [
+       "电视剧",
+       "diànshìjù",
+       "Chương trình truyền hình, phim truyền hình dài tập"
+      ],
+      [
+       "电视台",
+       "diànshìtái",
+       "Đài truyền hình"
+      ],
+      [
+       "电台",
+       "diàntái",
+       "trạm thu phát thông tin"
+      ],
+      [
+       "电子邮件",
+       "diànzǐ yóujiàn",
+       "e-mail"
+      ],
+      [
+       "调",
+       "diào",
+       "chuyển giao, chuyển đổi"
+      ],
+      [
+       "调查",
+       "diàochá",
+       "sự khảo sát; khảo sát"
+      ],
+      [
+       "订",
+       "dìng",
+       "đặt chỗ, đặt hàng"
+      ],
+      [
+       "定期",
+       "dìngqī",
+       "để ấn định một ngày; thường xuyên"
+      ],
+      [
+       "东部",
+       "dōngbù",
+       "Phần phía đông"
+      ],
+      [
+       "动力",
+       "dònglì",
+       "năng lượng điện"
+      ],
+      [
+       "动人",
+       "dòngrén",
+       "sờ vào"
+      ],
+      [
+       "读者",
+       "dúzhě",
+       "người đọc"
+      ],
+      [
+       "短处",
+       "duǎnchù",
+       "sự thiếu sót"
+      ],
+      [
+       "短裤",
+       "duǎnkù",
+       "quần short"
+      ],
+      [
+       "短期",
+       "duǎnqī",
+       "thời gian ngắn"
+      ]
+     ]
+    ],
+    [
+     "duàn → fǎnzhèng",
+     [
+      [
+       "断",
+       "duàn",
+       "phá vỡ"
+      ],
+      [
+       "队员",
+       "duìyuán",
+       "thành viên của đội"
+      ],
+      [
+       "对待",
+       "duìdài",
+       "để điều trị"
+      ],
+      [
+       "对方",
+       "duìfāng",
+       "mặt khác"
+      ],
+      [
+       "对手",
+       "duìshǒu",
+       "phản đối"
+      ],
+      [
+       "对象",
+       "duìxiàng",
+       "đối tác, vợ / chồng tương lai"
+      ],
+      [
+       "顿",
+       "dùn",
+       "một từ đo lường cho bữa ăn"
+      ],
+      [
+       "发表",
+       "fābiǎo",
+       "để bày tỏ ý kiến của một người, để xuất bản"
+      ],
+      [
+       "发出",
+       "fāchū",
+       "gửi đi, phát đi"
+      ],
+      [
+       "发达",
+       "fādá",
+       "phát triển"
+      ],
+      [
+       "发动",
+       "fādòng",
+       "để bắt đầu, để khởi chạy"
+      ],
+      [
+       "发明",
+       "fāmíng",
+       "phát minh; sự phát minh"
+      ],
+      [
+       "发生",
+       "fāshēng",
+       "xảy ra, diễn ra"
+      ],
+      [
+       "发送",
+       "fāsòng",
+       "để truyền tải"
+      ],
+      [
+       "发言",
+       "fāyán",
+       "để thực hiện một bài phát biểu"
+      ],
+      [
+       "发展",
+       "fāzhǎn",
+       "phát triển; sự phát triển"
+      ],
+      [
+       "反对",
+       "fǎnduì",
+       "chống lại, chống lại"
+      ],
+      [
+       "反复",
+       "fǎnfù",
+       "nhiều lần"
+      ],
+      [
+       "反应",
+       "fǎnyìng",
+       "phản ứng, phản ứng; phản ứng"
+      ],
+      [
+       "反正",
+       "fǎnzhèng",
+       "dù sao"
+      ]
+     ]
+    ],
+    [
+     "fànwéi → fúzhuāng",
+     [
+      [
+       "范围",
+       "fànwéi",
+       "quả cầu"
+      ],
+      [
+       "方式",
+       "fāngshì",
+       "cách, phong cách"
+      ],
+      [
+       "防",
+       "fáng",
+       "để bảo vệ, để bảo vệ chống lại"
+      ],
+      [
+       "防止",
+       "fángzhǐ",
+       "để ngăn chặn"
+      ],
+      [
+       "房东",
+       "fángdōng",
+       "chủ nhà"
+      ],
+      [
+       "房屋",
+       "fángwū",
+       "ngôi nhà, tòa nhà"
+      ],
+      [
+       "房租",
+       "fángzū",
+       "cho thuê nhà ở"
+      ],
+      [
+       "访问",
+       "fǎngwèn",
+       "đến thăm, để kêu gọi"
+      ],
+      [
+       "放到",
+       "fàngdào",
+       "đặt trên"
+      ],
+      [
+       "飞行",
+       "fēixíng",
+       "bay; chuyến bay"
+      ],
+      [
+       "费",
+       "fèi",
+       "chi tiêu; phí, chi phí"
+      ],
+      [
+       "费用",
+       "fèiyong",
+       "phí, chi phí"
+      ],
+      [
+       "分别",
+       "fēnbié",
+       "tương ứng, riêng biệt"
+      ],
+      [
+       "分配",
+       "fēnpèi",
+       "để phân phối"
+      ],
+      [
+       "分组",
+       "fēn zǔ",
+       "chia thành các nhóm"
+      ],
+      [
+       "丰富",
+       "fēngfù",
+       "để làm giàu; dồi dào, dồi dào, phong phú"
+      ],
+      [
+       "风险",
+       "fēngxiǎn",
+       "rủi ro, nguy hiểm"
+      ],
+      [
+       "否定",
+       "fǒudìng",
+       "để phủ định; phủ định"
+      ],
+      [
+       "否认",
+       "fǒurèn",
+       "từ chối, từ chối"
+      ],
+      [
+       "服装",
+       "fúzhuāng",
+       "váy, trang phục"
+      ]
+     ]
+    ],
+    [
+     "fú → gànmá",
+     [
+      [
+       "福",
+       "fú",
+       "niềm hạnh phúc"
+      ],
+      [
+       "父母",
+       "fùmǔ",
+       "cha mẹ"
+      ],
+      [
+       "父亲",
+       "fùqīn",
+       "cha"
+      ],
+      [
+       "付",
+       "fù",
+       "trả"
+      ],
+      [
+       "负责",
+       "fùzé",
+       "chịu trách nhiệm, phụ trách"
+      ],
+      [
+       "复印",
+       "fùyìn",
+       "sao chép, sao chép"
+      ],
+      [
+       "复杂",
+       "fùzá",
+       "phức tạp, phức tạp"
+      ],
+      [
+       "富",
+       "fù",
+       "giàu có"
+      ],
+      [
+       "改进",
+       "gǎijìn",
+       "để cải thiện"
+      ],
+      [
+       "改造",
+       "gǎizào",
+       "để biến đổi, để xây dựng lại"
+      ],
+      [
+       "概念",
+       "gàiniàn",
+       "ý tưởng"
+      ],
+      [
+       "赶",
+       "gǎn",
+       "nhanh chóng, để lái xe, để bắt kịp với"
+      ],
+      [
+       "赶到",
+       "gǎndào",
+       "nhanh lên"
+      ],
+      [
+       "赶紧",
+       "gǎnjǐn",
+       "vội vã"
+      ],
+      [
+       "赶快",
+       "gǎnkuài",
+       "ngay lập tức, nhanh chóng"
+      ],
+      [
+       "敢",
+       "gǎn",
+       "dám"
+      ],
+      [
+       "感冒",
+       "gǎnmào",
+       "bệnh cúm; cảm lạnh"
+      ],
+      [
+       "感情",
+       "gǎnqíng",
+       "cảm giác, cảm xúc, tình cảm"
+      ],
+      [
+       "感受",
+       "gǎnshòu",
+       "to exprerience; cảm giác"
+      ],
+      [
+       "干吗",
+       "gànmá",
+       "Để làm gì?"
+      ]
+     ]
+    ],
+    [
+     "gāosù → gōngyè",
+     [
+      [
+       "高速",
+       "gāosù",
+       "tốc độ cao"
+      ],
+      [
+       "高速公路",
+       "gāosù gōnglù",
+       "Xa lộ"
+      ],
+      [
+       "告别",
+       "gàobié",
+       "nói lời tạm biệt với"
+      ],
+      [
+       "歌迷",
+       "gēmí",
+       "người hâm mộ của một ca sĩ"
+      ],
+      [
+       "歌声",
+       "gēshēng",
+       "tiếng hát"
+      ],
+      [
+       "歌手",
+       "gēshǒu",
+       "ca sĩ"
+      ],
+      [
+       "个人",
+       "gèrén",
+       "cá nhân mình; tính cách"
+      ],
+      [
+       "个性",
+       "gèxìng",
+       "tính cách"
+      ],
+      [
+       "各",
+       "gè",
+       "mỗi"
+      ],
+      [
+       "各地",
+       "gèdì",
+       "các vùng khác nhau"
+      ],
+      [
+       "各位",
+       "gèwèi",
+       "tất cả hiện tại; Kính thưa quý vị đại biểu!"
+      ],
+      [
+       "各种",
+       "gèzhǒng",
+       "tất cả các loại, khác nhau"
+      ],
+      [
+       "各自",
+       "gèzì",
+       "mỗi"
+      ],
+      [
+       "根本",
+       "gēnběn",
+       "hoàn toàn, ở tất cả"
+      ],
+      [
+       "更加",
+       "gèngjiā",
+       "thậm chí nhiều hơn"
+      ],
+      [
+       "工厂",
+       "gōngchǎng",
+       "nhà máy, nhà máy"
+      ],
+      [
+       "工程师",
+       "gōngchéngshī",
+       "kĩ sư"
+      ],
+      [
+       "工夫",
+       "gōngfu",
+       "thời gian giải trí; thời gian"
+      ],
+      [
+       "工具",
+       "gōngjù",
+       "công cụ, dụng cụ"
+      ],
+      [
+       "工业",
+       "gōngyè",
+       "ngành công nghiệp"
+      ]
+     ]
+    ],
+    [
+     "gōngzī → guānkàn",
+     [
+      [
+       "工资",
+       "gōngzī",
+       "tiền lương, tiền lương"
+      ],
+      [
+       "公布",
+       "gōngbù",
+       "thông báo, xuất bản"
+      ],
+      [
+       "公共",
+       "gōnggòng",
+       "chung, chung"
+      ],
+      [
+       "公开",
+       "gōngkāi",
+       "mở"
+      ],
+      [
+       "公民",
+       "gōngmín",
+       "người dân"
+      ],
+      [
+       "公务员",
+       "gōngwùyuán",
+       "công chức"
+      ],
+      [
+       "功夫",
+       "gōngfu",
+       "Kung Fu"
+      ],
+      [
+       "功课",
+       "gōngkè",
+       "bài tập ở trường, bài tập về nhà"
+      ],
+      [
+       "功能",
+       "gōngnéng",
+       "hàm số"
+      ],
+      [
+       "共同",
+       "gòngtóng",
+       "phổ thông"
+      ],
+      [
+       "共有",
+       "gòngyǒu",
+       "có tất cả"
+      ],
+      [
+       "姑娘",
+       "gūniang",
+       "con gái"
+      ],
+      [
+       "古",
+       "gǔ",
+       "cổ đại"
+      ],
+      [
+       "古代",
+       "gǔdài",
+       "thời cổ đại, thời cổ đại"
+      ],
+      [
+       "故乡",
+       "gùxiāng",
+       "quê quán, quê quán"
+      ],
+      [
+       "挂",
+       "guà",
+       "treo lên, treo lên"
+      ],
+      [
+       "关系",
+       "guānxì",
+       "liên quan tới; mối quan hệ họ hàng"
+      ],
+      [
+       "关注",
+       "guānzhù",
+       "theo dõi, chú ý; chú ý"
+      ],
+      [
+       "观察",
+       "guānchá",
+       "để quan sát, để xem"
+      ],
+      [
+       "观看",
+       "guānkàn",
+       "xem"
+      ]
+     ]
+    ],
+    [
+     "guānniàn → háng",
+     [
+      [
+       "观念",
+       "guānniàn",
+       "quan niệm"
+      ],
+      [
+       "观众",
+       "guānzhòng",
+       "sự tiếp kiến"
+      ],
+      [
+       "管",
+       "guǎn",
+       "quản lý, giữ"
+      ],
+      [
+       "管理",
+       "guǎnlǐ",
+       "quản lý; ban quản lý"
+      ],
+      [
+       "光",
+       "guāng",
+       "ánh sáng, tia sáng"
+      ],
+      [
+       "光明",
+       "guāngmíng",
+       "ánh sáng, tỏa sáng; sáng bóng"
+      ],
+      [
+       "广播",
+       "guǎngbō",
+       "phát tin; phát sóng"
+      ],
+      [
+       "广大",
+       "guǎngdà",
+       "sâu rộng"
+      ],
+      [
+       "规定",
+       "guīdìng",
+       "quy tắc, quy định"
+      ],
+      [
+       "规范",
+       "guīfàn",
+       "tiêu chuẩn, quy chuẩn"
+      ],
+      [
+       "国内",
+       "guó nèi",
+       "nội địa; trong nước"
+      ],
+      [
+       "国庆",
+       "guóqìng",
+       "ngày Quốc khánh"
+      ],
+      [
+       "果然",
+       "guǒrán",
+       "đảm bảo đủ"
+      ],
+      [
+       "果汁",
+       "guǒzhī",
+       "Nước hoa quả"
+      ],
+      [
+       "过程",
+       "guòchéng",
+       "khóa học, quá trình"
+      ],
+      [
+       "过去",
+       "guòqù",
+       "trong quá khứ, quá khứ; vượt qua"
+      ],
+      [
+       "哈哈",
+       "hāhā",
+       "Haha"
+      ],
+      [
+       "海关",
+       "hǎiguān",
+       "phong tục tập quán"
+      ],
+      [
+       "害怕",
+       "hàipà",
+       "sợ"
+      ],
+      [
+       "行",
+       "háng",
+       "được rồi, được rồi"
+      ]
+     ]
+    ],
+    [
+     "hǎohǎo → huàtí",
+     [
+      [
+       "好好",
+       "hǎohǎo",
+       "cẩn thận, nghiêm túc"
+      ],
+      [
+       "好奇",
+       "hàoqí",
+       "tò mò; Tò mò"
+      ],
+      [
+       "合",
+       "hé",
+       "để phù hợp"
+      ],
+      [
+       "合法",
+       "héfǎ",
+       "hợp pháp"
+      ],
+      [
+       "合格",
+       "hégé",
+       "đạt tiêu chuẩn"
+      ],
+      [
+       "合理",
+       "hélǐ",
+       "hợp lý"
+      ],
+      [
+       "合作",
+       "hézuò",
+       "hợp tác"
+      ],
+      [
+       "和平",
+       "hépíng",
+       "hòa bình; bình yên"
+      ],
+      [
+       "红茶",
+       "hóngchá",
+       "trà đen"
+      ],
+      [
+       "红酒",
+       "hóngjiǔ",
+       "rượu vang đỏ"
+      ],
+      [
+       "后果",
+       "hòuguǒ",
+       "hậu quả"
+      ],
+      [
+       "后面",
+       "hòumiàn",
+       "phía sau"
+      ],
+      [
+       "后年",
+       "hòunián",
+       "năm sau"
+      ],
+      [
+       "互联网",
+       "hùliánwǎng",
+       "Internet"
+      ],
+      [
+       "互相",
+       "hùxiāng",
+       "lẫn nhau, lẫn nhau"
+      ],
+      [
+       "划船",
+       "huáchuán",
+       "lên thuyền"
+      ],
+      [
+       "华人",
+       "huárén",
+       "Người Hoa nhập cư từ Trung Quốc"
+      ],
+      [
+       "化",
+       "huà (xiàndàihuà)",
+       "thay đổi"
+      ],
+      [
+       "话剧",
+       "huàjù",
+       "sân khấu kịch"
+      ],
+      [
+       "话题",
+       "huàtí",
+       "chủ đề"
+      ]
+     ]
+    ],
+    [
+     "huānlè → jìlù",
+     [
+      [
+       "欢乐",
+       "huānlè",
+       "hạnh phúc, vui vẻ"
+      ],
+      [
+       "环",
+       "huán",
+       "bao vây, bao vây"
+      ],
+      [
+       "环保",
+       "huánbǎo",
+       "bảo vệ môi trương"
+      ],
+      [
+       "环境",
+       "huánjìng",
+       "Môi trường"
+      ],
+      [
+       "会议",
+       "huìyì",
+       "cuộc họp, hội nghị"
+      ],
+      [
+       "会员",
+       "huìyuán",
+       "thành viên"
+      ],
+      [
+       "活",
+       "huó",
+       "còn sống; sống"
+      ],
+      [
+       "火",
+       "huǒ",
+       "Cháy"
+      ],
+      [
+       "机器",
+       "jīqì",
+       "cỗ máy"
+      ],
+      [
+       "积极",
+       "jījí",
+       "tích cực, tích cực"
+      ],
+      [
+       "基本",
+       "jīběn",
+       "nền tảng; nói chung là"
+      ],
+      [
+       "基本上",
+       "jīběnshàng",
+       "về cơ bản"
+      ],
+      [
+       "基础",
+       "jīchǔ",
+       "nền tảng"
+      ],
+      [
+       "及时",
+       "jíshí",
+       "đúng giờ"
+      ],
+      [
+       "集体",
+       "jítǐ",
+       "nhóm, đội"
+      ],
+      [
+       "集中",
+       "jízhōng",
+       "để tập trung"
+      ],
+      [
+       "计算",
+       "jìsuàn",
+       "để đếm, để tính toán"
+      ],
+      [
+       "记录",
+       "jìlù",
+       "để ghi lại; ghi lại"
+      ],
+      [
+       "记者",
+       "jìzhě",
+       "phóng viên"
+      ],
+      [
+       "纪录",
+       "jìlù",
+       "ghi lại"
+      ]
+     ]
+    ],
+    [
+     "jìniàn → jiànchéng",
+     [
+      [
+       "纪念",
+       "jìniàn",
+       "kỷ niệm; để nhớ, để kỷ niệm"
+      ],
+      [
+       "技术",
+       "jìshù",
+       "công nghệ, kỹ năng"
+      ],
+      [
+       "继续",
+       "jìxù",
+       "tiếp tục, tiếp tục"
+      ],
+      [
+       "加工",
+       "jiāgōng",
+       "để xử lý; Chế biến"
+      ],
+      [
+       "加快",
+       "jiākuài",
+       "tăng tốc"
+      ],
+      [
+       "加强",
+       "jiāqiáng",
+       "để tăng cường"
+      ],
+      [
+       "家具",
+       "jiājù",
+       "đồ nội thất"
+      ],
+      [
+       "家属",
+       "jiāshǔ",
+       "thành viên trong gia đình"
+      ],
+      [
+       "家乡",
+       "jiāxiāng",
+       "quê nhà"
+      ],
+      [
+       "价格",
+       "jiàgé",
+       "giá bán"
+      ],
+      [
+       "价钱",
+       "jiàqián",
+       "giá bán"
+      ],
+      [
+       "价值",
+       "jiàzhí",
+       "giá trị"
+      ],
+      [
+       "架",
+       "jià",
+       "cái kệ"
+      ],
+      [
+       "坚持",
+       "jiānchí",
+       "kiên trì, kiên quyết"
+      ],
+      [
+       "坚决",
+       "jiānjué",
+       "cương quyết"
+      ],
+      [
+       "坚强",
+       "jiānqiáng",
+       "mạnh mẽ, vững chắc"
+      ],
+      [
+       "简单",
+       "jiǎndān",
+       "giản dị"
+      ],
+      [
+       "简直",
+       "jiǎnzhí",
+       "đơn giản, hầu như"
+      ],
+      [
+       "建",
+       "jiàn",
+       "xây dựng"
+      ],
+      [
+       "建成",
+       "jiànchéng",
+       "thành lập"
+      ]
+     ]
+    ],
+    [
+     "jiànlì → jiéhūn",
+     [
+      [
+       "建立",
+       "jiànlì",
+       "để xây dựng, để tạo ra"
+      ],
+      [
+       "建设",
+       "jiànshè",
+       "để xây dựng; sự thi công"
+      ],
+      [
+       "建议",
+       "jiànyì",
+       "đề nghị; gợi ý"
+      ],
+      [
+       "将近",
+       "jiāngjìn",
+       "gần, gần với"
+      ],
+      [
+       "将来",
+       "jiānglái",
+       "Tương lai"
+      ],
+      [
+       "交费",
+       "jiāofèi",
+       "trả một khoản phí"
+      ],
+      [
+       "交警",
+       "jiāojǐng",
+       "cảnh sát giao thông"
+      ],
+      [
+       "交流",
+       "jiāoliú",
+       "trao đổi; sự tương tác"
+      ],
+      [
+       "交往",
+       "jiāowǎng",
+       "liên kết; sự kết hợp"
+      ],
+      [
+       "交易",
+       "jiāoyì",
+       "giao dịch; giao dịch, giao dịch"
+      ],
+      [
+       "叫",
+       "jiào",
+       "gọi, được gọi"
+      ],
+      [
+       "较",
+       "jiào",
+       "tương đối; để so sánh"
+      ],
+      [
+       "教材",
+       "jiàocái",
+       "tài liệu giảng dạy"
+      ],
+      [
+       "教练",
+       "jiàoliàn",
+       "huấn luyện viên"
+      ],
+      [
+       "结实",
+       "jiēshi",
+       "bền chặt"
+      ],
+      [
+       "接待",
+       "jiēdài",
+       "nhận, thừa nhận"
+      ],
+      [
+       "接近",
+       "jiējìn",
+       "tiếp cận"
+      ],
+      [
+       "节约",
+       "jiéyuē",
+       "tiết kiệm, tiết kiệm"
+      ],
+      [
+       "结合",
+       "jiéhé",
+       "kết hợp"
+      ],
+      [
+       "结婚",
+       "jiéhūn",
+       "kết hôn"
+      ]
+     ]
+    ],
+    [
+     "jiéshù → jīngyíng",
+     [
+      [
+       "结束",
+       "jiéshù",
+       "kết thúc, kết thúc"
+      ],
+      [
+       "解决",
+       "jiějué",
+       "để giải quyết"
+      ],
+      [
+       "解开",
+       "jiěkāi",
+       "cởi trói"
+      ],
+      [
+       "金",
+       "jīn",
+       "kim loại; vàng"
+      ],
+      [
+       "金牌",
+       "jīnpái",
+       "huy chương vàng"
+      ],
+      [
+       "仅",
+       "jǐn",
+       "chỉ có"
+      ],
+      [
+       "仅仅",
+       "jǐnjǐn",
+       "hầu như không, chỉ đơn thuần"
+      ],
+      [
+       "尽量",
+       "jǐnliàng",
+       "làm hết sức mình"
+      ],
+      [
+       "紧",
+       "jǐn",
+       "chắc chắn, chặt chẽ"
+      ],
+      [
+       "紧急",
+       "jǐnjí",
+       "khẩn cấp, gấp"
+      ],
+      [
+       "紧张",
+       "jǐnzhāng",
+       "căng thẳng, lo lắng"
+      ],
+      [
+       "进步",
+       "jìnbù",
+       "tiến triển; để đạt được tiến bộ"
+      ],
+      [
+       "进一步",
+       "jìnyībù",
+       "hơn nữa"
+      ],
+      [
+       "进展",
+       "jìnzhǎn",
+       "để đạt được tiến bộ"
+      ],
+      [
+       "近期",
+       "jìnqī",
+       "trong tương lai gần"
+      ],
+      [
+       "京剧",
+       "jīngjù",
+       "kinh kịch"
+      ],
+      [
+       "经济",
+       "jīngjì",
+       "nền kinh tế"
+      ],
+      [
+       "经历",
+       "jīnglì",
+       "trải nghiệm; trải qua"
+      ],
+      [
+       "经验",
+       "jīngyàn",
+       "trải qua"
+      ],
+      [
+       "经营",
+       "jīngyíng",
+       "quản lý, vận hành"
+      ]
+     ]
+    ],
+    [
+     "jīngcǎi → kāfēi",
+     [
+      [
+       "精彩",
+       "jīngcǎi",
+       "tuyệt vời, tuyệt vời"
+      ],
+      [
+       "精神",
+       "jīngshén",
+       "tinh thần"
+      ],
+      [
+       "景色",
+       "jǐngsè",
+       "phong cảnh, quang cảnh"
+      ],
+      [
+       "警察",
+       "jǐngchá",
+       "cảnh sát, cảnh sát"
+      ],
+      [
+       "静",
+       "jìng",
+       "yên lặng, tĩnh lặng"
+      ],
+      [
+       "久",
+       "jiǔ",
+       "một thời gian dài"
+      ],
+      [
+       "旧",
+       "jiù",
+       "cũ, đã qua sử dụng, đã mòn"
+      ],
+      [
+       "救",
+       "jiù",
+       "để giải cứu, để cứu"
+      ],
+      [
+       "就是",
+       "jiùshì",
+       "chính xác, thực sự"
+      ],
+      [
+       "就业",
+       "jiùyè",
+       "để được tuyển dụng"
+      ],
+      [
+       "举办",
+       "jǔbàn",
+       "để tiến hành, để giữ"
+      ],
+      [
+       "具体",
+       "jùtǐ",
+       "riêng"
+      ],
+      [
+       "具有",
+       "jùyǒu",
+       "sở hữu, có"
+      ],
+      [
+       "剧场",
+       "jùchǎng",
+       "rạp hát"
+      ],
+      [
+       "据说",
+       "jùshuō",
+       "người ta nói rằng"
+      ],
+      [
+       "决定",
+       "juédìng",
+       "quyết định"
+      ],
+      [
+       "决赛",
+       "juésài",
+       "trận chung kết, dòng chảy"
+      ],
+      [
+       "决心",
+       "juéxīn",
+       "quyết tâm của một người; sự quyết tâm"
+      ],
+      [
+       "绝对",
+       "juéduì",
+       "chắc chắn rồi; tuyệt đối"
+      ],
+      [
+       "咖啡",
+       "kāfēi",
+       "cà phê"
+      ]
+     ]
+    ],
+    [
+     "kāifā → kuàisù",
+     [
+      [
+       "开发",
+       "kāifā",
+       "phát triển"
+      ],
+      [
+       "开放",
+       "kāifàng",
+       "mở"
+      ],
+      [
+       "开始",
+       "kāishǐ",
+       "bắt đầu, bắt đầu"
+      ],
+      [
+       "开业",
+       "kāiyè",
+       "bắt đầu kinh doanh"
+      ],
+      [
+       "开展",
+       "kāizhǎn",
+       "phát triển"
+      ],
+      [
+       "看起来",
+       "kàn qǐlái",
+       "trông như thể"
+      ],
+      [
+       "看上去",
+       "kàn shàngqù",
+       "để trông giống như"
+      ],
+      [
+       "考验",
+       "kǎoyàn",
+       "thử nghiệm; để kiểm tra; kiểm tra"
+      ],
+      [
+       "科技",
+       "kējì",
+       "khoa học và Công nghệ"
+      ],
+      [
+       "可靠",
+       "kěkào",
+       "đáng tin cậy"
+      ],
+      [
+       "可乐",
+       "kělè",
+       "than cốc"
+      ],
+      [
+       "克服",
+       "kèfú",
+       "vượt qua"
+      ],
+      [
+       "客观",
+       "kèguān",
+       "khách quan"
+      ],
+      [
+       "课程",
+       "kèchéng",
+       "chương trình học, khóa học"
+      ],
+      [
+       "空",
+       "kōng",
+       "trống rỗng"
+      ],
+      [
+       "空调",
+       "kōngtiáo",
+       "máy điều hòa"
+      ],
+      [
+       "恐怕",
+       "kǒngpà",
+       "sợ hãi"
+      ],
+      [
+       "空儿",
+       "kòngr",
+       "thời gian rảnh"
+      ],
+      [
+       "裤子",
+       "kùzi",
+       "quần dài"
+      ],
+      [
+       "快速",
+       "kuàisù",
+       "tốc độ cao"
+      ]
+     ]
+    ],
+    [
+     "kùn → lìkè",
+     [
+      [
+       "困",
+       "kùn",
+       "Mệt mỏi buồn ngủ"
+      ],
+      [
+       "困难",
+       "kùnnan",
+       "khó khăn; sự khó khăn"
+      ],
+      [
+       "浪费",
+       "làngfèi",
+       "lãng phí"
+      ],
+      [
+       "老百姓",
+       "lǎobǎixìng",
+       "dân thường"
+      ],
+      [
+       "老板",
+       "lǎobǎn",
+       "trùm"
+      ],
+      [
+       "老太太",
+       "lǎotàitai",
+       "bà già"
+      ],
+      [
+       "老头儿",
+       "lǎotóur",
+       "ông già"
+      ],
+      [
+       "乐",
+       "lè",
+       "hạnh phúc, vui mừng"
+      ],
+      [
+       "乐观",
+       "lèguān",
+       "sự lạc quan; lạc quan"
+      ],
+      [
+       "类",
+       "lèi",
+       "tốt bụng"
+      ],
+      [
+       "类似",
+       "lèisì",
+       "tương tự"
+      ],
+      [
+       "离婚",
+       "líhūn",
+       "ly hôn"
+      ],
+      [
+       "里面",
+       "lǐmiàn",
+       "nội bộ"
+      ],
+      [
+       "理发",
+       "lǐfà",
+       "cắt tóc"
+      ],
+      [
+       "理解",
+       "lǐjiě",
+       "để hiểu, để hiểu"
+      ],
+      [
+       "理论",
+       "lǐlùn",
+       "học thuyết"
+      ],
+      [
+       "理由",
+       "lǐyóu",
+       "lý do"
+      ],
+      [
+       "力",
+       "lì",
+       "sức mạnh"
+      ],
+      [
+       "力量",
+       "lìliàng",
+       "quyền lực, sức mạnh"
+      ],
+      [
+       "立刻",
+       "lìkè",
+       "ngay lập tức"
+      ]
+     ]
+    ],
+    [
+     "lìyòng → lùxiàn",
+     [
+      [
+       "利用",
+       "lìyòng",
+       "sử dụng"
+      ],
+      [
+       "连",
+       "lián",
+       "thậm chí"
+      ],
+      [
+       "连忙",
+       "liánmáng",
+       "nhanh chóng"
+      ],
+      [
+       "连续",
+       "liánxù",
+       "liên tục, liên tiếp"
+      ],
+      [
+       "连续剧",
+       "liánxùjù",
+       "phim truyền hình dài tập"
+      ],
+      [
+       "联合",
+       "liánhé",
+       "liên hợp, liên hiệp"
+      ],
+      [
+       "联合国",
+       "Liánhéguó",
+       "liên Hiệp Quốc"
+      ],
+      [
+       "联系",
+       "liánxì",
+       "liên hệ, liên lạc với"
+      ],
+      [
+       "凉水",
+       "liángshuǐ",
+       "nước lạnh"
+      ],
+      [
+       "了",
+       "liǎo",
+       "hạt \"the\""
+      ],
+      [
+       "领",
+       "lǐng",
+       "dẫn đầu; lãnh đạo"
+      ],
+      [
+       "领导",
+       "lǐngdǎo",
+       "lãnh đạo; dẫn đầu"
+      ],
+      [
+       "领先",
+       "lǐngxiān",
+       "dẫn đầu, ở phía trước"
+      ],
+      [
+       "另外",
+       "lìngwài",
+       "ngoài ra, hơn thế nữa; nữa"
+      ],
+      [
+       "另一方面",
+       "lìng yīfāngmiàn",
+       "Mặt khác"
+      ],
+      [
+       "留学",
+       "liúxué",
+       "đi du học"
+      ],
+      [
+       "龙",
+       "lóng",
+       "rồng"
+      ],
+      [
+       "录",
+       "lù",
+       "để ghi lại, để đăng ký"
+      ],
+      [
+       "录音",
+       "lùyīn",
+       "ghi âm; để ghi lại"
+      ],
+      [
+       "路线",
+       "lùxiàn",
+       "tuyến đường"
+      ]
+     ]
+    ],
+    [
+     "lǚguǎn → měiyuán",
+     [
+      [
+       "旅馆",
+       "lǚguǎn",
+       "khách sạn, nhà khách"
+      ],
+      [
+       "旅行社",
+       "lǚxíngshè",
+       "đại lý du lịch"
+      ],
+      [
+       "绿茶",
+       "lǜchá",
+       "trà xanh"
+      ],
+      [
+       "乱",
+       "luàn",
+       "ngẫu nhiên, tùy tiện; rối loạn, không gọn gàng"
+      ],
+      [
+       "落后",
+       "luòhòu",
+       "bị bỏ lại phía sau; lạc hậu, kém phát triển"
+      ],
+      [
+       "麻烦",
+       "máfan",
+       "rắc rối; khó khăn"
+      ],
+      [
+       "马",
+       "mǎ",
+       "ngựa"
+      ],
+      [
+       "满足",
+       "mǎnzú",
+       "để thỏa mãn"
+      ],
+      [
+       "慢慢",
+       "mànmàn",
+       "chậm rãi"
+      ],
+      [
+       "毛",
+       "máo",
+       "mao (đơn vị tiền tệ = 1/10 nhân dân tệ)"
+      ],
+      [
+       "毛病",
+       "máobìng",
+       "khuyết điểm, điểm yếu"
+      ],
+      [
+       "没用",
+       "méiyòng",
+       "vô ích"
+      ],
+      [
+       "媒体",
+       "méitǐ",
+       "phương tiện thông tin đại chúng"
+      ],
+      [
+       "每",
+       "měi",
+       "mọi"
+      ],
+      [
+       "美",
+       "měi",
+       "xinh đẹp"
+      ],
+      [
+       "美好",
+       "měihǎo",
+       "tốt, tốt"
+      ],
+      [
+       "美丽",
+       "měilì",
+       "xinh đẹp"
+      ],
+      [
+       "美食",
+       "měishí",
+       "tinh vi"
+      ],
+      [
+       "美术",
+       "měishù",
+       "nghệ thuật, hội họa"
+      ],
+      [
+       "美元",
+       "měiyuán",
+       "Đô la Mỹ"
+      ]
+     ]
+    ],
+    [
+     "mí → nèi",
+     [
+      [
+       "迷",
+       "mí",
+       "Thưởng thưc; người hâm mộ, người đam mê"
+      ],
+      [
+       "米",
+       "mǐ",
+       "Mét"
+      ],
+      [
+       "面对",
+       "miànduì",
+       "đối mặt, đối đầu"
+      ],
+      [
+       "面积",
+       "miànjī",
+       "diện tích"
+      ],
+      [
+       "民间",
+       "mínjiān",
+       "dân gian"
+      ],
+      [
+       "民族",
+       "mínzú",
+       "quốc tịch, dân tộc"
+      ],
+      [
+       "明确",
+       "míngquè",
+       "rõ ràng và dứt khoát; làm rõ"
+      ],
+      [
+       "明显",
+       "míngxiǎn",
+       "rõ ràng, hiển nhiên"
+      ],
+      [
+       "命运",
+       "mìngyùn",
+       "vận mạng"
+      ],
+      [
+       "某",
+       "mǒu",
+       "một số"
+      ],
+      [
+       "母亲",
+       "mǔqīn",
+       "mẹ"
+      ],
+      [
+       "木头",
+       "mùtou",
+       "gỗ"
+      ],
+      [
+       "目标",
+       "mùbiāo",
+       "mục tiêu"
+      ],
+      [
+       "目前",
+       "mùqián",
+       "hiện nay"
+      ],
+      [
+       "奶茶",
+       "nǎichá",
+       "trà sữa"
+      ],
+      [
+       "男子",
+       "nánzǐ",
+       "Đàn ông"
+      ],
+      [
+       "南部",
+       "nánbù",
+       "Vùng phía nam"
+      ],
+      [
+       "难道",
+       "nándào",
+       "Có thể là"
+      ],
+      [
+       "难度",
+       "nándù",
+       "mức độ khó khăn"
+      ],
+      [
+       "内",
+       "nèi",
+       "bên trong; bên trong, bên trong"
+      ]
+     ]
+    ],
+    [
+     "nèiróng → páizi",
+     [
+      [
+       "内容",
+       "nèiróng",
+       "Nội dung"
+      ],
+      [
+       "内心",
+       "nèixīn",
+       "trong tim; bản thể trong cùng"
+      ],
+      [
+       "能不能",
+       "néng bu néng",
+       "có thể hay không"
+      ],
+      [
+       "能力",
+       "nénglì",
+       "có khả năng"
+      ],
+      [
+       "年初",
+       "niánchū",
+       "đầu năm"
+      ],
+      [
+       "年代",
+       "niándài",
+       "tuổi, thời kỳ"
+      ],
+      [
+       "年底",
+       "niándǐ",
+       "cuối năm"
+      ],
+      [
+       "年纪",
+       "niánjì",
+       "tuổi tác"
+      ],
+      [
+       "念",
+       "niàn",
+       "đọc to"
+      ],
+      [
+       "牛",
+       "niú",
+       "bò, bò"
+      ],
+      [
+       "农村",
+       "nóngcūn",
+       "vùng nông thôn"
+      ],
+      [
+       "农民",
+       "nóngmín",
+       "nông phu"
+      ],
+      [
+       "农业",
+       "nóngyè",
+       "nông nghiệp"
+      ],
+      [
+       "女子",
+       "nǚzǐ",
+       "những người phụ nữ"
+      ],
+      [
+       "暖和",
+       "nuǎnhuo",
+       "ấm áp"
+      ],
+      [
+       "怕",
+       "pà",
+       "sợ"
+      ],
+      [
+       "拍",
+       "pāi",
+       "để chụp ảnh, để quay"
+      ],
+      [
+       "排",
+       "pái",
+       "để sắp xếp trong một hàng; dòng, hàng"
+      ],
+      [
+       "排名",
+       "páimíng",
+       "xếp hạng"
+      ],
+      [
+       "牌子",
+       "páizi",
+       "tấm, ký"
+      ]
+     ]
+    ],
+    [
+     "pài → qí",
+     [
+      [
+       "派",
+       "pài",
+       "cử đi, phân công"
+      ],
+      [
+       "判断",
+       "pànduàn",
+       "đánh giá"
+      ],
+      [
+       "胖",
+       "pàng",
+       "mập mạp"
+      ],
+      [
+       "跑步",
+       "pǎobù",
+       "chạy, chạy bộ"
+      ],
+      [
+       "配",
+       "pèi",
+       "khớp"
+      ],
+      [
+       "配合",
+       "pèihé",
+       "phối hợp"
+      ],
+      [
+       "批评",
+       "pīpíng",
+       "chỉ trích"
+      ],
+      [
+       "批准",
+       "pīzhǔn",
+       "phê duyệt"
+      ],
+      [
+       "皮",
+       "pí",
+       "da, da"
+      ],
+      [
+       "皮包",
+       "píbāo",
+       "Túi xách bằng da"
+      ],
+      [
+       "啤酒",
+       "píjiǔ",
+       "bia"
+      ],
+      [
+       "票价",
+       "piàojià",
+       "giá vé"
+      ],
+      [
+       "评价",
+       "píngjià",
+       "thẩm định, đánh giá; sự đánh giá"
+      ],
+      [
+       "苹果",
+       "píngguǒ",
+       "táo"
+      ],
+      [
+       "破",
+       "pò",
+       "bị hỏng, mòn; phá vỡ, làm hỏng"
+      ],
+      [
+       "破坏",
+       "pòhuài",
+       "phá vỡ, phá hủy"
+      ],
+      [
+       "普遍",
+       "pǔbiàn",
+       "phổ biến"
+      ],
+      [
+       "普及",
+       "pǔjí",
+       "để phổ biến; nổi tiếng"
+      ],
+      [
+       "期",
+       "qī",
+       "khoảng thời gian"
+      ],
+      [
+       "齐",
+       "qí",
+       "gọn gàng"
+      ]
+     ]
+    ],
+    [
+     "qícì → qínggǎn",
+     [
+      [
+       "其次",
+       "qícì",
+       "tiếp theo, thứ hai"
+      ],
+      [
+       "其实",
+       "qíshí",
+       "thực tế"
+      ],
+      [
+       "奇怪",
+       "qíguài",
+       "lạ lùng; ngạc nhiên"
+      ],
+      [
+       "气候",
+       "qìhòu",
+       "khí hậu"
+      ],
+      [
+       "千万",
+       "qiānwàn",
+       "phải, để đảm bảo"
+      ],
+      [
+       "前后",
+       "qiánhòu",
+       "từ lúc bắt đầu đến khi kết thúc"
+      ],
+      [
+       "前进",
+       "qiánjìn",
+       "để thăng tiến"
+      ],
+      [
+       "前面",
+       "qiánmiàn",
+       "mặt trước; phía trước"
+      ],
+      [
+       "前往",
+       "qiánwǎng",
+       "để lại cho"
+      ],
+      [
+       "强",
+       "qiáng",
+       "mạnh mẽ, tốt nhất"
+      ],
+      [
+       "强大",
+       "qiángdà",
+       "mạnh"
+      ],
+      [
+       "强调",
+       "qiángdiào",
+       "nhấn mạnh"
+      ],
+      [
+       "强烈",
+       "qiángliè",
+       "mạnh mẽ, dữ dội"
+      ],
+      [
+       "桥",
+       "qiáo",
+       "cầu"
+      ],
+      [
+       "巧",
+       "qiǎo",
+       "khéo léo"
+      ],
+      [
+       "亲",
+       "qīn",
+       "có quan hệ huyết thống"
+      ],
+      [
+       "亲切",
+       "qīnqiè",
+       "thân ái, gần gũi và thân yêu"
+      ],
+      [
+       "亲人",
+       "qīnrén",
+       "các thành viên trong gia đình"
+      ],
+      [
+       "亲自",
+       "qīnzì",
+       "cá nhân, trực tiếp, chính mình"
+      ],
+      [
+       "情感",
+       "qínggǎn",
+       "cảm giác"
+      ]
+     ]
+    ],
+    [
+     "qíngkuàng → rè'ài",
+     [
+      [
+       "情况",
+       "qíngkuàng",
+       "tình hình, tình trạng, tình trạng của vấn đề"
+      ],
+      [
+       "请教",
+       "qǐngjiào",
+       "để yêu cầu lời khuyên"
+      ],
+      [
+       "庆祝",
+       "qìngzhù",
+       "để kỷ niệm; lễ kỷ niệm"
+      ],
+      [
+       "球迷",
+       "qiúmí",
+       "người hâm mộ trò chơi bóng"
+      ],
+      [
+       "区",
+       "qū",
+       "khu vực huyện"
+      ],
+      [
+       "区别",
+       "qūbié",
+       "để phân biệt; Sự khác biệt"
+      ],
+      [
+       "取消",
+       "qǔxiāo",
+       "để hủy bỏ"
+      ],
+      [
+       "去世",
+       "qùshì",
+       "qua đời"
+      ],
+      [
+       "全场",
+       "quánchǎng",
+       "mọi người có mặt"
+      ],
+      [
+       "全面",
+       "quánmiàn",
+       "xung quanh"
+      ],
+      [
+       "全球",
+       "quánqiú",
+       "cả thế giới; toàn cầu"
+      ],
+      [
+       "缺",
+       "quē",
+       "thiếu, thiếu"
+      ],
+      [
+       "缺点",
+       "quēdiǎn",
+       "khuyết điểm, khiếm khuyết"
+      ],
+      [
+       "缺少",
+       "quēshǎo",
+       "thiếu, thiếu"
+      ],
+      [
+       "确保",
+       "quèbǎo",
+       "đảm bảo"
+      ],
+      [
+       "确定",
+       "quèdìng",
+       "xác định"
+      ],
+      [
+       "确实",
+       "quèshí",
+       "thực sự, thực sự"
+      ],
+      [
+       "裙子",
+       "qúnzi",
+       "váy đầm"
+      ],
+      [
+       "群",
+       "qún",
+       "một từ đo lường cho đàn hoặc nhóm"
+      ],
+      [
+       "热爱",
+       "rè'ài",
+       "yêu một cách nhiệt thành"
+      ]
+     ]
+    ],
+    [
+     "rèliè → rúhé",
+     [
+      [
+       "热烈",
+       "rèliè",
+       "ấm áp"
+      ],
+      [
+       "人才",
+       "réncái",
+       "Người tài năng"
+      ],
+      [
+       "人工",
+       "réngōng",
+       "Người làm"
+      ],
+      [
+       "人类",
+       "rénlèi",
+       "nhân loại"
+      ],
+      [
+       "人民",
+       "rénmín",
+       "Mọi người"
+      ],
+      [
+       "人民币",
+       "rénmínbì",
+       "Renminbi"
+      ],
+      [
+       "人群",
+       "rénqún",
+       "đám đông"
+      ],
+      [
+       "人生",
+       "rénshēng",
+       "đời sống"
+      ],
+      [
+       "人员",
+       "rényuán",
+       "nhân sự, nhân viên"
+      ],
+      [
+       "认出",
+       "rènchū",
+       "nhận ra"
+      ],
+      [
+       "认得",
+       "rènde",
+       "để nhận ra, để biết"
+      ],
+      [
+       "认可",
+       "rènkě",
+       "chấp thuận, chấp nhận"
+      ],
+      [
+       "任",
+       "rèn",
+       "phục vụ ở một vị trí"
+      ],
+      [
+       "任何",
+       "rènhé",
+       "không tí nào"
+      ],
+      [
+       "任务",
+       "rènwu",
+       "nhiệm vụ, nhiệm vụ"
+      ],
+      [
+       "仍",
+       "réng",
+       "còn"
+      ],
+      [
+       "仍然",
+       "réngrán",
+       "còn"
+      ],
+      [
+       "日常",
+       "rìcháng",
+       "hằng ngày"
+      ],
+      [
+       "容易",
+       "róngyì",
+       "dễ"
+      ],
+      [
+       "如何",
+       "rúhé",
+       "Làm sao?"
+      ]
+     ]
+    ],
+    [
+     "sànbù → shēnrù",
+     [
+      [
+       "散步",
+       "sànbù",
+       "đi dạo"
+      ],
+      [
+       "沙发",
+       "shāfā",
+       "ghế sô pha"
+      ],
+      [
+       "沙子",
+       "shāzi",
+       "cát"
+      ],
+      [
+       "伤",
+       "shāng",
+       "để làm tổn thương, làm bị thương; vết thương"
+      ],
+      [
+       "伤心",
+       "shāngxīn",
+       "đau lòng"
+      ],
+      [
+       "商品",
+       "shāngpǐn",
+       "hàng hóa"
+      ],
+      [
+       "商业",
+       "shāngyè",
+       "thương mại"
+      ],
+      [
+       "上来",
+       "shànglái",
+       "đi lên, đi vào"
+      ],
+      [
+       "上面",
+       "shàngmiàn",
+       "ở trên, trên đầu trang của"
+      ],
+      [
+       "上去",
+       "shàngqù",
+       "đi lên"
+      ],
+      [
+       "上升",
+       "shàngshēng",
+       "để đi lên, để tăng"
+      ],
+      [
+       "上衣",
+       "shàngyī",
+       "quần áo mặc bên ngoài"
+      ],
+      [
+       "设备",
+       "shèbèi",
+       "Trang thiết bị"
+      ],
+      [
+       "设计",
+       "shèjì",
+       "thiết kế"
+      ],
+      [
+       "设立",
+       "shèlì",
+       "thiết lập, thiết lập"
+      ],
+      [
+       "社会",
+       "shèhuì",
+       "xã hội"
+      ],
+      [
+       "身份证",
+       "shēnfènzhèng",
+       "chứng minh nhân dân"
+      ],
+      [
+       "深",
+       "shēn",
+       "tối"
+      ],
+      [
+       "深刻",
+       "shēnkè",
+       "sâu sắc"
+      ],
+      [
+       "深入",
+       "shēnrù",
+       "đi sâu vào"
+      ]
+     ]
+    ],
+    [
+     "shēng → shíxíng",
+     [
+      [
+       "升",
+       "shēng",
+       "thăng lên; lít"
+      ],
+      [
+       "生",
+       "shēng",
+       "để sinh ra, được sinh ra"
+      ],
+      [
+       "生产",
+       "shēngchǎn",
+       "để sản xuất; sản xuất"
+      ],
+      [
+       "生存",
+       "shēngcún",
+       "để sống, để tồn tại"
+      ],
+      [
+       "生动",
+       "shēngdòng",
+       "sống động"
+      ],
+      [
+       "生命",
+       "shēngmìng",
+       "đời sống"
+      ],
+      [
+       "生意",
+       "shēngyi",
+       "kinh doanh, buôn bán"
+      ],
+      [
+       "生长",
+       "shēngzhǎng",
+       "lớn lên"
+      ],
+      [
+       "声明",
+       "shēngmíng",
+       "bản tường trình"
+      ],
+      [
+       "胜",
+       "shèng",
+       "để đánh bại; chiến thắng"
+      ],
+      [
+       "胜利",
+       "shènglì",
+       "để thắng; chiến thắng"
+      ],
+      [
+       "失去",
+       "shīqù",
+       "để mất, để bỏ lỡ"
+      ],
+      [
+       "石头",
+       "shítou",
+       "sỏi"
+      ],
+      [
+       "石油",
+       "shíyóu",
+       "dầu, xăng"
+      ],
+      [
+       "时",
+       "shí",
+       "thời gian"
+      ],
+      [
+       "时代",
+       "shídài",
+       "thời đại, thời đại"
+      ],
+      [
+       "时刻",
+       "shíkè",
+       "liên tục, luôn luôn"
+      ],
+      [
+       "实际上",
+       "shíjìshàng",
+       "thực tế, thực sự"
+      ],
+      [
+       "实力",
+       "shílì",
+       "sức mạnh thực sự"
+      ],
+      [
+       "实行",
+       "shíxíng",
+       "quan tâm"
+      ]
+     ]
+    ],
+    [
+     "shíyàn → shì",
+     [
+      [
+       "实验",
+       "shíyàn",
+       "cuộc thí nghiệm; để thử nghiệm"
+      ],
+      [
+       "实验室",
+       "shíyànshì",
+       "phòng thí nghiệm"
+      ],
+      [
+       "食品",
+       "shípǐn",
+       "món ăn"
+      ],
+      [
+       "使",
+       "shǐ",
+       "để tạo ra, để gây ra"
+      ],
+      [
+       "始终",
+       "shǐzhōng",
+       "từ lúc bắt đầu đến khi kết thúc"
+      ],
+      [
+       "世纪",
+       "shìjì",
+       "thế kỷ"
+      ],
+      [
+       "世界",
+       "shìjiè",
+       "thế giới"
+      ],
+      [
+       "世界杯",
+       "shìjièbēi",
+       "Cúp thế giới"
+      ],
+      [
+       "市场",
+       "shìchǎng",
+       "thị trường"
+      ],
+      [
+       "事故",
+       "shìgù",
+       "Tai nạn"
+      ],
+      [
+       "事件",
+       "shìjiàn",
+       "sự kiện"
+      ],
+      [
+       "事实",
+       "shìshí",
+       "thực tế"
+      ],
+      [
+       "事实上",
+       "shìshíshang",
+       "trong thực tế"
+      ],
+      [
+       "事业",
+       "shìyè",
+       "nghề nghiệp, hoạt động, nghề nghiệp"
+      ],
+      [
+       "试题",
+       "shìtí",
+       "câu hỏi kiểm tra"
+      ],
+      [
+       "试验",
+       "shìyàn",
+       "để thử nghiệm"
+      ],
+      [
+       "适合",
+       "shìhé",
+       "thích hợp; cho phù hợp với"
+      ],
+      [
+       "适应",
+       "shìyìng",
+       "để thích ứng với"
+      ],
+      [
+       "适用",
+       "shìyòng",
+       "phù hợp để sử dụng"
+      ],
+      [
+       "室",
+       "shì",
+       "phòng hội trường"
+      ]
+     ]
+    ],
+    [
+     "shōufèi → shuāngfāng",
+     [
+      [
+       "收费",
+       "shōufèi",
+       "thu phí, tính phí"
+      ],
+      [
+       "收看",
+       "shōukàn",
+       "xem"
+      ],
+      [
+       "收听",
+       "shōutīng",
+       "nghe đài phát thanh"
+      ],
+      [
+       "收音机",
+       "shōuyīnjī",
+       "băng radio"
+      ],
+      [
+       "手续",
+       "shǒuxù",
+       "hình thức"
+      ],
+      [
+       "手指",
+       "shǒuzhǐ",
+       "ngón tay"
+      ],
+      [
+       "首都",
+       "shǒudū",
+       "thủ đô"
+      ],
+      [
+       "首先",
+       "shǒuxiān",
+       "Trước hết"
+      ],
+      [
+       "受",
+       "shòu",
+       "nhận, chấp nhận"
+      ],
+      [
+       "受伤",
+       "shòushāng",
+       "bị thương, bị thương"
+      ],
+      [
+       "书架",
+       "shūjià",
+       "giá sách"
+      ],
+      [
+       "输",
+       "shū",
+       "để mất"
+      ],
+      [
+       "输入",
+       "shūrù",
+       "đầu vào"
+      ],
+      [
+       "熟人",
+       "shúrén",
+       "người quen"
+      ],
+      [
+       "属",
+       "shǔ",
+       "được sinh ra vào năm"
+      ],
+      [
+       "属于",
+       "shǔyú",
+       "thuộc về"
+      ],
+      [
+       "束",
+       "shù",
+       "bó, bó (một từ đo lường)"
+      ],
+      [
+       "数量",
+       "shùliàng",
+       "số lượng"
+      ],
+      [
+       "双",
+       "shuāng",
+       "hai, cặp (một từ đo lường)"
+      ],
+      [
+       "双方",
+       "shuāngfāng",
+       "cả hai mặt"
+      ]
+     ]
+    ],
+    [
+     "sīxiǎng → tiānkōng",
+     [
+      [
+       "思想",
+       "sīxiǎng",
+       "suy nghĩ, suy nghĩ"
+      ],
+      [
+       "死",
+       "sǐ",
+       "chết"
+      ],
+      [
+       "速度",
+       "sùdù",
+       "tốc độ, vận tốc"
+      ],
+      [
+       "随",
+       "suí",
+       "theo, tùy"
+      ],
+      [
+       "所",
+       "suǒ",
+       "cái đó"
+      ],
+      [
+       "所长",
+       "suǒzhǎng",
+       "trưởng Văn phòng"
+      ],
+      [
+       "台",
+       "tái",
+       "một từ đo lường cho máy móc"
+      ],
+      [
+       "谈",
+       "tán",
+       "nói chuyện, trò chuyện"
+      ],
+      [
+       "谈话",
+       "tánhuà",
+       "cuộc trò chuyện, nói chuyện"
+      ],
+      [
+       "谈判",
+       "tánpàn",
+       "đàm phán"
+      ],
+      [
+       "汤",
+       "tāng",
+       "súp, nước dùng"
+      ],
+      [
+       "糖",
+       "táng",
+       "đường, kẹo"
+      ],
+      [
+       "特色",
+       "tèsè",
+       "đặc tính"
+      ],
+      [
+       "提前",
+       "tíqián",
+       "để chuyển sang một thời điểm sớm hơn; trước"
+      ],
+      [
+       "提问",
+       "tíwèn",
+       "đặt một câu hỏi"
+      ],
+      [
+       "题目",
+       "tímù",
+       "tiêu đề, chủ đề"
+      ],
+      [
+       "体会",
+       "tǐhuì",
+       "để nhận ra; hiểu biết"
+      ],
+      [
+       "体现",
+       "tǐxiàn",
+       "hiện thân; hiện thân, hóa thân"
+      ],
+      [
+       "体验",
+       "tǐyàn",
+       "trải qua; trải nghiệm"
+      ],
+      [
+       "天空",
+       "tiānkōng",
+       "bầu trời"
+      ]
+     ]
+    ],
+    [
+     "tián → tūrán",
+     [
+      [
+       "甜",
+       "tián",
+       "ngọt"
+      ],
+      [
+       "调整",
+       "tiáozhěng",
+       "để điều chỉnh"
+      ],
+      [
+       "跳",
+       "tiào",
+       "nhảy"
+      ],
+      [
+       "跳高",
+       "tiàogāo",
+       "nhảy cao"
+      ],
+      [
+       "跳舞",
+       "tiàowǔ",
+       "nhảy"
+      ],
+      [
+       "跳远",
+       "tiàoyuǎn",
+       "nhảy xa"
+      ],
+      [
+       "铁",
+       "tiě",
+       "sắt"
+      ],
+      [
+       "铁路",
+       "tiělù",
+       "đường sắt"
+      ],
+      [
+       "听力",
+       "tīnglì",
+       "nghe"
+      ],
+      [
+       "听众",
+       "tīngzhòng",
+       "sự tiếp kiến"
+      ],
+      [
+       "停止",
+       "tíngzhǐ",
+       "dừng lại, chấm dứt"
+      ],
+      [
+       "通常",
+       "tōngcháng",
+       "nói chung là"
+      ],
+      [
+       "通信",
+       "tōngxìn",
+       "trao đổi thư tín; thư tín"
+      ],
+      [
+       "同意",
+       "tóngyì",
+       "đồng ý"
+      ],
+      [
+       "痛",
+       "tòng",
+       "nhức nhối, đau đớn; Đau nhức"
+      ],
+      [
+       "痛苦",
+       "tòngkǔ",
+       "đau đớn, đau khổ"
+      ],
+      [
+       "头",
+       "tóu",
+       "một từ đo lường cho gia súc"
+      ],
+      [
+       "头脑",
+       "tóunǎo",
+       "bộ não, tâm trí"
+      ],
+      [
+       "突出",
+       "tūchū",
+       "thoát ra"
+      ],
+      [
+       "突然",
+       "tūrán",
+       "đột ngột"
+      ]
+     ]
+    ],
+    [
+     "tú → wánjù",
+     [
+      [
+       "图",
+       "tú",
+       "vẽ tranh"
+      ],
+      [
+       "图画",
+       "túhuà",
+       "bức tranh, bản vẽ"
+      ],
+      [
+       "土",
+       "tǔ",
+       "đất"
+      ],
+      [
+       "团",
+       "tuán",
+       "nhóm (một từ đo lường)"
+      ],
+      [
+       "团结",
+       "tuánjié",
+       "đoàn kết, thống nhất; đoàn kết, tập hợp"
+      ],
+      [
+       "团体",
+       "tuántǐ",
+       "tập đoàn"
+      ],
+      [
+       "推动",
+       "tuīdòng",
+       "thăng cấp"
+      ],
+      [
+       "推广",
+       "tuīguǎng",
+       "phổ biến, quảng bá"
+      ],
+      [
+       "推进",
+       "tuījìn",
+       "tiếp tục"
+      ],
+      [
+       "推开",
+       "tuīkāi",
+       "đẩy đi, đẩy mở"
+      ],
+      [
+       "退",
+       "tuì",
+       "lùi lại"
+      ],
+      [
+       "退出",
+       "tuìchū",
+       "rút lui, hủy bỏ"
+      ],
+      [
+       "退休",
+       "tuìxiū",
+       "nghỉ hưu"
+      ],
+      [
+       "外交",
+       "wàijiāo",
+       "ngoại giao"
+      ],
+      [
+       "外面",
+       "wàimiàn",
+       "ngoài"
+      ],
+      [
+       "外文",
+       "wàiwén",
+       "ngoại ngữ"
+      ],
+      [
+       "完美",
+       "wánměi",
+       "hoàn hảo, hoàn mỹ"
+      ],
+      [
+       "完善",
+       "wánshàn",
+       "hoàn hảo; để cải thiện"
+      ],
+      [
+       "完整",
+       "wánzhěng",
+       "hoàn chỉnh, tích hợp"
+      ],
+      [
+       "玩具",
+       "wánjù",
+       "đồ chơi"
+      ]
+     ]
+    ],
+    [
+     "wǎngwǎng → wǔshù",
+     [
+      [
+       "往往",
+       "wǎngwǎng",
+       "thường xuyên"
+      ],
+      [
+       "危害",
+       "wēihài",
+       "để hại"
+      ],
+      [
+       "危险",
+       "wēixiǎn",
+       "sự nguy hiểm"
+      ],
+      [
+       "为",
+       "wéi",
+       "vì"
+      ],
+      [
+       "围",
+       "wéi",
+       "bao quanh"
+      ],
+      [
+       "伟大",
+       "wěidà",
+       "Tuyệt"
+      ],
+      [
+       "卫生",
+       "wèishēng",
+       "vệ sinh; hợp vệ sinh"
+      ],
+      [
+       "卫生间",
+       "wèishēngjiān",
+       "nhà vệ sinh, nhà vệ sinh"
+      ],
+      [
+       "为了",
+       "wèile",
+       "để, vì"
+      ],
+      [
+       "温暖",
+       "wēnnuǎn",
+       "ấm áp"
+      ],
+      [
+       "文化",
+       "wénhuà",
+       "văn hóa"
+      ],
+      [
+       "文件",
+       "wénjiàn",
+       "tài liệu"
+      ],
+      [
+       "文明",
+       "wénmíng",
+       "nền văn minh; văn minh"
+      ],
+      [
+       "文学",
+       "wénxué",
+       "văn chương"
+      ],
+      [
+       "文章",
+       "wénzhāng",
+       "bài báo, bài viết"
+      ],
+      [
+       "文字",
+       "wénzì",
+       "văn bản, ký tự, kịch bản"
+      ],
+      [
+       "握手",
+       "wòshǒu",
+       "bắt tay"
+      ],
+      [
+       "屋子",
+       "wūzi",
+       "nhà, phòng"
+      ],
+      [
+       "武器",
+       "wǔqì",
+       "vũ khí, vũ khí"
+      ],
+      [
+       "武术",
+       "wǔshù",
+       "wushu"
+      ]
+     ]
+    ],
+    [
+     "wǔtái → xiāngguān",
+     [
+      [
+       "舞台",
+       "wǔtái",
+       "sân khấu"
+      ],
+      [
+       "西部",
+       "xībù",
+       "Phần phía tây"
+      ],
+      [
+       "希望",
+       "xīwàng",
+       "hy vọng; mong"
+      ],
+      [
+       "系",
+       "xì",
+       "khoa, khoa"
+      ],
+      [
+       "下来",
+       "xiàlái",
+       "đi xuống"
+      ],
+      [
+       "下面",
+       "xiàmiàn",
+       "dưới đây, dưới"
+      ],
+      [
+       "下去",
+       "xiàqù",
+       "đi xuống"
+      ],
+      [
+       "先进",
+       "xiānjìn",
+       "nâng cao"
+      ],
+      [
+       "显得",
+       "xiǎnde",
+       "có vẻ"
+      ],
+      [
+       "显然",
+       "xiǎnrán",
+       "hiển nhiên, hiển nhiên"
+      ],
+      [
+       "显示",
+       "xiǎnshì",
+       "để hiển thị, để tiết lộ"
+      ],
+      [
+       "现场",
+       "xiànchǎng",
+       "cảnh, địa điểm"
+      ],
+      [
+       "现代",
+       "xiàndài",
+       "hiện đại; thời hiện đại"
+      ],
+      [
+       "现金",
+       "xiànjīn",
+       "tiền mặt"
+      ],
+      [
+       "现实",
+       "xiànshí",
+       "thực tế"
+      ],
+      [
+       "现象",
+       "xiànxiàng",
+       "hiện tượng"
+      ],
+      [
+       "线",
+       "xiàn",
+       "dòng, chủ đề"
+      ],
+      [
+       "相比",
+       "xiāngbǐ",
+       "để so sánh"
+      ],
+      [
+       "相当",
+       "xiāngdāng",
+       "khá, đáng kể"
+      ],
+      [
+       "相关",
+       "xiāngguān",
+       "có liên quan"
+      ]
+     ]
+    ],
+    [
+     "xiānghù → xìngfú",
+     [
+      [
+       "相互",
+       "xiānghù",
+       "qua lại"
+      ],
+      [
+       "相似",
+       "xiāngsì",
+       "tương tự"
+      ],
+      [
+       "香",
+       "xiāng",
+       "ngon, thơm"
+      ],
+      [
+       "香蕉",
+       "xiāngjiāo",
+       "trái chuối"
+      ],
+      [
+       "消费",
+       "xiāofèi",
+       "để tiêu thụ"
+      ],
+      [
+       "消失",
+       "xiāoshī",
+       "biến mất"
+      ],
+      [
+       "消息",
+       "xiāoxi",
+       "tin tức, tin nhắn"
+      ],
+      [
+       "效果",
+       "xiàoguǒ",
+       "hiệu lực, kết quả"
+      ],
+      [
+       "写作",
+       "xiězuò",
+       "viết"
+      ],
+      [
+       "血",
+       "xiě",
+       "máu"
+      ],
+      [
+       "心",
+       "xīn",
+       "tâm tri"
+      ],
+      [
+       "信",
+       "xìn",
+       "bức thư"
+      ],
+      [
+       "信封",
+       "xìnfēng",
+       "phong bì"
+      ],
+      [
+       "信任",
+       "xìnrèn",
+       "để có niềm tin vào, để tin tưởng; Lòng tin"
+      ],
+      [
+       "行李",
+       "xíngli",
+       "Hành lý"
+      ],
+      [
+       "形成",
+       "xíngchéng",
+       "hình thành, hình thành"
+      ],
+      [
+       "形式",
+       "xíngshì",
+       "hình thức"
+      ],
+      [
+       "形象",
+       "xíngxiàng",
+       "hình ảnh"
+      ],
+      [
+       "形状",
+       "xíngzhuàng",
+       "hình dạng"
+      ],
+      [
+       "幸福",
+       "xìngfú",
+       "vui mừng; niềm hạnh phúc"
+      ]
+     ]
+    ],
+    [
+     "xìngyùn → yǎnchànghuì",
+     [
+      [
+       "幸运",
+       "xìngyùn",
+       "may mắn, may mắn"
+      ],
+      [
+       "性",
+       "xìng(jījíxìng)",
+       "thiên nhiên"
+      ],
+      [
+       "性别",
+       "xìngbié",
+       "giới tính, giới tính"
+      ],
+      [
+       "性格",
+       "xìnggé",
+       "khí chất, tính cách"
+      ],
+      [
+       "修",
+       "xiū",
+       "sửa chữa, hàn gắn"
+      ],
+      [
+       "修改",
+       "xiūgǎi",
+       "sửa đổi, sửa đổi"
+      ],
+      [
+       "需求",
+       "xūqiú",
+       "nhu cầu, nhu cầu"
+      ],
+      [
+       "需要",
+       "xūyào",
+       "cần, yêu cầu"
+      ],
+      [
+       "宣布",
+       "xuānbù",
+       "tuyên bố"
+      ],
+      [
+       "宣传",
+       "xuānchuán",
+       "tuyên truyền"
+      ],
+      [
+       "选手",
+       "xuǎnshǒu",
+       "đối thủ"
+      ],
+      [
+       "学费",
+       "xuéfèi",
+       "học phí"
+      ],
+      [
+       "训练",
+       "xùnliàn",
+       "huấn luyện"
+      ],
+      [
+       "压",
+       "yā",
+       "để nhấn, để đẩy xuống"
+      ],
+      [
+       "压力",
+       "yālì",
+       "sức ép"
+      ],
+      [
+       "烟",
+       "yān",
+       "Khói"
+      ],
+      [
+       "眼前",
+       "yǎnqián",
+       "trước mắt một người"
+      ],
+      [
+       "演",
+       "yǎn",
+       "diễn, biểu diễn"
+      ],
+      [
+       "演唱",
+       "yǎnchàng",
+       "hát"
+      ],
+      [
+       "演唱会",
+       "yǎnchànghuì",
+       "buổi hòa nhạc"
+      ]
+     ]
+    ],
+    [
+     "yǎnchū → yíngyǎng",
+     [
+      [
+       "演出",
+       "yǎnchū",
+       "màn biểu diễn; hành động"
+      ],
+      [
+       "演员",
+       "yǎnyuán",
+       "diễn viên, diễn viên"
+      ],
+      [
+       "羊",
+       "yáng",
+       "cừu, cừu đực"
+      ],
+      [
+       "阳光",
+       "yángguāng",
+       "ánh sáng mặt trời"
+      ],
+      [
+       "要是",
+       "yàoshi",
+       "giả sử, trong trường hợp"
+      ],
+      [
+       "衣架",
+       "yījià",
+       "mắc áo"
+      ],
+      [
+       "一切",
+       "yīqiè",
+       "tất cả các"
+      ],
+      [
+       "已",
+       "yǐ",
+       "đã sẵn sàng"
+      ],
+      [
+       "以来",
+       "yǐlái",
+       "kể từ đó"
+      ],
+      [
+       "一方面",
+       "yīfāngmiàn",
+       "ở một bên"
+      ],
+      [
+       "艺术",
+       "yìshù",
+       "Mỹ thuật"
+      ],
+      [
+       "意外",
+       "yìwài",
+       "không ngờ tới; Tai nạn"
+      ],
+      [
+       "意义",
+       "yìyì",
+       "Ý nghĩa"
+      ],
+      [
+       "因此",
+       "yīncǐ",
+       "vì vậy, do đó"
+      ],
+      [
+       "银",
+       "yín",
+       "màu bạc"
+      ],
+      [
+       "银牌",
+       "yínpái",
+       "huy chương bạc"
+      ],
+      [
+       "印象",
+       "yìnxiàng",
+       "ấn tượng"
+      ],
+      [
+       "应当",
+       "yīngdāng",
+       "phải, nên"
+      ],
+      [
+       "迎接",
+       "yíngjiē",
+       "chào mừng"
+      ],
+      [
+       "营养",
+       "yíngyǎng",
+       "dinh dưỡng; chất dinh dưỡng"
+      ]
+     ]
+    ],
+    [
+     "yíng → yùxí",
+     [
+      [
+       "赢",
+       "yíng",
+       "để thắng"
+      ],
+      [
+       "影视",
+       "yǐngshì",
+       "phim và truyền hình"
+      ],
+      [
+       "应用",
+       "yìngyòng",
+       "thực dụng"
+      ],
+      [
+       "优点",
+       "yōudiǎn",
+       "công lao"
+      ],
+      [
+       "优势",
+       "yōushì",
+       "vị trí thống trị, ưu thế"
+      ],
+      [
+       "由",
+       "yóu",
+       "do, bởi; từ"
+      ],
+      [
+       "由于",
+       "yóuyú",
+       "bởi vì, do"
+      ],
+      [
+       "邮件",
+       "yóujiàn",
+       "bưu phẩm, bưu phẩm; e-mail"
+      ],
+      [
+       "邮票",
+       "yóupiào",
+       "con tem"
+      ],
+      [
+       "邮箱",
+       "yóuxiāng",
+       "hộp thư"
+      ],
+      [
+       "游",
+       "yóu",
+       "bơi"
+      ],
+      [
+       "游戏",
+       "yóuxì",
+       "trò chơi"
+      ],
+      [
+       "游泳",
+       "yóuyǒng",
+       "bơi; bơi lội"
+      ],
+      [
+       "有的是",
+       "yǒudeshì",
+       "có quá đủ"
+      ],
+      [
+       "有利",
+       "yǒulì",
+       "thuận lợi"
+      ],
+      [
+       "有效",
+       "yǒuxiào",
+       "hiệu quả, hợp lệ"
+      ],
+      [
+       "预报",
+       "yùbào",
+       "dự báo"
+      ],
+      [
+       "预防",
+       "yùfáng",
+       "để ngăn chặn"
+      ],
+      [
+       "预计",
+       "yùjì",
+       "dự đoán, ước tính"
+      ],
+      [
+       "预习",
+       "yùxí",
+       "để xem trước"
+      ]
+     ]
+    ],
+    [
+     "yuán → zhēngqǔ",
+     [
+      [
+       "员",
+       "yuán (fúwùyuán)",
+       "Nhân viên"
+      ],
+      [
+       "员工",
+       "yuángōng",
+       "Nhân viên"
+      ],
+      [
+       "愿望",
+       "yuànwàng",
+       "ước muốn, ước muốn"
+      ],
+      [
+       "约",
+       "yuē",
+       "hẹn"
+      ],
+      [
+       "乐队",
+       "yuèduì",
+       "dàn nhạc"
+      ],
+      [
+       "运输",
+       "yùnshū",
+       "vận chuyển"
+      ],
+      [
+       "杂志",
+       "zázhì",
+       "tạp chí"
+      ],
+      [
+       "早已",
+       "zǎoyǐ",
+       "đã sẵn sàng"
+      ],
+      [
+       "造",
+       "zào",
+       "để thực hiện, để xây dựng, để tạo ra"
+      ],
+      [
+       "造成",
+       "zàochéng",
+       "để mang lại, để gây ra"
+      ],
+      [
+       "责任",
+       "zérèn",
+       "bổn phận, nghĩa vụ"
+      ],
+      [
+       "增加",
+       "zēngjiā",
+       "để tăng, để thêm"
+      ],
+      [
+       "增长",
+       "zēngzhǎng",
+       "tăng"
+      ],
+      [
+       "展开",
+       "zhǎnkāi",
+       "để mở ra, để bắt đầu"
+      ],
+      [
+       "张",
+       "zhāng",
+       "một từ đo lường cho các vật thể phẳng"
+      ],
+      [
+       "照",
+       "zhào",
+       "để chụp ảnh, phản chiếu, phản chiếu"
+      ],
+      [
+       "者",
+       "zhě (zhìyuànzhě)",
+       "một trong những người"
+      ],
+      [
+       "真实",
+       "zhēnshí",
+       "có thật"
+      ],
+      [
+       "争",
+       "zhēng",
+       "cạnh tranh, tranh giành, phấn đấu"
+      ],
+      [
+       "争取",
+       "zhēngqǔ",
+       "để đấu tranh cho"
+      ]
+     ]
+    ],
+    [
+     "zhěng → zhídào",
+     [
+      [
+       "整",
+       "zhěng",
+       "trọn"
+      ],
+      [
+       "整个",
+       "zhěnggè",
+       "trọn"
+      ],
+      [
+       "整理",
+       "zhěnglǐ",
+       "đặt hàng"
+      ],
+      [
+       "整齐",
+       "zhěngqí",
+       "trong trật tự tốt, gọn gàng"
+      ],
+      [
+       "整体",
+       "zhěngtǐ",
+       "toàn bộ, toàn bộ"
+      ],
+      [
+       "整天",
+       "zhěngtiān",
+       "cả ngày, cả ngày dài"
+      ],
+      [
+       "整整",
+       "zhěngzhěng",
+       "trọn"
+      ],
+      [
+       "正",
+       "zhèng",
+       "Chính xác"
+      ],
+      [
+       "正式",
+       "zhèngshì",
+       "chính thức"
+      ],
+      [
+       "证",
+       "zhèng",
+       "chứng chỉ, thẻ"
+      ],
+      [
+       "证件",
+       "zhèngjiàn",
+       "thông tin xác thực; TÔI"
+      ],
+      [
+       "证据",
+       "zhèngjù",
+       "Bằng chứng"
+      ],
+      [
+       "证明",
+       "zhèngmíng",
+       "chứng chỉ, tài liệu; để chứng minh, để làm chứng"
+      ],
+      [
+       "支",
+       "zhī",
+       "một từ đo lường cho các vật thể dài"
+      ],
+      [
+       "支持",
+       "zhīchí",
+       "hỗ trợ"
+      ],
+      [
+       "支付",
+       "zhīfù",
+       "trả"
+      ],
+      [
+       "只",
+       "zhī",
+       "chỉ mới"
+      ],
+      [
+       "直",
+       "zhí",
+       "dài"
+      ],
+      [
+       "直播",
+       "zhíbō",
+       "phát sóng trực tiếp"
+      ],
+      [
+       "直到",
+       "zhídào",
+       "lên đến"
+      ]
+     ]
+    ],
+    [
+     "zhí → Zhōnghuá",
+     [
+      [
+       "值",
+       "zhí",
+       "trị giá"
+      ],
+      [
+       "值得",
+       "zhídé",
+       "xứng đáng, xứng đáng"
+      ],
+      [
+       "职工",
+       "zhígōng",
+       "nhân viên và công nhân"
+      ],
+      [
+       "职业",
+       "zhíyè",
+       "nghề nghiệp"
+      ],
+      [
+       "只好",
+       "zhǐhǎo",
+       "không có lựa chọn nào khác ngoài"
+      ],
+      [
+       "只是",
+       "zhǐshì",
+       "đơn giản, chỉ"
+      ],
+      [
+       "只有",
+       "zhǐyǒu",
+       "chỉ duy nhất"
+      ],
+      [
+       "指",
+       "zhǐ",
+       "để tham khảo, để chỉ vào"
+      ],
+      [
+       "指出",
+       "zhǐchū",
+       "chỉ ra"
+      ],
+      [
+       "指导",
+       "zhǐdǎo",
+       "để hướng dẫn, để tiến hành"
+      ],
+      [
+       "至今",
+       "zhìjīn",
+       "cho đến bây giờ"
+      ],
+      [
+       "至少",
+       "zhìshǎo",
+       "ít nhất"
+      ],
+      [
+       "志愿",
+       "zhìyuàn",
+       "khát vọng, ước muốn"
+      ],
+      [
+       "志愿者",
+       "zhìyuànzhě",
+       "Tình nguyện viên"
+      ],
+      [
+       "制定",
+       "zhìdìng",
+       "nằm xuống"
+      ],
+      [
+       "制度",
+       "zhìdù",
+       "hệ thống"
+      ],
+      [
+       "制造",
+       "zhìzào",
+       "để làm cho"
+      ],
+      [
+       "制作",
+       "zhìzuò",
+       "sản xuất"
+      ],
+      [
+       "中部",
+       "zhōngbù",
+       "phần trung tâm"
+      ],
+      [
+       "中华民族",
+       "Zhōnghuá Mínzú",
+       "Quốc gia trung quốc"
+      ]
+     ]
+    ],
+    [
+     "zhōngyú → zhuānyè",
+     [
+      [
+       "终于",
+       "zhōngyú",
+       "cuối cùng"
+      ],
+      [
+       "钟",
+       "zhōng",
+       "cái đồng hồ"
+      ],
+      [
+       "种",
+       "zhǒng",
+       "hạt giống; để phát triển, để trồng"
+      ],
+      [
+       "种子",
+       "zhǒngzi",
+       "hạt giống"
+      ],
+      [
+       "重大",
+       "zhòngdà",
+       "tuyệt vời, quan trọng"
+      ],
+      [
+       "周围",
+       "zhōuwéi",
+       "bao quanh"
+      ],
+      [
+       "猪",
+       "zhū",
+       "lợn"
+      ],
+      [
+       "主持",
+       "zhǔchí",
+       "tổ chức"
+      ],
+      [
+       "主动",
+       "zhǔdòng",
+       "về sáng kiến của chính mình; sáng kiến"
+      ],
+      [
+       "主任",
+       "zhǔrèn",
+       "cái đầu"
+      ],
+      [
+       "主意",
+       "zhǔyi",
+       "ý kiến, ý kiến"
+      ],
+      [
+       "主张",
+       "zhǔzhāng",
+       "quan điểm"
+      ],
+      [
+       "注意",
+       "zhùyì",
+       "chú ý đến"
+      ],
+      [
+       "祝",
+       "zhù",
+       "ước gì, chúc mừng"
+      ],
+      [
+       "抓",
+       "zhuā",
+       "để nắm bắt, để nắm bắt"
+      ],
+      [
+       "抓住",
+       "zhuāzhù",
+       "để nắm bắt, để nắm bắt"
+      ],
+      [
+       "专家",
+       "zhuānjiā",
+       "chuyên gia, chuyên gia"
+      ],
+      [
+       "专门",
+       "zhuānmén",
+       "đặc biệt; chuyên biệt, đặc biệt"
+      ],
+      [
+       "专题",
+       "zhuāntí",
+       "chủ đề cụ thể"
+      ],
+      [
+       "专业",
+       "zhuānyè",
+       "chuyên ngành, chuyên nghiệp; chuyên môn"
+      ]
+     ]
+    ],
+    [
+     "zhuǎn → zúqiú",
+     [
+      [
+       "转",
+       "zhuǎn",
+       "xoay quanh"
+      ],
+      [
+       "转变",
+       "zhuǎnbiàn",
+       "để thay đổi, để chuyển đổi"
+      ],
+      [
+       "状况",
+       "zhuàngkuàng",
+       "tình hình, trạng thái"
+      ],
+      [
+       "状态",
+       "zhuàngtài",
+       "tiểu bang"
+      ],
+      [
+       "追",
+       "zhuī",
+       "đuổi theo"
+      ],
+      [
+       "准",
+       "zhǔn",
+       "chính xác, chính xác"
+      ],
+      [
+       "资格",
+       "zīgé",
+       "bằng cấp"
+      ],
+      [
+       "资金",
+       "zījīn",
+       "quỹ, vốn, tài trợ"
+      ],
+      [
+       "子女",
+       "zǐnǚ",
+       "những người con trai và những đứa con gái"
+      ],
+      [
+       "自从",
+       "zìcóng",
+       "từ"
+      ],
+      [
+       "自动",
+       "zìdòng",
+       "tự động"
+      ],
+      [
+       "自觉",
+       "zìjué",
+       "tự giác"
+      ],
+      [
+       "自然",
+       "zìrán",
+       "Thiên nhiên; thiên nhiên"
+      ],
+      [
+       "自身",
+       "zìshēn",
+       "bản thân"
+      ],
+      [
+       "自主",
+       "zìzhǔ",
+       "tự mình hành động; Sự độc lập"
+      ],
+      [
+       "总",
+       "zǒng",
+       "tướng quân"
+      ],
+      [
+       "总结",
+       "zǒngjié",
+       "để tóm tắt; bản tóm tắt"
+      ],
+      [
+       "总是",
+       "zǒngshì",
+       "luôn luôn"
+      ],
+      [
+       "足够",
+       "zúgòu",
+       "đủ, đủ"
+      ],
+      [
+       "足球",
+       "zúqiú",
+       "bóng đá"
+      ]
+     ]
+    ],
+    [
+     "zǔhé → zuòkè",
+     [
+      [
+       "组合",
+       "zǔhé",
+       "sự kết hợp; sáng tác"
+      ],
+      [
+       "左右",
+       "zuǒyòu",
+       "Về"
+      ],
+      [
+       "作品",
+       "zuòpǐn",
+       "tác phẩm văn học hoặc nghệ thuật"
+      ],
+      [
+       "作者",
+       "zuòzhě",
+       "tác giả"
+      ],
+      [
+       "做客",
+       "zuòkè",
+       "trở thành một vị khách"
+      ]
+     ]
+    ],
+    [
+     "Bổ sung — từ hay dùng ngoài danh sách mới",
+     [
+      [
+       "附近",
+       "fùjìn",
+       "xung quanh, gần đây"
+      ],
+      [
+       "电梯",
+       "diàntǐ",
+       "thang máy"
+      ],
+      [
+       "购物",
+       "gòuwù",
+       "mua sắm"
+      ],
+      [
+       "发烧",
+       "fāshāo",
+       "bị sốt"
+      ],
+      [
+       "锻炼",
+       "duànliàn",
+       "rèn luyện thân thể"
+      ],
+      [
+       "担心",
+       "dānxīn",
+       "lo lắng"
+      ],
+      [
+       "感兴趣",
+       "gǎn xìngqù",
+       "hứng thú, thích"
+      ],
+      [
+       "着急",
+       "zháojí",
+       "sốt ruột, nóng lòng"
+      ],
+      [
+       "聪明",
+       "cōngming",
+       "thông minh"
+      ],
+      [
+       "瘦",
+       "shòu",
+       "gầy"
+      ],
+      [
+       "聊天",
+       "liáotiān",
+       "tán gẫu"
+      ],
+      [
+       "蛋糕",
+       "dàngāo",
+       "bánh ngọt"
+      ],
+      [
+       "尝",
+       "cháng",
+       "nếm"
+      ],
+      [
+       "酸",
+       "suān",
+       "chua"
+      ],
+      [
+       "薄",
+       "báo",
+       "mỏng"
+      ],
+      [
+       "帽子",
+       "màozi",
+       "cái mũ"
+      ],
+      [
+       "眼镜",
+       "yǎnjìng",
+       "kính (mắt)"
+      ],
+      [
+       "新鲜",
+       "xīnxiān",
+       "tươi"
+      ],
+      [
+       "迟到",
+       "chídào",
+       "đến trễ"
+      ],
+      [
+       "关于",
+       "guānyú",
+       "về (chuyện…)"
+      ],
+      [
+       "根据",
+       "gēnjù",
+       "dựa theo"
+      ],
+      [
+       "遇到",
+       "yùdào",
+       "gặp, gặp phải"
+      ],
+      [
+       "而已",
+       "éryǐ",
+       "chỉ vậy thôi"
+      ],
+      [
+       "鼻子",
+       "bízi",
+       "cái mũi"
+      ],
+      [
+       "…极了",
+       "…jíle",
+       "vô cùng, cực kỳ"
+      ]
+     ]
+    ]
+   ]
+  }
+ ]
 }
