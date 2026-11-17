@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lọ Vương — Lịch Cai Lọ</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👑</text></svg>">
+<style>
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{
+    margin:0;min-height:100vh;color:#e8e6f5;
+    background:radial-gradient(1200px 800px at 50% -200px,#2a2348,#17142a 55%,#110e1f);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  }
+  .app{max-width:440px;margin:0 auto;padding:18px 14px 44px;display:flex;flex-direction:column;gap:12px}
+  .top{text-align:center;font-weight:900;letter-spacing:3px;font-size:15px;color:#f0c14b;margin-bottom:2px}
+  .top .sub{display:block;font-size:9.5px;letter-spacing:4px;color:#8f88b8;font-weight:700;margin-top:3px}
+  .card{background:#221d3a;border:1px solid #322b52;border-radius:18px;padding:16px;box-shadow:0 10px 26px rgba(0,0,0,.28)}
+
+  .stats{display:flex;text-align:center;padding:14px 6px}
+  .stat{flex:1}
+  .stat .num{font-size:27px;font-weight:800}
+  .stat .lbl{font-size:10px;color:#8f88b8;letter-spacing:.8px;margin-top:4px;line-height:1.4;font-weight:700}
+  .num.fire{color:#ff9f43}.num.win{color:#35c26e}.num.lose{color:#ff5c5c}
+
+  .rank{text-align:center}
+  .rank .name{font-size:24px;font-weight:900;letter-spacing:.5px;
+    background:linear-gradient(90deg,#ffe08a,#f0a824);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .rank .desc{font-size:12.5px;color:#b9b3d9;margin-top:7px;line-height:1.55}
+  .bar{height:10px;background:#322b52;border-radius:99px;margin-top:13px;overflow:hidden}
+  .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#ffd76a,#f0a824);border-radius:99px;transition:width .6s}
+
+  .advice{text-align:center;padding:18px 16px}
+  .advice .t{font-size:11px;letter-spacing:2.5px;color:#f0b64a;font-weight:800}
+  .advice .q{margin-top:10px;font-size:17px;font-weight:700;line-height:1.55}
+
+  .cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+  .cal-head .m{font-weight:800;letter-spacing:1.5px;font-size:13px;color:#cfc9ea}
+  .nav{width:30px;height:30px;border-radius:10px;background:#2c2650;border:1px solid #3d3665;color:#cfc9ea;font-size:15px;cursor:pointer;line-height:1}
+  .nav:hover{background:#373063}
+  .weekdays{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;text-align:center;font-size:10.5px;color:#8f88b8;font-weight:800;margin-bottom:8px}
+  .grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+  .cell{position:relative;border-radius:13px;min-height:57px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+    font-weight:700;font-size:14px;background:#1d1932;border:1px solid #2c2650;color:#6f6895;user-select:none}
+  .cell .ic{font-size:12.5px;line-height:1;font-weight:900}
+  .cell.pass{background:linear-gradient(180deg,#27b364,#1e9450);border-color:#2fc06d;color:#fff;box-shadow:0 4px 12px rgba(38,170,95,.25)}
+  .cell.fail{background:linear-gradient(180deg,#e5484d,#c73640);border-color:#ef6a6e;color:#fff;box-shadow:0 4px 12px rgba(220,70,75,.25)}
+  .cell.locked{color:#55507a}
+  .cell.locked svg{opacity:.85}
+  .cell.missed{color:#5a5487}
+  .cell.missed .ic{opacity:.7;font-size:11.5px}
+  .cell.backlog{border:1.5px dashed #5a5487;color:#9a93c4;background:#1f1a36;cursor:pointer}
+  .cell.sel{background:#302653;box-shadow:0 0 0 3px rgba(240,193,75,.28)}
+  .cell.today{border:2px solid #f0c14b;color:#f0c14b;background:#221d3a;cursor:pointer}
+  .cell.pending{border:2px dashed #c99f3a;color:#e8c465;background:#241e3c;cursor:pointer}
+  .cell.clickable:hover{filter:brightness(1.18)}
+  .cell:active{transform:scale(.96)}
+
+  .law{font-size:11px;color:#8f88b8;line-height:1.6;text-align:center;margin-top:10px}
+  .btns{display:flex;gap:10px}
+  .big{flex:1;border:none;border-radius:16px;padding:16px 8px;font-weight:800;font-size:13.5px;letter-spacing:.6px;color:#fff;cursor:pointer;text-transform:uppercase;font-family:inherit;line-height:1.4}
+  .big.pass{background:linear-gradient(180deg,#23ad5f,#1c8f4e);box-shadow:0 6px 16px rgba(35,173,95,.3)}
+  .big.fail{background:linear-gradient(180deg,#e04141,#c33333);box-shadow:0 6px 16px rgba(224,65,65,.3)}
+  .big:active{transform:scale(.97)}
+  .done{background:#1d1932;border:1.5px dashed #3d3665;border-radius:16px;padding:16px;text-align:center;font-size:13px;color:#b9b3d9;line-height:1.6}
+
+  footer{font-size:11px;color:#6f6895;text-align:center;line-height:1.7;margin-top:4px}
+  footer a{color:#a79fd0;cursor:pointer;text-decoration:underline}
+
+  #toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:#2e2750;border:1px solid #464072;color:#fff;
+    padding:11px 18px;border-radius:14px;font-size:13px;line-height:1.5;opacity:0;transition:.25s;pointer-events:none;max-width:88%;text-align:center;z-index:60}
+  #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  #modal{position:fixed;inset:0;background:rgba(10,8,22,.8);display:flex;align-items:center;justify-content:center;z-index:100}
+  #modal.hidden{display:none}
+  .mcard{background:linear-gradient(180deg,#2e2654,#221d3a);border:1px solid rgba(240,193,75,.45);border-radius:22px;padding:30px 24px;text-align:center;max-width:330px;margin:20px;animation:pop .35s ease}
+  @keyframes pop{from{transform:scale(.7);opacity:0}to{transform:scale(1);opacity:1}}
+  .mcard .crown{font-size:54px}
+  .mcard h2{margin:12px 0 4px;color:#ffd76a;letter-spacing:3px;font-size:13px}
+  .mcard .rname{font-size:26px;font-weight:900;letter-spacing:.5px;
+    background:linear-gradient(90deg,#ffe08a,#f0a824);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .mcard p{color:#c5bfe4;font-size:13.5px;line-height:1.65;margin:10px 0 0}
+  .mcard button{margin-top:18px;background:linear-gradient(180deg,#ffd76a,#f0a824);border:none;color:#3a2a05;font-weight:800;font-size:14px;
+    padding:12px 30px;border-radius:14px;cursor:pointer;font-family:inherit;letter-spacing:.5px}
+  .mcard button:active{transform:scale(.97)}
+
+  .cf{position:fixed;top:-18px;width:8px;height:14px;border-radius:2px;z-index:99;pointer-events:none;animation:fall linear forwards}
+  @keyframes fall{to{transform:translateY(112vh) rotate(720deg);opacity:.65}}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="top">👑 LỌ VƯƠNG<span class="sub">LỊCH CAI LỌ</span></div>
+
+  <section class="card stats">
+    <div class="stat"><div class="num fire">🔥 <span id="stStreak">0</span></div><div class="lbl">NGÀY LIÊN TIẾP<br>NHỊN</div></div>
+    <div class="stat"><div class="num win">✓ <span id="stWin">0</span></div><div class="lbl">NGÀY ĐÃ<br>THẮNG</div></div>
+    <div class="stat"><div class="num lose">✕ <span id="stLose">0</span></div><div class="lbl">LẦN<br>GÃY</div></div>
+  </section>
+
+  <section class="card rank">
+    <div class="name" id="rankName">Lọ Dân Đen</div>
+    <div class="desc" id="rankDesc"></div>
+    <div class="bar"><i id="rankBar"></i></div>
+  </section>
+
+  <section class="card advice">
+    <div class="t" id="advTitle">LỜI VÀNG</div>
+    <div class="q" id="advText"></div>
+  </section>
+
+  <section class="card cal">
+    <div class="cal-head">
+      <button class="nav" id="prevM" aria-label="Tháng trước">‹</button>
+      <div class="m" id="monthLabel"></div>
+      <button class="nav" id="nextM" aria-label="Tháng sau">›</button>
+    </div>
+    <div class="weekdays"><div>T2</div><div>T3</div><div>T4</div><div>T5</div><div>T6</div><div>T7</div><div>CN</div></div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section id="markArea"></section>
+
+  <footer>
+    Dữ liệu lưu trong máy này (localStorage) — không gửi đi đâu cả.<br>
+    <a id="resetBtn">Xoá toàn bộ dữ liệu</a>
+  </footer>
+</div>
+
+<div id="toast"></div>
+
+<div id="modal" class="hidden">
+  <div class="mcard">
+    <div class="crown">👑</div>
+    <h2>ĐẠI ĐIỂN PHONG VƯƠNG</h2>
+    <div class="rname" id="mRank"></div>
+    <p id="mText"></p>
+    <button id="mClose">Tuân chỉ 👏</button>
+  </div>
+</div>
+
+<script>
+'use strict';
+
+/* ---------------- Dữ liệu tĩnh ---------------- */
+
+const RANKS = [
+  {min:0,   icon:'👤', name:'Lọ Dân Đen',        sub:'Chưa nhịn được ngày nào liên tiếp. Tích ngày đầu tiên đi.'},
+  {min:3,   icon:'🌱', name:'Lọ Tân Binh',        sub:'Ba ngày đầu chân ướt chân ráo — giữ lên nhé.'},
+  {min:7,   icon:'⚔️', name:'Lọ Chiến Binh',      sub:'Một tuần tranh đấu — tay đã bị thu hồi nhiệm quyền.'},
+  {min:11,  icon:'🐎', name:'Lọ Kị Sĩ',           sub:'Mười một ngày cưỡi mã ra trận — đừng để ngựa nó đá.'},
+  {min:15,  icon:'👑', name:'Lọ Vương',           sub:'Nửa tháng cai lọ thành công — cả vương quốc hô to tên bạn.'},
+  {min:19,  icon:'🫅', name:'Lọ Hoàng',           sub:'Gần ba tuần trị vì — ngai đã nóng, triều đình dựng sẵn.'},
+  {min:23,  icon:'🐉', name:'Lọ Đế',              sub:'Hơn ba tuần xưng bá — sử sách ghi tên, dân gian lập đền.'},
+  {min:27,  icon:'⚡', name:'Lọ Thần',            sub:'Còn ba ngày cuối — đỉnh cao cảnh giới, hay chỉ là phàm tu.'},
+  {min:30, icon:'🌟', name:'Lọ Thánh Bất Diệt',  sub:'Một trăm ngày bất diệt — hậu thế xin chữ ký.'}
+];
+
+const ADVICE = [
+  'Năng lượng dồn hết vào công việc — đồng nghiệp tưởng máy mới uống thuốc bổ.',
+  'Cơn cái đến như cơn mưa rào: đứng im 10 phút là tạnh, đừng chạy theo tìm ô.',
+  'Tay để gõ phím, bắt cầu, vỗ vỗ vai đồng đội — đừng lãng phí nhân tài.',
+  'Uống ly nước lạnh, hít sâu mười nhịp — sóng gió trong người lặng đi ngay.',
+  'Điện thoại cách giường hai mét — khoảng cách an toàn do chính bạn ban hành.',
+  'Ngủ sớm là bản cập nhật miễn phí: vá lỗ hổng "tay" trước 23h.',
+  'Buồn chán là nguy cơ số một. Phản ứng: đứng dậy, rửa mặt, hít đất mười cái.',
+  'Đi bộ hai mươi phút, để mồ hôi chảy hết theo đường cũ.',
+  'Ngồi xử lý công việc đi, đừng ngồi xử lý bản thân.',
+  'Mở tab lạ là mở cửa hối hận. Đóng tab, mở sách.',
+  'Nhịn được hôm nay là đã thắng trước nửa ngày mai.',
+  'Tự do thật sự là lúc tay rỗi mà vẫn bình an.',
+  'Cậu bé chỉ là nhân viên phụ — đừng cho nó làm tổng giám đốc cuộc đời.',
+  'Nước lạnh chạm da, ý chí lên não.',
+  'Xem phim hành động thay vì phim tình cảm ba giờ sáng.',
+  'Pomodoro 25/5: bận cả ngày, tay không có ca nào rảnh.',
+  'Gọi thằng bạn thân nói chuyện mười phút — nỗi buồn xử lý bằng giọng nói.',
+  'Nhịn không phải nén lại, nhịn là chuyển hướng năng lượng.',
+  'Hít đất đến khi hết nghĩ những thứ linh tinh — cơ bắp thay đổi chủ đề.',
+  'Cơn cái chỉ mạnh năm phút đầu. Sống sót năm phút là sống sót cả ngày.',
+  'Đặt điện thoại ngoài phòng khách — lười đi lấy hơn là lười nhịn.',
+  'Ngủ muộn là buff cho cơn cái. Ngủ sớm là hồi máu.',
+  'Rửa chén hộ ai đó hôm nay — đôi tay sạch sẽ làm việc nghĩa.',
+  'Trong đầu sẽ có giọng nói "chỉ lần này thôi". Đừng ký hợp đồng với nó.',
+  'Uống đủ hai lít nước — vừa mát vừa bận đi vệ sinh, hết giờ rảnh.',
+  'Chưa ai kể chuyện "đêm đó tôi lọ" với giọng tự hào cả.',
+  'Streak là tài sản. Mỗi đêm là một ca trực bảo vệ tài sản.',
+  'Thấy nội dung nóng? Lướt qua nhanh như lướt qua tin nhắn người yêu cũ.',
+  'Ngủ trước 23h — mai dậy được cộng hai điểm streak.',
+  'Muốn gãy thì nhẩm tài khoản: mười lăm ngày công về không trong hai phút.',
+  'Tay phải chào cờ, tay trái để dự phòng — chứ không phải để dự phóng.',
+  'Đọc mười trang sách tối nay — não no rồi là nó hết đòi.',
+  'Tập không cần đẹp, cần ra mồ hôi. Ra mồ hôi rồi là thắng lớn.',
+  'Cơn cái hay giả danh "thư giãn". Thư giãn thật nằm ở giấc ngủ tám tiếng.',
+  'Ai cũng trượt. Khác biệt là kẻ gãy đứng lên, kẻ lọ nằm xuống.',
+  'Sau ba giờ chiều chỉ uống trà — ngủ ngon là phòng tuyến số một.',
+  'Bạn không cần đánh bại cơn cái, chỉ cần chờ nó qua như chờ đèn đỏ.',
+  'Mỗi ngày nhịn là một điểm cộng cho bản 2.0 của bạn. Đừng rollback.',
+  'Sáng dậy phủi khỏi giường liền — nằm lướt điện thoại là cổng vào càng.',
+  'Cuối ngày tự chấm: hôm nay đôi tay đã làm việc gì đáng tự hào chưa?'
+];
+
+/* ---------------- Trạng thái ---------------- */
+
+const KEY = 'loVuong.v2'; // v2: luật mới — chỉ tích được ngày hôm qua
+let marks = {};
+let first = ''; // ngày bắt đầu dùng app — trước đó không áp dụng luật
+
+function loadState() {
+  try {
+    const raw = JSON.parse(localStorage.getItem(KEY) || '{}');
+    if (raw && typeof raw === 'object') {
+      const m = raw.m;
+      if (m && typeof m === 'object') {
+        for (const k in m) if (m[k] === 'pass' || m[k] === 'fail') marks[k] = m[k];
+      }
+      if (typeof raw.f === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(raw.f)) first = raw.f;
+    }
+  } catch (e) { marks = {}; }
+}
+
+function save() {
+  try { localStorage.setItem(KEY, JSON.stringify({ m: marks, f: first })); } catch (e) {}
+}
+
+/* ---------------- Ngày tháng ---------------- */
+
+let TODAY = new Date();
+TODAY = new Date(TODAY.getFullYear(), TODAY.getMonth(), TODAY.getDate());
+
+function ds(d) {
+  return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+}
+let TSTR = ds(TODAY);          // hôm nay
+let YSTR = ds(addDays(TODAY, -1)); // hôm qua
+let BU_LIMIT = TSTR.slice(0, 8) + '01'; // mùng 1 tháng này — giới hạn bù tick
+
+function addDays(d, n) { const x = new Date(d); x.setDate(x.getDate() + n); return x; }
+
+let view = { y: TODAY.getFullYear(), m: TODAY.getMonth() };
+let target = null; // ngày bù đang chọn trên lịch
+
+/* Bù tick: các ngày từ mùng 1 ĐẾN hôm qua của tháng hiện tại, chưa chốt.
+   Hôm nay/tương lai khoá; tháng trước khoá sổ — không bù chéo tháng. */
+function isTickable(k) { return !marks[k] && k >= BU_LIMIT && k < TSTR; }
+
+/* ---------------- Tính toán ---------------- */
+
+/*
+ * Streak = số ngày 'pass' tính từ lần 'fail' GẦN NHẤT trở về sau (hoặc từ đầu
+ * cửa sổ dữ liệu nếu chưa gãy lần nào). Ngày trống chưa bù KHÔNG cắt chuỗi —
+ * bù tick ngày nào thì streak tăng ngay ngày đó, cả khi bù lộn xộn không
+ * theo thứ tự.
+ */
+function calcStreak() {
+  let best = ''; // ngày fail gần nhất ('' = chưa gãy lần nào)
+  for (const k in marks) {
+    if (marks[k] === 'fail' && k >= BU_LIMIT && k > best) best = k;
+  }
+  let s = 0;
+  for (const k in marks) {
+    if (marks[k] === 'pass' && k >= BU_LIMIT && k > best) s++;
+  }
+  return s;
+}
+
+function rankInfo(streak) {
+  let idx = 0;
+  for (let i = 0; i < RANKS.length; i++) if (streak >= RANKS[i].min) idx = i;
+  return { idx: idx, rank: RANKS[idx] };
+}
+
+function adviceFor(k) {
+  let h = 0;
+  for (let i = 0; i < k.length; i++) h = (h * 31 + k.charCodeAt(i)) >>> 0;
+  return ADVICE[h % ADVICE.length];
+}
+
+/* ---------------- Render ---------------- */
+
+const $ = (id) => document.getElementById(id);
+const LOCK_SVG = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="5" y="11" width="14" height="9" rx="2.5"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>';
+
+function render() {
+  // thống kê
+  let win = 0, lose = 0, missed = 0;
+  for (const k in marks) { if (marks[k] === 'pass') win++; else if (marks[k] === 'fail') lose++; }
+  // ngày lỡ vĩnh viễn: đã lùi sang tháng trước mà vẫn không tích -> tính là gãy
+  let d = addDays(TODAY, -1);
+  for (let i = 0; i < 500; i++) {
+    const k = ds(d);
+    if (k < first) break;
+    if (k < BU_LIMIT && !marks[k]) missed++;
+    d = addDays(d, -1);
+  }
+  lose += missed;
+
+  const streak = calcStreak();
+  $('stStreak').textContent = streak;
+  $('stWin').textContent = win;
+  $('stLose').textContent = lose;
+
+  // hạng + thanh tiến độ
+  const ri = rankInfo(streak);
+  const next = RANKS[ri.idx + 1] || null;
+  const prevMin = ri.idx > 0 ? RANKS[ri.idx - 1].min : 0;
+  let frac = 1;
+  if (next) frac = Math.max(0, Math.min(1, (streak - prevMin) / (next.min - prevMin)));
+  $('rankName').textContent = ri.rank.icon + ' ' + ri.rank.name;
+  $('rankDesc').textContent = next
+    ? 'Chuỗi nhịn ' + streak + ' ngày — ' + ri.rank.sub + '. Còn ' + (next.min - streak) + ' ngày nữa lên ' + next.name + '.'
+    : 'Chuỗi nhịn ' + streak + ' ngày — ' + ri.rank.sub + '. Đã chạm đỉnh!';
+  $('rankBar').style.width = Math.round(frac * 100) + '%';
+
+  // lời vàng: theo ngày đang chọn để bù, không thì hôm nay
+  const advDay = target || TSTR;
+  const dk = Number(advDay.slice(8)), dm = Number(advDay.slice(5, 7));
+  $('advTitle').textContent = 'LỜI VÀNG NGÀY ' + dk + '/' + dm;
+  $('advText').textContent = adviceFor(advDay);
+
+  renderCalendar();
+  renderMarkArea();
+}
+
+function renderCalendar() {
+  $('monthLabel').textContent = 'THÁNG ' + (view.m + 1) + ' · ' + view.y;
+  const grid = $('grid');
+  grid.innerHTML = '';
+  const firstDate = new Date(view.y, view.m, 1);
+  const offset = (firstDate.getDay() + 6) % 7; // tuần bắt đầu T2
+  const days = new Date(view.y, view.m + 1, 0).getDate();
+
+  for (let i = 0; i < offset; i++) grid.appendChild(document.createElement('div'));
+
+  for (let d = 1; d <= days; d++) {
+    const k = view.y + '-' + String(view.m + 1).padStart(2, '0') + '-' + String(d).padStart(2, '0');
+    const cell = document.createElement('div');
+    cell.className = 'cell';
+    const num = document.createElement('span');
+    num.textContent = d;
+    cell.appendChild(num);
+
+    const st = marks[k];
+    if (st === 'pass') {
+      cell.classList.add('pass');
+      const ic = document.createElement('span'); ic.className = 'ic'; ic.textContent = '✓';
+      cell.appendChild(ic);
+    } else if (st === 'fail') {
+      cell.classList.add('fail');
+      const ic = document.createElement('span'); ic.className = 'ic'; ic.textContent = '✕';
+      cell.appendChild(ic);
+    } else if (k > TSTR) {
+      cell.classList.add('locked');
+      const ic = document.createElement('span'); ic.innerHTML = LOCK_SVG;
+      cell.appendChild(ic);
+    } else if (k === TSTR) {
+      cell.classList.add('today', 'clickable');
+      cell.title = 'Hôm nay — chưa hết ngày, mai mới tích được';
+    } else if (isTickable(k)) {
+      // cửa sổ bù: mùng 1 -> hôm qua, chưa chốt
+      cell.classList.add('pending', 'clickable');
+      if (target === k) cell.classList.add('sel');
+      cell.title = 'Bấm để chọn bù tick ngày này';
+    } else if (k >= BU_LIMIT || k >= first) {
+      // ngày đã lỡ bù (hoặc trước ngày bắt đầu dùng app)
+      cell.classList.add('missed');
+      const ic = document.createElement('span'); ic.className = 'ic'; ic.textContent = '🥀';
+      cell.appendChild(ic);
+      cell.title = k < BU_LIMIT ? 'Đã sang tháng mới — tháng trước khoá sổ, mất trắng' : 'Lỡ không tích — mất trắng, không bù được';
+    } else {
+      cell.title = 'Trước khi bạn bắt đầu dùng Lọ Vương';
+    }
+
+    cell.addEventListener('click', function () { onCellClick(k); });
+    grid.appendChild(cell);
+  }
+}
+
+function onCellClick(k) {
+  if (marks[k]) { toast('Ngày này đã chốt sổ — không sửa lại lịch sử.'); return; }
+  if (k > TSTR) { toast('Chưa tới ngày đó — không tích trước được 😏'); return; }
+  if (k === TSTR) { toast('Hôm nay chưa hết ngày — mai quay lại tích cho hôm nay.'); return; }
+  if (isTickable(k)) {
+    target = (target === k) ? null : k; // bấm lần nữa để bỏ chọn
+    render();
+    return;
+  }
+  toast('Ngày đó đã qua rồi — lỡ không tích là mất trắng 🥀');
+}
+
+function renderMarkArea() {
+  const area = $('markArea');
+  area.innerHTML = '';
+  if (target && isTickable(target)) {
+    const btns = document.createElement('div');
+    btns.className = 'btns';
+    const dayNum = Number(target.slice(8));
+
+    const b1 = document.createElement('button');
+    b1.className = 'big pass';
+    b1.textContent = '✓ Ngày ' + dayNum + ' nhịn được';
+    b1.addEventListener('click', function () { mark(target, 'pass'); });
+
+    const b2 = document.createElement('button');
+    b2.className = 'big fail';
+    b2.textContent = '✕ Ngày ' + dayNum + ' gãy rồi';
+    b2.addEventListener('click', function () { mark(target, 'fail'); });
+
+    btns.appendChild(b1); btns.appendChild(b2);
+    area.appendChild(btns);
+
+    const law = document.createElement('div');
+    law.className = 'law';
+    law.textContent = 'Cửa sổ bù: được tick lại các ngày từ mùng 1 đến hôm qua (tháng ' + (TODAY.getMonth() + 1) + '). Hôm nay chưa hết ngày nên chưa tích được; sang tháng mới thì tháng trước khoá sổ luôn.';
+    area.appendChild(law);
+  } else {
+    const done = document.createElement('div');
+    done.className = 'done';
+    done.innerHTML = '👇 Bấm vào ô NGÀY CẦN BÙ trên lịch (từ mùng 1 đến hôm qua) rồi chọn nhịn được / gãy rồi.<br>Hôm nay chưa hết ngày — mai mới tích cho hôm nay được.';
+    area.appendChild(done);
+  }
+}
+
+/* ---------------- Tích ngày ---------------- */
+
+function mark(k, status) {
+  if (!isTickable(k)) { toast('Ngày này không bù được — chỉ tick các ngày từ mùng 1 đến hôm qua của tháng này 😤'); return; }
+  if (marks[k]) { toast('Ngày này đã chốt sổ rồi — không sửa lại.'); return; }
+  const before = rankInfo(calcStreak()).idx;
+  marks[k] = status;
+  save();
+  target = null;
+  const after = rankInfo(calcStreak()).idx;
+  render();
+
+  if (status === 'fail') {
+    toast('Đã chốt ngày gãy — chuỗi bị cắt tại đây. Đứng dậy, làm lại từ đầu 💪');
+  } else if (after > before) {
+    coronate(after);
+  } else {
+    toast('Đã chốt sổ ngày ' + Number(k.slice(8)) + ' — thêm một ngày oanh liệt ✓');
+  }
+}
+
+function coronate(idx) {
+  const r = RANKS[idx];
+  const s = calcStreak();
+  $('mRank').textContent = r.icon + ' ' + r.name;
+  $('mText').textContent = 'Với chuỗi nhịn ' + s + ' ngày liên tiếp, bạn chính thức được tấn phong làm ' + r.name + '! Cả triều đình lật lọ dậy hô vạn tuế.';
+  $('modal').classList.remove('hidden');
+  confetti();
+}
+
+function confetti() {
+  const colors = ['#ffd76a', '#f0a824', '#35c26e', '#8f88b8', '#ff5c5c', '#ffffff'];
+  for (let i = 0; i < 60; i++) {
+    const p = document.createElement('div');
+    p.className = 'cf';
+    p.style.left = Math.random() * 100 + 'vw';
+    p.style.background = colors[Math.floor(Math.random() * colors.length)];
+    p.style.animationDuration = (2.4 + Math.random() * 1.8) + 's';
+    p.style.animationDelay = (Math.random() * 0.6) + 's';
+    p.style.transform = 'rotate(' + Math.random() * 360 + 'deg)';
+    document.body.appendChild(p);
+    setTimeout(function () { p.remove(); }, 5200);
+  }
+}
+
+/* ---------------- Tiện ích ---------------- */
+
+let toastTimer = null;
+function toast(msg) {
+  const t = $('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function () { t.classList.remove('show'); }, 2400);
+}
+
+/* ---------------- Sự kiện ---------------- */
+
+$('prevM').addEventListener('click', function () {
+  view.m--; if (view.m < 0) { view.m = 11; view.y--; }
+  renderCalendar();
+});
+$('nextM').addEventListener('click', function () {
+  view.m++; if (view.m > 11) { view.m = 0; view.y++; }
+  renderCalendar();
+});
+$('mClose').addEventListener('click', function () { $('modal').classList.add('hidden'); });
+$('modal').addEventListener('click', function (e) { if (e.target === this) this.classList.add('hidden'); });
+$('resetBtn').addEventListener('click', function () {
+  if (confirm('Xoá toàn bộ dữ liệu tích ngày? Không thể hoàn tác.')) {
+    marks = {};
+    first = TSTR;
+    save();
+    render();
+    toast('Đã xoá sạch — bắt đầu lại từ Lọ Dân Đen.');
+  }
+});
+
+function rollDate() {
+  const n = new Date();
+  const t = new Date(n.getFullYear(), n.getMonth(), n.getDate());
+  if (ds(t) !== TSTR) {
+    TODAY = t;
+    TSTR = ds(t);
+    YSTR = ds(addDays(TODAY, -1));
+    BU_LIMIT = TSTR.slice(0, 8) + '01';
+    view = { y: t.getFullYear(), m: t.getMonth() };
+    render();
+    toast('Một ngày mới bắt đầu — ngày hôm qua đã mở khoá, vào tích liền!');
+  }
+}
+
+document.addEventListener('visibilitychange', function () { if (!document.hidden) rollDate(); });
+setInterval(rollDate, 60000);
+
+/* ---------------- Khởi động ---------------- */
+loadState();
+if (!first) { first = TSTR; save(); }
+render();
+</script>
+</body>
+</html>
