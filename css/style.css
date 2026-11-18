@@ -44,17 +44,13 @@ html {
   scroll-behavior: smooth;
   background: var(--bg);
   color-scheme: dark;
-  overflow-x: hidden; /* Fallback cho trình duyệt chưa hỗ trợ overflow-x: clip (iOS < 16) */
-  overflow-x: clip;
 }
 
 body {
   background: var(--bg);
   color: var(--text);
-  overflow-x: hidden; /* Fallback cho trình duyệt chưa hỗ trợ overflow-x: clip */
-  overflow-x: clip;
+  overflow-x: hidden;
   margin: 0;
-  max-width: 100vw;
 }
 
 ::selection {
@@ -311,18 +307,6 @@ body {
   border: 1px solid var(--border);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
   max-width: 100%;
-  min-width: 0; /* Cho phép co lại trong flex, tránh đẩy cột hero rộng quá khổ trên mobile */
-}
-
-/* Cho phép truncate hoạt động bên trong flex (mặc định flex item có min-width: auto) */
-.terminal-prompt > span {
-  min-width: 0;
-}
-
-/* Grid item mặc định min-width: auto -> nội dung dài (terminal, chữ Hán...) đẩy cả track rộng hơn màn hình.
-   Ép về 0 để cột hero và cột card Discord luôn vừa khung nhìn trên mobile. */
-#hero .grid > * {
-  min-width: 0;
 }
 
 .tech-chip {
@@ -448,12 +432,9 @@ a.spotlight-card:hover {
 .rpc-card-shell {
   position: relative;
   width: 100%;
-  max-width: 350px;
-  min-width: 0;
-  box-sizing: border-box;
+  max-width: 400px;
   padding-top: 14px;
   padding-bottom: 18px;
-  margin: 0 auto;
 }
 
 /* Starfall Rainbow Sparkle Profile Frame (Top & Bottom) */
@@ -477,26 +458,6 @@ a.spotlight-card:hover {
   pointer-events: none;
   z-index: 20;
   filter: drop-shadow(0 0 8px rgba(255, 79, 216, 0.55)) drop-shadow(0 0 12px rgba(255, 230, 82, 0.4));
-}
-
-@media (max-width: 640px) {
-  .rpc-card-shell {
-    max-width: min(340px, calc(100vw - 32px)) !important;
-    padding-top: 6px;
-    padding-bottom: 8px;
-  }
-  .rpc-sparkle-crown {
-    left: 0;
-    right: 0;
-    height: 90px;
-    filter: drop-shadow(0 0 3px rgba(255, 79, 216, 0.4));
-  }
-  .rpc-sparkle-bottom {
-    left: 0;
-    right: 0;
-    height: 45px;
-    filter: drop-shadow(0 0 3px rgba(255, 79, 216, 0.4));
-  }
 }
 
 .rpc-sparkle-crown svg,
@@ -532,8 +493,6 @@ a.spotlight-card:hover {
   --nitro-border: rgba(255, 73, 219, 0.42);
   --name-neon: #ec1dfd;
   width: 100%;
-  max-width: 350px;
-  box-sizing: border-box;
   border-radius: 20px;
   padding: 4px;
   background: linear-gradient(180deg, var(--nitro-border) 0%, rgba(177, 59, 255, 0.28) 100%);
@@ -542,40 +501,24 @@ a.spotlight-card:hover {
     0 0 46px -12px var(--rpc-glow, rgba(236, 29, 253, 0.32));
   position: relative;
   transition: box-shadow 0.5s ease;
-  overflow: hidden; /* Cực kỳ quan trọng: Giữ toàn bộ nội dung & hiệu ứng không thể tràn ra ngoài */
 }
 
 .rpc-real-effect-layers {
   position: absolute;
   inset: 4px;
   border-radius: 16px;
-  overflow: hidden !important;
+  overflow: hidden;
   pointer-events: none;
   z-index: 15;
-  contain: strict;
-  transform: translateZ(0);
 }
 
-.rpc-effect-loop,
-.rpc-effect-intro {
+.rpc-real-effect-layers img {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: top center;
-  background-repeat: no-repeat;
+  height: auto;
   pointer-events: none;
-  transform: translateZ(0);
-  transition: opacity 0.45s ease;
-}
-
-.rpc-effect-loop {
-  z-index: 1;
-}
-
-.rpc-effect-intro {
-  z-index: 2;
 }
 
 .rpc-nitro-card > .rpc-banner {
