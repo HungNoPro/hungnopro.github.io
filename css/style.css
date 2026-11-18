@@ -299,26 +299,55 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
+/* Wrapper giữ chỗ chiều cao ảo để khi terminal nở dòng không làm đẩy các phần tử phía dưới */
+.terminal-wrapper {
+  min-height: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .terminal-wrapper {
+    justify-content: flex-start;
+    min-height: 48px;
+  }
+}
+
 .terminal-prompt {
   display: inline-flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
   padding: 10px 16px;
   border-radius: 12px;
   background: rgba(17, 20, 32, 0.72);
   border: 1px solid var(--border);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  width: fit-content; /* Chữ gõ đến đâu mở rộng đến đó */
   max-width: 100%;
   box-sizing: border-box;
-  overflow: hidden;
+  transition: width 0.15s ease-out;
+}
+
+@media (max-width: 640px) {
+  .terminal-prompt {
+    padding: 8px 12px;
+    gap: 8px;
+    align-items: flex-start;
+  }
+}
+
+.terminal-prompt > span:first-child {
+  line-height: 1.5; /* Khớp chuẩn chiều cao dòng của chữ gõ */
 }
 
 .terminal-prompt > span:last-child {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
   min-width: 0;
   flex: 1;
+  word-break: break-word;
+  white-space: normal;
+  line-height: 1.5;
 }
 
 .tech-chip {
