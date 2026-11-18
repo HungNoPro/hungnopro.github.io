@@ -211,6 +211,25 @@ let lastIntroReplayAt = 0;
 let replayCounter = 0;
 let localStarfallBufferPromise = null;
 let activeIntroBlobUrl = null;
+let hasPlayedInitialMobileWave = false;
+
+const isMobileDevice =
+  /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+  (window.matchMedia && window.matchMedia("(max-width: 768px)").matches);
+
+let isCardInViewport = true;
+if ("IntersectionObserver" in window) {
+  const cardObs = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        isCardInViewport = e.isIntersecting;
+      });
+    },
+    { threshold: 0.1 }
+  );
+  const cardShell = document.getElementById("rpc-card-shell");
+  if (cardShell) cardObs.observe(cardShell);
+}
 
 function getProfileEffectsCatalog() {
   if (!profileEffectsCatalogPromise) {
@@ -233,7 +252,10 @@ async function getStarfallIntroSrc(isReplay) {
       }
       const buf = await localStarfallBufferPromise;
       if (buf) {
-        if (activeIntroBlobUrl) URL.revokeObjectURL(activeIntroBlobUrl);
+        if (activeIntroBlobUrl) {
+          URL.revokeObjectURL(activeIntroBlobUrl);
+          activeIntroBlobUrl = null;
+        }
         activeIntroBlobUrl = URL.createObjectURL(new Blob([buf], { type: "image/png" }));
         return activeIntroBlobUrl;
       }
@@ -261,13 +283,23 @@ async function playIntroWaveSequence(skuId, isReplay = false) {
       loopImg.src = "resources/starfall_l1.png";
       loopImg.alt = "";
       loopImg.style.zIndex = "1";
-      loopImg.style.opacity = "0";
+      loopImg.style.opacity = isMobileDevice ? "1" : "0";
       loopImg.style.transition = "opacity 0.45s ease";
       realLayersEl.appendChild(loopImg);
     }
 
+    // Trên điện thoại: nếu đã xem sóng mở đầu 1 lần rồi và đang chạy ngầm thì giữ mặt nước êm đềm lấp lánh (1.4MB)
+    // để GPU & RAM điện thoại không bị giật lag ngốn pin do decode APNG 3.5MB liên tục
+    if (isMobileDevice && hasPlayedInitialMobileWave && !isReplay) {
+      loopImg.style.opacity = "1";
+      return;
+    }
+
     const oldIntro = realLayersEl.querySelector('img[data-role="intro"]');
-    if (oldIntro) oldIntro.remove();
+    if (oldIntro) {
+      oldIntro.remove();
+      oldIntro.src = "";
+    }
 
     const introSrc = await getStarfallIntroSrc(isReplay);
     if (String(skuId) !== String(currentProfileEffectSku)) return;
@@ -280,20 +312,32 @@ async function playIntroWaveSequence(skuId, isReplay = false) {
     introImg.style.transition = "opacity 0.45s ease";
 
     introImg.onload = () => {
+      hasPlayedInitialMobileWave = true;
       loopImg.style.opacity = "0.35";
-      // Sóng lớn chạy 5 giây rồi rút êm sang mặt nước lấp lánh, nghỉ 6 giây lại dạt sóng mới
+
+      // Sóng lớn chạy 5 giây rồi rút êm sang mặt nước dạt dào
       introWaveTimer = setTimeout(() => {
         loopImg.style.opacity = "1";
         introImg.style.opacity = "0";
+
+        // Dọn dẹp bộ nhớ RAM / GPU tức thì sau khi sóng tan
         setTimeout(() => {
           if (introImg.parentNode) introImg.remove();
+          introImg.src = "";
+          if (activeIntroBlobUrl) {
+            URL.revokeObjectURL(activeIntroBlobUrl);
+            activeIntroBlobUrl = null;
+          }
         }, 480);
 
-        nextCycleTimer = setTimeout(() => {
-          if (!document.hidden && String(currentProfileEffectSku) === STARFALL_ROSE_SKU) {
-            playIntroWaveSequence(STARFALL_ROSE_SKU, true);
-          }
-        }, 6500);
+        // Chỉ tự động lặp lại theo chu kỳ trên Desktop khi card nằm trong tầm mắt người dùng
+        if (!isMobileDevice) {
+          nextCycleTimer = setTimeout(() => {
+            if (!document.hidden && isCardInViewport && String(currentProfileEffectSku) === STARFALL_ROSE_SKU) {
+              playIntroWaveSequence(STARFALL_ROSE_SKU, true);
+            }
+          }, 11000); // Khoảng nghỉ 11s thanh tao như nhịp sóng biển tự nhiên, không ngốn GPU
+        }
       }, 4950);
     };
 
@@ -317,13 +361,19 @@ async function playIntroWaveSequence(skuId, isReplay = false) {
   }
 }
 
-// Rê chuột vào thẻ Discord để gọi sóng biển dạt ngang ngay lập tức (sau 6s hồi)
+// Chạm hoặc rê chuột vào thẻ Discord để gọi sóng biển dạt ngang tức thì (cooldown 5.5s)
 const rpcCardForWave = document.getElementById("rpc-card");
 if (rpcCardForWave) {
-  rpcCardForWave.addEventListener("mouseenter", () => {
-    if (currentProfileEffectSku && Date.now() - lastIntroReplayAt > 6000) {
+  const triggerManualWave = () => {
+    if (currentProfileEffectSku && Date.now() - lastIntroReplayAt > 5500) {
       playIntroWaveSequence(currentProfileEffectSku, true);
     }
+  };
+  rpcCardForWave.addEventListener("mouseenter", () => {
+    if (!isMobileDevice) triggerManualWave();
+  });
+  rpcCardForWave.addEventListener("click", () => {
+    triggerManualWave();
   });
 }
 

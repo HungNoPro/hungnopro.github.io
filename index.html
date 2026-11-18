@@ -11,7 +11,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="css/style.css?v=5" />
+  <link rel="stylesheet" href="css/style.css?v=9" />
 </head>
 <body>
   <!-- ===== Atmospheric Background ===== -->
@@ -107,10 +107,10 @@
           </h1>
 
           <!-- Terminal Typewriter -->
-          <div class="mt-6 reveal reveal-delay-2 flex justify-center lg:justify-start">
-            <div class="terminal-prompt">
+          <div class="mt-6 reveal reveal-delay-2 flex justify-center lg:justify-start w-full max-w-full min-w-0">
+            <div class="terminal-prompt max-w-full min-w-0">
               <span class="mono text-xs sm:text-sm font-semibold shrink-0" style="color: var(--accent);">~/hungnopro $</span>
-              <span class="mono text-sm sm:text-base font-medium truncate" style="color: var(--text);">
+              <span class="mono text-sm sm:text-base font-medium truncate min-w-0 flex-1" style="color: var(--text);">
                 <span id="hero-subtitle-text"></span><span class="cursor-blink" style="color: var(--accent);">▋</span>
               </span>
             </div>
@@ -772,6 +772,6 @@
     <span id="site-toast-text">Đã sao chép!</span>
   </div>
 
-  <script src="script/script.js?v=5"></script>
+  <script src="script/script.js?v=9"></script>
 </body>
 </html>
