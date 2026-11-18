@@ -51,7 +51,7 @@ function updateVietnamClock() {
       second: "2-digit",
       hour12: false
     }).format(now);
-    clockEl.textContent = `${formatted} GMT+7`;
+    clockEl.textContent = formatted;
   } catch (e) {
     clockEl.textContent = "GMT+7";
   }

@@ -473,28 +473,10 @@ a.spotlight-card:hover {
 .rpc-card-shell {
   position: relative;
   width: 100%;
-  max-width: 400px;
+  max-width: 380px;
   box-sizing: border-box;
   padding-top: 14px;
   padding-bottom: 18px;
-}
-
-@media (max-width: 640px) {
-  .rpc-card-shell {
-    max-width: min(360px, 100%);
-    padding-top: 6px;
-    padding-bottom: 8px;
-  }
-  .rpc-sparkle-crown {
-    left: -4px;
-    right: -4px;
-    filter: drop-shadow(0 0 4px rgba(255, 79, 216, 0.45));
-  }
-  .rpc-sparkle-bottom {
-    left: -4px;
-    right: -4px;
-    filter: drop-shadow(0 0 4px rgba(255, 79, 216, 0.45));
-  }
 }
 
 /* Starfall Rainbow Sparkle Profile Frame (Top & Bottom) */
@@ -518,6 +500,22 @@ a.spotlight-card:hover {
   pointer-events: none;
   z-index: 20;
   filter: drop-shadow(0 0 8px rgba(255, 79, 216, 0.55)) drop-shadow(0 0 12px rgba(255, 230, 82, 0.4));
+}
+
+@media (max-width: 640px) {
+  .rpc-card-shell {
+    max-width: 100% !important;
+    padding-top: 6px;
+    padding-bottom: 8px;
+  }
+  .rpc-sparkle-crown,
+  .rpc-sparkle-bottom {
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    overflow: hidden !important;
+    filter: drop-shadow(0 0 3px rgba(255, 79, 216, 0.4)) !important;
+  }
 }
 
 .rpc-sparkle-crown svg,
