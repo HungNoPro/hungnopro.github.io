@@ -3,60 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Blackjack VIP</title>
-    <link rel="stylesheet" href="css/game.css">
+    <title>Blackjack VIP — Royal Monte Carlo Edition</title>
+    <meta name="theme-color" content="#071e14">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230a2e1e' stroke='%23d4af37' stroke-width='5'/><text x='50' y='70' font-size='56' text-anchor='middle' fill='%23f5d061'>♠</text></svg>">
+    <link rel="stylesheet" href="css/game.css?v=2">
 </head>
 <body>
     <!-- Màn hình Loading -->
     <div id="loading-screen">
-        <div class="loader-spinner"></div>
-        <p>Đang chuẩn bị bàn chơi...</p>
+        <div class="loader-emblem">
+            <div class="loader-spinner"></div>
+            <span class="loader-suit">♠</span>
+        </div>
+        <p class="loader-title">ROYAL MONTE CARLO</p>
+        <span class="loader-sub">Đang trải thảm nỉ &amp; xáo bộ bài 52 lá...</span>
     </div>
 
     <div class="app-wrapper">
-        <header>
-            <h1>♣ Blackjack VIP ♠</h1>
+        <!-- Thanh Header Hoàng Gia -->
+        <header class="vip-header">
+            <div class="header-top">
+                <a href="index.html" class="icon-btn" title="Về trang chủ HungNoPro" aria-label="Về trang chủ">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+                </a>
+
+                <div class="brand-lockup">
+                    <span class="suit-gem">♣</span>
+                    <h1>BLACKJACK <span class="vip-badge">VIP</span></h1>
+                    <span class="suit-gem">♠</span>
+                </div>
+
+                <button type="button" id="sound-btn" class="icon-btn" onclick="toggleSound()" title="Bật / Tắt âm thanh" aria-label="Bật hoặc tắt âm thanh">
+                    <svg id="sound-icon-on" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+                    <svg id="sound-icon-off" class="hidden" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+                </button>
+            </div>
+
+            <!-- Bảng thông số tài sản -->
             <div class="stats-board">
                 <div class="stat-item">
                     <span class="stat-label">Số dư</span>
-                    <span class="stat-value" id="balance">$1000</span>
+                    <span class="stat-value mono" id="balance">$1,000</span>
                 </div>
-                <div class="stat-item">
+                <div class="stat-divider"></div>
+                <div class="stat-item stat-bet">
                     <span class="stat-label">Tiền cược</span>
-                    <span class="stat-value" id="current-bet">$0</span>
+                    <span class="stat-value mono" id="current-bet">$0</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-label">Kỷ lục</span>
+                    <span class="stat-value mono stat-peak" id="high-score">$1,000</span>
                 </div>
             </div>
         </header>
 
-        <div class="game-table">
+        <!-- Bàn Casino Monte Carlo -->
+        <main class="game-table">
+            <!-- Họa tiết khắc chìm trên mặt thảm nỉ -->
+            <div class="table-felt-watermark" aria-hidden="true">
+                <svg class="table-arc-svg" viewBox="0 0 600 220" fill="none">
+                    <path id="arc-top" d="M 60 60 Q 300 175 540 60" stroke="rgba(212,175,55,0.2)" stroke-width="1.5" stroke-dasharray="6 6" fill="none"/>
+                    <path d="M 85 45 Q 300 150 515 45" stroke="rgba(212,175,55,0.14)" stroke-width="1" fill="none"/>
+                </svg>
+                <div class="table-rules-ribbon">
+                    <span>BLACKJACK PAYS 3 TO 2</span>
+                    <span class="ribbon-dot">◆</span>
+                    <span>DEALER STANDS ON ALL 17</span>
+                </div>
+            </div>
+
+            <!-- Khu vực Nhà Cái (Dealer) -->
             <div class="player-section dealer">
+                <div class="hand-header">
+                    <span class="seat-tag">DEALER</span>
+                    <div class="sum-display mono" id="dealer-sum">0</div>
+                </div>
                 <div class="card-area" id="dealer-cards"></div>
-                <div class="sum-display" id="dealer-sum">0</div>
             </div>
-            <div class="message-board" id="message">Đặt cược và bấm DEAL</div>
+
+            <!-- Thông báo trung tâm & Khay Chip đang cược -->
+            <div class="center-stage">
+                <div class="pot-pill hidden" id="pot-pill">
+                    <span class="pot-chip-dot"></span>
+                    <span class="mono" id="pot-amount">$0</span>
+                </div>
+                <div class="message-board" id="message">Chọn phỉnh chip và bấm DEAL</div>
+            </div>
+
+            <!-- Khu vực Người Chơi (Player) -->
             <div class="player-section player">
-                <div class="sum-display" id="player-sum">0</div>
                 <div class="card-area" id="player-cards"></div>
+                <div class="hand-header">
+                    <span class="seat-tag seat-player">PLAYER</span>
+                    <div class="sum-display mono" id="player-sum">0</div>
+                </div>
             </div>
-        </div>
+        </main>
 
+        <!-- Bảng Điều Khiển Đặt Cược & Hành Động -->
         <footer class="control-panel">
+            <!-- Khu vực chọn Phỉnh Chip khi chưa chia bài -->
             <div class="betting-area" id="betting-area">
-                <div class="chip chip-10" onclick="placeBet(10)">10</div>
-                <div class="chip chip-50" onclick="placeBet(50)">50</div>
-                <div class="chip chip-100" onclick="placeBet(100)">100</div>
-                <button class="btn-allin" id="allin-btn" onclick="placeBet(balance)">All In</button>
-                <button class="btn-reset" id="reset-btn" onclick="resetBet()">Cược lại</button>
-                <button class="btn-deal" id="deal-btn" onclick="startGame()">Deal</button>
+                <div class="chips-rack" role="group" aria-label="Chọn mệnh giá chip">
+                    <button type="button" class="chip chip-10" onclick="placeBet(10)" aria-label="Cược 10 đô">
+                        <span class="chip-ring">$10</span>
+                    </button>
+                    <button type="button" class="chip chip-50" onclick="placeBet(50)" aria-label="Cược 50 đô">
+                        <span class="chip-ring">$50</span>
+                    </button>
+                    <button type="button" class="chip chip-100" onclick="placeBet(100)" aria-label="Cược 100 đô">
+                        <span class="chip-ring">$100</span>
+                    </button>
+                    <button type="button" class="chip chip-500" onclick="placeBet(500)" aria-label="Cược 500 đô">
+                        <span class="chip-ring">$500</span>
+                    </button>
+                </div>
+
+                <div class="bet-actions">
+                    <button type="button" class="btn-action btn-reset" id="reset-btn" onclick="resetBet()" title="Hoàn lại tiền cược">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                        <span>Hoàn cược</span>
+                    </button>
+                    <button type="button" class="btn-action btn-allin" id="allin-btn" onclick="placeBet(balance)">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                        <span>All In</span>
+                    </button>
+                    <button type="button" class="btn-action btn-deal" id="deal-btn" onclick="startGame()">
+                        <span>DEAL</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                    </button>
+                </div>
             </div>
 
+            <!-- Khu vực Rút bài / Dừng / Cược gấp đôi -->
             <div class="game-controls" id="game-controls">
-                <button class="btn-hit" id="hit-btn" onclick="hit()" disabled>Hit (H)</button>
-                <button class="btn-stay" id="stay-btn" onclick="stand()" disabled>Stand (S)</button>
-                <button class="btn-next" id="next-btn" onclick="newRound()" disabled>Next</button>
+                <button type="button" class="btn-action btn-hit" id="hit-btn" onclick="hit()" disabled>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+                    <span>Hit <kbd>H</kbd></span>
+                </button>
+                <button type="button" class="btn-action btn-double" id="double-btn" onclick="doubleDown()" disabled title="Nhận đúng 1 lá bài và nhân đôi tiền cược">
+                    <span>2× Double <kbd>D</kbd></span>
+                </button>
+                <button type="button" class="btn-action btn-stay" id="stay-btn" onclick="stand()" disabled>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>
+                    <span>Stand <kbd>S</kbd></span>
+                </button>
+                <button type="button" class="btn-action btn-next" id="next-btn" onclick="newRound()" disabled>
+                    <span>Ván mới <kbd>Space</kbd></span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                </button>
             </div>
         </footer>
     </div>
-    <script src="script/game.js"></script>
+    <script src="script/game.js?v=2"></script>
 </body>
 </html>

@@ -1,179 +1,922 @@
+/* ==========================================================================
+   BLACKJACK VIP — ROYAL MONTE CARLO EDITION (v2.0)
+   Thiết kế theo chuẩn UI/UX Pro Max:
+   - Thảm nỉ xanh ngọc lục bảo sâu (#0c4a30 → #041f13) + Thành bàn gỗ/da & viền Vàng Kim
+   - Phỉnh Chip 3D có khía sòng bài thực tế (conic-gradient)
+   - Hỗ trợ Double Down (2x), High Score lưu tự động, Âm thanh Bật/Tắt
+   ========================================================================== */
+
 :root {
-    --table-green: #0f4c2e;
-    --table-edge: #02381c;
-    --gold: #ffd700;
-    --red: #e63946;
-    --bg-dark: #1a1a1a;
+    --bg-abyss: #050a08;
+    --bg-velvet: #08120e;
+    --felt-center: #115e3d;
+    --felt-mid: #0a3d27;
+    --felt-edge: #041f13;
+    --rail-wood: #261409;
+    --rail-leather: #170d07;
+
+    --gold-light: #fbe698;
+    --gold: #e5bd52;
+    --gold-deep: #b38728;
+    --gold-glow: rgba(229, 189, 82, 0.35);
+
+    --emerald: #10b981;
+    --emerald-dark: #047857;
+    --crimson: #e11d48;
+    --crimson-dark: #9f1239;
+    --amber: #f59e0b;
+    --amber-dark: #b45309;
+    --royal-purple: #7c3aed;
+    --royal-purple-dark: #5b21b6;
 }
 
 * {
-    margin: 0; padding: 0; box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    user-select: none; -webkit-tap-highlight-color: transparent;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.mono {
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.hidden {
+    display: none !important;
 }
 
 html, body {
-    height: 100%; overflow: hidden;
-    background-color: var(--bg-dark); color: white;
+    height: 100%;
+    overflow: hidden;
+    background-color: var(--bg-abyss);
+    background-image:
+        radial-gradient(circle at 50% 0%, rgba(229, 189, 82, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, #0d1f18 0%, #050907 100%);
+    color: #f8fafc;
     transition: filter 1s ease;
 }
 
+button:focus-visible,
+a:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+}
+
+/* ============ BỐ CỤC KHUNG CHÍNH (100dvh KHÔNG CUỘN) ============ */
 .app-wrapper {
-    height: 100dvh; display: flex; flex-direction: column;
-    padding: 10px; gap: 8px; max-width: 900px; margin: 0 auto;
+    height: 100vh;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px 14px calc(10px + env(safe-area-inset-bottom, 0px));
+    gap: 10px;
+    max-width: 960px;
+    margin: 0 auto;
 }
 
-header { display: flex; flex-direction: column; align-items: center; gap: 5px; flex-shrink: 0; }
-h1 { color: var(--gold); font-size: clamp(18px, 4vw, 26px); text-transform: uppercase; letter-spacing: 2px; }
-
-.stats-board {
-    display: flex; gap: 20px; width: 100%; max-width: 500px;
-    background: rgba(0,0,0,0.4); border-radius: 10px; padding: 8px 15px;
-    border: 1px solid rgba(255,215,0,0.2);
-}
-.stat-item { display: flex; flex-direction: column; align-items: center; flex: 1; }
-.stat-label { font-size: 11px; color: #aaa; text-transform: uppercase; }
-.stat-value { font-size: 20px; font-weight: bold; color: var(--gold); }
-
-.game-table {
-    flex: 1; width: 100%; max-width: 800px; margin: 0 auto;
-    display: flex; flex-direction: column; justify-content: space-between; align-items: center;
-    background: radial-gradient(ellipse at center, var(--table-green) 0%, var(--table-edge) 100%);
-    border-radius: 50px; border: 6px solid #5e2f0a;
-    box-shadow: inset 0 0 40px rgba(0,0,0,0.7), 0 4px 10px rgba(0,0,0,0.5);
-    padding: 15px; min-height: 0; overflow: hidden;
-}
-
-.player-section { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 100%; height: 44%; min-height: 0; }
-.dealer { justify-content: flex-start; }
-.player { justify-content: flex-end; }
-.card-area { display: flex; justify-content: center; align-items: center; min-height: 0; }
-.card-area > div { margin-left: -50px; }
-.card-area > div:first-child { margin-left: 0; }
-
-/* === FIX LÁ BÀI (Dùng aspect-ratio chuẩn 5:7) === */
-.card-wrapper {
-    width: clamp(75px, 16vw, 95px);
-    aspect-ratio: 5 / 7; /* Tỉ lệ chuẩn bài tây, tự động tính height */
-    perspective: 1000px; 
-    animation: dealCard 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
+/* ============ HEADER HOÀNG GIA & BẢNG TÀI SẢN ============ */
+.vip-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
     flex-shrink: 0;
 }
-@keyframes dealCard { from { transform: translateY(-100px) rotate(20deg); opacity: 0; } to { transform: translateY(0) rotate(0deg); opacity: 1; } }
-.card-inner { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; transition: transform 0.5s; }
-.card-wrapper.hidden .card-inner { transform: rotateY(180deg); }
+
+.header-top {
+    width: 100%;
+    max-width: 680px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.icon-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(229, 189, 82, 0.28);
+    color: var(--gold-light);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 4px 12px rgba(0, 0, 0, 0.4);
+    transition: all 0.2s ease;
+    padding: 0;
+}
+.icon-btn:hover {
+    background: rgba(229, 189, 82, 0.14);
+    border-color: var(--gold);
+    transform: translateY(-1px);
+}
+.icon-btn:active {
+    transform: translateY(1px);
+}
+
+.brand-lockup {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.suit-gem {
+    color: var(--gold);
+    font-size: 18px;
+    text-shadow: 0 0 12px var(--gold-glow);
+}
+h1 {
+    font-family: 'Cinzel', serif;
+    font-weight: 900;
+    font-size: clamp(18px, 3.8vw, 26px);
+    letter-spacing: 2.5px;
+    background: linear-gradient(180deg, #fff6d1 0%, #e5bd52 55%, #b38728 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.7));
+}
+.vip-badge {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    padding: 2px 8px;
+    border-radius: 99px;
+    background: linear-gradient(135deg, #fbe698 0%, #c9972c 100%);
+    color: #1a1103;
+    -webkit-text-fill-color: #1a1103;
+    box-shadow: 0 0 14px rgba(229, 189, 82, 0.45);
+}
+
+.stats-board {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 580px;
+    background: linear-gradient(180deg, rgba(16, 28, 22, 0.88) 0%, rgba(8, 15, 12, 0.94) 100%);
+    border-radius: 16px;
+    padding: 7px 14px;
+    border: 1px solid rgba(229, 189, 82, 0.28);
+    box-shadow:
+        0 10px 25px -8px rgba(0, 0, 0, 0.75),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+}
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    min-width: 0;
+}
+.stat-divider {
+    width: 1px;
+    height: 28px;
+    background: linear-gradient(180deg, transparent, rgba(229, 189, 82, 0.3), transparent);
+}
+.stat-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.stat-value {
+    font-size: clamp(16px, 3.2vw, 20px);
+    font-weight: 800;
+    color: var(--gold-light);
+    margin-top: 1px;
+}
+.stat-bet .stat-value {
+    color: #34d399;
+}
+.stat-peak {
+    color: #fcd34d;
+}
+
+/* ============ BÀN CHƠI THẢM NỈ MONTE CARLO ============ */
+.game-table {
+    flex: 1;
+    width: 100%;
+    max-width: 860px;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background:
+        radial-gradient(ellipse 75% 65% at 50% 48%, var(--felt-center) 0%, var(--felt-mid) 58%, var(--felt-edge) 100%);
+    border-radius: 44px;
+    border: 8px solid var(--rail-wood);
+    outline: 2px solid rgba(229, 189, 82, 0.38);
+    box-shadow:
+        inset 0 0 0 2px rgba(229, 189, 82, 0.22),
+        inset 0 0 65px rgba(0, 0, 0, 0.82),
+        0 20px 50px rgba(0, 0, 0, 0.85);
+    padding: 14px 16px;
+    min-height: 0;
+    overflow: hidden;
+}
+
+/* Vân vải nỉ halus + đường vòng cung sòng bài */
+.game-table::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 0);
+    background-size: 16px 16px;
+    pointer-events: none;
+}
+
+.table-felt-watermark {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 0;
+}
+.table-arc-svg {
+    width: 86%;
+    max-width: 560px;
+    opacity: 0.75;
+}
+.table-rules-ribbon {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Cinzel', serif;
+    font-size: clamp(9px, 1.7vw, 11.5px);
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: rgba(251, 230, 152, 0.24);
+    text-align: center;
+    margin-top: -12px;
+}
+.ribbon-dot {
+    font-size: 8px;
+    color: rgba(229, 189, 82, 0.35);
+}
+
+/* Khu vực bài Dealer & Player */
+.player-section {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    height: 42%;
+    min-height: 0;
+}
+.dealer {
+    justify-content: flex-start;
+}
+.player {
+    justify-content: flex-end;
+}
+
+.hand-header {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(5, 12, 9, 0.78);
+    border: 1px solid rgba(229, 189, 82, 0.32);
+    border-radius: 99px;
+    padding: 3px 6px 3px 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+    flex-shrink: 0;
+}
+.seat-tag {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+    color: rgba(251, 230, 152, 0.8);
+}
+.seat-player {
+    color: #6ee7b7;
+}
+.sum-display {
+    font-size: clamp(13px, 2.6vw, 15px);
+    font-weight: 800;
+    background: rgba(229, 189, 82, 0.16);
+    color: var(--gold-light);
+    padding: 2px 11px;
+    border-radius: 99px;
+    min-width: 40px;
+    text-align: center;
+    border: 1px solid rgba(229, 189, 82, 0.35);
+}
+
+/* Khu vực xếp lá bài */
+.card-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 0;
+    padding: 2px 0;
+}
+.card-area > div {
+    margin-left: -42px;
+    transition: transform 0.25s ease, margin 0.25s ease;
+}
+.card-area > div:first-child {
+    margin-left: 0;
+}
+.card-area > div:hover {
+    transform: translateY(-6px);
+    z-index: 10;
+}
+
+/* === LÁ BÀI (Tỉ lệ chuẩn 5:7 + Lật 3D) === */
+.card-wrapper {
+    width: clamp(72px, 14.5vw, 96px);
+    aspect-ratio: 5 / 7;
+    perspective: 1000px;
+    animation: dealCard 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    flex-shrink: 0;
+}
+@keyframes dealCard {
+    from {
+        transform: translateY(-90px) translateX(40px) rotate(16deg) scale(0.85);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0) translateX(0) rotate(0deg) scale(1);
+        opacity: 1;
+    }
+}
+.card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.52s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.card-wrapper.hidden .card-inner {
+    transform: rotateY(180deg);
+}
 
 .card-face {
-    position: absolute; width: 100%; height: 100%;
-    backface-visibility: hidden; border-radius: 8px;
-    background-size: cover; /* Phủ kín hoàn toàn không trống */
-    background-position: center;
-    background-color: white; 
-    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
-}
-
-.card-back { transform: rotateY(180deg); background-image: repeating-linear-gradient(45deg, #cc0000 0px, #cc0000 5px, #800000 5px, #800000 10px); border: 2px solid white; background-color: #cc0000; }
-
-.sum-display { font-size: clamp(18px, 4vw, 24px); font-weight: bold; background: rgba(0,0,0,0.8); padding: 5px 20px; border-radius: 20px; min-width: 60px; text-align: center; flex-shrink: 0; border: 1px solid rgba(255,215,0,0.3); }
-.message-board { height: 40px; font-size: clamp(16px, 3vw, 22px); font-weight: bold; color: var(--gold); text-shadow: 0 1px 2px black; display: flex; align-items: center; justify-content: center; text-align: center; flex-shrink: 0; }
-
-.control-panel { flex-shrink: 0; display: flex; flex-direction: column; gap: 8px; padding: 5px 0; }
-.betting-area, .game-controls { display: flex; justify-content: center; align-items: center; gap: 15px; flex-wrap: wrap; }
-
-button { padding: 12px 25px; font-size: 16px; font-weight: bold; text-transform: uppercase; border: none; border-radius: 8px; cursor: pointer; transition: all 0.15s ease; color: white; box-shadow: 0 3px 5px rgba(0,0,0,0.3); }
-button:disabled { opacity: 0.3; cursor: not-allowed; }
-button:active:not(:disabled) { transform: translateY(2px); box-shadow: 0 1px 2px rgba(0,0,0,0.3); }
-.btn-hit { background: #e63946; } .btn-stay { background: #f4a261; } .btn-deal { background: #2a9d8f; }
-.btn-next { background: var(--gold); color: black; }
-.btn-reset { background: #6c757d; }
-.btn-allin { background: #d62828; border: 2px solid #ff4444; font-weight: 900; animation: pulseAllIn 1.5s infinite; }
-@keyframes pulseAllIn { 0% { box-shadow: 0 0 0 0 rgba(214, 40, 40, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(214, 40, 40, 0); } 100% { box-shadow: 0 0 0 0 rgba(214, 40, 40, 0); } }
-
-.chip { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 16px; cursor: pointer; border: 3px dashed white; box-shadow: 0 3px 5px rgba(0,0,0,0.5); transition: transform 0.2s; }
-.chip:hover { transform: translateY(-3px); }
-.chip-10 { background: #264653; } .chip-50 { background: #e76f51; } .chip-100 { background: #e63946; }
-
-body.win-flash { box-shadow: inset 0 0 200px rgba(1, 157, 1, 0.6); transition: box-shadow 0.5s; }
-body.lose-flash { box-shadow: inset 0 0 200px rgba(154, 4, 4, 0.6); transition: box-shadow 0.5s; }
-
-/* === ALL IN SUSPENSE MODE === */
-body.suspense-mode { animation: suspensePulse 1s ease-in-out infinite; }
-@keyframes suspensePulse { 0% { box-shadow: inset 0 0 0px rgba(255, 0, 0, 0); } 50% { box-shadow: inset 0 0 150px rgba(200, 0, 0, 0.4); } 100% { box-shadow: inset 0 0 0px rgba(255, 0, 0, 0); } }
-
-/* === COINS === */
-.coin { position: fixed; width: 30px; height: 30px; background: radial-gradient(circle at 30% 30%, #ffdf00, #c5a900); border-radius: 50%; border: 2px solid #f5c800; color: #8a6d00; font-weight: bold; font-size: 14px; display: flex; align-items: center; justify-content: center; pointer-events: none; z-index: 1000; transform: translate(-50%, -50%); box-shadow: 0 0 10px rgba(255, 215, 0, 0.6); }
-@keyframes coin-fly { 0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; } 20% { transform: translate(calc(-50% + var(--tx) * 0.3), calc(-50% + var(--ty) * 0.3)) scale(1); opacity: 1; } 100% { transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty) - 200px)) scale(0.8); opacity: 0; } }
-
-.win-amount { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 60px; font-weight: 900; color: var(--gold); text-shadow: 0 0 15px rgba(255, 215, 0, 0.8), 0 4px 6px black; z-index: 1001; pointer-events: none; animation: winPop 1.5s ease-out forwards; }
-@keyframes winPop { 0% { transform: translate(-50%, -50%) scale(0.2); opacity: 0; } 20% { transform: translate(-50%, -80%) scale(1.2); opacity: 1; } 80% { transform: translate(-50%, -120%) scale(1); opacity: 1; } 100% { transform: translate(-50%, -150%) scale(0.8); opacity: 0; } }
-
-/* === CONFETTI === */
-.confetti { position: fixed; width: 10px; height: 15px; z-index: 1000; pointer-events: none; animation: confetti-shoot 1.5s ease-out forwards; }
-@keyframes confetti-shoot { 0% { transform: translate(0, 0) rotate(0deg); opacity: 1; } 100% { transform: translate(var(--tx), var(--ty)) rotate(var(--rot)); opacity: 0; } }
-
-/* === GAME OVER (FIX CHỮ LỆCH) === */
-body.gray-state { filter: grayscale(100%); }
-.game-over-overlay { 
-    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; 
-    background: rgba(0,0,0,0.8); z-index: 1999; 
-    display: flex; align-items: center; justify-content: center; 
-    opacity: 0; pointer-events: none; transition: opacity 0.5s; 
-}
-.game-over-overlay.active { opacity: 1; }
-.lose-text { 
-    font-size: 80px; font-weight: 900; color: #e63946; 
-    text-shadow: 0 0 20px black; animation: losePop 1.5s ease; 
-    width: 100%; text-align: center; 
-}
-@keyframes losePop { 0% { transform: scale(0.5); opacity: 0; } 20% { transform: scale(1.2); opacity: 1; } 80% { transform: scale(1); opacity: 1; } 100% { transform: scale(1); opacity: 0; } }
-
-.rewind-overlay { 
-    position: fixed; inset: 0; 
-    background: repeating-linear-gradient(0deg, rgba(0,0,0,0.9) 0px, rgba(0,0,0,0.9) 4px, rgba(255,255,255,0.1) 4px, rgba(255,255,255,0.1) 8px); 
-    z-index: 2000; pointer-events: none; 
-    display: flex; align-items: center; justify-content: center; 
-    overflow: hidden; 
-    animation: rewindScroll 0.15s linear infinite;
-    opacity: 1; /* Thêm mặc định là 1 */
-    transition: opacity 0.6s ease; /* Thêm hiệu ứng mờ dần */
-}
-.rewind-overlay::after { 
-    content: "◁◁"; 
-    font-size: 80px; 
-    color: white; 
-    text-shadow: 0 0 20px #00ffff; 
     position: absolute;
-    animation: moveLeft 0.6s linear infinite; 
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: 9px;
+    background-size: cover;
+    background-position: center;
+    background-color: #ffffff;
+    box-shadow:
+        0 8px 18px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(0, 0, 0, 0.15);
+}
+
+/* Mặt sau lá bài Hoàng Gia Monte Carlo (Đỏ Crimson + Hoa văn Vàng Kim) */
+.card-back {
+    transform: rotateY(180deg);
+    background-color: #6b0f1a;
+    background-image:
+        radial-gradient(circle at 50% 50%, rgba(251, 230, 152, 0.25) 0%, transparent 55%),
+        repeating-linear-gradient(45deg, rgba(229, 189, 82, 0.16) 0px, rgba(229, 189, 82, 0.16) 2px, transparent 2px, transparent 8px),
+        repeating-linear-gradient(-45deg, rgba(229, 189, 82, 0.16) 0px, rgba(229, 189, 82, 0.16) 2px, transparent 2px, transparent 8px);
+    border: 3px solid #f8fafc;
+    box-shadow:
+        inset 0 0 0 2px var(--gold),
+        0 8px 18px rgba(0, 0, 0, 0.6);
+}
+
+/* ============ TRUNG TÂM BÀN: POT CHIP & THÔNG BÁO ============ */
+.center-stage {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    flex-shrink: 0;
+}
+
+.pot-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 3px 13px;
+    border-radius: 99px;
+    background: rgba(16, 185, 129, 0.18);
+    border: 1px solid rgba(52, 211, 153, 0.45);
+    color: #a7f3d0;
+    font-size: 12.5px;
+    font-weight: 800;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+    animation: popIn 0.2s ease;
+}
+.pot-chip-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px dashed #fff;
+    box-shadow: 0 0 8px var(--gold);
+}
+@keyframes popIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.message-board {
+    min-height: 36px;
+    padding: 5px 20px;
+    border-radius: 99px;
+    background: rgba(5, 12, 9, 0.72);
+    border: 1px solid rgba(229, 189, 82, 0.28);
+    backdrop-filter: blur(8px);
+    font-size: clamp(13.5px, 2.7vw, 17px);
+    font-weight: 800;
+    color: var(--gold-light);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+    transition: all 0.25s ease;
+}
+
+/* ============ BẢNG ĐIỀU KHIỂN ĐẶT CƯỢC & PHỈNH CHIP 3D ============ */
+.control-panel {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 860px;
+    margin: 0 auto;
+    background: linear-gradient(180deg, rgba(16, 26, 21, 0.88) 0%, rgba(7, 13, 10, 0.95) 100%);
+    border: 1px solid rgba(229, 189, 82, 0.26);
+    border-radius: 22px;
+    padding: 10px 14px;
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.7),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.betting-area {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.chips-rack {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Phỉnh Chip Casino 3D có khía (conic-gradient) */
+.chip {
+    position: relative;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+        0 5px 0 rgba(0, 0, 0, 0.55),
+        0 8px 16px rgba(0, 0, 0, 0.6),
+        inset 0 1px 1px rgba(255, 255, 255, 0.4);
+    transition: transform 0.16s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.16s ease, filter 0.16s ease;
+}
+.chip:hover {
+    transform: translateY(-4px) scale(1.05);
+    filter: brightness(1.1);
+}
+.chip:active {
+    transform: translateY(2px) scale(0.96);
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.55), 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+.chip-ring {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 1.5px dashed rgba(255, 255, 255, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 800;
+    font-size: 12.5px;
+    color: #ffffff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.45);
+}
+
+.chip-10 {
+    background: repeating-conic-gradient(#1d4ed8 0deg 22.5deg, #e2e8f0 22.5deg 30deg);
+}
+.chip-10 .chip-ring { background: radial-gradient(circle, #2563eb, #1e3a8a); }
+
+.chip-50 {
+    background: repeating-conic-gradient(#059669 0deg 22.5deg, #ecfdf5 22.5deg 30deg);
+}
+.chip-50 .chip-ring { background: radial-gradient(circle, #10b981, #065f46); }
+
+.chip-100 {
+    background: repeating-conic-gradient(#be123c 0deg 22.5deg, #ffe4e6 22.5deg 30deg);
+}
+.chip-100 .chip-ring { background: radial-gradient(circle, #e11d48, #881337); }
+
+.chip-500 {
+    background: repeating-conic-gradient(#27272a 0deg 22.5deg, #f5d061 22.5deg 30deg);
+}
+.chip-500 .chip-ring {
+    background: radial-gradient(circle, #3f3f46, #18181b);
+    border-color: var(--gold);
+    color: var(--gold-light);
+}
+
+.bet-actions,
+.game-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.bet-actions {
+    margin-left: auto;
+}
+
+/* Nút Hành Động Chuẩn Casino */
+.btn-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 11px 18px;
+    min-height: 44px;
+    font-size: 13.5px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    border-radius: 13px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    cursor: pointer;
+    color: #ffffff;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.25),
+        0 4px 0 rgba(0, 0, 0, 0.45),
+        0 6px 14px rgba(0, 0, 0, 0.35);
+    transition: all 0.14s ease;
+}
+.btn-action:hover:not(:disabled) {
+    transform: translateY(-2px);
+    filter: brightness(1.08);
+}
+.btn-action:active:not(:disabled) {
+    transform: translateY(2px);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.45);
+}
+.btn-action:disabled {
+    opacity: 0.28;
+    cursor: not-allowed;
+    filter: grayscale(40%);
+}
+.btn-action kbd {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    padding: 1px 5px;
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-reset {
+    background: linear-gradient(180deg, #475569 0%, #334155 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 4px 0 #1e293b;
+}
+.btn-allin {
+    background: linear-gradient(180deg, #e11d48 0%, #be123c 100%);
+    border-color: #fda4af;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 4px 0 #881337;
+    animation: pulseAllIn 1.8s infinite;
+}
+@keyframes pulseAllIn {
+    0% { box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), 0 4px 0 #881337, 0 0 0 0 rgba(225, 29, 72, 0.6); }
+    70% { box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), 0 4px 0 #881337, 0 0 0 10px rgba(225, 29, 72, 0); }
+    100% { box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), 0 4px 0 #881337, 0 0 0 0 rgba(225, 29, 72, 0); }
+}
+
+.btn-deal {
+    background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+    border-color: #6ee7b7;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 4px 0 #065f46, 0 8px 20px rgba(16, 185, 129, 0.3);
+    padding: 11px 24px;
+}
+
+.btn-hit {
+    background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+    border-color: #6ee7b7;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 4px 0 #065f46;
+}
+.btn-double {
+    background: linear-gradient(180deg, #8b5cf6 0%, #6d28d9 100%);
+    border-color: #c4b5fd;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 4px 0 #4c1d95;
+}
+.btn-stay {
+    background: linear-gradient(180deg, #f59e0b 0%, #d97706 100%);
+    border-color: #fde68a;
+    color: #1c1103;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 4px 0 #92400e;
+}
+.btn-stay kbd {
+    background: rgba(0, 0, 0, 0.15);
+    border-color: rgba(0, 0, 0, 0.25);
+    color: #1c1103;
+}
+.btn-next {
+    background: linear-gradient(180deg, #fbe698 0%, #e5bd52 100%);
+    border-color: #ffffff;
+    color: #1a1103;
+    box-shadow: inset 0 1px 0 #ffffff, 0 4px 0 #9a711c, 0 0 20px rgba(229, 189, 82, 0.4);
+}
+.btn-next kbd {
+    background: rgba(0, 0, 0, 0.14);
+    border-color: rgba(0, 0, 0, 0.22);
+    color: #1a1103;
+}
+
+/* ============ HIỆU ỨNG THẮNG / THUA / ALL-IN SUSPENSE ============ */
+body.win-flash {
+    box-shadow: inset 0 0 180px rgba(16, 185, 129, 0.55);
+    transition: box-shadow 0.5s;
+}
+body.lose-flash {
+    box-shadow: inset 0 0 180px rgba(225, 29, 72, 0.55);
+    transition: box-shadow 0.5s;
+}
+body.suspense-mode {
+    animation: suspensePulse 1s ease-in-out infinite;
+}
+@keyframes suspensePulse {
+    0%, 100% { box-shadow: inset 0 0 0px rgba(225, 29, 72, 0); }
+    50% { box-shadow: inset 0 0 160px rgba(225, 29, 72, 0.45); }
+}
+
+/* === COINS & CONFETTI === */
+.coin {
+    position: fixed;
+    width: 32px;
+    height: 32px;
+    background: radial-gradient(circle at 30% 30%, #fff3a1, #d4af37);
+    border-radius: 50%;
+    border: 2px solid #fbe698;
+    color: #5c4308;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 900;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 1000;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 12px rgba(229, 189, 82, 0.7);
+}
+@keyframes coin-fly {
+    0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+    20% { transform: translate(calc(-50% + var(--tx) * 0.3), calc(-50% + var(--ty) * 0.3)) scale(1); opacity: 1; }
+    100% { transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty) - 200px)) scale(0.8); opacity: 0; }
+}
+
+.win-amount {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Cinzel', serif;
+    font-size: clamp(44px, 8vw, 68px);
+    font-weight: 900;
+    color: var(--gold-light);
+    text-shadow: 0 0 24px rgba(229, 189, 82, 0.9), 0 6px 12px rgba(0, 0, 0, 0.9);
+    z-index: 1001;
+    pointer-events: none;
+    animation: winPop 1.5s ease-out forwards;
+}
+@keyframes winPop {
+    0% { transform: translate(-50%, -50%) scale(0.2); opacity: 0; }
+    20% { transform: translate(-50%, -80%) scale(1.2); opacity: 1; }
+    80% { transform: translate(-50%, -120%) scale(1); opacity: 1; }
+    100% { transform: translate(-50%, -150%) scale(0.8); opacity: 0; }
+}
+
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 15px;
+    z-index: 1000;
+    pointer-events: none;
+    animation: confetti-shoot 1.5s ease-out forwards;
+}
+@keyframes confetti-shoot {
+    0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+    100% { transform: translate(var(--tx), var(--ty)) rotate(var(--rot)); opacity: 0; }
+}
+
+/* === GAME OVER & VHS REWIND === */
+body.gray-state {
+    filter: grayscale(100%);
+}
+.game-over-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.84);
+    backdrop-filter: blur(6px);
+    z-index: 1999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s;
+}
+.game-over-overlay.active {
+    opacity: 1;
+}
+.lose-text {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(48px, 12vw, 84px);
+    font-weight: 900;
+    color: #e11d48;
+    text-shadow: 0 0 30px rgba(225, 29, 72, 0.7), 0 6px 20px #000;
+    animation: losePop 1.5s ease;
+    width: 100%;
+    text-align: center;
+}
+@keyframes losePop {
+    0% { transform: scale(0.5); opacity: 0; }
+    20% { transform: scale(1.15); opacity: 1; }
+    80% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(1); opacity: 0; }
+}
+
+.rewind-overlay {
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, rgba(0,0,0,0.92) 0px, rgba(0,0,0,0.92) 4px, rgba(255,255,255,0.08) 4px, rgba(255,255,255,0.08) 8px);
+    z-index: 2000;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    animation: rewindScroll 0.15s linear infinite;
+    opacity: 1;
+    transition: opacity 0.6s ease;
+}
+.rewind-overlay::after {
+    content: "◁◁ REWIND";
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(32px, 8vw, 64px);
+    font-weight: 800;
+    color: #ffffff;
+    text-shadow: 0 0 24px #38bdf8;
+    position: absolute;
+    animation: moveLeft 0.7s linear infinite;
 }
 @keyframes moveLeft {
-    0% { transform: translateX(150px); }
-    100% { transform: translateX(-150px); }
+    0% { transform: translateX(120px); }
+    100% { transform: translateX(-120px); }
 }
-@keyframes rewindScroll { 0% { background-position: 0 0; } 100% { background-position: 0 8px; } }
+@keyframes rewindScroll {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 8px; }
+}
 
 /* === LOADING SCREEN === */
 #loading-screen {
-    position: fixed; inset: 0; background: #1a1a1a;
-    display: flex; flex-direction: column; justify-content: center; align-items: center;
-    z-index: 9999; transition: opacity 0.5s ease, visibility 0.5s ease;
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, #0d261c 0%, #040907 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
 }
-#loading-screen.hidden { opacity: 0; visibility: hidden; }
+#loading-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+.loader-emblem {
+    position: relative;
+    width: 68px;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+}
 .loader-spinner {
-    border: 5px solid rgba(255, 215, 0, 0.2);
-    border-top: 5px solid var(--gold);
-    border-radius: 50%; width: 50px; height: 50px;
-    animation: spin 1s linear infinite; margin-bottom: 15px;
+    position: absolute;
+    inset: 0;
+    border: 3px solid rgba(229, 189, 82, 0.18);
+    border-top: 3px solid var(--gold);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
 }
-#loading-screen p { color: var(--gold); font-weight: bold; letter-spacing: 1px; }
-@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+.loader-suit {
+    font-size: 28px;
+    color: var(--gold-light);
+    filter: drop-shadow(0 0 10px var(--gold-glow));
+}
+.loader-title {
+    font-family: 'Cinzel', serif;
+    color: var(--gold-light);
+    font-weight: 800;
+    font-size: 16px;
+    letter-spacing: 3px;
+}
+.loader-sub {
+    color: #94a3b8;
+    font-size: 12.5px;
+    margin-top: 6px;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
 
-/* ===== Mobile Adjustment ===== */
-@media (max-width: 480px) {
-    .card-area > div { margin-left: -35px; }
-    .card-wrapper {
-        width: clamp(65px, 18vw, 80px);
-        /* Đã bỏ dòng height ở đây, để aspect-ratio tự xử lý */
+/* ===== MOBILE RESPONSIVENESS ===== */
+@media (max-width: 640px) {
+    .app-wrapper {
+        padding: 8px 10px calc(8px + env(safe-area-inset-bottom, 0px));
+        gap: 6px;
     }
-    .chip { width: 45px; height: 45px; font-size: 14px; }
-    button { padding: 10px 20px; font-size: 14px; }
+    .game-table {
+        border-radius: 30px;
+        border-width: 6px;
+        padding: 10px 10px;
+    }
+    .card-area > div {
+        margin-left: -34px;
+    }
+    .card-wrapper {
+        width: clamp(64px, 17vw, 80px);
+    }
+    .betting-area {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .chips-rack {
+        justify-content: center;
+        width: 100%;
+    }
+    .chip {
+        width: 48px;
+        height: 48px;
+    }
+    .chip-ring {
+        font-size: 11.5px;
+    }
+    .bet-actions {
+        width: 100%;
+        margin-left: 0;
+        justify-content: center;
+    }
+    .bet-actions .btn-action,
+    .game-controls .btn-action {
+        flex: 1;
+        padding: 10px 10px;
+        font-size: 12px;
+        min-height: 42px;
+    }
+    .btn-action kbd {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
 }
