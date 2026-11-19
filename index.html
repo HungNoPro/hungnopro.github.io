@@ -11,7 +11,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="css/style.css?v=16" />
+  <link rel="stylesheet" href="css/style.css?v=18" />
 </head>
 <body>
   <!-- ===== Atmospheric Background ===== -->
@@ -91,7 +91,7 @@
       <div class="max-w-6xl mx-auto w-full grid lg:grid-cols-12 gap-8 lg:gap-10 items-center min-w-0">
 
         <!-- Left Column: Editorial Intro -->
-        <div class="lg:col-span-7 text-center lg:text-left">
+        <div class="lg:col-span-7 text-center lg:text-left min-w-0">
           <div class="reveal flex flex-nowrap items-center justify-center lg:justify-start gap-2.5 sm:gap-3 overflow-hidden">
             <span class="eyebrow-pill mono shrink-0 whitespace-nowrap text-xs">
               <span class="w-2 h-2 rounded-full" style="background: var(--accent); box-shadow: 0 0 8px var(--accent);"></span>
@@ -122,10 +122,22 @@
 
           <!-- Vibe / Tech Chips -->
           <div class="mt-6 flex flex-wrap justify-center lg:justify-start gap-2 reveal reveal-delay-2">
-            <span class="tech-chip mono">⚡ Interactive Web</span>
-            <span class="tech-chip mono">🎮 Mini Games</span>
-            <span class="tech-chip mono">🀄 HSK Learning</span>
-            <span class="tech-chip mono">✨ Canvas & UI</span>
+            <span class="tech-chip mono">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" class="shrink-0" style="color: #fbbf24;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              Interactive Web
+            </span>
+            <span class="tech-chip mono">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0" style="color: #a855f7;"><line x1="6" x2="10" y1="12" y2="12"/><line x1="8" x2="8" y1="10" y2="14"/><line x1="15" x2="15.01" y1="13" y2="13"/><line x1="18" x2="18.01" y1="11" y2="11"/><rect width="20" height="12" x="2" y="6" rx="2"/></svg>
+              Mini Games
+            </span>
+            <span class="tech-chip mono">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0" style="color: #f43f5e;"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+              HSK Learning
+            </span>
+            <span class="tech-chip mono">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0" style="color: #34d399;"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+              Canvas &amp; UI
+            </span>
           </div>
 
           <!-- CTA Buttons -->
@@ -142,7 +154,7 @@
         </div>
 
         <!-- Right Column: Authentic 1:1 Discord Nitro Profile Card -->
-        <div class="lg:col-span-5 flex justify-center lg:justify-end reveal reveal-delay-2 pt-4">
+        <div class="lg:col-span-5 flex justify-center lg:justify-end reveal reveal-delay-2 pt-4 min-w-0">
           <div id="rpc-card-shell" class="rpc-card-shell">
 
             <!-- Starfall Rainbow Sparkle Profile Effect Overlay (from user_profile.profile_effect) -->
@@ -505,8 +517,9 @@
                 <div class="bb-cell"></div>
                 <div class="bb-cell bb-purple"></div>
               </div>
-              <span class="absolute bottom-3 px-2.5 py-0.5 rounded-full mono text-[11px] font-bold" style="background: rgba(56, 189, 248, 0.16); border: 1px solid rgba(56, 189, 248, 0.4); color: #7dd3fc;">
-                🔥 COMBO + BXH
+              <span class="absolute bottom-3 px-2.5 py-0.5 rounded-full mono text-[11px] font-bold inline-flex items-center gap-1" style="background: rgba(56, 189, 248, 0.16); border: 1px solid rgba(56, 189, 248, 0.4); color: #7dd3fc;">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                COMBO + BXH
               </span>
               <div class="project-launch-badge" aria-hidden="true">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M7 7h10v10"/></svg>
@@ -742,10 +755,13 @@
               </svg>
             </div>
             <div class="text-center sm:text-left">
-              <div class="mono text-xs uppercase tracking-wider mb-2" style="color: #fbbf24;">⚡ Work in progress</div>
+              <div class="mono text-xs uppercase tracking-wider mb-2 inline-flex items-center gap-1.5" style="color: #fbbf24;">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                Work in progress
+              </div>
               <h3 class="text-xl font-bold text-white mb-2">Đang ủ thêm đồ chơi mới</h3>
               <p class="text-sm leading-relaxed" style="color: var(--muted);">
-                Khu vực này đang được xây dựng thêm ✨ Mình vẫn đang đổ mồ hôi (và vài trăm dòng code) cho mấy ý tưởng tiếp theo. Thỉnh thoảng ghé lại xem có gì mới nha!
+                Khu vực này đang được xây dựng thêm. Mình vẫn đang đổ mồ hôi (và vài trăm dòng code) cho mấy ý tưởng tiếp theo. Thỉnh thoảng ghé lại xem có gì mới nha!
               </p>
             </div>
           </div>
@@ -766,8 +782,8 @@
             <span class="w-2 h-2 rounded-full" style="background: var(--accent);"></span>
             <span>Xây dựng bởi một lon tài lộc quá lớn</span>
           </div>
-          <a href="#hero" class="icon-pill-btn" style="width: 32px; height: 32px;" title="Lên đầu trang">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+          <a href="#hero" class="icon-pill-btn" title="Lên đầu trang" aria-label="Lên đầu trang">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
           </a>
         </div>
       </div>

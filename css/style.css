@@ -212,8 +212,8 @@ body {
 }
 
 .icon-pill-btn {
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -224,6 +224,21 @@ body {
   transition: all 0.25s ease;
   cursor: pointer;
   text-decoration: none;
+}
+
+@media (max-width: 640px) {
+  .icon-pill-btn {
+    width: 42px;
+    height: 42px;
+  }
+}
+
+/* Keyboard accessibility focus ring (UI/UX Pro Max) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
 .icon-pill-btn:hover {
