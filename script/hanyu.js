@@ -283,10 +283,27 @@ document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>show
 function renderTop(){
   $('#hStreak span').textContent=effStreak();
   $('#hXp span').textContent=S.xp;
-  $('#btnSound').innerHTML=`<i data-lucide="${S.sound?'volume-2':'volume-x'}"></i>`;icons();
+  $('#btnSound').innerHTML=`<i data-lucide="${S.sound?'volume-2':'volume-x'}"></i>`;
   const h=new Date().getHours();
   const g=h<11?"Chào buổi sáng":h<18?"Chào buổi chiều":"Chào buổi tối";
-  $('#greet').innerHTML=`${g}! Giữ nhịp học đều mỗi ngày nhé.`;
+  $('#greet').innerHTML=`<b>${g}!</b> Giữ nhịp rèn chữ đều mỗi ngày nhé.`;
+  /* Cập nhật bảng tiến độ cột phải (PC) nếu có */
+  const today=S.days[dayKey()]||0;
+  const pct=Math.min(100,Math.round((today/50)*100));
+  const axt=$('#aside-xp-txt'),axb=$('#aside-xp-bar'),agh=$('#aside-goal-hint');
+  if(axt)axt.textContent=`${today} / 50 XP`;
+  if(axb)axb.style.width=`${pct}%`;
+  if(agh)agh.textContent=today>=50?"Tuyệt vời! Bạn đã đạt mục tiêu 50 XP hôm nay.":"Còn "+Math.max(0,50-today)+" XP nữa để hoàn thành mục tiêu ngày.";
+  if(WORDS.length){
+    const learned=WORDS.filter(w=>S.words[w.id]).length;
+    const rs=WORDS.reduce((s,w)=>s+((S.words[w.id]||{}).r||0),0);
+    const ws=WORDS.reduce((s,w)=>s+((S.words[w.id]||{}).w||0),0);
+    const acc=(rs+ws)?Math.round(100*rs/(rs+ws)):0;
+    const al=$('#aside-learned'),aa=$('#aside-acc');
+    if(al)al.textContent=`${learned}/${WORDS.length}`;
+    if(aa)aa.textContent=`${acc}%`;
+  }
+  icons();
 }
  $('#btnSound').addEventListener('click',()=>{
   S.sound=!S.sound;save();renderTop();

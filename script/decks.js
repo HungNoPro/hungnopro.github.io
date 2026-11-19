@@ -797,8 +797,12 @@
     var d = document.createElement('div');
     d.className = 'hgx-dock';
     d.innerHTML =
-      '<button type="button" class="hgx-dockbtn" title="Deck & Flashcard">&#128218;</button>' +
-      '<button type="button" class="hgx-dockbtn hgx-dockbtn--g" title="Ghép từ siêu tốc">&#9889;</button>';
+      '<button type="button" class="hgx-dockbtn" title="Deck & Flashcard" aria-label="Mở Deck & Flashcard">' +
+      '  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h4"/><path d="M2 10h4"/><path d="M2 14h4"/><path d="M2 18h4"/><rect width="16" height="20" x="4" y="2" rx="2"/><path d="M16 2v20"/></svg>' +
+      '</button>' +
+      '<button type="button" class="hgx-dockbtn hgx-dockbtn--g" title="Ghép từ siêu tốc" aria-label="Mở Ghép từ siêu tốc">' +
+      '  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>' +
+      '</button>';
     var b1 = d.children[0], b2 = d.children[1];
     b1.addEventListener('click', function () {
       if (window.HGFlash) HGFlash.open();

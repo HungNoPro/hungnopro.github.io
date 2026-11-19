@@ -3,83 +3,208 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Hàn Giai — luyện chữ Hán kiểu Duolingo</title>
-<meta name="description" content="Luyện chữ Hán HSK 1–3: pinyin → chữ Hán, nghe, ghép chữ, ôn tập thông minh."/>
+<title>Hàn Giai (汉阶) — Luyện chữ Hán HSK 1–3 kiểu Duolingo</title>
+<meta name="description" content="Luyện chữ Hán HSK 1–3: pinyin → chữ Hán, nghe, ghép chữ, flashcard 3D và ôn tập thông minh."/>
+<meta name="theme-color" content="#16A172"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Be+Vietnam+Pro:wght@400;500;600;700&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest"></script>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
-<link rel="stylesheet" href="css/hanyu.css"/>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23D5482B'/><text x='50' y='72' font-size='62' text-anchor='middle' fill='%23F3EDDD' font-family='serif'>汉</text></svg>"/>
+<link rel="stylesheet" href="css/hanyu.css?v=3"/>
+<link rel="stylesheet" href="css/styles-hgx.css?v=3"/>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23D5482B'/><rect x='6' y='6' width='88' height='88' rx='17' fill='none' stroke='%23F3EDDD' stroke-width='3' opacity='0.45'/><text x='50' y='72' font-size='60' font-weight='900' text-anchor='middle' fill='%23F3EDDD' font-family='serif'>汉</text></svg>"/>
 </head>
 <body>
-<div class="bgchars" aria-hidden="true"><span class="han">学</span><span class="han">语</span><span class="han">汉</span></div>
+<!-- Chữ Hán thủy mặc khổng lồ mờ phía sau -->
+<div class="bgchars" aria-hidden="true">
+  <span class="han">学</span>
+  <span class="han">语</span>
+  <span class="han">汉</span>
+</div>
 
 <div id="app">
-  <div id="loading">Đang tải dữ liệu từ vựng…</div>
+  <!-- ===== CỘT TRÁI: SIDEBAR ĐIỀU HƯỚNG (PC) / TABBAR DƯỚI (MOBILE) ===== -->
+  <nav class="tabbar" aria-label="Điều hướng chính">
+    <div class="sidebar-brand">
+      <div class="brand-lockup">
+        <span class="seal han">汉</span>
+        <div class="brand-titles">
+          <span class="brand-name">Hàn Giai</span>
+          <span class="brand-sub">汉阶 · HSK 1–3</span>
+        </div>
+      </div>
+      <a href="index.html" class="back-home-link" title="Về trang chủ HungNoPro">
+        <i data-lucide="arrow-left"></i>
+        <span>Trang chủ</span>
+      </a>
+    </div>
 
-  <!-- ===== MÀN HỌC (LỘ TRÌNH) ===== -->
-  <section id="scr-home" class="hidden">
+    <div class="nav-tabs-group">
+      <button class="tab on" data-scr="scr-home" type="button">
+        <i data-lucide="map"></i>
+        <span>Lộ trình học</span>
+      </button>
+      <button class="tab" data-scr="scr-vocab" type="button">
+        <i data-lucide="book-open"></i>
+        <span>Sổ tay từ</span>
+      </button>
+      <button class="tab" data-scr="scr-decks" type="button">
+        <i data-lucide="layers"></i>
+        <span>Bộ thẻ</span>
+      </button>
+      <button class="tab" data-scr="scr-profile" type="button">
+        <i data-lucide="user"></i>
+        <span>Hồ sơ</span>
+      </button>
+    </div>
+
+    <div class="sidebar-shortcuts">
+      <div class="sidebar-sec-label">LUYỆN NHANH</div>
+      <button type="button" class="side-action-btn side-action-jade" onclick="if(window.HGFlash)HGFlash.open()">
+        <span class="sa-ic"><i data-lucide="layers"></i></span>
+        <span class="sa-txt">
+          <b>Flashcard 3D</b>
+          <small>Lật thẻ & nghe phát âm</small>
+        </span>
+      </button>
+      <button type="button" class="side-action-btn side-action-terra" onclick="if(window.HGMatch)HGMatch.open()">
+        <span class="sa-ic"><i data-lucide="zap"></i></span>
+        <span class="sa-txt">
+          <b>Ghép từ siêu tốc</b>
+          <small>Đua thời gian 3s/cặp</small>
+        </span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== CỘT GIỮA: KHUNG NỘI DUNG CHÍNH ===== -->
+  <div class="app-center">
     <header class="topbar">
-      <div class="brand"><span class="seal han">汉</span>Hàn Giai</div>
+      <div class="brand">
+        <span class="seal han">汉</span>
+        <div class="brand-meta">
+          <span class="brand-title">Hàn Giai</span>
+          <span class="brand-tag">HSK 1–3</span>
+        </div>
+      </div>
+      <div class="greet" id="greet"></div>
       <div class="topstats">
-        <div class="pill flame" id="hStreak"><i data-lucide="flame"></i><span>0</span></div>
-        <div class="pill zap" id="hXp"><i data-lucide="zap"></i><span>0</span></div>
-        <button class="pill iconbtn" id="btnSound" title="Bật / tắt âm thanh"><i data-lucide="volume-2"></i></button>
+        <div class="pill flame" id="hStreak" title="Chuỗi ngày học liên tiếp"><i data-lucide="flame"></i><span>0</span></div>
+        <div class="pill zap" id="hXp" title="Tổng điểm kinh nghiệm XP"><i data-lucide="zap"></i><span>0</span></div>
+        <button class="pill iconbtn" id="btnSound" type="button" title="Bật / tắt âm thanh"><i data-lucide="volume-2"></i></button>
       </div>
     </header>
-    <div class="greet" id="greet"></div>
-    <div id="revcard"></div>
-    <div id="milestones"></div>
-    <main id="path"></main>
-  </section>
 
-  <!-- ===== SỔ TAY TỪ VỰNG ===== -->
-  <section id="scr-vocab" class="hidden">
-    <div class="scrhead">
-      <h1>Sổ tay từ vựng</h1>
-      <div class="searchbox">
-        <i data-lucide="search"></i>
-        <input id="vsearch" type="text" placeholder="Tìm theo chữ, pinyin hoặc nghĩa…"/>
+    <div id="loading">
+      <div class="loading-seal han">汉</div>
+      <div>Đang tải thư tịch từ vựng HSK…</div>
+    </div>
+
+    <!-- ===== MÀN HỌC (LỘ TRÌNH) ===== -->
+    <section id="scr-home" class="hidden">
+      <div id="revcard"></div>
+      <div id="milestones"></div>
+      <main id="path"></main>
+    </section>
+
+    <!-- ===== SỔ TAY TỪ VỰNG ===== -->
+    <section id="scr-vocab" class="hidden">
+      <div class="scrhead">
+        <div class="scrhead-top">
+          <div>
+            <h1>Sổ tay từ vựng</h1>
+            <p class="scrhead-sub">Tra cứu nhanh Hán tự, Pinyin và nghĩa tiếng Việt</p>
+          </div>
+        </div>
+        <div class="searchbox">
+          <i data-lucide="search"></i>
+          <input id="vsearch" type="text" placeholder="Tìm theo chữ Hán, pinyin hoặc nghĩa…"/>
+        </div>
+      </div>
+      <div class="chips" id="vchips"></div>
+      <div id="vlist"></div>
+    </section>
+
+    <!-- ===== BỘ THẺ CỦA TÔI ===== -->
+    <section id="scr-decks" class="hidden">
+      <div class="scrhead">
+        <div class="scrhead-row">
+          <div>
+            <h1>Bộ thẻ của tôi</h1>
+            <p class="scrhead-sub">Tạo flashcard từ Excel/CSV hoặc gõ Pinyin thông minh</p>
+          </div>
+          <div class="scrhead-actions">
+            <button class="btn ghost" id="btnQuickMatch" type="button"><i data-lucide="zap"></i>Ghép từ</button>
+            <button class="btn terra" id="btnNewDeck" type="button"><i data-lucide="plus"></i>Tạo bộ thẻ</button>
+          </div>
+        </div>
+      </div>
+      <div id="decklist"></div>
+    </section>
+
+    <!-- ===== HỒ SƠ ===== -->
+    <section id="scr-profile" class="hidden"></section>
+  </div>
+
+  <!-- ===== CỘT PHẢI: BẢNG TIẾN ĐỘ & THỐNG KÊ NHANH (PC) ===== -->
+  <aside class="app-aside" id="app-aside" aria-label="Tiến độ học tập">
+    <div class="aside-card aside-scroll-card">
+      <div class="aside-head">
+        <span class="aside-seal han">阶</span>
+        <div>
+          <h3>Bảng Tiến Độ</h3>
+          <p>Nhịp độ rèn chữ mỗi ngày</p>
+        </div>
+      </div>
+
+      <div class="aside-goal-box">
+        <div class="aside-goal-top">
+          <span>Mục tiêu hôm nay</span>
+          <b id="aside-xp-txt">0 / 50 XP</b>
+        </div>
+        <div class="aside-pbar"><div class="aside-pfill" id="aside-xp-bar" style="width:0%"></div></div>
+        <p class="aside-goal-hint" id="aside-goal-hint">Hoàn thành bài học hoặc ghép từ để tích lũy XP.</p>
+      </div>
+
+      <div class="aside-stats-mini">
+        <div class="as-mini-item">
+          <span class="as-lbl">Từ đã chạm</span>
+          <b id="aside-learned">0</b>
+        </div>
+        <div class="as-mini-item">
+          <span class="as-lbl">Độ chính xác</span>
+          <b id="aside-acc">0%</b>
+        </div>
       </div>
     </div>
-    <div class="chips" id="vchips"></div>
-    <div id="vlist"></div>
-  </section>
-  
-  <section id="scr-decks" class="hidden">
-  <div class="scrhead">
-    <h1>Bộ thẻ của tôi</h1>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:flex-start">
-      <button class="btn ghost" id="btnQuickMatch"><i data-lucide="zap"></i>Ghép từ</button>
-      <button class="btn terra" id="btnNewDeck"><i data-lucide="plus"></i>Tạo bộ thẻ mới</button>
+
+    <div class="aside-card aside-tip-card">
+      <div class="aside-tip-header">
+        <i data-lucide="sparkles"></i>
+        <span>Mẹo học Hán tự</span>
+      </div>
+      <ul class="aside-tips-list">
+        <li><b>Chạm trực tiếp vào chữ Hán</b> ở bất kỳ đâu để nghe giọng đọc chuẩn bản xứ.</li>
+        <li>Dùng phím số <b>1 – 4</b> trên máy tính để chọn nhanh đáp án trắc nghiệm.</li>
+        <li>Các cấp độ <b>HSK 1, 2, 3</b> đều mở sẵn — bạn có thể nhảy cóc tới bài phù hợp!</li>
+      </ul>
     </div>
-  </div>
-  <div id="decklist"></div>
-</section>
-
-  <!-- ===== HỒ SƠ ===== -->
-  <section id="scr-profile" class="hidden"></section>
-
-  <nav class="tabbar">
-    <button class="tab on" data-scr="scr-home"><i data-lucide="map"></i>Học</button>
-    <button class="tab" data-scr="scr-vocab"><i data-lucide="book-open"></i>Từ vựng</button>
-    <button class="tab" data-scr="scr-profile"><i data-lucide="user"></i>Hồ sơ</button>
-    <button class="tab" data-scr="scr-decks"><i data-lucide="layers"></i>Thẻ</button>
-  </nav>
+  </aside>
 
   <!-- ===== OVERLAY BÀI HỌC ===== -->
   <section id="lesson" class="hidden">
-    <div class="lhead">
-      <button class="xbtn" id="lClose"><i data-lucide="x"></i></button>
-      <div class="pbar"><div class="pfill" id="pfill"></div></div>
-      <div class="combo" id="lCombo"><i data-lucide="flame"></i><span>×3</span></div>
-      <div class="hearts" id="lHearts"><i data-lucide="heart"></i><span>5</span></div>
+    <div class="lesson-shell">
+      <div class="lhead">
+        <button class="xbtn" id="lClose" type="button" title="Thoát bài học"><i data-lucide="x"></i></button>
+        <div class="pbar"><div class="pfill" id="pfill"></div></div>
+        <div class="combo" id="lCombo"><i data-lucide="flame"></i><span>×3</span></div>
+        <div class="hearts" id="lHearts"><i data-lucide="heart"></i><span>5</span></div>
+      </div>
+      <div class="lbody" id="lbody"></div>
+      <div class="lfoot hidden" id="lfoot"></div>
+      <div class="sheet hidden" id="sheet"></div>
     </div>
-    <div class="lbody" id="lbody"></div>
-    <div class="lfoot hidden" id="lfoot"></div>
-    <div class="sheet hidden" id="sheet"></div>
   </section>
 </div>
 
@@ -87,13 +212,12 @@
 <div id="toast"></div>
 <canvas id="fx"></canvas>
 
-<script src="script/hanyu.js" defer></script>
-<link rel="stylesheet" href="css/styles-hgx.css">
-<script src="script/hgx-ui.js"></script>
-<script src="script/ime-dict.js"></script>
-<script src="script/ime.js"></script>
-<script src="script/decks.js"></script>
-<script src="script/flashcard.js"></script>
-<script src="script/match.js"></script>
+<script src="script/hanyu.js?v=2" defer></script>
+<script src="script/hgx-ui.js?v=2"></script>
+<script src="script/ime-dict.js?v=2"></script>
+<script src="script/ime.js?v=2"></script>
+<script src="script/decks.js?v=2"></script>
+<script src="script/flashcard.js?v=2"></script>
+<script src="script/match.js?v=2"></script>
 </body>
 </html>
