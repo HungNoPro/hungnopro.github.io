@@ -11,7 +11,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="css/style.css?v=14" />
+  <link rel="stylesheet" href="css/style.css?v=16" />
 </head>
 <body>
   <!-- ===== Atmospheric Background ===== -->
@@ -262,20 +262,28 @@
                     </div>
                   </div>
 
-                  <!-- Spotify / Media Activity -->
+                  <!-- Spotify / Media Activity (PreMiD YouTube, Twitch, Spotify...) -->
                   <div id="rpc-spotify" class="rpc-activity-box hidden">
                     <div class="flex gap-3 items-center">
-                      <img id="rpc-spotify-img" src="" alt="Album Art" class="rpc-act-img-sm shrink-0" />
+                      <div class="relative shrink-0">
+                        <img id="rpc-spotify-img" src="" alt="Album Art" class="rpc-act-img-sm shrink-0" />
+                        <img id="rpc-spotify-small-img" src="" alt="" class="rpc-act-small-img hidden" />
+                      </div>
                       <div class="text-left min-w-0 flex-1">
                         <div class="text-[10.5px] font-bold uppercase tracking-wider flex items-center gap-1.5" style="color: #4ade80;">
-                          <span class="eq-bars"><span></span><span></span><span></span></span>
+                          <span id="rpc-media-eq" class="eq-bars"><span></span><span></span><span></span></span>
                           <span id="rpc-listening-text">Listening to Spotify</span>
                         </div>
                         <div id="rpc-spotify-song" class="text-sm font-bold text-white truncate mt-0.5"></div>
                         <div id="rpc-spotify-artist" class="text-xs truncate text-white/70"></div>
+                        <!-- Livestream elapsed time display (in line with details) -->
+                        <div id="rpc-media-live-wrap" class="hidden mt-1 flex items-center gap-1.5 text-xs mono" style="color: #23a55a;">
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M17 2l-5 5-5-5"></path></svg>
+                          <span id="rpc-media-live-text">0:00</span>
+                        </div>
                       </div>
                     </div>
-                    <div class="mt-2.5">
+                    <div id="rpc-spotify-prog-wrap" class="mt-2.5">
                       <div class="spotify-bar-sm">
                         <div id="rpc-spotify-progress" class="spotify-progress-sm" style="width: 0%;"></div>
                       </div>
@@ -772,6 +780,6 @@
     <span id="site-toast-text">Đã sao chép!</span>
   </div>
 
-  <script src="script/script.js?v=14"></script>
+  <script src="script/script.js?v=16"></script>
 </body>
 </html>

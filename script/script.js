@@ -824,7 +824,7 @@ function updatePresence(presence) {
     currentMediaData = mediaActivity;
     const listeningTextEl = document.getElementById("rpc-listening-text");
     if (mediaActivity.type === 3) {
-      listeningTextEl.textContent = "Watching";
+      listeningTextEl.textContent = `Đang xem ${mediaActivity.name || "YouTube"}`;
     } else if (mediaActivity.id === "spotify:1") {
       listeningTextEl.textContent = "Listening to Spotify";
     } else {
@@ -838,11 +838,51 @@ function updatePresence(presence) {
       imgEl.src = "resources/avt.jpg";
     }
 
-    document.getElementById("rpc-spotify-song").textContent = mediaActivity.details || "Unknown Track";
-    document.getElementById("rpc-spotify-artist").textContent = mediaActivity.state ? `by ${mediaActivity.state}` : "";
+    // PreMiD / Media small badge (e.g. YouTube play icon or live dot)
+    const smallImgEl = document.getElementById("rpc-spotify-small-img");
+    if (smallImgEl) {
+      if (mediaActivity.assets?.small_image) {
+        smallImgEl.src = resolveImage(mediaActivity.assets.small_image, mediaActivity.application_id);
+        smallImgEl.title = mediaActivity.assets?.small_text || "";
+        smallImgEl.classList.remove("hidden");
+      } else {
+        smallImgEl.src = "";
+        smallImgEl.classList.add("hidden");
+      }
+    }
 
-    const total = (mediaActivity.timestamps?.end || Date.now()) - (mediaActivity.timestamps?.start || Date.now());
-    document.getElementById("rpc-spotify-duration").textContent = formatTime(total);
+    document.getElementById("rpc-spotify-song").textContent = mediaActivity.details || "Unknown Track";
+    const artistEl = document.getElementById("rpc-spotify-artist");
+    if (mediaActivity.type === 3) {
+      if (mediaActivity.state && mediaActivity.state !== "undefined") {
+        artistEl.textContent = mediaActivity.state;
+        artistEl.classList.remove("hidden");
+      } else {
+        artistEl.textContent = "";
+        artistEl.classList.add("hidden");
+      }
+    } else {
+      if (mediaActivity.state && mediaActivity.state !== "undefined") {
+        artistEl.textContent = `by ${mediaActivity.state}`;
+        artistEl.classList.remove("hidden");
+      } else {
+        artistEl.textContent = "";
+        artistEl.classList.add("hidden");
+      }
+    }
+
+    const progWrapEl = document.getElementById("rpc-spotify-prog-wrap");
+    const liveWrapEl = document.getElementById("rpc-media-live-wrap");
+
+    if (mediaActivity.timestamps?.end) {
+      if (progWrapEl) progWrapEl.classList.remove("hidden");
+      if (liveWrapEl) liveWrapEl.classList.add("hidden");
+      const total = mediaActivity.timestamps.end - (mediaActivity.timestamps?.start || Date.now());
+      document.getElementById("rpc-spotify-duration").textContent = formatTime(total);
+    } else if (mediaActivity.timestamps?.start) {
+      if (progWrapEl) progWrapEl.classList.add("hidden");
+      if (liveWrapEl) liveWrapEl.classList.remove("hidden");
+    }
 
     if (spotifyInterval) clearInterval(spotifyInterval);
     updateMediaProgress();
@@ -863,21 +903,29 @@ function updatePresence(presence) {
 function updateMediaProgress() {
   if (!currentMediaData || !currentMediaData.timestamps) return;
   const start = currentMediaData.timestamps.start || Date.now();
-  const end = currentMediaData.timestamps.end || Date.now();
-  const total = Math.max(1, end - start);
-  const current = Date.now() - start;
+  const end = currentMediaData.timestamps.end;
 
-  if (current >= total) {
-    clearInterval(spotifyInterval);
-    fetchLanyard();
-    return;
+  if (end) {
+    const total = Math.max(1, end - start);
+    const current = Date.now() - start;
+
+    if (current >= total) {
+      clearInterval(spotifyInterval);
+      fetchLanyard();
+      return;
+    }
+
+    const pct = Math.min(100, (current / total) * 100);
+    const progEl = document.getElementById("rpc-spotify-progress");
+    const curEl = document.getElementById("rpc-spotify-current");
+    if (progEl) progEl.style.width = `${pct}%`;
+    if (curEl) curEl.textContent = formatTime(current);
+  } else {
+    // Livestream or endless media: display elapsed time
+    const elapsed = Math.max(0, Date.now() - start);
+    const liveTextEl = document.getElementById("rpc-media-live-text");
+    if (liveTextEl) liveTextEl.textContent = formatTime(elapsed);
   }
-
-  const pct = Math.min(100, (current / total) * 100);
-  const progEl = document.getElementById("rpc-spotify-progress");
-  const curEl = document.getElementById("rpc-spotify-current");
-  if (progEl) progEl.style.width = `${pct}%`;
-  if (curEl) curEl.textContent = formatTime(current);
 }
 
 // ============================================================
