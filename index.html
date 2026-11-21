@@ -11,9 +11,12 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="css/style.css?v=18" />
+  <link rel="stylesheet" href="css/style.css?v=21" />
 </head>
-<body>
+<body class="xmas-theme">
+  <!-- ===== Global Christmas Snowfall Canvas ===== -->
+  <canvas id="xmas-snow-canvas" aria-hidden="true"></canvas>
+
   <!-- ===== Atmospheric Background ===== -->
   <div class="bg-aurora" aria-hidden="true">
     <div class="bg-orb float-slow" style="width: 560px; height: 560px; background: rgba(52, 211, 153, 0.13); top: -140px; left: -120px;"></div>
@@ -28,10 +31,32 @@
 
   <!-- ===== Floating Pill Navigation ===== -->
   <header id="nav" class="fixed top-0 left-0 right-0 z-50 px-4 pt-4">
-    <div class="max-w-5xl mx-auto nav-shell rounded-full px-4 sm:px-5 h-14 flex items-center justify-between gap-3">
-      <!-- Brand -->
-      <a href="#hero" class="flex items-center gap-2.5 font-display font-bold text-base tracking-tight shrink-0">
-        <span class="w-8 h-8 rounded-full flex items-center justify-center mono text-sm font-extrabold brand-mark">H</span>
+    <div class="max-w-5xl mx-auto nav-shell rounded-full px-4 sm:px-5 h-14 flex items-center justify-between gap-3 relative">
+      <!-- Dải đèn dây Giáng sinh tinh tế dưới thanh Nav -->
+      <div class="xmas-lights-wire" aria-hidden="true">
+        <span class="xmas-bulb b-red"></span>
+        <span class="xmas-bulb b-gold"></span>
+        <span class="xmas-bulb b-green"></span>
+        <span class="xmas-bulb b-cyan"></span>
+        <span class="xmas-bulb b-red"></span>
+        <span class="xmas-bulb b-gold"></span>
+        <span class="xmas-bulb b-green"></span>
+        <span class="xmas-bulb b-cyan"></span>
+        <span class="xmas-bulb b-red"></span>
+        <span class="xmas-bulb b-gold"></span>
+        <span class="xmas-bulb b-green"></span>
+      </div>
+
+      <!-- Brand with Santa Hat -->
+      <a href="#hero" class="flex items-center gap-2.5 font-display font-bold text-base tracking-tight shrink-0 relative">
+        <span class="w-8 h-8 rounded-full flex items-center justify-center mono text-sm font-extrabold brand-mark relative">
+          H
+          <svg class="santa-hat-svg" width="24" height="22" viewBox="0 0 32 28" fill="none" aria-hidden="true">
+            <path d="M5 18 C7 7, 17 3, 25 11 C22 10, 17 12, 16 18 Z" fill="#ef4444" stroke="#b91c1c" stroke-width="1.2"/>
+            <rect x="3" y="16.5" width="16" height="4.8" rx="2.4" fill="#f8fafc"/>
+            <circle cx="26.5" cy="12" r="3.1" fill="#ffffff"/>
+          </svg>
+        </span>
         <span class="hidden sm:inline text-white">HungNoPro<span style="color: var(--accent);">.</span></span>
       </a>
 
@@ -51,8 +76,16 @@
           <span class="mono truncate" id="nav-status-text" style="color: var(--muted);">Offline</span>
         </a>
 
+        <!-- Quick Snow Toggle Button -->
+        <button id="nav-snow-btn" type="button" class="icon-pill-btn" title="Bật / Tắt tuyết rơi Giáng sinh" aria-label="Bật hoặc tắt tuyết rơi">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="2" y1="12" x2="22" y2="12"/><line x1="12" y1="2" x2="12" y2="22"/>
+            <path d="m20 16-4-4 4-4"/><path d="m4 8 4 4-4 4"/><path d="m16 4-4 4-4-4"/><path d="m8 20 4-4 4 4"/>
+          </svg>
+        </button>
+
         <!-- Quick Ambient Music Button -->
-        <button id="nav-music-btn" type="button" class="icon-pill-btn" title="Phát nhạc nền: Way Back Home">
+        <button id="nav-music-btn" type="button" class="icon-pill-btn" title="Phát nhạc Giáng sinh: Last Christmas">
           <svg id="nav-music-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M9 18V5l12-2v13"></path>
             <circle cx="6" cy="18" r="3"></circle>
@@ -307,23 +340,34 @@
                   </div>
                 </div>
 
-                <!-- Profile Details Panel (Bio, Member Since, Connected Accounts) -->
-                <div class="rpc-info-panel mt-3.5 space-y-3">
-                  <!-- Tiểu sử -->
-                  <div>
-                    <div class="rpc-section-heading">Tiểu sử</div>
-                    <div id="rpc-bio" class="text-[13px] leading-relaxed text-white/90 space-y-1">
-                      <div><span class="rpc-inline-code">He\Him</span></div>
-                      <div>My inf: <a href="https://hungnopro.github.io/" target="_blank" rel="noopener" class="rpc-bio-link">https://hungnopro.github.io/</a></div>
-                    </div>
+                <!-- Bộ Sưu Tập Trò Chơi (Interactive Game Collection Widget giống Discord) -->
+                <button type="button" id="open-games-modal-btn" class="rpc-games-strip mt-3.5" title="Bấm để xem tên ingame, UID và rank">
+                  <div class="text-left min-w-0">
+                    <div class="text-[13px] font-bold text-white leading-tight">Bộ Sưu Tập Trò Chơi</div>
+                    <div class="text-[10.5px] text-white/60 mt-0.5">Bấm xem Ingame &amp; ID</div>
                   </div>
-
-                  <!-- Gia Nhập Từ -->
-                  <div>
-                    <div class="rpc-section-heading">Gia Nhập Từ</div>
-                    <div id="rpc-joined-date" class="text-[13px] text-white/90 font-medium">19 thg 9, 2020</div>
+                  <div class="rpc-games-icons">
+                    <!-- Liên Quân -->
+                    <span class="rpc-g-tile g-aov" title="Liên Quân Mobile">
+                      <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/5c/2a/f4/5c2af473-1c0e-e7cc-a3ad-d06c442c1b0b/AppIcon-1x_U007emarketing-0-11-0-85-220-0.png/128x128bb.jpg" alt="Liên Quân Mobile" loading="lazy" />
+                    </span>
+                    <!-- Free Fire -->
+                    <span class="rpc-g-tile g-ff" title="Free Fire">
+                      <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/b6/16/46/b616466e-f433-634d-6f46-4204ff0cf108/AppIcon-1789883795-0-0-1x_U007emarketing-0-8-0-85-220.png/128x128bb.jpg" alt="Free Fire" loading="lazy" />
+                    </span>
+                    <!-- LMHT -->
+                    <span class="rpc-g-tile g-lol" title="Liên Minh Huyền Thoại">
+                      <img src="https://cdn.discordapp.com/app-icons/1402418696126992445/7c99428541032ac02ec6981d88b78fb7.png?size=128" alt="Liên Minh Huyền Thoại" loading="lazy" />
+                    </span>
+                    <!-- CS2 -->
+                    <span class="rpc-g-tile g-cs2" title="Counter-Strike 2">
+                      <img src="https://cdn.discordapp.com/app-icons/1158877933042143272/558f5a26ecb3b17c3dea3d15c1df537a.png?size=128" alt="Counter-Strike 2" loading="lazy" />
+                    </span>
                   </div>
+                </button>
 
+                <!-- Profile Details Panel (Connected Accounts) -->
+                <div class="rpc-info-panel mt-3 space-y-3">
                   <!-- Kết Nối (Connected Accounts) -->
                   <div>
                     <div class="rpc-section-heading">Kết Nối</div>
@@ -337,7 +381,7 @@
                           <span class="text-[13px] font-semibold text-white truncate">Nguyễn Tiến Hùng</span>
                         </div>
                       </div>
-                      <a href="https://steamcommunity.com/profiles/76561199032402697" target="_blank" rel="noopener" class="rpc-conn-row block no-underline">
+                      <a href="https://steamcommunity.com/id/HungNeMaOi/" target="_blank" rel="noopener" class="rpc-conn-row block no-underline">
                         <div class="flex items-center gap-2.5">
                           <span class="w-5 h-5 rounded-full bg-white flex items-center justify-center shrink-0 text-[#171a21]">
                             <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.004.105.004.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 11.999-5.373 11.999-12S18.605 0 11.979 0z"/></svg>
@@ -694,14 +738,15 @@
         </div>
 
         <div class="grid md:grid-cols-12 gap-6 items-stretch">
-          <!-- Vinyl Music Box -->
+          <!-- Vinyl Music Box (Christmas Edition) -->
           <div class="spotlight-card md:col-span-6 p-6 sm:p-8 flex flex-col justify-between reveal">
             <div>
               <div class="flex items-center justify-between gap-2 mb-5">
-                <span class="mono text-xs uppercase tracking-wider px-2.5 py-1 rounded-full" style="background: rgba(52, 211, 153, 0.1); color: var(--accent); border: 1px solid rgba(52, 211, 153, 0.22);">
-                  ♫ Chill Soundscape
+                <span class="mono text-xs uppercase tracking-wider px-2.5 py-1 rounded-full inline-flex items-center gap-1.5" style="background: rgba(239, 68, 68, 0.14); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.3);">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                  Christmas Soundscape
                 </span>
-                <span id="music-eq" class="eq-bars paused" style="color: var(--accent);">
+                <span id="music-eq" class="eq-bars paused" style="color: #fbbf24;">
                   <span></span><span></span><span></span>
                 </span>
               </div>
@@ -711,17 +756,20 @@
                   <img src="resources/avt.jpg" alt="Vinyl Cover" class="vinyl-cover" />
                 </div>
                 <div class="min-w-0 flex-1">
-                  <h3 class="text-xl font-bold text-white truncate">Way Back Home</h3>
-                  <p class="text-sm mt-0.5" style="color: var(--muted);">SHAUN • Chill Vibes Track</p>
-                  <p class="mono text-xs mt-2" style="color: var(--dim);">Bật chút nhạc chill trong lúc dạo web nhé ✨</p>
+                  <h3 id="vinyl-track-title" class="text-xl font-bold text-white truncate">Last Christmas</h3>
+                  <p id="vinyl-track-artist" class="text-sm mt-0.5" style="color: var(--muted);">Wham! • Christmas Special 2026</p>
+                  <div class="flex flex-wrap gap-1.5 mt-3">
+                    <button type="button" class="track-switch-btn active mono" data-src="resources/lastchristmas.mp3" data-title="Last Christmas" data-artist="Wham! • Christmas Special 2026">Last Christmas</button>
+                    <button type="button" class="track-switch-btn mono" data-src="resources/waybackhome.mp3" data-title="Way Back Home" data-artist="SHAUN • Chill Vibes Track">Way Back Home</button>
+                  </div>
                 </div>
               </div>
             </div>
 
             <div class="mt-6 pt-5 border-t" style="border-color: var(--border);">
-              <audio id="bgm-audio" src="resources/waybackhome.mp3" preload="metadata" loop></audio>
+              <audio id="bgm-audio" src="resources/lastchristmas.mp3" preload="metadata" loop></audio>
               <div class="flex items-center gap-3.5">
-                <button id="music-play-btn" type="button" class="w-10 h-10 rounded-full flex items-center justify-center shrink-0 cursor-pointer border-0 transition-transform active:scale-95" style="background: var(--accent); color: #04130d; box-shadow: 0 0 20px rgba(52,211,153,0.35);" aria-label="Phát hoặc tạm dừng nhạc">
+                <button id="music-play-btn" type="button" class="w-10 h-10 rounded-full flex items-center justify-center shrink-0 cursor-pointer border-0 transition-transform active:scale-95" style="background: linear-gradient(135deg, #ef4444, #dc2626); color: #ffffff; box-shadow: 0 0 20px rgba(239,68,68,0.4);" aria-label="Phát hoặc tạm dừng nhạc">
                   <svg id="music-play-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
                 </button>
                 <div class="flex-1">
@@ -735,34 +783,23 @@
             </div>
           </div>
 
-          <!-- Workshop / Coming Soon Card -->
-          <div class="spotlight-card md:col-span-6 p-6 sm:p-8 flex flex-col sm:flex-row items-center gap-6 reveal reveal-delay-1">
-            <div class="shrink-0">
-              <svg width="140" height="140" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M40 110 Q100 30 160 110 Z" fill="var(--accent)" opacity="0.85"/>
-                <rect x="35" y="108" width="130" height="12" rx="6" fill="var(--accent)"/>
-                <rect x="90" y="40" width="20" height="20" rx="4" fill="#fbbf24"/>
-                <circle class="hardhat-light" cx="100" cy="50" r="6" fill="white" opacity="0.9"/>
-                <circle cx="100" cy="130" r="35" fill="var(--surface-2)" stroke="rgba(255,255,255,0.15)" stroke-width="3"/>
-                <path d="M85 125 L90 130 L85 135" stroke="var(--text)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M115 125 L110 130 L115 135" stroke="var(--text)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                <circle cx="80" cy="140" r="5" fill="var(--accent)" opacity="0.45"/>
-                <circle cx="120" cy="140" r="5" fill="var(--accent)" opacity="0.45"/>
-                <path d="M90 145 Q100 152 110 145" stroke="var(--text)" stroke-width="3" stroke-linecap="round" fill="none"/>
-                <path d="M70 165 Q100 155 130 165 L135 190 L65 190 Z" fill="var(--surface-2)" stroke="rgba(255,255,255,0.15)" stroke-width="3"/>
-                <rect x="18" y="138" width="46" height="30" rx="6" fill="var(--surface)" stroke="var(--accent)" stroke-width="2"/>
-                <text x="41" y="157" font-family="JetBrains Mono" font-weight="700" font-size="10" fill="var(--accent)" text-anchor="middle">SOON</text>
-              </svg>
-            </div>
-            <div class="text-center sm:text-left">
-              <div class="mono text-xs uppercase tracking-wider mb-2 inline-flex items-center gap-1.5" style="color: #fbbf24;">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                Work in progress
+          <!-- Interactive 3D ASCII Christmas Tree Card (Ported from D:\Chrismas.tree) -->
+          <div class="spotlight-card md:col-span-6 p-5 sm:p-6 flex flex-col justify-between reveal reveal-delay-1 xmas-tree-card">
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <div class="flex items-center gap-2 min-w-0">
+                <span class="mono text-xs uppercase tracking-wider px-2.5 py-1 rounded-full inline-flex items-center gap-1.5" style="background: rgba(251, 191, 36, 0.14); color: #fde68a; border: 1px solid rgba(251, 191, 36, 0.3);">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m12 3-7 9h4l-5 7h16l-5-7h4z"/><path d="M12 19v3"/></svg>
+                  3D ASCII Tree
+                </span>
+                <span class="mono text-[11px] hidden sm:inline truncate" style="color: var(--muted);">Kéo để xoay cây thông</span>
               </div>
-              <h3 class="text-xl font-bold text-white mb-2">Đang ủ thêm đồ chơi mới</h3>
-              <p class="text-sm leading-relaxed" style="color: var(--muted);">
-                Khu vực này đang được xây dựng thêm. Mình vẫn đang đổ mồ hôi (và vài trăm dòng code) cho mấy ý tưởng tiếp theo. Thỉnh thoảng ghé lại xem có gì mới nha!
-              </p>
+              <button type="button" id="open-tree-modal-btn" class="icon-pill-btn" title="Xem cây thông 3D toàn màn hình" aria-label="Mở toàn màn hình">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+              </button>
+            </div>
+
+            <div class="ascii-tree-viewport">
+              <canvas id="ascii-tree-canvas"></canvas>
             </div>
           </div>
         </div>
@@ -790,12 +827,155 @@
     </footer>
   </main>
 
+  <!-- Game Collection Modal (Bộ Sưu Tập Trò Chơi) -->
+  <div id="games-modal" class="ascii-modal hidden" role="dialog" aria-modal="true" aria-label="Bộ Sưu Tập Trò Chơi của HùngNoPro">
+    <div class="games-modal-shell">
+      <div class="games-modal-head">
+        <div class="flex items-center gap-3 min-w-0">
+          <div class="w-9 h-9 rounded-xl flex items-center justify-center shrink-0" style="background: linear-gradient(135deg, rgba(236, 29, 253, 0.25), rgba(88, 101, 242, 0.28)); border: 1px solid rgba(255,255,255,0.16); color: #f5d0fe;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" x2="10" y1="12" y2="12"/><line x1="8" x2="8" y1="10" y2="14"/><line x1="15" x2="15.01" y1="13" y2="13"/><line x1="18" x2="18.01" y1="11" y2="11"/><rect width="20" height="12" x="2" y="6" rx="2"/></svg>
+          </div>
+          <div class="min-w-0">
+            <h3 class="text-base sm:text-lg font-bold text-white leading-tight truncate">Bộ Sưu Tập Trò Chơi</h3>
+            <p class="mono text-[11px] truncate" style="color: var(--muted);">Bấm Copy để kết bạn &amp; lập kèo chiến game cùng mình</p>
+          </div>
+        </div>
+        <button type="button" id="close-games-modal-btn" class="icon-pill-btn shrink-0" title="Đóng (Esc)" aria-label="Đóng">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <div class="games-modal-body">
+        <!-- 1. Liên Quân Mobile -->
+        <div class="game-item-card">
+          <div class="game-card-top">
+            <div class="game-logo-box g-aov">
+              <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/5c/2a/f4/5c2af473-1c0e-e7cc-a3ad-d06c442c1b0b/AppIcon-1x_U007emarketing-0-11-0-85-220-0.png/128x128bb.jpg" alt="Liên Quân Mobile" loading="lazy" />
+            </div>
+            <div class="min-w-0 flex-1">
+              <div class="flex items-center gap-2 flex-wrap">
+                <h4 class="font-bold text-white text-sm sm:text-base">Liên Quân Mobile</h4>
+                <span class="game-rank-pill rank-gold">Peak: Chiến Tướng</span>
+              </div>
+              <div class="mono text-xs text-white/80 mt-1 break-all">w'ngynhunqz.</div>
+            </div>
+          </div>
+          <div class="game-card-actions">
+            <button type="button" class="game-copy-btn" data-copy="w'ngynhunqz." data-label="tên Liên Quân">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copy Ingame
+            </button>
+          </div>
+        </div>
+
+        <!-- 2. Free Fire -->
+        <div class="game-item-card">
+          <div class="game-card-top">
+            <div class="game-logo-box g-ff">
+              <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/b6/16/46/b616466e-f433-634d-6f46-4204ff0cf108/AppIcon-1789883795-0-0-1x_U007emarketing-0-8-0-85-220.png/128x128bb.jpg" alt="Free Fire" loading="lazy" />
+            </div>
+            <div class="min-w-0 flex-1">
+              <div class="flex items-center gap-2 flex-wrap">
+                <h4 class="font-bold text-white text-sm sm:text-base">Free Fire</h4>
+                <span class="game-rank-pill rank-orange">ID: 2472603376</span>
+              </div>
+              <div class="mono text-xs text-white/80 mt-1 break-all">BắcKìĐánhVợ</div>
+            </div>
+          </div>
+          <div class="game-card-actions">
+            <button type="button" class="game-copy-btn" data-copy="2472603376" data-label="ID Free Fire">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copy ID
+            </button>
+            <button type="button" class="game-copy-btn secondary" data-copy="BắcKìĐánhVợ" data-label="tên Free Fire">
+              Copy Tên
+            </button>
+          </div>
+        </div>
+
+        <!-- 3. Liên Minh Huyền Thoại -->
+        <div class="game-item-card">
+          <div class="game-card-top">
+            <div class="game-logo-box g-lol">
+              <img src="https://cdn.discordapp.com/app-icons/1402418696126992445/7c99428541032ac02ec6981d88b78fb7.png?size=128" alt="Liên Minh Huyền Thoại" loading="lazy" />
+            </div>
+            <div class="min-w-0 flex-1">
+              <div class="flex items-center gap-2 flex-wrap">
+                <h4 class="font-bold text-white text-sm sm:text-base">Liên Minh Huyền Thoại</h4>
+                <span class="game-rank-pill rank-cyan">Trùm ARAM Mayhem</span>
+              </div>
+              <div class="mono text-xs text-white/80 mt-1 break-all">Chimto làm em ho#hugox</div>
+            </div>
+          </div>
+          <div class="game-card-actions">
+            <button type="button" class="game-copy-btn" data-copy="Chimto làm em ho#hugox" data-label="Riot ID LMHT">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copy Riot ID
+            </button>
+          </div>
+        </div>
+
+        <!-- 4. Counter-Strike 2 -->
+        <div class="game-item-card">
+          <div class="game-card-top">
+            <div class="game-logo-box g-cs2">
+              <img src="https://cdn.discordapp.com/app-icons/1158877933042143272/558f5a26ecb3b17c3dea3d15c1df537a.png?size=128" alt="Counter-Strike 2" loading="lazy" />
+            </div>
+            <div class="min-w-0 flex-1">
+              <div class="flex items-center gap-2 flex-wrap">
+                <h4 class="font-bold text-white text-sm sm:text-base">Counter-Strike 2</h4>
+                <span class="game-rank-pill rank-purple">Peak Elo: 12k</span>
+              </div>
+              <div class="mono text-xs text-white/80 mt-1 break-all">Kat · steamcommunity.com/id/HungNeMaOi</div>
+            </div>
+          </div>
+          <div class="game-card-actions">
+            <a href="https://steamcommunity.com/id/HungNeMaOi/" target="_blank" rel="noopener" class="game-copy-btn steam-link">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Mở Steam
+            </a>
+            <button type="button" class="game-copy-btn secondary" data-copy="Kat" data-label="tên CS2">
+              Copy Tên
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fullscreen 3D ASCII Christmas Tree Modal -->
+  <div id="ascii-tree-modal" class="ascii-modal hidden" role="dialog" aria-modal="true" aria-label="Cây thông Noel 3D ASCII">
+    <div class="ascii-modal-shell">
+      <div class="ascii-modal-head">
+        <div class="flex items-center gap-2.5">
+          <span class="w-2.5 h-2.5 rounded-full" style="background: #ef4444; box-shadow: 0 0 8px #ef4444;"></span>
+          <span class="mono text-xs sm:text-sm font-bold text-white">christmas_tree.py — 3D ASCII Canvas Edition</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <button type="button" id="reset-tree-btn" class="icon-pill-btn" title="Đặt lại góc xoay" aria-label="Đặt lại góc xoay">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+          </button>
+          <button type="button" id="close-tree-modal-btn" class="icon-pill-btn" title="Đóng (Esc)" aria-label="Đóng">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="ascii-modal-body">
+        <canvas id="ascii-tree-modal-canvas"></canvas>
+      </div>
+      <div class="ascii-modal-foot mono text-[11px]" style="color: var(--muted);">
+        Kéo chuột / vuốt ngang để xoay cây thông
+      </div>
+    </div>
+  </div>
+
   <!-- Toast Notification -->
   <div id="site-toast" role="status" aria-live="polite">
     <span style="color: var(--accent);">✓</span>
     <span id="site-toast-text">Đã sao chép!</span>
   </div>
 
-  <script src="script/script.js?v=16"></script>
+  <script src="script/script.js?v=19"></script>
+  <script src="script/christmas.js?v=2"></script>
 </body>
 </html>

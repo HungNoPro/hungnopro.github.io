@@ -1487,3 +1487,417 @@ a.rpc-conn-row:hover {
 @media (prefers-reduced-motion: reduce) {
   * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
+
+/* ==========================================================================
+   CHRISTMAS 2026 EDITION — SNOWFALL, SANTA HAT, FAIRY LIGHTS & 3D ASCII TREE
+   ========================================================================== */
+#xmas-snow-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 900;
+}
+
+/* Mũ Ông Già Noel trên logo chữ H */
+.santa-hat-svg {
+  position: absolute;
+  top: -11px;
+  left: -3px;
+  transform: rotate(-14deg);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+  pointer-events: none;
+}
+
+/* Dải đèn dây Giáng sinh tinh tế treo ngay dưới thanh Nav */
+.xmas-lights-wire {
+  position: absolute;
+  left: 36px;
+  right: 36px;
+  bottom: -6px;
+  height: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none;
+  z-index: 2;
+}
+.xmas-lights-wire::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 2px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.16) 15%, rgba(255, 255, 255, 0.16) 85%, transparent);
+}
+.xmas-bulb {
+  width: 6px;
+  height: 8px;
+  border-radius: 50% 50% 60% 60%;
+  position: relative;
+  z-index: 1;
+  animation: xmasTwinkle 2.4s ease-in-out infinite;
+}
+.xmas-bulb:nth-child(even) {
+  animation-delay: -1.2s;
+}
+.xmas-bulb.b-red {
+  background: #f87171;
+  box-shadow: 0 0 8px #ef4444, 0 0 14px rgba(239, 68, 68, 0.6);
+}
+.xmas-bulb.b-gold {
+  background: #fde047;
+  box-shadow: 0 0 8px #eab308, 0 0 14px rgba(250, 204, 21, 0.6);
+}
+.xmas-bulb.b-green {
+  background: #34d399;
+  box-shadow: 0 0 8px #10b981, 0 0 14px rgba(52, 211, 153, 0.6);
+}
+.xmas-bulb.b-cyan {
+  background: #38bdf8;
+  box-shadow: 0 0 8px #0ea5e9, 0 0 14px rgba(56, 189, 248, 0.6);
+}
+@keyframes xmasTwinkle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.42; transform: scale(0.84); }
+}
+
+/* Điểm nhấn không khí Noel ấm áp trên nền Aurora */
+body.xmas-theme .bg-orb:nth-child(1) {
+  background: rgba(239, 68, 68, 0.11) !important;
+}
+body.xmas-theme .bg-orb:nth-child(2) {
+  background: rgba(16, 185, 129, 0.13) !important;
+}
+body.xmas-theme .bg-orb:nth-child(3) {
+  background: rgba(245, 158, 11, 0.09) !important;
+}
+
+/* Nút đổi bài hát trong máy Vinyl */
+.track-switch-btn {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.track-switch-btn:hover {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.22);
+}
+.track-switch-btn.active {
+  color: #fff5f5;
+  background: rgba(239, 68, 68, 0.22);
+  border-color: rgba(239, 68, 68, 0.5);
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.25);
+}
+
+/* Khung hiển thị Cây Thông 3D ASCII ở Little Corner */
+.xmas-tree-card {
+  border-color: rgba(251, 191, 36, 0.18);
+}
+.ascii-tree-viewport {
+  width: 100%;
+  height: 290px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #060913;
+  cursor: grab;
+  touch-action: pan-y;
+}
+.ascii-tree-viewport:active {
+  cursor: grabbing;
+}
+.ascii-tree-viewport canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Modal xem Cây thông 3D ASCII toàn màn hình */
+.ascii-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9990;
+  background: rgba(3, 5, 12, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+.ascii-modal-shell {
+  width: 100%;
+  max-width: 780px;
+  height: min(86vh, 720px);
+  background: #070b16;
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  border-radius: 22px;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.85), 0 0 40px rgba(251, 191, 36, 0.12);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.ascii-modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  background: rgba(15, 20, 36, 0.9);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.ascii-modal-body {
+  flex: 1;
+  min-height: 0;
+  cursor: grab;
+}
+.ascii-modal-body:active {
+  cursor: grabbing;
+}
+.ascii-modal-body canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.ascii-modal-foot {
+  padding: 10px 16px;
+  text-align: center;
+  background: rgba(15, 20, 36, 0.9);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@media (max-width: 640px) {
+  .xmas-lights-wire {
+    left: 22px;
+    right: 22px;
+  }
+  .ascii-tree-viewport {
+    height: 260px;
+  }
+}
+
+/* ==========================================================================
+   DISCORD GAME COLLECTION STRIP & MODAL (BỘ SƯU TẬP TRÒ CHƠI)
+   ========================================================================== */
+.rpc-games-strip {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  cursor: pointer;
+  transition: all 0.22s ease;
+  text-align: left;
+}
+.rpc-games-strip:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.26);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+.rpc-games-strip:active {
+  transform: translateY(0);
+}
+
+.rpc-games-icons {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+}
+.rpc-g-tile {
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  font-size: 10px;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.45);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.rpc-g-tile img,
+.game-logo-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: inherit;
+}
+.rpc-games-strip:hover .rpc-g-tile {
+  transform: scale(1.06);
+  border-color: rgba(255, 255, 255, 0.32);
+}
+
+.g-aov {
+  background: linear-gradient(135deg, #f59e0b 0%, #b45309 100%);
+  color: #fffbeb;
+}
+.g-ff {
+  background: linear-gradient(135deg, #f97316 0%, #dc2626 100%);
+  color: #ffffff;
+}
+.g-lol {
+  background: linear-gradient(135deg, #0ea5e9 0%, #1e3a8a 100%);
+  color: #fde047;
+  border-color: rgba(253, 224, 71, 0.45);
+}
+.g-cs2 {
+  background: linear-gradient(135deg, #eab308 0%, #334155 100%);
+  color: #ffffff;
+}
+
+/* Modal Bộ Sưu Tập Trò Chơi */
+.games-modal-shell {
+  width: 100%;
+  max-width: 520px;
+  max-height: 86vh;
+  background: linear-gradient(180deg, #171226 0%, #0c0d16 100%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 22px;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.85), 0 0 40px rgba(236, 29, 253, 0.12);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.games-modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.games-modal-body {
+  padding: 16px 18px 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.game-item-card {
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 16px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.game-item-card:hover {
+  background: rgba(255, 255, 255, 0.055);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+.game-card-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.game-logo-box {
+  width: 46px;
+  height: 46px;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  padding: 0;
+  font-weight: 900;
+  font-size: 15px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
+}
+
+.game-rank-pill {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 99px;
+  white-space: nowrap;
+}
+.rank-gold {
+  background: rgba(250, 204, 21, 0.16);
+  color: #fde047;
+  border: 1px solid rgba(250, 204, 21, 0.35);
+}
+.rank-orange {
+  background: rgba(249, 115, 22, 0.16);
+  color: #fdba74;
+  border: 1px solid rgba(249, 115, 22, 0.35);
+}
+.rank-cyan {
+  background: rgba(56, 189, 248, 0.16);
+  color: #7dd3fc;
+  border: 1px solid rgba(56, 189, 248, 0.35);
+}
+.rank-purple {
+  background: rgba(168, 85, 247, 0.18);
+  color: #e9d5ff;
+  border: 1px solid rgba(168, 85, 247, 0.38);
+}
+
+.game-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.game-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 7px 13px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #04130d;
+  background: var(--accent);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.18s ease;
+}
+.game-copy-btn:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+.game-copy-btn.secondary {
+  background: rgba(255, 255, 255, 0.06);
+  color: #f1f5f9;
+  border-color: rgba(255, 255, 255, 0.14);
+}
+.game-copy-btn.secondary:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+.game-copy-btn.steam-link {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #ffffff;
+}
